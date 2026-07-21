@@ -280,7 +280,7 @@ body > section:first-of-type {
 
 .valor-item {
     min-height: 400px; 
-    padding: 40px 30px;
+    padding: 40px 15px;
     border-radius: 5px;
     text-align: left; 
     display: flex;
@@ -295,22 +295,6 @@ body > section:first-of-type {
 
 .valor-item:hover {
     transform: translateY(-10px);
-}
-
-
-.valor-item {
-    min-height: 400px; 
-    padding: 40px 15px; 
-    border-radius: 5px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease;
 }
 
 .valor-1 {
@@ -429,11 +413,6 @@ body > section:first-of-type {
     text-decoration: none;
     border-radius: 5px;
     transition: all 0.3s ease;
-}
-
-.cta-buttons .cta-button-light {
-    background-color: rgba(37, 73, 99, 0.1); 
-    color: var(--color-principal);
 }
 
 .cta-button-light {
@@ -797,27 +776,22 @@ html {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
-.valor-1 { transition-delay: 0.1s; }
-.valor-2 { transition-delay: 0.3s; }
-.valor-3 { transition-delay: 0.5s; }
 }
 
 .reveal-left {
     opacity: 0;
     transform: translateX(-50px);
     transition: all 0.8s ease-out;
-.valor-1 { transition-delay: 0.1s; }
-.valor-2 { transition-delay: 0.3s; }
-.valor-3 { transition-delay: 0.5s; }
 }
 
 .reveal-left.active {
     opacity: 1;
     transform: translateX(0);
+}
+
 .valor-1 { transition-delay: 0.1s; }
 .valor-2 { transition-delay: 0.3s; }
 .valor-3 { transition-delay: 0.5s; }
-}
 .cta-button, .cta-header, .cta-button-light {
     position: relative;
     overflow: hidden;
