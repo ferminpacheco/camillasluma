@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Mensaje Enviado! | LUMA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .gracias-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background-color: var(--color-fondo);
+        }
+        .gracias-card {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 500px;
+        }
+        .success-icon {
+            font-size: 4em;
+            color: #25d366;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="gracias-container">
+        <div class="gracias-card reveal">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h2 style="color: var(--color-texto); margin-bottom: 15px;">¡Gracias por contactarnos!</h2>
+            <p style="margin-bottom: 30px; color: var(--color-principal);">Tu mensaje ha sido enviado con éxito. Nuestro equipo revisará tu solicitud y te responderemos a la brevedad para brindarte asesoramiento personalizado.</p>
+            <a href="index.html" class="cta-button">Volver al inicio</a>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

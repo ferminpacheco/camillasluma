@@ -1,0 +1,892 @@
+/* BÁSICO Y FUENTES */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-principal: #162850; /* Azul Oscuro/Grisáceo (Logo/Diseño) (lo cambié porque no quedaba bien el original) */
+    --color-fondo: #ede8e4; /* Beige claro */
+    --color-texto: #1b3e78; /* Azul marino intenso */
+    --color-blanco: #ffffff; 
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+/* ------------------- HEADER Y NAVEGACIÓN FIJA ------------------- */
+.main-header {
+    background-color: var(--color-blanco);
+    color: var(--color-texto); 
+    padding: 5px 5%; /* ALTURA COMPACTA */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+    box-shadow: 0 10px 10px rgba(11, 8, 8, 0.2); /* Sombra sutil */
+    /* 37 y 38 son para que se vea medio traslúcido */
+    background-color: rgba(255, 255, 255, 0.85); /* Blanco con transparencia */
+    backdrop-filter: blur(10px); /* El efecto de vidrio esmerilado */
+}
+
+/* Espacio superior para compensar el header fijo */
+body > section:first-of-type {
+    padding-top: 110px; /* Aumentado a 90px para asegurar que el título se vea */
+}
+
+/* LOGO IMAGEN */
+.logo-container .logo-img {
+    max-width: 100px; 
+    height: auto;
+    display: block; 
+}
+
+/* Navegación ALINEACIÓN A LA DERECHA */
+.main-nav {
+    flex-grow: 1; 
+    display: flex;
+    justify-content: flex-end; 
+    margin-right: 20px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.main-nav ul li a {
+    color: var(--color-texto);
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    transition: color 0.3s;
+    font-weight: 500;
+}
+
+.main-nav ul li a:hover {
+    color: var(--color-principal); 
+}
+
+/* Botón Contacto Principal */
+.cta-header {
+    background-color: var(--color-principal); 
+    color: var(--color-blanco);
+    padding: 8px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+/* ------------------- MENÚ DESPLEGABLE  ------------------- */
+.dropdown {
+    position: relative;
+}
+
+/* Propiedades del Menú Desplegable */
+.dropdown-menu {
+    /* *** El menú oculto por defecto *** */
+    display: none !important; 
+    position: absolute;
+    top: 100%; 
+    left: 0; 
+    background-color: var(--color-blanco); 
+    min-width: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 10px 0;
+    z-index: 10;
+    pointer-events: none; /* Deshabilita clics cuando está oculto */
+}
+
+/* Mostrar el menú SOLAMENTE al pasar el mouse por el LI contenedor (.dropdown) */
+.dropdown:hover .dropdown-menu {
+    display: block !important; 
+    pointer-events: auto; /* Habilita clics cuando está visible */
+}
+
+/* Asegurar que otros elementos LI no desplieguen nada */
+.main-nav ul li:not(.dropdown) .dropdown-menu {
+    display: none !important; 
+}
+
+.dropdown-menu li {
+    text-align: left;
+    padding: 0;
+}
+
+.dropdown-menu li a {
+    padding: 10px 15px;
+    color: var(--color-texto);
+    font-weight: normal;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu li a:hover {
+    background-color: var(--color-fondo); 
+    color: var(--color-principal);
+}
+
+.dropdown-menu i {
+    margin-right: 10px;
+    color: var(--color-principal);
+}
+
+.dropdown-menu .separator {
+    border-top: 1px solid #ddd;
+    margin: 5px 0;
+    height: 1px;
+}
+
+/* ------------------- SECCIÓN HERO  ------------------- */
+.hero {
+    background-color: var(--color-blanco); 
+    display: flex;
+    align-items: flex-start; /* Alinea el contenido (texto/imagen) arriba */
+    justify-content: center;
+    padding: 0; 
+    min-height: 95vh; 
+    max-width: none; 
+    margin: 0;
+    
+    /* padding-top para darle aire desde el header, pero el contenido empieza arriba */
+    padding-top: 50px; 
+}
+
+.hero-content {
+    flex: 0 0 60%; /* 65% para hacerlo más ancho */
+    padding-right: 105px;
+    padding-left: 5%; 
+    padding-top: 50px; /* Separación del borde superior del hero */
+    text-align: left; 
+    z-index: 5;
+    position: relative;
+    
+    /* ***** GRADIENT ***** */
+    background: linear-gradient(to right, 
+        var(--color-blanco) 80%, /* Blanco sólido en el 80% */
+        rgba(255, 255, 255, 0.5) 90%, /* Blanco semi-transparente, más suave */
+        rgba(255, 255, 255, 0) 100% /* Transparente muy suave */
+    );
+    
+    /* padding-bottom que faltaba para extender el fondo blanco */
+    padding-bottom: 266px; /* <--- se extiende el cuadro hacia abajo */
+    height: 100%;
+}
+
+.hero-content h2 {
+    font-size: 4.8em; /* MÁS GRANDE */
+    font-weight: 900;
+    margin-bottom: 20px;
+    line-height: 1; 
+    color: var(--color-texto);
+}
+
+.hero-content p {
+    font-size: 1.3em; 
+    margin-bottom: 40px; 
+}
+
+.hero-image {
+    flex: 0 0 60%; /* Imagen ocupa un poco más para que parezca grande */
+    display: flex;
+    justify-content: flex-start;
+    
+    margin-left: -200px; /* margen negativo para que se mueva más */
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    height: 100%;
+}
+
+.hero-image .main-camilla-img {
+    width: 100%;
+    height: auto;
+    max-width: 900px; 
+    border-radius: 5px;
+    opacity: 0.9;
+    
+    /* imagen hacia abajo para que se vea la cabeza (45% es más bajo que 40%) */
+    object-position: center 45%; 
+    object-fit: cover;
+    min-height: 90vh; 
+}
+
+/* Botón CTA azul (en hero) */
+.cta-button {
+    background-color: var(--color-principal); 
+    color: var(--color-blanco);
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+/* ------------------- SECCIÓN NOSOTROS (Diseño Cuadrado Centrado) ------------------- */
+.nosotros-section {
+    background-color: var(--color-fondo); 
+    padding: 50px 10% 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+}
+
+.nosotros-card {
+    display: block; 
+    max-width: 700px;
+    background-color: var(--color-fondo);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.nosotros-text h3 {
+    font-weight: bold; 
+    margin-bottom: 20px;
+    color: var(--color-texto);
+}
+
+/* El logo ahora está ABAJO del texto y centrado */
+.logo-nosotros {
+    max-width: 150px; 
+    height: auto;
+    opacity: 1;
+    margin-top: 1px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ------------------- SECCIÓN VALORES AZULES  ------------------- */
+.valores-azul {
+    background-color: var(--color-principal); 
+    color: var(--color-blanco);
+    padding: 80px 5%;
+    text-align: left; 
+}
+
+.valores-azul h2 {
+    color: var(--color-blanco);
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+.valores-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+}
+
+.valor-item {
+    /* Chau fondo sólido y más altura para que se vea la imagen */
+    min-height: 400px; 
+    padding: 40px 30px;
+    border-radius: 5px;
+    text-align: left; /* Alineado a la izquierda */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Texto abajo */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.valor-item:hover {
+    transform: translateY(-10px);
+}
+
+/* --- FONDOS CON IMAGEN Y CAPA DE COLOR (#1b3e78 al 85%) --- */
+
+.valor-item {
+    min-height: 400px; 
+    /* Reducimos el padding lateral de 30px a 15px para que el texto se extienda más */
+    padding: 40px 15px; 
+    border-radius: 5px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+/* El color #1b3e78 con 0.75 de opacidad (75%) */
+.valor-1 {
+    background-image: linear-gradient(rgba(22, 40, 80, 0.75), rgba(22, 40, 80, 0.75)), url('images/Fondo 2.jpg');
+}
+
+.valor-2 {
+    background-image: linear-gradient(rgba(22, 40, 80, 0.75), rgba(22, 40, 80, 0.75)), url('images/Fondo 1.jpg');
+}
+
+.valor-3 {
+    background-image: linear-gradient(rgba(22, 40, 80, 0.75), rgba(22, 40, 80, 0.75)), url('images/Fondo 3.jpg');
+}
+
+.valor-item p {
+    color: #ffffff; /* Texto totalmente blanco para mejor contraste sobre el azul */
+    font-size: 0.95em;
+    line-height: 1.4;
+    max-width: 100%; /* Asegura que use todo el ancho disponible */
+}
+
+/* ------------------- SECCIÓN PRODUCTOS (Fichas Detalladas - IMAGEN NO CORTADA) ------------------- */
+.productos {
+    background-color: var(--color-fondo);
+    padding: 80px 15% 20px; /* <--- disminución en los números para achicar el espacio */
+    text-align: center;
+}
+
+.producto-ficha {
+    display: flex;
+    align-items: center; 
+    gap: 40px;
+    margin-bottom: 60px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.producto-ficha.reverse {
+    flex-direction: row-reverse;
+}
+
+.ficha-imagen {
+    flex: 1;
+    padding: 0; 
+    background-color: var(--color-principal); 
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.ficha-imagen .camilla-img {
+    width: 100%;
+    height: auto; /* Asegura que la imagen no se corte */
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.producto-ficha:hover .camilla-img {
+    transform: scale(1.03); /* Zoom muy sutil y elegante */
+}
+
+.ficha-info {
+    flex: 1.5; 
+    padding: 20px 0;
+}
+
+.ficha-info h3 {
+    color: var(--color-texto);
+}
+
+/* ------------------- CALL TO ACTION FINAL (LAYOUT CORREGIDO) ------------------- */
+.cta-final {
+    background-color: var(--color-fondo); 
+    padding: 20px 5% 60px; /* <--- disminución del primer número (20px) para que suba */
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    max-width: 1200px; 
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.cta-text {
+    flex: 2; 
+}
+
+.cta-text h2 {
+    text-align: left;
+    font-size: 2em;
+    margin-bottom: 5px;
+    color: var(--color-texto);
+}
+
+.cta-text p {
+    text-align: left;
+    font-size: 1.1em;
+    color: var(--color-principal); 
+}
+
+.cta-buttons {
+    flex: 1; 
+    display: flex;
+    flex-direction: column; 
+    gap: 15px; /* Un poco más de espacio entre ellos */
+    max-width: 250px; 
+    width: 100%;
+}
+
+/* Forzar a que ambos botones se comporten igual */
+.cta-buttons .cta-button, 
+.cta-buttons .cta-button-light {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 15px 30px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.cta-buttons .cta-button-light {
+    background-color: rgba(37, 73, 99, 0.1); 
+    color: var(--color-principal);
+}
+
+.cta-button-light {
+    background-color: rgba(37, 73, 99, 0.1); 
+    color: var(--color-principal);
+    padding: 15px 30px;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+/* ------------------- SECCIÓN CONTACTO (FONDO BLANCO RESTAURADO) ------------------- */
+.contacto-section {
+    background-color: var(--color-blanco); 
+    padding: 80px 10%;
+    text-align: center;
+}
+/* ... (Resto de estilos de Contacto y Footer) ... */
+.section-tag {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: var(--color-principal);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.method-box {
+    flex-basis: 30%;
+    padding: 20px;
+    background-color: var(--color-fondo); 
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.method-box h4 {
+    color: var(--color-texto);
+    margin-bottom: 5px;
+}
+
+.method-box a {
+    color: var(--color-principal);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.icon {
+    font-size: 2em;
+    color: var(--color-principal);
+    margin-bottom: 10px;
+}
+
+.formulario-container {
+    max-width: 600px;
+    margin: 50px auto 0;
+    padding: 30px;
+    background-color: var(--color-fondo);
+    border-radius: 8px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.contact-form button {
+    cursor: pointer;
+    border: none;
+    width: 100%;
+}
+
+/* FOOTER */
+footer {
+    background-color: var(--color-principal);
+    padding: 20px 5%;
+    text-align: center;
+    color: var(--color-blanco);
+    font-size: 0.8em;
+}
+/* --- ESTILOS PARA LAS LISTAS DE LOS NUEVOS PRODUCTOS --- */
+.features-list {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.features-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95em;
+    text-align: left;
+}
+
+.features-list i {
+    color: var(--color-principal);
+    font-size: 1.1em;
+    flex-shrink: 0; /* Evita que el icono se achique si el texto es largo */
+}
+/* Desplazamiento suave para que al hacer clic en el menú no "salte" de golpe */
+html {
+    scroll-behavior: smooth;
+}
+/* Selectores de Color */
+.color-selector {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.color-dot {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.color-dot.black { background-color: #000; }
+.color-dot.white { background-color: #fff; border: 1px solid #ddd; }
+
+/* Efecto cuando el color está seleccionado */
+.color-dot.active {
+    border-color: var(--color-principal);
+    transform: scale(1.2);
+}
+/* --- RESPONSIVE DESIGN (ADAPTACIÓN A MÓVILES) --- */
+
+/* --- DISEÑO RESPONSIVO CORREGIDO --- */
+@media (max-width: 768px) {
+    /* 1. Header: logo y botones más pequeños */
+    .main-header {
+        padding: 5px 15px;
+    }
+    .logo-img {
+        max-width: 60px !important;
+    }
+    .cta-header {
+        padding: 5px 12px;
+        font-size: 0.8em;
+    }
+
+    /* 2. Hero: Texto legible y centrado */
+    .hero {
+        flex-direction: column !important;
+        padding-top: 70px !important;
+        min-height: auto !important;
+    }
+    .hero-content {
+        flex: 1 1 100% !important;
+        padding: 20px 5% 40px !important;
+        text-align: center !important;
+        background: white !important;
+    }
+    .hero-content h2 {
+        font-size: 2em !important;
+        line-height: 1.2;
+    }
+    .hero-image {
+        margin-left: 0 !important;
+        flex: 1 1 100% !important;
+        width: 100%;
+    }
+    .main-camilla-img {
+        min-height: 40vh !important;
+        object-position: center !important;
+    }
+
+    /* 3. Valores: Se apilan verticalmente */
+    .valores-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+
+    /* 4. Fichas de Producto: Imagen arriba, texto abajo */
+    .producto-ficha, 
+    .producto-ficha.reverse {
+        flex-direction: column !important;
+        padding: 20px 15px !important;
+        gap: 20px !important;
+    }
+    .ficha-imagen {
+        width: 100% !important;
+    }
+    .ficha-info {
+        width: 100% !important;
+        text-align: left !important;
+    }
+    .camilla-img {
+        max-width: 80% !important; /* Para que la imagen se vea más grande */
+        margin: 0 auto;
+    }
+
+    /* 5. CTA Final: Botones uno arriba del otro */
+    .cta-final {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 40px 5% !important;
+    }
+    .cta-text {
+        text-align: center !important;
+    }
+    .cta-text h2, .cta-text p {
+        text-align: center !important;
+    }
+    .cta-buttons {
+        max-width: 100% !important;
+    }
+
+    /* 6. Formulario y Contacto */
+    .contact-methods {
+        flex-direction: column !important;
+    }
+    .method-box {
+        flex-basis: 100% !important;
+    }
+    .main-nav {
+        display: none; /* Ocultamos el menú de texto en celular para evitar desorden */
+    }
+}
+/* --- WHATSAPP Y MENÚ MÓVIL FINAL --- */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.menu-toggle {
+    display: none; /* Se oculta en PC */
+    font-size: 1.8em;
+    cursor: pointer;
+    color: var(--color-principal);
+}
+
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block !important; /* Aparece en celular */
+    }
+
+    .main-nav {
+        display: none !important; /* Se oculta por defecto */
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column !important;
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+
+    .main-nav.active {
+        display: flex !important; /* Se muestra cuando tocamos las rayitas */
+    }
+
+    .main-nav ul {
+        flex-direction: column !important;
+        align-items: center;
+    }
+    
+    .main-nav ul li {
+        margin: 15px 0;
+    }
+}
+/* --- ANIMACIONES DE ENTRADA (ESTILO WEBFLOW) --- */
+
+/* Clase base: el elemento está invisible y corrido 50px hacia abajo */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+/* Cuando el scroll llega al elemento, JS le agrega esta clase */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    /* Tiempos de espera para el efecto cascada */
+.valor-1 { transition-delay: 0.1s; }
+.valor-2 { transition-delay: 0.3s; }
+.valor-3 { transition-delay: 0.5s; }
+}
+
+/* Animación opcional para que entren desde el costado (Línea High y Ginecológica) */
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease-out;
+    /* Tiempos de espera para el efecto cascada */
+.valor-1 { transition-delay: 0.1s; }
+.valor-2 { transition-delay: 0.3s; }
+.valor-3 { transition-delay: 0.5s; }
+}
+
+.reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+    /* Tiempos de espera para el efecto cascada */
+.valor-1 { transition-delay: 0.1s; }
+.valor-2 { transition-delay: 0.3s; }
+.valor-3 { transition-delay: 0.5s; }
+}
+.cta-button, .cta-header, .cta-button-light {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 0px rgba(22, 40, 80, 0.2);
+}
+
+.cta-button:hover, .cta-header:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(22, 40, 80, 0.3);
+}
+#backToTop {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    bottom: 95px;
+    right: 30px; /* Lo ponemos al lado del de WhatsApp que está a 25px */
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--color-principal);
+    color: white;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+#backToTop:hover {
+    background-color: #1b3e78;
+    transform: translateY(-5px); /* Efecto de salto hacia arriba al pasar el mouse */
+}
+
+@media screen and (max-width: 768px) {
+    #backToTop {
+        bottom: 90px;
+        right: 32px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* --- TOOLTIP WHATSAPP (Mensaje al pasar el mouse) --- */
+
+/* El globito de texto */
+.whatsapp-float::before {
+    content: "¡Estamos en línea, escribinos!";
+    position: absolute;
+    right: 85px; /* Arranca un poquito más lejos para el efecto de movimiento */
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    color: var(--color-texto); /* Usa el azul oscuro de tu paleta */
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap; /* Evita que el texto baje a dos líneas */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none; /* Evita que el globito bloquee el clic */
+}
+
+/* La flechita del globo (triángulo) */
+.whatsapp-float::after {
+    content: "";
+    position: absolute;
+    right: 75px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent #ffffff; /* Triángulo apuntando a la derecha */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+/* Animación cuando pasás el mouse (Hover) */
+.whatsapp-float:hover::before {
+    opacity: 1;
+    visibility: visible;
+    right: 75px; /* Se desliza hacia el botón */
+}
+
+.whatsapp-float:hover::after {
+    opacity: 1;
+    visibility: visible;
+    right: 63px; /* Se pega al borde del botón */
+}
+
+/* 📱 IMPORTANTE: Lo ocultamos en celulares porque ahí no existe el "hover" y puede quedar trabado al tocar */
+@media screen and (max-width: 768px) {
+    .whatsapp-float::before,
+    .whatsapp-float::after {
+        display: none !important;
+    }
+}
