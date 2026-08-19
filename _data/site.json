@@ -10,9 +10,7 @@
   "garantia": "12 meses de cobertura oficial en fabricación, materiales, motores y sistema eléctrico.",
   "garantia_url": "/garantia/",
   "garantia_pdf": "/assets/pdf/garantia-luma.pdf",
-  "showroom_palermo": "Av. Santa Fe 3312, 6.º piso — CABA",
-  "showroom_belgrano": "Av. Cabildo 642, 6.º piso, of. 603 — CABA",
-  "showroom_cp_palermo": "{{SHOWROOM_CP_PALERMO}}",
-  "showroom_cp_belgrano": "{{SHOWROOM_CP_BELGRANO}}",
+  "showroom_palermo": "Palermo, CABA",
+  "showroom_belgrano": "Belgrano, CABA",
   "hex_oficiales": "{{HEX_OFICIALES}}"
 }

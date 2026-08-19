@@ -80,3 +80,8 @@ layout: base.njk
   </script>
 
 </article>
+
+{# Progreso de lectura: CSS puro con animation-timeline, sin JS.
+   Va al final a propósito: es position:fixed, así que se dibuja arriba igual,
+   y como primer hijo de <main> se comía el padding-top que compensa el header. #}
+<div class="post-progreso" aria-hidden="true"><span></span></div>

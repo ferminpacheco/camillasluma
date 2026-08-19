@@ -6,3 +6,13 @@ CLAUDE.md
 luma-testimonios.md
 index.html
 gracias.html
+
+# Skills de Claude Code: no son contenido del sitio.
+# Sin esta linea Eleventy intenta compilar los SKILL.md como plantillas
+# Nunjucks y el build falla con "expected variable end" en los bloques
+# de codigo de ejemplo.
+.claude
+
+# Planes de trabajo internos: documentacion del equipo, no paginas publicas.
+# Sin esta linea Eleventy los publica en /plans/.
+plans

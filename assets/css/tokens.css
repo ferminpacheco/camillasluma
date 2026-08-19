@@ -49,3 +49,24 @@
   font-display: swap;
 }
 */
+
+/* ── MOTION ───────────────────────────────────
+   Curvas y duraciones únicas para todo el sitio.
+   Las built-in de CSS son demasiado débiles para UI:
+   siempre usar estos tokens, no cubic-bezier sueltos.
+   ============================================= */
+
+:root {
+  /* Curvas */
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);    /* entradas y salidas */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);   /* movimiento en pantalla */
+
+  /* Duraciones (UI por debajo de 300ms) */
+  --dur-press:  160ms; /* feedback de click */
+  --dur-fast:   180ms; /* dropdowns, tooltips, focus */
+  --dur-ui:     240ms; /* paneles, menú mobile, acordeón */
+  --dur-reveal: 520ms; /* entrada por scroll — superficie de marketing */
+
+  /* Escalonado de grillas */
+  --stagger: 60ms;
+}

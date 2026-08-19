@@ -28,16 +28,21 @@ breadcrumbs:
   <div class="nosotros-seccion-inner">
     <h2>¿Por qué LUMA?</h2>
     <p>En el mercado conviven dos extremos: equipamiento importado de alta gama con precios inaccesibles y tiempos de entrega largos, y fábricas nacionales masivas que no acompañan la imagen de un consultorio premium. LUMA nació para ocupar el espacio del medio con intención: diseño minimalista y acabados premium de nivel importado, con precio local, stock en Argentina y respaldo directo.</p>
-    <div class="valores-grid" style="margin-top: 2rem;">
-      <div class="valor-item valor-1">
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <div class="beneficio-icono"><i class="fas fa-sliders" aria-hidden="true"></i></div>
         <h3>PRECISIÓN TECNOLÓGICA</h3>
         <p>3 motores independientes, control de pie y movimiento ultra silencioso en cada modelo.</p>
       </div>
-      <div class="valor-item valor-2">
+      <div class="beneficio-card">
+        <div class="beneficio-icono"><i class="fas fa-gem" aria-hidden="true"></i></div>
         <h3>DISEÑO MINIMALISTA</h3>
         <p>Estética que eleva el espacio. Cada pieza está pensada para integrarse al consultorio moderno.</p>
       </div>
-      <div class="valor-item valor-3">
+      <div class="beneficio-card">
+        <!-- fa-shield-halved (nombre FA6) no existe en el build 6.0.0-beta3 que
+             carga el sitio: renderiza vacío. Usar el nombre que sí resuelve. -->
+        <div class="beneficio-icono"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
         <h3>RESPALDO POSTVENTA</h3>
         <p>Servicio técnico directo, garantía oficial y equipo disponible para resolver cualquier consulta.</p>
       </div>
@@ -129,7 +134,7 @@ breadcrumbs:
 </section>
 
 <!-- CTA CIERRE -->
-<section class="cta-producto-cierre">
+<section class="cta-producto-cierre cta-producto-cierre--imagen" style="--cta-bg-imagen: url('/images/fondo-3.png');">
   <div class="cta-producto-cierre-inner">
     <h2>Agendá tu visita al showroom</h2>
     <p>La mejor forma de conocer LUMA es experimentarla en persona. Te esperamos en Palermo o Belgrano.</p>
@@ -151,16 +156,9 @@ breadcrumbs:
       "email": "camillasluma@gmail.com",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Av. Santa Fe 3312, 6.º piso",
         "addressLocality": "Palermo",
         "addressRegion": "CABA",
-        "postalCode": "{{SHOWROOM_CP_PALERMO}}",
         "addressCountry": "AR"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "-34.5943",
-        "longitude": "-58.4060"
       },
       "openingHoursSpecification": [
         {
@@ -184,16 +182,9 @@ breadcrumbs:
       "email": "camillasluma@gmail.com",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Av. Cabildo 642, 6.º piso, of. 603",
         "addressLocality": "Belgrano",
         "addressRegion": "CABA",
-        "postalCode": "{{SHOWROOM_CP_BELGRANO}}",
         "addressCountry": "AR"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "-34.5632",
-        "longitude": "-58.4560"
       },
       "openingHoursSpecification": [
         {

@@ -94,8 +94,12 @@ body > section:first-of-type {
   position: relative;
 }
 
-.dropdown-menu {
-  display: none !important;
+/* El panel nace del trigger: transform-origin arriba a la izquierda, que es
+   donde está el ítem del menú. `visibility` en vez de `display` para poder animar. */
+/* Especificidad: `.main-nav ul` también matchea este <ul> y lo pondría en
+   fila. Antes quedaba tapado por el `display: none !important`. */
+.main-nav .dropdown-menu {
+  display: block;
   position: absolute;
   top: 100%;
   left: 0;
@@ -106,11 +110,36 @@ body > section:first-of-type {
   padding: 10px 0;
   z-index: 10;
   pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(0.98);
+  transform-origin: top left;
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    visibility 0s linear var(--dur-fast);
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block !important;
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
   pointer-events: auto;
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    visibility 0s;
+}
+
+.dropdown-toggle .arrow-down {
+  display: inline-block;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.dropdown:hover .arrow-down,
+.dropdown:focus-within .arrow-down {
+  transform: rotate(180deg);
 }
 
 .dropdown-menu li {
@@ -237,11 +266,24 @@ body > section:first-of-type {
 .cta-button-light {
   position: relative;
   overflow: hidden;
+  /* El hover levanta -2px: si el transform no se declara acá, el salto es seco. */
+  transition:
+    background-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out);
 }
 
-.cta-button:hover,
-.cta-header:hover {
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .cta-button:hover,
+  .cta-header:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.cta-button:active,
+.cta-header:active,
+.cta-button-light:active {
+  transform: scale(0.97);
 }
 
 /* CTA doble (componente reutilizable) */
@@ -320,11 +362,13 @@ body > section:first-of-type {
   background-position: center;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: transform var(--dur-ui) var(--ease-out);
 }
 
-.valor-item:hover {
-  transform: translateY(-10px);
+@media (hover: hover) and (pointer: fine) {
+  .valor-item:hover {
+    transform: translateY(-10px);
+  }
 }
 
 /* Rutas absolutas: el CSS vive en /assets/css/, las imágenes en /images/ */
@@ -348,9 +392,8 @@ body > section:first-of-type {
   max-width: 100%;
 }
 
-.valor-1 { transition-delay: 0.1s; }
-.valor-2 { transition-delay: 0.3s; }
-.valor-3 { transition-delay: 0.5s; }
+/* El escalonado de entrada vive en la sección MOTION (--stagger).
+   Acá era un transition-delay: retrasaba el hover hasta medio segundo. */
 
 /* ── PRODUCTOS / FICHAS ──────────────────────── */
 
@@ -387,11 +430,13 @@ body > section:first-of-type {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 600ms var(--ease-out);
 }
 
-.producto-ficha:hover .camilla-img {
-  transform: scale(1.03);
+@media (hover: hover) and (pointer: fine) {
+  .producto-ficha:hover .camilla-img {
+    transform: scale(1.03);
+  }
 }
 
 .ficha-info {
@@ -472,7 +517,10 @@ body > section:first-of-type {
   font-weight: bold;
   text-decoration: none;
   border-radius: 5px;
-  transition: all 0.3s ease;
+  transition:
+    background-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out);
 }
 
 /* ── CONTACTO ────────────────────────────────── */
@@ -769,9 +817,27 @@ body main .breadcrumb-nav {
 
 .showroom-card {
   background: var(--color-blanco);
-  padding: var(--space-md);
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  /* La imagen sangra hasta el borde: overflow recorta contra el radio. */
+  overflow: hidden;
+}
+
+/* Las dos fotos de origen son cuadradas (2000² y 510²). Se recortan a 4:3
+   con object-fit para que la card no quede desproporcionadamente alta. */
+.showroom-card-imagen {
+  display: block;
+  width: 100%;
+  /* `height: auto` es necesario: los atributos width/height del <img> actúan
+     como presentational hint y fijan la altura, dejando el aspect-ratio sin
+     efecto. Sin esto la card renderiza con la altura cruda de la imagen. */
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.showroom-card-body {
+  padding: var(--space-md);
 }
 
 .showroom-card h3 {
@@ -860,7 +926,9 @@ body main .breadcrumb-nav {
   border-radius: 50%;
   cursor: pointer;
   border: 2px solid transparent;
-  transition: all 0.3s ease;
+  transition:
+    border-color var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out);
 }
 
 .color-dot.black { background-color: #000; }
@@ -922,9 +990,9 @@ body main .breadcrumb-nav {
 .whatsapp-float::before {
   content: "¡Estamos en línea, escribinos!";
   position: absolute;
-  right: 85px;
+  right: 75px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(10px);
   background-color: #ffffff;
   color: var(--color-texto);
   padding: 8px 14px;
@@ -935,35 +1003,43 @@ body main .breadcrumb-nav {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    visibility 0s linear var(--dur-fast);
   pointer-events: none;
 }
 
 .whatsapp-float::after {
   content: "";
   position: absolute;
-  right: 75px;
+  right: 63px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(12px);
   border-width: 6px;
   border-style: solid;
   border-color: transparent transparent transparent #ffffff;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    visibility 0s linear var(--dur-fast);
   pointer-events: none;
 }
 
-.whatsapp-float:hover::before {
-  opacity: 1;
-  visibility: visible;
-  right: 75px;
-}
-
-.whatsapp-float:hover::after {
-  opacity: 1;
-  visibility: visible;
-  right: 63px;
+/* El tooltip se desliza con transform, no animando `right` (layout en cada frame). */
+@media (hover: hover) and (pointer: fine) {
+  .whatsapp-float:hover::before,
+  .whatsapp-float:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
+    transition:
+      opacity var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out),
+      visibility 0s;
+  }
 }
 
 /* ── MENU TOGGLE (mobile) ────────────────────── */
@@ -977,8 +1053,12 @@ body main .breadcrumb-nav {
 
 /* ── BACK TO TOP ─────────────────────────────── */
 
+/* Visibilidad por clase (.is-visible), no por `display`: así puede animar.
+   El estado lo maneja main.js con un listener de scroll pasivo + rAF. */
 #backToTop {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   bottom: 95px;
   right: 30px;
@@ -992,13 +1072,37 @@ body main .breadcrumb-nav {
   height: 50px;
   border-radius: 50%;
   font-size: 20px;
-  transition: all 0.3s ease;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px) scale(0.9);
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) ease,
+    visibility 0s linear var(--dur-fast);
 }
 
-#backToTop:hover {
-  background-color: #1b3e78;
-  transform: translateY(-5px);
+#backToTop.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) ease,
+    visibility 0s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #backToTop.is-visible:hover {
+    background-color: #1b3e78;
+    transform: translateY(-4px);
+  }
+}
+
+#backToTop.is-visible:active {
+  transform: scale(0.94);
 }
 
 /* ── PRODUCTO HERO (fichas internas) ─────────── */
@@ -1047,11 +1151,19 @@ body main .breadcrumb-nav {
   background-color: var(--swatch-color, var(--gris-claro));
   box-shadow: 0 0 0 1px var(--gris-claro);
   cursor: pointer;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition:
+    box-shadow var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out);
 }
 
-.color-swatch:hover {
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .color-swatch:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.color-swatch:active {
+  transform: scale(0.94);
 }
 
 .color-swatch.is-active {
@@ -1071,6 +1183,9 @@ body main .breadcrumb-nav {
   aspect-ratio: 1 / 1;
 }
 
+/* Transición direccional: la slide entrante llega desde el lado hacia el que
+   se avanzó y la saliente se va al opuesto, así el movimiento tiene dirección.
+   El desplazamiento lo escribe main.js en el style inline de cada slide. */
 .carousel-slide {
   position: absolute;
   inset: 0;
@@ -1079,7 +1194,9 @@ body main .breadcrumb-nav {
   object-fit: cover;
   display: block;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition:
+    opacity 420ms var(--ease-out),
+    transform 420ms var(--ease-out);
   pointer-events: none;
 }
 
@@ -1377,11 +1494,13 @@ body main .breadcrumb-nav {
   background: var(--color-fondo);
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.3s;
+  transition: transform var(--dur-ui) var(--ease-out);
 }
 
-.relacionado-card:hover {
-  transform: translateY(-4px);
+@media (hover: hover) and (pointer: fine) {
+  .relacionado-card:hover {
+    transform: translateY(-4px);
+  }
 }
 
 .relacionado-card img {
@@ -1479,11 +1598,13 @@ body main .breadcrumb-nav {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-  transition: transform 0.3s;
+  transition: transform var(--dur-ui) var(--ease-out);
 }
 
-.hub-producto-card:hover {
-  transform: translateY(-6px);
+@media (hover: hover) and (pointer: fine) {
+  .hub-producto-card:hover {
+    transform: translateY(-6px);
+  }
 }
 
 .hub-producto-card a {
@@ -1502,11 +1623,13 @@ body main .breadcrumb-nav {
   height: 220px;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s;
+  transition: transform 400ms var(--ease-out);
 }
 
-.hub-producto-card:hover .hub-producto-imagen img {
-  transform: scale(1.04);
+@media (hover: hover) and (pointer: fine) {
+  .hub-producto-card:hover .hub-producto-imagen img {
+    transform: scale(1.04);
+  }
 }
 
 .hub-producto-placeholder {
@@ -1672,6 +1795,52 @@ body main .breadcrumb-nav {
   margin-top: 1.5rem;
 }
 
+/* ── BENEFICIOS (cards con ícono) ─────────────
+   Sigue el lenguaje de .material-card: fondo blanco, badge circular en
+   --color-fondo con el ícono en navy. Sin hover-lift a propósito: la card
+   no es clickeable y un lift prometería un click que no existe. */
+
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  text-align: left;
+}
+
+.beneficio-card {
+  background: var(--color-blanco);
+  border: 1px solid var(--gris-claro);
+  border-radius: 10px;
+  padding: var(--space-md) 1.75rem;
+}
+
+.beneficio-icono {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--color-fondo);
+  color: var(--color-principal);
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.beneficio-card h3 {
+  color: var(--color-principal);
+  font-size: 1em;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.6rem;
+}
+
+.beneficio-card p {
+  font-size: 0.95em;
+  line-height: 1.65;
+  margin: 0;
+}
+
 .material-card {
   background: var(--color-blanco);
   border-radius: 8px;
@@ -1710,8 +1879,24 @@ body main .breadcrumb-nav {
 
 .nosotros-hero {
   padding-top: 80px;
+  /* El color queda como fallback: si la imagen no carga, el texto blanco
+     sigue teniendo fondo navy y no se pierde sobre blanco. */
   background-color: var(--color-principal);
   color: var(--color-blanco);
+  /* Overlay navy leve sobre la foto. Los valores no son arbitrarios: en el
+     peor caso posible (un píxel blanco puro debajo, en el punto más claro
+     del degradado) el blanco sobre el compuesto da 5.2:1, así que pasa
+     AA aunque la foto sea muy luminosa. */
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(10, 41, 86, 0.78) 0%,
+      rgba(10, 41, 86, 0.68) 100%
+    ),
+    url('/images/fondo-4.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .nosotros-hero-inner {
@@ -1783,11 +1968,13 @@ body main .breadcrumb-nav {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-  transition: transform 0.3s;
+  transition: transform var(--dur-ui) var(--ease-out);
 }
 
-.linea-card:hover {
-  transform: translateY(-6px);
+@media (hover: hover) and (pointer: fine) {
+  .linea-card:hover {
+    transform: translateY(-6px);
+  }
 }
 
 .linea-card img {
@@ -2215,24 +2402,28 @@ body main .breadcrumb-nav {
 
 .reveal {
   opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease-out;
+  transform: translateY(12px);
+  transition:
+    opacity var(--dur-reveal) var(--ease-out),
+    transform var(--dur-reveal) var(--ease-out);
 }
 
 .reveal.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .reveal-left {
   opacity: 0;
-  transform: translateX(-50px);
-  transition: all 0.8s ease-out;
+  transform: translateX(-12px);
+  transition:
+    opacity var(--dur-reveal) var(--ease-out),
+    transform var(--dur-reveal) var(--ease-out);
 }
 
 .reveal-left.active {
   opacity: 1;
-  transform: translateX(0);
+  transform: none;
 }
 
 /* ── RESPONSIVE ──────────────────────────────── */
@@ -2386,6 +2577,7 @@ body main .breadcrumb-nav {
   .relacionados-grid,
   .cuidado-grid,
   .material-cards-grid,
+  .beneficios-grid,
   .producto-galeria-doble {
     grid-template-columns: 1fr !important;
   }
@@ -2409,8 +2601,10 @@ body main .breadcrumb-nav {
     flex-direction: column;
     align-items: center;
   }
+  /* Se despliega desde el header en vez de aparecer de golpe.
+     `visibility` diferida al cierre para que no siga siendo clickeable. */
   .main-nav {
-    display: none !important;
+    display: flex !important;
     position: absolute;
     top: 60px;
     left: 0;
@@ -2419,9 +2613,23 @@ body main .breadcrumb-nav {
     flex-direction: column !important;
     padding: 20px 0;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transform-origin: top center;
+    transition:
+      opacity var(--dur-ui) var(--ease-out),
+      transform var(--dur-ui) var(--ease-out),
+      visibility 0s linear var(--dur-ui);
   }
   .main-nav.active {
-    display: flex !important;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      opacity var(--dur-ui) var(--ease-out),
+      transform var(--dur-ui) var(--ease-out),
+      visibility 0s;
   }
   .main-nav ul {
     flex-direction: column !important;
@@ -2430,12 +2638,24 @@ body main .breadcrumb-nav {
   .main-nav ul li {
     margin: 15px 0;
   }
-  .dropdown-menu {
+  /* Dentro del menú mobile el panel es estático: si quedara oculto con
+     `visibility` seguiría ocupando lugar. Acá se mantiene el display toggle. */
+  .main-nav .dropdown-menu {
     position: static;
     min-width: 0;
     width: 100%;
     box-shadow: none;
     text-align: center;
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+  }
+  .main-nav .dropdown:hover .dropdown-menu,
+  .main-nav .dropdown:focus-within .dropdown-menu {
+    display: block;
+    transform: none;
   }
   .dropdown-menu li a {
     justify-content: center;
@@ -2525,4 +2745,425 @@ body main .breadcrumb-nav {
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
+}
+
+/* =============================================
+   MOTION
+   Todo el movimiento nuevo vive acá, en un solo lugar.
+   Curvas y duraciones: tokens.css (--ease-out, --dur-*).
+   Reglas: solo transform/opacity, UI por debajo de 300ms,
+   hover gateado por puntero fino, reduced-motion al final.
+   ============================================= */
+
+/* ── Feedback de click ────────────────────────
+   Confirma que la interfaz escuchó. scale() arrastra
+   íconos y label, que es lo que lo hace leer como un botón físico. */
+
+.carousel-arrow,
+.carousel-dot,
+.testimonio-carousel-nav,
+.color-dot,
+.menu-toggle,
+.contact-form button,
+.faq-item summary,
+.pdf-descarga-link {
+  transition:
+    background-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+/* La shorthand `transition` del bloque de arriba reemplaza la lista entera,
+   no se suma: sin volver a declararla acá, el dot activo pasaba de círculo
+   de 8px a píldora de 22px de golpe, en cada click y cada 5s de autoplay.
+   `width` es una propiedad de layout y el playbook la desaconseja, pero acá
+   se acepta a conciencia: es un elemento de 8px dentro de un overlay
+   `position: absolute`, y la transición corre una vez por cambio de slide.
+   Es la misma excepción acotada que ya se documenta para el logo del header
+   y para la altura del acordeón. */
+.carousel-dot {
+  transition:
+    width var(--dur-fast) var(--ease-out),
+    border-radius var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.carousel-arrow:active,
+.testimonio-carousel-nav:active,
+.menu-toggle:active,
+.contact-form button:active,
+.pdf-descarga-link:active {
+  transform: scale(0.94);
+}
+
+/* Las flechas del carrusel ya están centradas con translateY(-50%). */
+.carousel-arrow:active,
+.testimonio-carousel-nav:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.carousel-dot:active,
+.color-dot:active {
+  transform: scale(0.85);
+}
+
+/* El dot activo ya crece: no se encoge por debajo de su estado. */
+.color-dot.active:active {
+  transform: scale(1.1);
+}
+
+/* ── Formulario de contacto ───────────────────
+   Feedback de foco. Sin mover layout: solo color y sombra. */
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form select,
+.contact-form textarea {
+  transition:
+    border-color var(--dur-fast) ease,
+    box-shadow var(--dur-fast) ease;
+}
+
+.contact-form input:focus-visible,
+.contact-form select:focus-visible,
+.contact-form textarea:focus-visible {
+  outline: none;
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 3px rgba(10, 41, 86, 0.12);
+}
+
+/* ── FAQ / acordeón ───────────────────────────
+   La altura la anima main.js con WAAPI (única excepción
+   sancionada a animar height). Acá solo el marcador. */
+
+.faq-item summary::after {
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+/* Durante el cierre el <details> sigue abierto hasta que termina la
+   animación: sin esto el "+" volvería 200ms tarde, justo donde se clickeó. */
+.faq-item[data-closing] summary::after {
+  transform: none;
+}
+
+/* ── Entrada por scroll ───────────────────────
+   Superficie de marketing, una sola vez por carga.
+   Los atributos los pone main.js: sin JS, todo se ve normal.
+   Los bloques ya visibles al cargar no se registran. */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity var(--dur-reveal) var(--ease-out),
+    transform var(--dur-reveal) var(--ease-out);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Escalonado de grillas: decorativo, nunca bloquea el click
+   (los hijos ya responden aunque la opacidad esté en curso). */
+[data-reveal-group] > * {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity var(--dur-reveal) var(--ease-out),
+    transform var(--dur-reveal) var(--ease-out);
+}
+
+[data-reveal-group].is-visible > * {
+  opacity: 1;
+  transform: none;
+}
+
+[data-reveal-group].is-visible > *:nth-child(2) { transition-delay: calc(var(--stagger) * 1); }
+[data-reveal-group].is-visible > *:nth-child(3) { transition-delay: calc(var(--stagger) * 2); }
+[data-reveal-group].is-visible > *:nth-child(4) { transition-delay: calc(var(--stagger) * 3); }
+[data-reveal-group].is-visible > *:nth-child(5) { transition-delay: calc(var(--stagger) * 4); }
+[data-reveal-group].is-visible > *:nth-child(n + 6) { transition-delay: calc(var(--stagger) * 5); }
+
+/* ── Reduced motion ───────────────────────────
+   Menos movimiento y más suave, no cero: se conservan los
+   fundidos y los cambios de color, se elimina el desplazamiento. */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal],
+  [data-reveal-group] > *,
+  .reveal,
+  .reveal-left {
+    transform: none;
+    transition-delay: 0ms !important;
+  }
+
+  .valor-item:hover,
+  .linea-card:hover,
+  .hub-producto-card:hover,
+  .hub-producto-card:hover .hub-producto-imagen img,
+  .relacionado-card:hover,
+  .producto-ficha:hover .camilla-img,
+  .color-swatch:hover,
+  .cta-button:hover,
+  .cta-header:hover,
+  #backToTop.is-visible:hover {
+    transform: none;
+  }
+
+  .cta-button:active,
+  .cta-header:active,
+  .cta-button-light:active,
+  .carousel-arrow:active,
+  .testimonio-carousel-nav:active,
+  .menu-toggle:active,
+  .contact-form button:active,
+  .pdf-descarga-link:active,
+  .carousel-dot:active,
+  .color-dot:active {
+    transform: none;
+  }
+
+  .carousel-arrow:active,
+  .testimonio-carousel-nav:active {
+    transform: translateY(-50%);
+  }
+
+  .main-nav,
+  .dropdown-menu,
+  #backToTop {
+    transform: none !important;
+  }
+
+  .testimonio-carousel-track {
+    transition: none !important;
+  }
+
+  /* Chevron del dropdown: la rotación es desplazamiento puro. */
+  .dropdown:hover .arrow-down,
+  .dropdown:focus-within .arrow-down {
+    transform: none;
+  }
+
+  /* Tooltip del WhatsApp: se conserva el fundido, se elimina el deslizamiento.
+     Se mantiene el translateY(-50%) porque no es animación: es el centrado. */
+  .whatsapp-float::before,
+  .whatsapp-float::after,
+  .whatsapp-float:hover::before,
+  .whatsapp-float:hover::after {
+    transform: translateY(-50%);
+  }
+
+  /* El "+" girado a "×" indica que la FAQ está abierta: se conserva el estado
+     final y se elimina solo la animación hacia él. */
+  .faq-item summary::after {
+    transition: none;
+  }
+
+  /* Igual con el dot de color: el scale(1.2) marca cuál está elegido. */
+  .color-dot {
+    transition: none;
+  }
+
+  /* (0,3,0) para ganarle a `.color-dot.active:active`, que por especificidad
+     se saltea el `.color-dot:active` de más arriba en este mismo bloque. */
+  .color-dot.active:active {
+    transform: scale(1.2);
+  }
+}
+
+/* =============================================
+   MOTION AVANZADO
+   Transiciones de página, header con estado de scroll,
+   progreso de lectura y entrada del hero.
+   Todo es mejora progresiva: donde el navegador no
+   soporta algo, la página funciona igual que antes.
+   ============================================= */
+
+/* ── Transiciones entre páginas ───────────────
+   El navegador morfea entre documentos en vez de pegar
+   un flash blanco. Firefox lo ignora y navega normal. */
+
+@view-transition {
+  navigation: auto;
+}
+
+/* Elementos que persisten: en vez de desvanecerse con el resto
+   de la página, se quedan quietos de un documento al otro. */
+.main-header {
+  view-transition-name: luma-header;
+}
+
+.whatsapp-float {
+  view-transition-name: luma-whatsapp;
+}
+
+#backToTop {
+  view-transition-name: luma-back-to-top;
+}
+
+/* La imagen del producto es la misma "cosa" en la grilla del hub y en la
+   ficha: al compartir nombre, el navegador la mueve de una a la otra en vez
+   de fundir dos imágenes sueltas. En el hub el nombre lo asigna main.js
+   sobre la card clickeada (solo uno por documento puede llevarlo). */
+.carousel-slide.is-active {
+  view-transition-name: luma-producto-imagen;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 280ms;
+  animation-timing-function: var(--ease-out);
+}
+
+::view-transition-group(luma-producto-imagen) {
+  animation-duration: 380ms;
+  animation-timing-function: var(--ease-in-out); /* se mueve en pantalla, no entra ni sale */
+}
+
+/* ── Header con estado de scroll ──────────────
+   Recupera alto vertical en las fichas largas. El estado lo pone
+   main.js observando un centinela de 1px, sin listener de scroll. */
+
+.header-sentinel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.main-header {
+  transition:
+    padding var(--dur-ui) var(--ease-in-out),
+    background-color var(--dur-ui) ease,
+    box-shadow var(--dur-ui) var(--ease-in-out);
+}
+
+/* El logo manda la altura del header. Se anima `max-width` y no `transform`
+   porque scale() no achica el layout: con transform el header seguía
+   reservando los 100px y no se recuperaba nada de alto. Es una sola
+   transición puntual al cruzar el umbral, no una por frame de scroll. */
+.logo-container .logo-img {
+  transition: max-width var(--dur-ui) var(--ease-in-out);
+}
+
+:root[data-scrolled] .main-header {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 2px 12px rgba(11, 8, 8, 0.12);
+}
+
+:root[data-scrolled] .logo-container .logo-img {
+  max-width: 68px;
+}
+
+/* ── Dropdowns instantáneos entre vecinos ─────
+   Con un menú ya abierto, pasar al de al lado abre sin animación:
+   animar de nuevo haría sentir lento al header entero. */
+
+:root[data-menu-instantaneo] .main-nav .dropdown-menu,
+:root[data-menu-instantaneo] .dropdown-toggle .arrow-down {
+  transition-duration: 0ms;
+  transition-delay: 0ms;
+}
+
+/* ── Progreso de lectura (post del blog) ──────
+   Animación ligada al scroll: corre fuera del hilo principal, cero JS.
+   `linear` es lo correcto — el progreso no debe tener easing. */
+
+.post-progreso {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1001;
+  pointer-events: none;
+}
+
+.post-progreso span {
+  display: block;
+  height: 100%;
+  background-color: var(--color-principal);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+@supports (animation-timeline: scroll()) {
+  .post-progreso span {
+    animation: luma-progreso-lectura linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+
+@keyframes luma-progreso-lectura {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Entrada del hero (solo la home) ──────────
+   Orquestación de tres tiempos. Va en CSS y no en JS para que arranque
+   en el primer pintado, sin parpadeo.
+   ⚠️ Costo asumido: el H1 nace en opacity 0, así que corre el LCP ~420ms. */
+
+.hero .hero-content h1,
+.hero .hero-content > p,
+.hero .hero-content .cta-doble {
+  animation: luma-hero-entrada 420ms var(--ease-out) both;
+}
+
+.hero .hero-content > p     { animation-delay: 70ms; }
+.hero .hero-content .cta-doble { animation-delay: 140ms; }
+
+@keyframes luma-hero-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* ── Reduced motion ───────────────────────────
+   Se conservan los fundidos y el progreso de lectura (informa, no decora);
+   se elimina todo el desplazamiento. */
+
+@media (prefers-reduced-motion: reduce) {
+  /* El crossfade entre páginas es solo opacidad y se mantiene;
+     el morfeo de posición de la imagen del producto no. */
+  ::view-transition-group(luma-producto-imagen) {
+    animation: none;
+  }
+
+  /* El header se compacta igual (es funcional), pero sin animar el cambio. */
+  .logo-container .logo-img,
+  .main-header {
+    transition: none;
+  }
+
+  .carousel-slide {
+    transform: none !important;
+  }
+
+  .hero .hero-content h1,
+  .hero .hero-content > p,
+  .hero .hero-content .cta-doble {
+    animation: none;
+  }
+
+  /* Los grupos nombrados morfean posición y tamaño entre documentos.
+     El crossfade de opacidad del root se conserva; el desplazamiento no. */
+  ::view-transition-group(luma-header),
+  ::view-transition-group(luma-whatsapp),
+  ::view-transition-group(luma-back-to-top) {
+    animation: none;
+  }
 }
