@@ -1,0 +1,82 @@
+---
+layout: base.njk
+---
+<article class="blog-post" itemscope itemtype="https://schema.org/BlogPosting">
+
+  {% set breadcrumbs = [
+    { label: "Inicio", url: "/" },
+    { label: "Blog",   url: "/blog/" },
+    { label: title }
+  ] %}
+  {% include "components/breadcrumb.njk" %}
+
+  <header class="post-header">
+    <div class="post-meta">
+      {% if category %}<span class="post-categoria">{{ category }}</span>{% endif %}
+    </div>
+    <h1 itemprop="headline">{{ title }}</h1>
+    {% if page.date %}
+    <time class="post-fecha" datetime="{{ page.date | htmlDateString }}" itemprop="datePublished">
+      {{ page.date | readableDate }}
+    </time>
+    {% endif %}
+    {% if description %}
+    <p class="post-descripcion" itemprop="description">{{ description }}</p>
+    {% endif %}
+  </header>
+
+  <div class="post-body" itemprop="articleBody">
+    {{ content | safe }}
+  </div>
+
+  <!-- FAQ del post (opcional — descomentar y completar por artículo) -->
+  <!--
+  <section class="faq-seccion bg-fondo post-faq">
+    <div class="faq-inner">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq-lista">
+        <details class="faq-item">
+          <summary>Pregunta 1</summary>
+          <div class="faq-respuesta"><p>Respuesta 1.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+  -->
+
+  <!-- Autor -->
+  <div class="post-autor" itemprop="author" itemscope itemtype="https://schema.org/Organization">
+    <span itemprop="name">LUMA</span> — Equipamiento Médico Estético
+  </div>
+
+  <!-- CTA de cierre -->
+  <div class="post-cta">
+    <h2>¿Querés equipar tu consultorio?</h2>
+    <p>Conocé la línea de camillas eléctricas y accesorios LUMA.</p>
+    {% include "components/cta-doble.njk" %}
+  </div>
+
+  <!-- Schema BlogPosting -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ title }}",
+    "description": "{{ description }}",
+    "datePublished": "{{ page.date | htmlDateString }}",
+    "author": {
+      "@type": "Organization",
+      "name": "LUMA",
+      "url": "https://camillasluma.com"
+    },
+    "publisher": {
+      "@id": "https://camillasluma.com/#organization"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ canonical }}"
+    }
+  }
+  </script>
+
+</article>

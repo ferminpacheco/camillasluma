@@ -1,0 +1,63 @@
+---
+layout: base.njk
+---
+{% include "components/breadcrumb.njk" %}
+
+{{ content | safe }}
+
+{% if schemaHub %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{ canonical }}#breadcrumb",
+      "itemListElement": [
+        {% for crumb in breadcrumbs %}
+        {
+          "@type": "ListItem",
+          "position": {{ loop.index }},
+          "name": "{{ crumb.label }}"{% if crumb.url %},
+          "item": "{{ site.url }}{{ crumb.url }}"{% endif %}
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "{{ canonical }}#itemlist",
+      "name": "{{ title }}",
+      "itemListElement": [
+        {% for item in schemaHub.items %}
+        {
+          "@type": "ListItem",
+          "position": {{ loop.index }},
+          "name": "{{ item.name }}",
+          "url": "{{ site.url }}{{ item.url }}"
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+    {% if schemaFaqs %},
+    {
+      "@type": "FAQPage",
+      "@id": "{{ canonical }}#faq",
+      "mainEntity": [
+        {% for faq in schemaFaqs %}
+        {
+          "@type": "Question",
+          "name": "{{ faq.q }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ faq.a }}"
+          }
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+    {% endif %}
+  ]
+}
+</script>
+{% endif %}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+
+  {% if canonical %}
+  <link rel="canonical" href="{{ canonical }}">
+  {% endif %}
+
+  {% if noindex %}
+  <meta name="robots" content="noindex, nofollow">
+  {% endif %}
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:type" content="{{ ogType if ogType else 'website' }}">
+  {% if canonical %}<meta property="og:url" content="{{ canonical }}">{% endif %}
+  <meta property="og:site_name" content="{{ site.nombre }}">
+  {% if ogImage %}
+  <meta property="og:image" content="{{ site.url }}{{ ogImage }}">
+  {% endif %}
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:description" content="{{ description }}">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Estilos LUMA -->
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <!-- Schema global: Organization + WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "{{ site.url }}/#organization",
+        "name": "{{ site.nombre }}",
+        "url": "{{ site.url }}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ site.url }}/images/logo_luma_2.png"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "{{ site.whatsapp_numero }}",
+          "contactType": "sales",
+          "areaServed": "AR",
+          "availableLanguage": "Spanish"
+        },
+        "email": "{{ site.email_actual }}",
+        "sameAs": [
+          "https://www.instagram.com/{{ site.instagram }}"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "{{ site.url }}/#website",
+        "url": "{{ site.url }}",
+        "name": "{{ site.nombre }}",
+        "publisher": {
+          "@id": "{{ site.url }}/#organization"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  {% include "components/header.njk" %}
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  {% include "components/footer.njk" %}
+  {% include "components/whatsapp-flotante.njk" %}
+
+  <button onclick="scrollToTop()" id="backToTop" title="Volver arriba">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

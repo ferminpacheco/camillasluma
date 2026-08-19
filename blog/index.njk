@@ -1,0 +1,53 @@
+---
+layout: base.njk
+title: "Blog | LUMA — Recursos para Profesionales de la Estética"
+description: "Guías, comparativas y recursos para elegir el mejor equipamiento médico estético. Para médicos y dueños de centros estéticos."
+canonical: "https://camillasluma.com/blog/"
+breadcrumbs:
+  - label: "Inicio"
+    url: "/"
+  - label: "Blog"
+---
+
+{% set breadcrumbs = [
+  { label: "Inicio", url: "/" },
+  { label: "Blog" }
+] %}
+{% include "components/breadcrumb.njk" %}
+
+<section class="blog-hub">
+  <h1>Blog LUMA</h1>
+  <p>Recursos para profesionales de la estética y la medicina estética.</p>
+
+  {% if collections.posts.length %}
+    <div class="blog-grid">
+      {% for post in collections.posts %}
+      <article class="blog-card">
+        <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+        <p>{{ post.data.description }}</p>
+        <time datetime="{{ post.date | htmlDateString }}">
+          {{ post.date | readableDate }}
+        </time>
+      </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="blog-empty">
+      ⚠️ Contenido pendiente — los artículos se publican en la etapa mensual.
+    </p>
+  {% endif %}
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "@id": "https://camillasluma.com/blog/#blog",
+  "name": "Blog LUMA — Equipamiento Médico Estético",
+  "description": "Recursos y guías para profesionales que eligen equipamiento médico estético: comparativas de camillas, criterios de selección, specs explicadas.",
+  "url": "https://camillasluma.com/blog/",
+  "publisher": {
+    "@id": "https://camillasluma.com/#organization"
+  }
+}
+</script>

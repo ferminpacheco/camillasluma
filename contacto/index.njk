@@ -1,0 +1,101 @@
+---
+layout: base.njk
+title: "Contacto | LUMA — Asesoría Personalizada"
+description: "Contactá a LUMA para cotizar camillas eléctricas y accesorios para tu consultorio. Atención personalizada de lunes a viernes de 8 a 17 hs. Showrooms en CABA."
+canonical: "https://camillasluma.com/contacto/"
+breadcrumbs:
+  - label: "Inicio"
+    url: "/"
+  - label: "Contacto"
+---
+
+{% set breadcrumbs = [
+  { label: "Inicio", url: "/" },
+  { label: "Contacto" }
+] %}
+{% include "components/breadcrumb.njk" %}
+
+<!-- ⚠️ CONTACTO — Contenido real: Fase 5 (formulario + tracking) -->
+<section class="contacto-section">
+  <p class="section-tag">CONTACTO</p>
+  <h1>Hablá con LUMA</h1>
+  <p class="subtitle">Asesoría profesional y atención personalizada.</p>
+
+  <div class="contact-methods">
+    <div class="method-box">
+      <i class="fas fa-envelope icon" aria-hidden="true"></i>
+      <h4>Correo</h4>
+      <p>Resolvemos tus consultas rápidamente.</p>
+      <a href="mailto:{{ site.email_actual }}">{{ site.email_actual }}</a>
+      <br>
+      <span class="placeholder-note">⚠️ Mail dominio: {{ site.email }}</span>
+    </div>
+    <div class="method-box">
+      <i class="fas fa-phone-alt icon" aria-hidden="true"></i>
+      <h4>WhatsApp</h4>
+      <p>Lun a Vie · 8 a 17 hs</p>
+      <a href="{{ site.whatsapp_link }}" target="_blank" rel="noopener">
+        {{ site.whatsapp_numero }}
+      </a>
+    </div>
+    <div class="method-box">
+      <i class="fas fa-map-marker-alt icon" aria-hidden="true"></i>
+      <h4>Showrooms</h4>
+      <p>{{ site.showroom_palermo }}</p>
+      <p>{{ site.showroom_belgrano }}</p>
+      <a href="/nosotros/#showrooms">Ver cómo llegar</a>
+    </div>
+  </div>
+
+  <div class="formulario-container">
+    <h2>Contactá a LUMA</h2>
+    <p>Completá el formulario y te respondemos a la brevedad con asesoramiento personalizado.</p>
+    <form
+      action="https://formspree.io/f/xqeeklga"
+      method="POST"
+      class="contact-form"
+    >
+      <input type="hidden" name="_next" value="https://camillasluma.com/gracias/">
+      <input type="hidden" name="_subject" value="Nueva consulta desde la Web Luma">
+      <input type="text" name="Nombre" placeholder="Tu nombre" required>
+      <input type="email" name="Email" placeholder="Correo electrónico" required>
+      <input type="tel" name="Teléfono" placeholder="Teléfono / WhatsApp">
+      <select name="Especialidad">
+        <option value="" disabled selected>Especialidad (opcional)</option>
+        <option>Medicina estética</option>
+        <option>Dermatología</option>
+        <option>Cirugía plástica</option>
+        <option>Ginecología</option>
+        <option>Centro de estética</option>
+        <option>Otra</option>
+      </select>
+      <select name="Producto de interés">
+        <option value="" disabled selected>Producto de interés (opcional)</option>
+        <option>LUMA Premium</option>
+        <option>LUMA One</option>
+        <option>LUMA Ginecológica</option>
+        <option>LUMA Cart</option>
+        <option>LUMA Tech</option>
+        <option>Cart Gold</option>
+        <option>Luminaria LED</option>
+        <option>Varios / No sé aún</option>
+      </select>
+      <textarea name="Mensaje" placeholder="Tu consulta o mensaje" rows="5" required></textarea>
+      <button type="submit" class="cta-button">Enviá tu consulta</button>
+    </form>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "@id": "https://camillasluma.com/contacto/#contactpage",
+  "name": "Contacto — LUMA Equipamiento Médico Estético",
+  "description": "Contactá a LUMA para cotizaciones, consultas sobre camillas eléctricas y accesorios, o para agendar una visita al showroom.",
+  "url": "https://camillasluma.com/contacto/",
+  "mainEntity": {
+    "@id": "https://camillasluma.com/#organization"
+  }
+}
+</script>

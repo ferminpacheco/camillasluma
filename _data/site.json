@@ -1,0 +1,18 @@
+{
+  "nombre": "LUMA",
+  "tagline": "Una camilla que eleva tu espacio y tu servicio.",
+  "url": "https://camillasluma.com",
+  "whatsapp_numero": "+54 9 11 3250-8970",
+  "whatsapp_link": "https://wa.me/5491132508970?text=Hola%21%20Quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20camillas",
+  "email_actual": "camillasluma@gmail.com",
+  "email": "{{EMAIL_DOMINIO}}",
+  "instagram": "{{IG_HANDLE}}",
+  "garantia": "12 meses de cobertura oficial en fabricación, materiales, motores y sistema eléctrico.",
+  "garantia_url": "/garantia/",
+  "garantia_pdf": "/assets/pdf/garantia-luma.pdf",
+  "showroom_palermo": "Av. Santa Fe 3312, 6.º piso — CABA",
+  "showroom_belgrano": "Av. Cabildo 642, 6.º piso, of. 603 — CABA",
+  "showroom_cp_palermo": "{{SHOWROOM_CP_PALERMO}}",
+  "showroom_cp_belgrano": "{{SHOWROOM_CP_BELGRANO}}",
+  "hex_oficiales": "{{HEX_OFICIALES}}"
+}

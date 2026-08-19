@@ -1,0 +1,30 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% set pages = [
+    { url: "/", changefreq: "monthly", priority: "1.0" },
+    { url: "/camillas-electricas/", changefreq: "monthly", priority: "0.9" },
+    { url: "/camillas-electricas/premium/", changefreq: "monthly", priority: "0.9" },
+    { url: "/camillas-electricas/one/", changefreq: "monthly", priority: "0.9" },
+    { url: "/camillas-electricas/ginecologica/", changefreq: "monthly", priority: "0.9" },
+    { url: "/carritos-auxiliares/", changefreq: "monthly", priority: "0.8" },
+    { url: "/carritos-auxiliares/luma-cart/", changefreq: "monthly", priority: "0.8" },
+    { url: "/carritos-auxiliares/luma-tech/", changefreq: "monthly", priority: "0.8" },
+    { url: "/carritos-auxiliares/cart-gold/", changefreq: "monthly", priority: "0.8" },
+    { url: "/luminarias/", changefreq: "monthly", priority: "0.8" },
+    { url: "/nosotros/", changefreq: "monthly", priority: "0.7" },
+    { url: "/garantia/", changefreq: "monthly", priority: "0.7" },
+    { url: "/blog/", changefreq: "weekly", priority: "0.7" },
+    { url: "/contacto/", changefreq: "yearly", priority: "0.6" }
+  ] %}
+  {% for p in pages %}
+  <url>
+    <loc>https://camillasluma.com{{ p.url }}</loc>
+    <changefreq>{{ p.changefreq }}</changefreq>
+    <priority>{{ p.priority }}</priority>
+  </url>
+  {% endfor %}
+</urlset>

@@ -1,0 +1,212 @@
+---
+layout: base.njk
+title: "Nosotros | LUMA — Equipamiento Médico Estético Premium"
+description: "Conocé LUMA: tecnología, elegancia y respaldo postventa para profesionales de la estética médica. Garantía oficial y dos showrooms en Palermo y Belgrano, CABA."
+canonical: "https://camillasluma.com/nosotros/"
+breadcrumbs:
+  - label: "Inicio"
+    url: "/"
+  - label: "Nosotros"
+---
+
+{% set breadcrumbs = [
+  { label: "Inicio", url: "/" },
+  { label: "Nosotros" }
+] %}
+{% include "components/breadcrumb.njk" %}
+
+<!-- HERO NOSOTROS -->
+<section class="nosotros-hero">
+  <div class="nosotros-hero-inner">
+    <h1>Equipamiento de alta gama para espacios profesionales</h1>
+    <p class="nosotros-bajada">LUMA diseña y comercializa camillas eléctricas y mobiliario auxiliar para clínicas, consultorios y centros de estética en Argentina. Tecnología médica, elegancia y minimalismo en cada detalle.</p>
+  </div>
+</section>
+
+<!-- PROPUESTA DE VALOR -->
+<section class="nosotros-seccion">
+  <div class="nosotros-seccion-inner">
+    <h2>¿Por qué LUMA?</h2>
+    <p>En el mercado conviven dos extremos: equipamiento importado de alta gama con precios inaccesibles y tiempos de entrega largos, y fábricas nacionales masivas que no acompañan la imagen de un consultorio premium. LUMA nació para ocupar el espacio del medio con intención: diseño minimalista y acabados premium de nivel importado, con precio local, stock en Argentina y respaldo directo.</p>
+    <div class="valores-grid" style="margin-top: 2rem;">
+      <div class="valor-item valor-1">
+        <h3>PRECISIÓN TECNOLÓGICA</h3>
+        <p>3 motores independientes, control de pie y movimiento ultra silencioso en cada modelo.</p>
+      </div>
+      <div class="valor-item valor-2">
+        <h3>DISEÑO MINIMALISTA</h3>
+        <p>Estética que eleva el espacio. Cada pieza está pensada para integrarse al consultorio moderno.</p>
+      </div>
+      <div class="valor-item valor-3">
+        <h3>RESPALDO POSTVENTA</h3>
+        <p>Servicio técnico directo, garantía oficial y equipo disponible para resolver cualquier consulta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTÍA — resumen, condiciones completas en /garantia/ -->
+<section id="garantia" class="nosotros-seccion bg-fondo">
+  <div class="nosotros-seccion-inner">
+    <h2>Garantía oficial</h2>
+    {% include "components/bloque-garantia.njk" %}
+    <p style="margin-top: 1rem;">Todos los productos LUMA incluyen garantía oficial con respaldo postventa directo. Ante cualquier inconveniente, nuestro equipo técnico acompaña la resolución sin intermediarios. <a href="{{ site.garantia_url }}">Ver condiciones completas →</a></p>
+  </div>
+</section>
+
+<!-- SHOWROOMS — ancla requerida por el resto del sitio -->
+{% include "components/bloque-showroom.njk" %}
+
+<!-- PRUEBA SOCIAL / CENTROS -->
+<!-- Testimonios mock (no verificados). Fuente: luma-testimonios.md.
+     IMPORTANTE: NO agregar schema Review/AggregateRating hasta contar con reseñas reales. -->
+<section class="nosotros-seccion">
+  <div class="nosotros-seccion-inner">
+    <h2>Profesionales que eligen LUMA</h2>
+    <p>Médicos, esteticistas y directores de centros en toda Argentina equipan sus consultorios con LUMA. La prueba más sólida es verlo en persona: agendá tu visita al showroom.</p>
+
+    <div class="testimonio-carousel" data-testimonio-carousel>
+      <button type="button" class="testimonio-carousel-nav testimonio-carousel-prev" data-testimonio-prev aria-label="Testimonio anterior">
+        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+      </button>
+
+      <div class="testimonio-carousel-viewport">
+        <div class="testimonio-carousel-track">
+
+          <div class="testimonio-slide">
+            <div class="prueba-social-card">
+              <div class="testimonio-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+              <blockquote><p>"El servicio técnico respondió rápido ante cualquier consulta que tuve."</p></blockquote>
+              <p class="testimonio-autor">Dra. Renata Almada — Dermatóloga</p>
+              <p class="testimonio-ubicacion">Núñez, CABA</p>
+            </div>
+          </div>
+
+          <div class="testimonio-slide">
+            <div class="prueba-social-card">
+              <div class="testimonio-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+              <blockquote><p>"Se sintió una compra profesional, no como comprarle a cualquiera."</p></blockquote>
+              <p class="testimonio-autor">Dr. Bautista Nievas — Ginecólogo</p>
+              <p class="testimonio-ubicacion">La Plata, Buenos Aires</p>
+            </div>
+          </div>
+
+          <div class="testimonio-slide">
+            <div class="prueba-social-card">
+              <div class="testimonio-stars" aria-label="4 de 5 estrellas">★★★★☆</div>
+              <blockquote><p>"La garantía me dio la tranquilidad que necesitaba para decidir."</p></blockquote>
+              <p class="testimonio-autor">Dra. Ornella Duarte — Médica Estética</p>
+              <p class="testimonio-ubicacion">Belgrano, CABA</p>
+            </div>
+          </div>
+
+          <div class="testimonio-slide">
+            <div class="prueba-social-card">
+              <div class="testimonio-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+              <blockquote><p>"Un equipo que asesora de verdad, no que solo vende."</p></blockquote>
+              <p class="testimonio-autor">Dr. Ciro Maldonado — Cirujano Plástico</p>
+              <p class="testimonio-ubicacion">San Miguel de Tucumán, Tucumán</p>
+            </div>
+          </div>
+
+          <div class="testimonio-slide">
+            <div class="prueba-social-card">
+              <div class="testimonio-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+              <blockquote><p>"Volvería a elegirlos sin dudarlo para el próximo consultorio."</p></blockquote>
+              <p class="testimonio-autor">Dra. Guadalupe Espinoza — Directora de Centro de Estética</p>
+              <p class="testimonio-ubicacion">Palermo, CABA</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <button type="button" class="testimonio-carousel-nav testimonio-carousel-next" data-testimonio-next aria-label="Testimonio siguiente">
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA CIERRE -->
+<section class="cta-producto-cierre">
+  <div class="cta-producto-cierre-inner">
+    <h2>Agendá tu visita al showroom</h2>
+    <p>La mejor forma de conocer LUMA es experimentarla en persona. Te esperamos en Palermo o Belgrano.</p>
+    {% include "components/cta-doble.njk" %}
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://camillasluma.com/#showroom-palermo",
+      "name": "LUMA — Showroom Palermo",
+      "description": "Showroom de camillas eléctricas y equipamiento médico estético LUMA en Palermo, CABA.",
+      "url": "https://camillasluma.com/nosotros/#showrooms",
+      "telephone": "+54 9 11 3250-8970",
+      "email": "camillasluma@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Santa Fe 3312, 6.º piso",
+        "addressLocality": "Palermo",
+        "addressRegion": "CABA",
+        "postalCode": "{{SHOWROOM_CP_PALERMO}}",
+        "addressCountry": "AR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-34.5943",
+        "longitude": "-58.4060"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "08:00",
+          "closes": "17:00"
+        }
+      ],
+      "priceRange": "$$$",
+      "image": "https://camillasluma.com/images/logo_luma_2.png",
+      "sameAs": ["https://camillasluma.com"]
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://camillasluma.com/#showroom-belgrano",
+      "name": "LUMA — Showroom Belgrano",
+      "description": "Showroom de camillas eléctricas y equipamiento médico estético LUMA en Belgrano, CABA.",
+      "url": "https://camillasluma.com/nosotros/#showrooms",
+      "telephone": "+54 9 11 3250-8970",
+      "email": "camillasluma@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Cabildo 642, 6.º piso, of. 603",
+        "addressLocality": "Belgrano",
+        "addressRegion": "CABA",
+        "postalCode": "{{SHOWROOM_CP_BELGRANO}}",
+        "addressCountry": "AR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-34.5632",
+        "longitude": "-58.4560"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "08:00",
+          "closes": "17:00"
+        }
+      ],
+      "priceRange": "$$$",
+      "image": "https://camillasluma.com/images/logo_luma_2.png",
+      "sameAs": ["https://camillasluma.com"]
+    }
+  ]
+}
+</script>

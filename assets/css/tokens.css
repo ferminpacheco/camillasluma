@@ -1,0 +1,51 @@
+/* =============================================
+   LUMA — Design Tokens
+   Paleta: {{HEX_OFICIALES}} a confirmar con brand kit.
+   Los valores actuales son aproximaciones relevadas.
+   ============================================= */
+
+:root {
+  /* Paleta principal */
+  --navy:       #0A2956; /* color madre — ⚠️ A CONFIRMAR */
+  --acero:      #7195A9; /* acento display */
+  --gris:       #787A79;
+  --gris-claro: #D9DDE2;
+  --blanco:     #FFFFFF;
+  --fondo:      #EDE8E4;
+
+  /* Aliases de compatibilidad con main.css heredado */
+  --color-principal: var(--navy);
+  --color-fondo:     var(--fondo);
+  --color-blanco:    var(--blanco);
+  --color-texto:     #1b3e78;
+
+  /* Tipografías */
+  /* ⚠️ Behind the Nineties: licencia web a confirmar.
+     Fallback activo hasta que se provea el archivo de fuente. */
+  --font-titulo: 'Behind the Nineties', Georgia, 'Times New Roman', serif;
+  --font-cuerpo: 'Poppins', Helvetica, Arial, sans-serif;
+
+  /* Espaciado base */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+
+  /* Onda ~ como sello gráfico de marca */
+  --onda: "~";
+}
+
+/* Behind the Nineties — @font-face para cuando se provea la licencia web.
+   Reemplazar la ruta con el archivo real.
+   ⚠️ A CONFIRMAR licencia antes de usar en producción. */
+/*
+@font-face {
+  font-family: 'Behind the Nineties';
+  src: url('/assets/fonts/BehindTheNineties.woff2') format('woff2'),
+       url('/assets/fonts/BehindTheNineties.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+*/

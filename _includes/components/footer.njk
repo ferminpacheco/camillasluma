@@ -1,0 +1,89 @@
+<footer class="main-footer">
+  <div class="footer-inner">
+
+    <!-- Marca -->
+    <div class="footer-brand">
+      <img
+        src="/images/logo_luma_2.png"
+        alt="LUMA Camillas Eléctricas"
+        class="footer-logo"
+        width="100"
+        loading="lazy"
+      >
+      <p class="footer-tagline">{{ site.tagline }}</p>
+    </div>
+
+    <!-- Navegación -->
+    <nav class="footer-nav" aria-label="Navegación del footer">
+      <div class="footer-nav-col">
+        <h4>Camillas</h4>
+        <ul>
+          <li><a href="/camillas-electricas/">Ver todas</a></li>
+          <li><a href="/camillas-electricas/premium/">Premium</a></li>
+          <li><a href="/camillas-electricas/one/">One</a></li>
+          <li><a href="/camillas-electricas/ginecologica/">Ginecológica</a></li>
+        </ul>
+      </div>
+      <div class="footer-nav-col">
+        <h4>Carritos</h4>
+        <ul>
+          <li><a href="/carritos-auxiliares/">Ver todos</a></li>
+          <li><a href="/carritos-auxiliares/luma-cart/">Luma Cart</a></li>
+          <li><a href="/carritos-auxiliares/luma-tech/">Luma Tech</a></li>
+          <li><a href="/carritos-auxiliares/cart-gold/">Cart Gold</a></li>
+        </ul>
+      </div>
+      <div class="footer-nav-col">
+        <h4>LUMA</h4>
+        <ul>
+          <li><a href="/luminarias/">Luminarias</a></li>
+          <li><a href="/nosotros/">Nosotros</a></li>
+          <li><a href="{{ site.garantia_url }}">Garantía</a></li>
+          <li><a href="/nosotros/#showrooms">Showrooms</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contacto/">Contacto</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Contacto / NAP -->
+    <div class="footer-contact">
+      <h4>Contacto</h4>
+      <p>
+        <a href="{{ site.whatsapp_link }}" target="_blank" rel="noopener">
+          {{ site.whatsapp_numero }}
+        </a>
+      </p>
+      <p>
+        <a href="mailto:{{ site.email_actual }}">{{ site.email_actual }}</a>
+      </p>
+      <p class="placeholder-note">
+        ⚠️ Mail de dominio: {{ site.email }}
+      </p>
+      <p>Lun a Vie · 8 a 17 hs</p>
+
+      <div class="footer-contact-group">
+        <h4>Showrooms</h4>
+        <p>{{ site.showroom_palermo }}</p>
+        <p>{{ site.showroom_belgrano }}</p>
+        <p class="placeholder-note">⚠️ CPs: {{ site.showroom_cp_palermo }} / {{ site.showroom_cp_belgrano }}</p>
+      </div>
+
+      <div class="footer-contact-group">
+        <h4>Garantía</h4>
+        <p>{{ site.garantia }}</p>
+        <p><a href="{{ site.garantia_url }}">Ver condiciones completas →</a></p>
+      </div>
+
+      <div class="footer-contact-group">
+        <h4>Seguinos</h4>
+        <p class="placeholder-note">⚠️ Instagram: {{ site.instagram }}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-legal">
+    <p class="copyright">&copy; 2026 {{ site.nombre }}. Todos los derechos reservados.</p>
+  </div>
+</footer>

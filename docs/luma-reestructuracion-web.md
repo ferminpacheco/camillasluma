@@ -1,4 +1,4 @@
-# LUMA — Reestructuración Web (One Shot)
+En # LUMA — Reestructuración Web (One Shot)
 ## Especificación de estructura para build
 
 > **Qué es este documento:** el plan y el paso a paso para reconstruir `camillasluma.com`, pasando de una web *one-page* (todo son anclas `#premium`, `#ginecologica` sobre una sola URL) a un **sitio con arquitectura real**. Está escrito para que lo ejecute Claude Code sobre el código fuente.
