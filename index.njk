@@ -11,7 +11,7 @@ canonical: "https://camillasluma.com/"
     <h1>Diseño y tecnología<br>para tu espacio</h1>
     <p>Camillas eléctricas premium: precisión, confort y estilo para clínicas y centros estéticos.</p>
     <div class="cta-doble">
-      <a href="/contacto/" class="cta-button">Pedí tu cotización</a>
+      <a href="{{ site.whatsapp_link }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
       <a href="/camillas-electricas/" class="cta-button-light">Ver modelos</a>
     </div>
   </div>
@@ -36,24 +36,10 @@ canonical: "https://camillasluma.com/"
   </div>
 </section>
 
-<!-- VALORES (franja azul) -->
-<section class="valores-azul">
-  <h2>Camillas eléctricas de alto nivel</h2>
-  <div class="valores-grid">
-    <div class="valor-item valor-1">
-      <h3>PRECISIÓN TECNOLÓGICA</h3>
-      <p>Tres motores independientes, control manual y de pie. Diseño minimalista y elegante para clínicas y centros estéticos.</p>
-    </div>
-    <div class="valor-item valor-2">
-      <h3>VERSATILIDAD TOTAL</h3>
-      <p>Ajuste automático de respaldo, altura y apoya-piernas. Tapizado blanco fácil de limpiar y estructura robusta.</p>
-    </div>
-    <div class="valor-item valor-3">
-      <h3>COMODIDAD SUPERIOR</h3>
-      <p>Motor ultra silencioso, movimiento suave y tapizado premium. Experiencia profesional y confortable.</p>
-    </div>
-  </div>
-</section>
+{# PROPUESTA DE VALOR — reemplaza a la vieja sección "Camillas eléctricas de
+   alto nivel". Es el mismo componente que /nosotros/, con la variante azul. #}
+{% set porQueLumaAzul = true %}
+{% include "components/bloque-por-que-luma.njk" %}
 
 <!-- LÍNEAS DE PRODUCTO -->
 <section class="home-lineas">
@@ -90,7 +76,7 @@ canonical: "https://camillasluma.com/"
       </a>
       <a href="/luminarias/" class="linea-card">
         <img
-          src="/images/Luma_luminaria.png"
+          src="/images/luma-luminarias/hf_20260814_234852_d992adc3-c448-4c02-ae00-b688b1a6b9bb.png"
           alt="Luminaria LED LUMA para consultorio"
           width="400"
           height="300"
@@ -106,11 +92,19 @@ canonical: "https://camillasluma.com/"
   </div>
 </section>
 
+<!-- CONGRESOS — trayectoria. Mismo componente que /nosotros/: una sola
+     fuente de verdad para el markup y para las fotos de /images/<slug>/.
+     Va antes de los reviews a propósito, igual que en /nosotros/: son
+     fotos reales, los testimonios de abajo todavía son mock. -->
+{% include "components/bloque-congresos.njk" %}
+
 <!-- REVIEWS / PRUEBA SOCIAL (mockup — sin schema Review) -->
 {% include "components/bloque-reviews.njk" %}
 
-<!-- GARANTÍA / CONFIANZA -->
-{% include "components/bloque-garantia.njk" %}
+<!-- GARANTÍA / CONFIANZA — version destacada (3 cards + CTA a /garantia/).
+     Es un componente propio de la home: el bloque de una linea sigue siendo
+     bloque-garantia.njk y se usa en producto, hub, luminarias y nosotros. -->
+{% include "components/bloque-garantia-home.njk" %}
 
 <!-- SHOWROOM -->
 <section class="home-showroom">
@@ -119,7 +113,7 @@ canonical: "https://camillasluma.com/"
     <p>Las camillas LUMA se ven, se tocan y se prueban en nuestros showrooms en CABA. Agendá tu visita con turno previo y experimentá la diferencia.</p>
     <div class="cta-doble" style="justify-content: center;">
       <a href="/nosotros/#showrooms" class="cta-button">Agendá una visita al showroom</a>
-      <a href="/contacto/" class="cta-button-light">Pedí tu cotización</a>
+      <a href="{{ site.whatsapp_link }}" class="cta-button-light" target="_blank" rel="noopener">Pedí tu cotización</a>
     </div>
   </div>
 </section>

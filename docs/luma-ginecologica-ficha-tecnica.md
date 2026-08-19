@@ -128,3 +128,11 @@ El respaldo, el apoyapiernas y la altura se regulan desde el comando de mano, co
 ---
 
 *Documento elaborado por Jungle Growth para LUMA. Datos de producto y medidas provistos por el cliente.*
+
+## Videos Instagram
+- https://www.instagram.com/reel/DYM_Tm2ln5E/
+- https://www.instagram.com/reel/DXr8nQLDoun/
+- https://www.instagram.com/reel/DW153rHk7oK/
+- https://www.instagram.com/reel/DUtkMqWj8Li/
+- https://www.instagram.com/reel/DboRjcgswvo/
+- https://www.instagram.com/reel/DbJd31LMidG/

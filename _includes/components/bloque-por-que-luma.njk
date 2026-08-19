@@ -1,0 +1,49 @@
+{#
+  BLOQUE ¿POR QUÉ LUMA? — componente compartido.
+
+  Uso en /nosotros/ (versión clara, sobre el fondo de la página):
+
+    {% include "components/bloque-por-que-luma.njk" %}
+
+  Uso en la home (versión sobre azul):
+
+    {% set porQueLumaAzul = true %}
+    {% include "components/bloque-por-que-luma.njk" %}
+
+  El markup y el copy son los mismos en las dos páginas: lo único que cambia
+  es el fondo y el tratamiento de las cards, que se resuelve con la clase
+  modificadora `por-que-luma--azul` (ver main.css). No duplicar el bloque
+  para cambiarle el color.
+
+  Layout: reutiliza `.nosotros-seccion` / `.nosotros-seccion-inner` (el
+  contenedor de 1100px de /nosotros/) para que la versión clara quede
+  exactamente igual que antes de extraer el componente.
+#}
+
+{% set porQueLumaAzul = porQueLumaAzul | default(false) %}
+
+<section class="nosotros-seccion por-que-luma{% if porQueLumaAzul %} por-que-luma--azul{% endif %}">
+  <div class="nosotros-seccion-inner">
+    <h2>¿Por qué LUMA?</h2>
+    <p>En el mercado conviven dos extremos: equipamiento importado de alta gama con precios inaccesibles y tiempos de entrega largos, y fábricas nacionales masivas que no acompañan la imagen de un consultorio premium. LUMA nació para ocupar el espacio del medio con intención: diseño minimalista y acabados premium de nivel importado, con precio local, stock en Argentina y respaldo directo.</p>
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <div class="beneficio-icono"><i class="fas fa-sliders" aria-hidden="true"></i></div>
+        <h3>PRECISIÓN TECNOLÓGICA</h3>
+        <p>3 motores independientes, control de pie y movimiento ultra silencioso en cada modelo.</p>
+      </div>
+      <div class="beneficio-card">
+        <div class="beneficio-icono"><i class="fas fa-gem" aria-hidden="true"></i></div>
+        <h3>DISEÑO MINIMALISTA</h3>
+        <p>Estética que eleva el espacio. Cada pieza está pensada para integrarse al consultorio moderno.</p>
+      </div>
+      <div class="beneficio-card">
+        {# fa-shield-halved (nombre FA6) no existe en el build 6.0.0-beta3 que
+           carga el sitio: renderiza vacío. Usar el nombre que sí resuelve. #}
+        <div class="beneficio-icono"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
+        <h3>RESPALDO POSTVENTA</h3>
+        <p>Servicio técnico directo, garantía oficial y equipo disponible para resolver cualquier consulta.</p>
+      </div>
+    </div>
+  </div>
+</section>

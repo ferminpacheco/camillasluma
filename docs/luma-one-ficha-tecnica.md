@@ -156,3 +156,9 @@ Texto del manual (*Part 7: After-sales Warranty*):
 ---
 
 *Documento elaborado por Jungle Growth a partir del manual del fabricante. Los datos técnicos son los declarados por fábrica y deben verificarse contra una unidad real antes de publicarse.*
+
+## Videos Instagram
+- https://www.instagram.com/reel/DW153rHk7oK/
+- https://www.instagram.com/reel/Db8Vx44AjeG/
+- https://www.instagram.com/reel/DbdUuGsD5Ea/
+- https://www.instagram.com/reel/DbJd31LMidG/

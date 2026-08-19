@@ -12,7 +12,7 @@ LEÉLO antes de ejecutar cualquier fase. Seguí el orden de la sección 12
 ## Reglas de oro (no negociables)
 - NO INVENTES los placeholders. Dejalos visibles como `{{...}}` o
   `⚠️ A CONFIRMAR` hasta que el cliente los confirme:
-  {{GARANTIA}}, {{EMAIL_DOMINIO}}, {{IG_HANDLE}}, {{CART_GOLD_PRECIO}},
+  {{GARANTIA}}, {{CART_GOLD_PRECIO}},
   {{CART_GOLD_IMG}}, {{ONE_IMG}}, {{SHOWROOM_CP_PALERMO}},
   {{SHOWROOM_CP_BELGRANO}}, {{HEX_OFICIALES}}.
 - GARANTÍA: hay conflicto ("1 año" vs "1 año sillas / 2 años motores").

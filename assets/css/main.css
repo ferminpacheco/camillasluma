@@ -525,10 +525,18 @@ body > section:first-of-type {
 
 /* ── CONTACTO ────────────────────────────────── */
 
+/* Bloque de contacto: vivia en la vieja pagina /contacto/, ahora es una
+   seccion de /nosotros/. Se mantiene centrado a proposito (asi estaba
+   diseñado); el wrapper interno lo deja del mismo ancho que el resto. */
 .contacto-section {
   background-color: var(--color-blanco);
-  padding: 80px 10%;
+  padding: var(--space-lg) 5%;
   text-align: center;
+}
+
+.contacto-section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .section-tag {
@@ -554,8 +562,9 @@ body > section:first-of-type {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.method-box h4 {
+.method-box h3 {
   color: var(--color-texto);
+  font-size: 1.1em;
   margin-bottom: 5px;
 }
 
@@ -569,34 +578,6 @@ body > section:first-of-type {
   font-size: 2em;
   color: var(--color-principal);
   margin-bottom: 10px;
-}
-
-.formulario-container {
-  max-width: 600px;
-  margin: 50px auto 0;
-  padding: 30px;
-  background-color: var(--color-fondo);
-  border-radius: 8px;
-}
-
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form input[type="tel"],
-.contact-form select,
-.contact-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-family: inherit;
-}
-
-.contact-form button {
-  cursor: pointer;
-  border: none;
-  width: 100%;
 }
 
 /* ── FOOTER ──────────────────────────────────── */
@@ -784,6 +765,7 @@ body main .breadcrumb-nav {
   padding: var(--space-md);
   border-radius: 10px;
   text-align: left;
+  height: 100%;
 }
 
 .review-card .review-stars {
@@ -807,12 +789,21 @@ body main .breadcrumb-nav {
   background-color: var(--color-fondo);
 }
 
+/* Mismo ancho y centrado que .nosotros-seccion-inner: asi el h2 del bloque
+   queda alineado con los demas titulos de la pagina y no ~300px mas a la
+   izquierda. */
+.bloque-showroom-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
 .showroom-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-md);
-  max-width: 900px;
-  margin: var(--space-md) auto 0;
+  /* Ocupa todo el contenedor: si se dejara en 900px las cards quedarian
+     centradas y desalineadas respecto del titulo. */
+  margin: var(--space-md) 0 0;
 }
 
 .showroom-card {
@@ -1878,7 +1869,7 @@ body main .breadcrumb-nav {
 /* ── NOSOTROS HERO ───────────────────────────── */
 
 .nosotros-hero {
-  padding-top: 80px;
+  padding: 80px 0px;
   /* El color queda como fallback: si la imagen no carga, el texto blanco
      sigue teniendo fondo navy y no se pierde sobre blanco. */
   background-color: var(--color-principal);
@@ -2211,6 +2202,7 @@ body main .breadcrumb-nav {
   border-radius: 12px;
   padding: var(--space-md);
   color: var(--color-blanco);
+  height: 100%;
 }
 
 .testimonio-card p {
@@ -2314,6 +2306,7 @@ body main .breadcrumb-nav {
   padding: var(--space-md);
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  height: 100%;
 }
 
 .prueba-social-card blockquote {
@@ -2764,7 +2757,6 @@ body main .breadcrumb-nav {
 .testimonio-carousel-nav,
 .color-dot,
 .menu-toggle,
-.contact-form button,
 .faq-item summary,
 .pdf-descarga-link {
   transition:
@@ -2792,7 +2784,6 @@ body main .breadcrumb-nav {
 .carousel-arrow:active,
 .testimonio-carousel-nav:active,
 .menu-toggle:active,
-.contact-form button:active,
 .pdf-descarga-link:active {
   transform: scale(0.94);
 }
@@ -2811,27 +2802,6 @@ body main .breadcrumb-nav {
 /* El dot activo ya crece: no se encoge por debajo de su estado. */
 .color-dot.active:active {
   transform: scale(1.1);
-}
-
-/* ── Formulario de contacto ───────────────────
-   Feedback de foco. Sin mover layout: solo color y sombra. */
-
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form input[type="tel"],
-.contact-form select,
-.contact-form textarea {
-  transition:
-    border-color var(--dur-fast) ease,
-    box-shadow var(--dur-fast) ease;
-}
-
-.contact-form input:focus-visible,
-.contact-form select:focus-visible,
-.contact-form textarea:focus-visible {
-  outline: none;
-  border-color: var(--color-principal);
-  box-shadow: 0 0 0 3px rgba(10, 41, 86, 0.12);
 }
 
 /* ── FAQ / acordeón ───────────────────────────
@@ -2923,8 +2893,7 @@ body main .breadcrumb-nav {
   .carousel-arrow:active,
   .testimonio-carousel-nav:active,
   .menu-toggle:active,
-  .contact-form button:active,
-  .pdf-descarga-link:active,
+    .pdf-descarga-link:active,
   .carousel-dot:active,
   .color-dot:active {
     transform: none;
@@ -3165,5 +3134,555 @@ body main .breadcrumb-nav {
   ::view-transition-group(luma-whatsapp),
   ::view-transition-group(luma-back-to-top) {
     animation: none;
+  }
+}
+
+/* ── BLOQUE REELS DE INSTAGRAM ────────────────
+   Carrusel de embeds oficiales de Instagram.
+   El iframe de IG casi no se puede estilar desde afuera: todo lo que
+   sigue trabaja sobre el CONTENEDOR, no sobre el contenido del embed.
+   ============================================= */
+
+.reels-seccion {
+  padding: var(--space-lg) 5%;
+  background: var(--color-fondo);
+}
+
+.reels-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.reels-titulo {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.reels-bajada {
+  text-align: center;
+  color: var(--gris);
+  margin-bottom: var(--space-md);
+}
+
+/* ── Cabecera de perfil ── */
+
+.reels-perfil {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-md);
+}
+
+.reels-perfil-avatar {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  border-radius: 50%;
+  padding: 3px;
+  /* Anillo degradé de Instagram como marco del avatar. */
+  background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+  box-sizing: border-box;
+}
+
+.reels-perfil-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--color-blanco);
+  border: 2px solid var(--color-fondo);
+  box-sizing: border-box;
+  display: block;
+}
+
+.reels-perfil-datos {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.reels-perfil-nombre {
+  font-weight: 600;
+  color: var(--color-principal);
+}
+
+.reels-perfil-handle {
+  font-size: 0.9em;
+  color: var(--gris);
+  text-decoration: none;
+}
+
+a.reels-perfil-handle:hover {
+  color: var(--color-principal);
+  text-decoration: underline;
+}
+
+.reels-seguir {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  background: var(--color-principal);
+  color: var(--color-blanco);
+  font-weight: 600;
+  font-size: 0.95em;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+a.reels-seguir:hover {
+  background: var(--acero);
+  transform: translateY(-1px);
+}
+
+/* Sin handle confirmado el botón existe pero no navega a ningún lado. */
+.reels-seguir.is-pendiente {
+  background: var(--gris-claro);
+  color: var(--gris);
+  cursor: not-allowed;
+}
+
+.reels-nota {
+  text-align: center;
+  margin-top: var(--space-sm);
+}
+
+/* ── Carrusel ── */
+
+.reels-carousel {
+  position: relative;
+  padding: 0 48px;
+}
+
+.reels-viewport {
+  overflow: hidden;
+}
+
+.reels-track {
+  display: flex;
+  align-items: flex-start;
+}
+
+.reels-slide {
+  flex: 0 0 33.3333%;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+/* Deliberadamente NO es flex: embed.js deja el <blockquote> original como
+   hermano del <iframe>, y como items flex los dos se reparten el ancho
+   (el reel termina ocupando ~60% de su tarjeta). En bloque, el width:100%
+   del iframe manda y ocupa toda la slide. */
+.reel-card {
+  width: 100%;
+}
+
+/* Recorte del embed de Instagram.
+
+   El iframe viene de instagram.com: es otro origen, asi que su interior no se
+   puede tocar ni con CSS ni con JS. Para mostrar unicamente el video y
+   esconder el cromo de IG (header con avatar y "Ver perfil", link "Ver mas en
+   Instagram", corazon/comentario/compartir, "N Me gusta" y la caja de
+   comentarios) se recorta desde afuera: el marco tiene overflow hidden y el
+   iframe se corre 58px hacia arriba.
+
+   Medido sobre el embed real a 348px de ancho:
+     0     -> 58px   header de Instagram
+     58    -> 484px  area de video  (alto = ancho x 1.2241)
+     484px en adelante: el resto del cromo
+
+   Los dos numeros (--reel-header y la proporcion del marco) son empiricos: si
+   Instagram cambia el alto de su header van a asomar unos pixeles de cromo.
+   Es el precio de usar el embed oficial. */
+
+.reel-card {
+  --reel-header: 58px;
+  width: 100%;
+}
+
+/* Modo seguro (por defecto): solo se recorta arriba y abajo. El video se ve
+   completo sea cual sea su formato; si es 9:16 Instagram le pone bandas negras
+   a los costados y se ven. Nunca corta contenido. */
+.reel-marco {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 4.9;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+}
+
+/* Instagram mete el video 9:16 dentro de un area mas ancha y rellena los
+   costados con negro (pillarbox). Esas bandas ocupan 14.37% del ancho del
+   iframe cada una, o sea que el video real es el 71.26% del centro.
+
+   Para que el video llene la tarjeta se agranda el iframe hasta que ese 71.26%
+   coincida con el ancho del marco (100 / 71.26 = 140.32%) y se lo corre a la
+   izquierda la mitad del excedente. Las bandas quedan fuera del marco.
+
+   Va en porcentajes a proposito: son proporciones del iframe, asi que el
+   recorte se sostiene con la tarjeta a cualquier ancho. El unico valor en px
+   es el header, que Instagram dibuja con alto fijo. */
+.reel-frame {
+  position: absolute;
+  top: calc(var(--reel-header) * -1);
+  left: 0;
+  width: 100%;
+  /* Header + video + un margen extra que queda recortado, para que Instagram
+     tenga lugar de dibujar el area de video completa. */
+  height: calc(100% + var(--reel-header) + 40px);
+  border: 0;
+  display: block;
+}
+
+/* Modo full-bleed (opt-in con `reelsFullBleed`): el video llena la tarjeta.
+
+   SOLO sirve si todos los videos de la pagina son verticales 9:16. Instagram
+   los mete en un area mas ancha y rellena los costados con negro (pillarbox);
+   esas bandas ocupan 14.37% del ancho del iframe cada una, o sea que el video
+   real es el 71.26% del centro. Se agranda el iframe hasta que ese 71.26%
+   coincide con el ancho del marco (100 / 71.26 = 140.32%) y se lo corre a la
+   izquierda la mitad del excedente.
+
+   Si un video es 4:5 o cuadrado, Instagram NO le pone bandas y este recorte le
+   come los costados. Ahi hay que dejar el modo seguro. */
+.reel-marco--full {
+  aspect-ratio: 248 / 426;
+}
+
+.reel-marco--full .reel-frame {
+  left: -20.16%;
+  width: 140.32%;
+}
+
+/* Queda tapado por el iframe cuando Instagram carga bien. */
+.reel-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-blanco);
+  font-size: 0.9em;
+  text-decoration: underline;
+}
+
+.reel-card--placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  /* Misma proporcion que una tarjeta con reel real, para que el bloque no
+     cambie de alto cuando se carguen las URLs. */
+  aspect-ratio: 248 / 426;
+  border: 2px dashed var(--gris-claro);
+  border-radius: 12px;
+  background: var(--color-blanco);
+}
+
+.reel-placeholder-icono {
+  font-size: 2.5em;
+  color: var(--gris-claro);
+}
+
+.reel-placeholder-texto {
+  color: var(--gris);
+  font-size: 0.9em;
+  margin: 0;
+}
+
+.reels-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-blanco);
+  color: var(--color-principal);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.reels-nav:hover {
+  background: var(--color-fondo);
+}
+
+/* El carrusel de reels no hace loop (cada clon sería otro iframe de IG
+   cargando de nuevo): las flechas se apagan en los extremos. */
+.reels-nav[aria-disabled="true"] {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Menos reels que columnas: sin flechas y centrado. */
+.reels-carousel.sin-navegacion .reels-nav {
+  display: none;
+}
+
+.reels-carousel.sin-navegacion .reels-track {
+  justify-content: center;
+}
+
+.reels-prev {
+  left: 0;
+}
+
+.reels-next {
+  right: 0;
+}
+
+@media (max-width: 1024px) {
+  .reels-slide {
+    flex-basis: 50%;
+  }
+  .reels-carousel {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 700px) {
+  .reels-slide {
+    flex-basis: 100%;
+  }
+  .reels-carousel {
+    padding: 0 34px;
+  }
+  .reels-nav {
+    width: 32px;
+    height: 32px;
+  }
+  .reels-perfil {
+    gap: 0.75rem;
+  }
+  .reels-perfil-avatar {
+    width: 52px;
+    height: 52px;
+    flex-basis: 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reels-track {
+    transition: none !important;
+  }
+  a.reels-seguir:hover {
+    transform: none;
+  }
+}
+
+/* ── ¿POR QUE LUMA? — VARIANTE AZUL ───────────
+   Solo la usa la home. Markup compartido con /nosotros/:
+   _includes/components/bloque-por-que-luma.njk
+
+   La version clara no tiene estilos propios: hereda .nosotros-seccion y
+   .beneficio-card tal como estaban antes de extraer el componente. Todo lo
+   que hay aca abajo es el override del modo azul, nada mas.
+   ============================================= */
+
+.por-que-luma--azul {
+  /* Degradado sutil navy -> navy mas profundo. El segundo tono no es un
+     token porque solo existe para este degradado; si entra al brand kit,
+     mover a tokens.css. ⚠️ Depende de {{HEX_OFICIALES}}, igual que --navy. */
+  background: linear-gradient(135deg, var(--navy) 0%, #071C3B 100%);
+  color: var(--color-blanco);
+}
+
+.por-que-luma--azul h2 {
+  color: var(--color-blanco);
+}
+
+/* El parrafo de bajada, no los de las cards (por eso el hijo directo). */
+.por-que-luma--azul > .nosotros-seccion-inner > p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Las cards son blancas sobre fondo claro en /nosotros/. Sobre el azul eso
+   queda como tres parches; pasan a vidrio para que el azul siga leyendose
+   como una sola franja. */
+.por-que-luma--azul .beneficio-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.por-que-luma--azul .beneficio-icono {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--color-blanco);
+}
+
+.por-que-luma--azul .beneficio-card h3 {
+  color: var(--color-blanco);
+}
+
+.por-que-luma--azul .beneficio-card p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ── GARANTIA EN LA HOME ──────────────────────
+   Version destacada del bloque de garantia, solo para /.
+   Markup: _includes/components/bloque-garantia-home.njk
+
+   Las cards no tienen estilos propios: usan .cuidado-grid / .cuidado-card,
+   las mismas que la fila de /garantia/. Aca solo va el contenedor.
+   ============================================= */
+
+.home-garantia {
+  padding: var(--space-lg) 5%;
+  background: var(--color-fondo);
+}
+
+.home-garantia-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home-garantia-inner h2 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.home-garantia-bajada {
+  text-align: center;
+  color: var(--gris);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* .cuidado-grid ya trae margin-top: 1.5rem, asi que el aire entre la bajada
+   y las cards lo pone la grilla y no hace falta duplicarlo aca. */
+
+.home-garantia-cta {
+  margin-top: var(--space-md);
+  text-align: center;
+}
+
+/* ── CONGRESOS ────────────────────────────────
+   Seccion de trayectoria en /nosotros/.
+   Markup: _includes/components/bloque-congresos.njk
+   Datos:  _data/congresos.js (enumera /images/<slug>/)
+   ============================================= */
+
+.congresos-seccion {
+  padding: var(--space-lg) 5%;
+  background: var(--color-fondo);
+}
+
+.congresos-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.congresos-titulo {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.congresos-bajada {
+  text-align: center;
+  color: var(--gris);
+  max-width: 720px;
+  margin: 0 auto var(--space-lg);
+}
+
+/* Grilla de cuatro cards en una fila. Flex y no grid a proposito: hoy solo
+   hay tres congresos con fotos cargadas (la carpeta del cuarto esta vacia)
+   y con justify-content: center esas tres quedan centradas en vez de dejar
+   un hueco a la derecha. Cuando entre la cuarta carpeta la fila se completa
+   sola, sin tocar el CSS. */
+.congresos-grid {
+  --congresos-gap: var(--space-md);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--congresos-gap);
+}
+
+.congreso-card {
+  flex: 0 1 calc((100% - 3 * var(--congresos-gap)) / 4);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-blanco);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+/* ── Portada ── */
+
+.congreso-portada {
+  background: var(--gris-claro);
+}
+
+/* Las fotos vienen en 3:4, 9:16 y 4:3 mezcladas. Sin una relacion fija las
+   cuatro cards arrancan con la foto a distinta altura y el texto queda
+   escalonado; con cover se recorta al centro, que es donde esta el stand
+   en todas. */
+.congreso-portada-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* ── Contenido ── */
+
+.congreso-info {
+  padding: 1.25rem;
+}
+
+.congreso-especialidad {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--acero);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.congreso-nombre {
+  font-size: 1.15rem;
+  color: var(--navy);
+  margin-bottom: 0.25rem;
+}
+
+.congreso-nombre-completo {
+  color: var(--gris);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.congreso-descripcion {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--color-texto);
+}
+
+/* Dos columnas antes de que la card quede demasiado angosta para el
+   nombre completo de los congresos largos. */
+@media (max-width: 1024px) {
+  .congreso-card {
+    flex-basis: calc((100% - var(--congresos-gap)) / 2);
+  }
+}
+
+@media (max-width: 700px) {
+  .congreso-card {
+    flex-basis: 100%;
+  }
+  .congreso-portada-img {
+    aspect-ratio: 16 / 10;
   }
 }

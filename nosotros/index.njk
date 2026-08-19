@@ -23,32 +23,9 @@ breadcrumbs:
   </div>
 </section>
 
-<!-- PROPUESTA DE VALOR -->
-<section class="nosotros-seccion">
-  <div class="nosotros-seccion-inner">
-    <h2>¿Por qué LUMA?</h2>
-    <p>En el mercado conviven dos extremos: equipamiento importado de alta gama con precios inaccesibles y tiempos de entrega largos, y fábricas nacionales masivas que no acompañan la imagen de un consultorio premium. LUMA nació para ocupar el espacio del medio con intención: diseño minimalista y acabados premium de nivel importado, con precio local, stock en Argentina y respaldo directo.</p>
-    <div class="beneficios-grid">
-      <div class="beneficio-card">
-        <div class="beneficio-icono"><i class="fas fa-sliders" aria-hidden="true"></i></div>
-        <h3>PRECISIÓN TECNOLÓGICA</h3>
-        <p>3 motores independientes, control de pie y movimiento ultra silencioso en cada modelo.</p>
-      </div>
-      <div class="beneficio-card">
-        <div class="beneficio-icono"><i class="fas fa-gem" aria-hidden="true"></i></div>
-        <h3>DISEÑO MINIMALISTA</h3>
-        <p>Estética que eleva el espacio. Cada pieza está pensada para integrarse al consultorio moderno.</p>
-      </div>
-      <div class="beneficio-card">
-        <!-- fa-shield-halved (nombre FA6) no existe en el build 6.0.0-beta3 que
-             carga el sitio: renderiza vacío. Usar el nombre que sí resuelve. -->
-        <div class="beneficio-icono"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
-        <h3>RESPALDO POSTVENTA</h3>
-        <p>Servicio técnico directo, garantía oficial y equipo disponible para resolver cualquier consulta.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- PROPUESTA DE VALOR — mismo componente que la home, versión clara.
+     En la home se incluye con porQueLumaAzul = true. -->
+{% include "components/bloque-por-que-luma.njk" %}
 
 <!-- GARANTÍA — resumen, condiciones completas en /garantia/ -->
 <section id="garantia" class="nosotros-seccion bg-fondo">
@@ -61,6 +38,11 @@ breadcrumbs:
 
 <!-- SHOWROOMS — ancla requerida por el resto del sitio -->
 {% include "components/bloque-showroom.njk" %}
+
+<!-- CONGRESOS — trayectoria. Va ANTES de los testimonios a propósito:
+     son fotos reales de nuestra participación, los testimonios de abajo
+     todavía son mock. La prueba verificable primero. -->
+{% include "components/bloque-congresos.njk" %}
 
 <!-- PRUEBA SOCIAL / CENTROS -->
 <!-- Testimonios mock (no verificados). Fuente: luma-testimonios.md.
@@ -133,6 +115,39 @@ breadcrumbs:
   </div>
 </section>
 
+<!-- CONTACTO — cards migradas desde la vieja pagina /contacto/ -->
+<section class="contacto-section" id="contacto">
+  <div class="contacto-section-inner">
+    <p class="section-tag">CONTACTO</p>
+    <h2>Hablá con LUMA</h2>
+    <p class="subtitle">Asesoría profesional y atención personalizada.</p>
+
+    <div class="contact-methods">
+      <div class="method-box">
+        <i class="fas fa-envelope icon" aria-hidden="true"></i>
+        <h3>Correo</h3>
+        <p>Resolvemos tus consultas rápidamente.</p>
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+      </div>
+      <div class="method-box">
+        <i class="fab fa-whatsapp icon" aria-hidden="true"></i>
+        <h3>WhatsApp</h3>
+        <p>Lun a Vie · 8 a 17 hs</p>
+        <a href="{{ site.whatsapp_link }}" target="_blank" rel="noopener">
+          {{ site.whatsapp_numero }}
+        </a>
+      </div>
+      <div class="method-box">
+        <i class="fas fa-map-marker-alt icon" aria-hidden="true"></i>
+        <h3>Showrooms</h3>
+        <p>{{ site.showroom_palermo }}</p>
+        <p>{{ site.showroom_belgrano }}</p>
+        <a href="#showrooms">Conocé los showrooms</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA CIERRE -->
 <section class="cta-producto-cierre cta-producto-cierre--imagen" style="--cta-bg-imagen: url('/images/fondo-3.png');">
   <div class="cta-producto-cierre-inner">
@@ -153,7 +168,7 @@ breadcrumbs:
       "description": "Showroom de camillas eléctricas y equipamiento médico estético LUMA en Palermo, CABA.",
       "url": "https://camillasluma.com/nosotros/#showrooms",
       "telephone": "+54 9 11 3250-8970",
-      "email": "camillasluma@gmail.com",
+      "email": "{{ site.email }}",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Palermo",
@@ -170,7 +185,7 @@ breadcrumbs:
       ],
       "priceRange": "$$$",
       "image": "https://camillasluma.com/images/logo_luma_2.png",
-      "sameAs": ["https://camillasluma.com"]
+      "sameAs": ["https://camillasluma.com", "https://www.instagram.com/{{ site.instagram }}/"]
     },
     {
       "@type": "LocalBusiness",
@@ -179,7 +194,7 @@ breadcrumbs:
       "description": "Showroom de camillas eléctricas y equipamiento médico estético LUMA en Belgrano, CABA.",
       "url": "https://camillasluma.com/nosotros/#showrooms",
       "telephone": "+54 9 11 3250-8970",
-      "email": "camillasluma@gmail.com",
+      "email": "{{ site.email }}",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Belgrano",
@@ -196,7 +211,7 @@ breadcrumbs:
       ],
       "priceRange": "$$$",
       "image": "https://camillasluma.com/images/logo_luma_2.png",
-      "sameAs": ["https://camillasluma.com"]
+      "sameAs": ["https://camillasluma.com", "https://www.instagram.com/{{ site.instagram }}/"]
     }
   ]
 }

@@ -231,3 +231,11 @@ Fuente B, *Part 7: After-sales Warranty*.
 ---
 
 *Documento elaborado por Jungle Growth a partir de la ficha comercial y el manual de instalación del fabricante. Los datos son los declarados en esas fuentes y deben verificarse contra una unidad real antes de publicarse.*
+
+## Videos Instagram
+- https://www.instagram.com/reel/DcO1st1iPPU/
+- https://www.instagram.com/reel/DbdUuGsD5Ea/
+- https://www.instagram.com/reel/DbJd31LMidG/
+- https://www.instagram.com/p/DaDcws_DH8i/
+- https://www.instagram.com/p/DZs1rDUn71n/
+- https://www.instagram.com/reel/DZYFj_0gHIq/

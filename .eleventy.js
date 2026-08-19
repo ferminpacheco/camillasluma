@@ -20,6 +20,16 @@ module.exports = function (eleventyConfig) {
     });
   });
 
+  // Instagram: convierte el permalink de un reel/post en su URL embebible.
+  // https://www.instagram.com/reel/CODIGO/  ->  .../reel/CODIGO/embed/
+  // Descarta el query string: los parametros de tracking (utm_*, igsi) no
+  // hacen falta y algunos rompen el embed.
+  eleventyConfig.addFilter("igEmbed", (url) => {
+    if (!url) return "";
+    const limpia = String(url).split("?")[0].replace(/\/+$/, "");
+    return `${limpia}/embed/`;
+  });
+
   // Colección de posts del blog, ordenados por fecha descendente
   eleventyConfig.addCollection("posts", function (collectionApi) {
     return collectionApi

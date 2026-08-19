@@ -28,6 +28,20 @@ schemaFaqs:
     a: "Sí, LUMA realiza envíos a todo el país. Consultá disponibilidad y costos de logística."
   - q: "¿Qué modos de uso tiene la LUMA Premium?"
     a: "Tiene 3 modos de uso: sillón, semirreclinado y camilla plana. Los motores están certificados CE, con 6000 N de empuje."
+
+# ── REELS DE INSTAGRAM ──────────────────────────────────────────
+# Pegá acá las URLs de los reels que muestran la Camilla LUMA Premium.
+# Formato aceptado: https://www.instagram.com/reel/CODIGO/
+# Mientras la lista esté vacía, el bloque renderiza tarjetas
+# placeholder marcadas con ⚠️ — no se inventan reels.
+#
+instagram_reels:
+  - "https://www.instagram.com/reel/DcO1st1iPPU/"
+  - "https://www.instagram.com/reel/DbdUuGsD5Ea/"
+  - "https://www.instagram.com/reel/DbJd31LMidG/"
+  - "https://www.instagram.com/p/DaDcws_DH8i/"
+  - "https://www.instagram.com/p/DZs1rDUn71n/"
+  - "https://www.instagram.com/reel/DZYFj_0gHIq/"
 ---
 
 <!-- HERO DE PRODUCTO -->
@@ -99,7 +113,7 @@ schemaFaqs:
         <span class="badge"><i class="fas fa-chair" aria-hidden="true"></i> Silla profesional incluida</span>
       </div>
       <div class="cta-doble">
-        <a href="/contacto/" class="cta-button">Pedí tu cotización</a>
+        <a href="{{ site.whatsapp_link }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
         <a href="/nosotros/#showrooms" class="cta-button-light">Agendá una visita al showroom</a>
       </div>
       <div class="precio-box">
@@ -360,6 +374,12 @@ schemaFaqs:
     </div>
   </div>
 </section>
+
+<!-- REELS DE INSTAGRAM -->
+{% set reelsFullBleed = true %}
+{% set reelsTitulo = "La LUMA Premium en acción" %}
+{% set reelsBajada = "Mirá la camilla funcionando en consultorios reales, en nuestro Instagram." %}
+{% include "components/bloque-reels.njk" %}
 
 <!-- TESTIMONIOS -->
 <!-- Testimonios mock (no verificados). Fuente: luma-testimonios.md.

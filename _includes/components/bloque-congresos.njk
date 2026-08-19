@@ -1,0 +1,68 @@
+{#
+  BLOQUE CONGRESOS — componente compartido.
+
+  Uso:
+
+    {% include "components/bloque-congresos.njk" %}
+
+  No recibe parámetros. Los datos vienen de `_data/congresos.js`, que
+  enumera /images/<slug>/ en cada build: para cambiar el contenido se
+  sueltan o se borran archivos en esa carpeta, no se toca este template.
+
+  Cada congreso es una card de la grilla: foto de portada (la primera
+  imagen de la carpeta) + especialidad, nombre y descripción. El resto de
+  las fotos de la carpeta viaja en `congreso.piezas` pero hoy no se
+  renderiza; están disponibles si más adelante se agrega una galería.
+
+  Un congreso sin carpeta, con la carpeta vacía o sin archivos válidos
+  no llega hasta acá (lo filtra el data file), así que no hay riesgo de
+  renderizar un heading suelto ni una card sin foto.
+
+  ⚠️ Nada de schema Event acá: `Event` es para eventos futuros a los que
+  alguien se puede inscribir, no para historial de participación pasada.
+#}
+
+{% if congresos and congresos.length %}
+<section class="congresos-seccion" aria-labelledby="congresos-titulo">
+  <div class="congresos-inner">
+
+    <h2 id="congresos-titulo" class="congresos-titulo">Nuestra trayectoria en los principales congresos</h2>
+    <p class="congresos-bajada">Participamos de los congresos médicos que reúnen a las especialidades con las que trabajamos todos los días: dermatología, medicina estética y cirugía plástica.</p>
+
+    <div class="congresos-grid">
+      {% for congreso in congresos %}
+        <article class="congreso-card" data-congreso="{{ congreso.slug }}">
+
+          <div class="congreso-portada">
+            <img
+              class="congreso-portada-img"
+              src="{{ congreso.portada.url }}"
+              alt="{{ congreso.portada.alt }}"
+              {% if congreso.portada.width %}width="{{ congreso.portada.width }}" height="{{ congreso.portada.height }}"{% endif %}
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+
+          <div class="congreso-info">
+            <p class="congreso-especialidad">{{ congreso.especialidad }}</p>
+            <h3 class="congreso-nombre">{{ congreso.nombre }}</h3>
+            {% if congreso.nombreCompleto != congreso.nombre %}
+              <p class="congreso-nombre-completo">{{ congreso.nombreCompleto }}</p>
+            {% endif %}
+            <p class="congreso-descripcion">{{ congreso.descripcion }}</p>
+            {#
+              ⚠️ PENDIENTE DE CONFIRMACIÓN (docs/luma-seccion-congresos.md §6):
+              - {{CONGRESO_ANIO}}: año / edición de cada participación.
+              - {{CONGRESO_PARTICIPACION}}: expositor con stand vs. asistente.
+              Hasta que el cliente lo confirme no se escribe ninguno de los dos.
+            #}
+          </div>
+
+        </article>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endif %}

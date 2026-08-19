@@ -22,6 +22,16 @@ schemaFaqs:
     a: "Actualmente la luminaria está sin stock. El próximo ingreso se estima en aproximadamente 2 meses. Podés consultarnos para anotarte en lista de espera."
   - q: "¿La luminaria tiene garantía?"
     a: "Sí, incluye garantía oficial LUMA. Consultá los detalles en nuestra página de nosotros."
+
+# ── REELS DE INSTAGRAM ────────────────────────────────────
+# URLs tomadas de docs/luma-luminaria-led-ficha-tecnica.md.
+# Formato aceptado: https://www.instagram.com/reel/CODIGO/ (o /p/CODIGO/).
+# Si la lista queda vacía, el bloque renderiza tarjetas placeholder ⚠️.
+instagram_reels:
+  - "https://www.instagram.com/reel/DXr8nQLDoun/"
+  - "https://www.instagram.com/p/DU9NJGOj0Wu/"
+  - "https://www.instagram.com/reel/DbJd31LMidG/"
+  - "https://www.instagram.com/p/DaDcws_DH8i/"
 ---
 
 <!-- HERO DE PRODUCTO -->
@@ -73,7 +83,7 @@ schemaFaqs:
         <span class="badge" style="background: rgba(255,200,0,0.15); color: #8a6c00;">⚠️ Sin stock — ingreso estimado ~2 meses</span>
       </div>
       <div class="cta-doble">
-        <a href="/contacto/" class="cta-button">Consultá disponibilidad</a>
+        <a href="{{ site.whatsapp_link }}" class="cta-button" target="_blank" rel="noopener">Consultá disponibilidad</a>
         <a href="/nosotros/#showrooms" class="cta-button-light">Ver en showroom</a>
       </div>
       <div class="precio-box">
@@ -207,6 +217,11 @@ schemaFaqs:
   </div>
 </section>
 
+<!-- REELS DE INSTAGRAM -->
+{% set reelsTitulo = "La Luminaria LED en acción" %}
+{% set reelsBajada = "Mirá la luminaria en uso en consultorios reales, en nuestro Instagram." %}
+{% include "components/bloque-reels.njk" %}
+
 <!-- TESTIMONIOS -->
 <!-- Testimonios mock (no verificados). Fuente: luma-testimonios.md.
      IMPORTANTE: NO agregar schema Review/AggregateRating hasta contar con reseñas reales. -->
@@ -295,7 +310,7 @@ schemaFaqs:
       <details class="faq-item">
         <summary>¿Cuándo va a estar disponible la luminaria?</summary>
         <div class="faq-respuesta">
-          <p>La Luminaria LED LUMA está <strong>sin stock al momento</strong>, con ingreso estimado en aproximadamente 2 meses. Si querés reservar tu unidad o que te avisemos cuando llegue, completá el formulario de contacto y lo coordinamos.</p>
+          <p>La Luminaria LED LUMA está <strong>sin stock al momento</strong>, con ingreso estimado en aproximadamente 2 meses. Si querés reservar tu unidad o que te avisemos cuando llegue, escribinos por WhatsApp y lo coordinamos.</p>
         </div>
       </details>
 

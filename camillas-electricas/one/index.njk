@@ -26,6 +26,16 @@ schemaFaqs:
     a: "Sí, incluye garantía oficial LUMA. Consultá los términos en nuestra página de nosotros."
   - q: "¿Hacen envíos a todo el país?"
     a: "Sí, LUMA realiza envíos a todo el país. Consultá disponibilidad y costos."
+
+# ── REELS DE INSTAGRAM ────────────────────────────────────
+# URLs tomadas de docs/luma-one-ficha-tecnica.md.
+# Formato aceptado: https://www.instagram.com/reel/CODIGO/ (o /p/CODIGO/).
+# Si la lista queda vacía, el bloque renderiza tarjetas placeholder ⚠️.
+instagram_reels:
+  - "https://www.instagram.com/reel/DW153rHk7oK/"
+  - "https://www.instagram.com/reel/Db8Vx44AjeG/"
+  - "https://www.instagram.com/reel/DbdUuGsD5Ea/"
+  - "https://www.instagram.com/reel/DbJd31LMidG/"
 ---
 
 <!-- HERO DE PRODUCTO -->
@@ -100,7 +110,7 @@ schemaFaqs:
         <span class="badge"><i class="fas fa-weight-hanging" aria-hidden="true"></i> Carga máx. 200 kg</span>
       </div>
       <div class="cta-doble">
-        <a href="/contacto/" class="cta-button">Pedí tu cotización</a>
+        <a href="{{ site.whatsapp_link }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
         <a href="/nosotros/#showrooms" class="cta-button-light">Agendá una visita al showroom</a>
       </div>
       <div class="precio-box">
@@ -332,6 +342,11 @@ schemaFaqs:
     </div>
   </div>
 </section>
+
+<!-- REELS DE INSTAGRAM -->
+{% set reelsTitulo = "La LUMA One en acción" %}
+{% set reelsBajada = "Mirá la camilla funcionando en consultorios reales, en nuestro Instagram." %}
+{% include "components/bloque-reels.njk" %}
 
 <!-- TESTIMONIOS -->
 <!-- Testimonios mock (no verificados). Fuente: luma-testimonios.md.

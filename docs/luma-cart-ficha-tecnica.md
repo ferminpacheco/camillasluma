@@ -80,3 +80,8 @@ Carrito auxiliar estético de diseño moderno, creado para acompañar y elevar l
 ---
 
 *Documento elaborado por Jungle Growth para LUMA. Datos de producto provistos por el cliente.*
+
+## Videos Instagram
+- https://www.instagram.com/p/DavUkbzjpu-/
+- https://www.instagram.com/reel/DXr8nQLDoun/
+- https://www.instagram.com/reel/DbJd31LMidG/

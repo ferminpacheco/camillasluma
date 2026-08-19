@@ -24,6 +24,15 @@ schemaFaqs:
     a: "Sí, incluye 4 ruedas de alta movilidad con trabas, para mayor estabilidad durante los procedimientos."
   - q: "¿El LUMA Tech tiene garantía?"
     a: "Sí, incluye garantía oficial LUMA. Consultá los detalles en nuestra página de garantía."
+
+# ── REELS DE INSTAGRAM ────────────────────────────────────
+# URLs tomadas de docs/luma-tech-ficha-tecnica.md.
+# Formato aceptado: https://www.instagram.com/reel/CODIGO/ (o /p/CODIGO/).
+# Si la lista queda vacía, el bloque renderiza tarjetas placeholder ⚠️.
+instagram_reels:
+  - "https://www.instagram.com/p/DavUkbzjpu-/"
+  - "https://www.instagram.com/reel/DXr8nQLDoun/"
+  - "https://www.instagram.com/reel/DbJd31LMidG/"
 ---
 
 <!-- HERO DE PRODUCTO -->
@@ -89,7 +98,7 @@ schemaFaqs:
         <span class="badge"><i class="fas fa-lock" aria-hidden="true"></i> Ruedas con traba</span>
       </div>
       <div class="cta-doble">
-        <a href="/contacto/" class="cta-button">Pedí tu cotización</a>
+        <a href="{{ site.whatsapp_link }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
         <a href="/nosotros/#showrooms" class="cta-button-light">Ver en showroom</a>
       </div>
       <div class="precio-box">
@@ -331,6 +340,11 @@ schemaFaqs:
     </div>
   </div>
 </section>
+
+<!-- REELS DE INSTAGRAM -->
+{% set reelsTitulo = "El LUMA Tech en acción" %}
+{% set reelsBajada = "Mirá el carrito en uso en consultorios reales, en nuestro Instagram." %}
+{% include "components/bloque-reels.njk" %}
 
 <!-- TESTIMONIOS -->
 <!-- Testimonios mock (no verificados). Fuente: luma-testimonios.md.

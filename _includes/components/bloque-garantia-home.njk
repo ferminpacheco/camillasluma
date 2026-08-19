@@ -1,0 +1,53 @@
+{#
+  BLOQUE GARANTÍA — versión destacada para la home.
+
+  Uso:
+
+    {% include "components/bloque-garantia-home.njk" %}
+
+  ⚠️ NO confundir con `bloque-garantia.njk`, que es la nota inline de una
+  línea y sigue en uso en las 10 páginas de producto, hub, luminarias y
+  nosotros. Este componente es solo para la home: mismo dato, otra jerarquía.
+
+  Las cards reutilizan `.cuidado-grid` / `.cuidado-card` / `.cuidado-icono`,
+  las mismas clases que la fila de /garantia/. No hay CSS de card propio: si
+  cambia el diseño de esa fila, cambia acá también.
+
+  El copy de las tres cards sale de /garantia/index.njk y del PDF oficial
+  (plazo de 12 meses, cobertura de motores y sistema eléctrico, reparación
+  sin costo de service, plazo de hasta 20 días corridos). No agregar nada
+  que no esté en esas dos fuentes: es una promesa contractual.
+#}
+
+<section class="home-garantia" aria-labelledby="home-garantia-titulo">
+  <div class="home-garantia-inner">
+
+    <h2 id="home-garantia-titulo">Garantía oficial LUMA</h2>
+    <p class="home-garantia-bajada">Todos los equipos LUMA salen con garantía oficial y respaldo postventa directo de fábrica.</p>
+
+    <div class="cuidado-grid">
+      <div class="cuidado-card">
+        {# fa-shield-halved (nombre FA6) no existe en el build 6.0.0-beta3 que
+           carga el sitio: renderiza vacío. Mismo caso que en /nosotros/. #}
+        <div class="cuidado-icono"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
+        <h3>12 meses de cobertura oficial</h3>
+        <p>Desde la fecha de compra, sobre fallas de origen relacionadas con fabricación, materiales y ensamblado.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono"><i class="fas fa-bolt" aria-hidden="true"></i></div>
+        <h3>Motores y sistema eléctrico incluidos</h3>
+        <p>En los modelos eléctricos la cobertura alcanza motores, comandos y sistema eléctrico. La reparación no tiene costo de service ni de mano de obra.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono"><i class="fas fa-headset" aria-hidden="true"></i></div>
+        <h3>Respaldo postventa directo</h3>
+        <p>Coordinás con nuestro equipo técnico, sin intermediarios. Plazo de reparación: hasta 20 días corridos desde que recibimos el equipo.</p>
+      </div>
+    </div>
+
+    <div class="home-garantia-cta">
+      <a href="{{ site.garantia_url }}" class="cta-button-light">Ver todos los términos de la garantía</a>
+    </div>
+
+  </div>
+</section>

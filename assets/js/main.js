@@ -412,45 +412,85 @@ document.querySelectorAll('[data-carousel]').forEach(carousel => {
   });
 });
 
-/* ── Carrusel de testimonios (loop infinito, 3 tarjetas) ── */
-document.querySelectorAll('[data-testimonio-carousel]').forEach(carousel => {
-  const track = carousel.querySelector('.testimonio-carousel-track');
+/* ── Carrusel de track deslizante (reutilizable) ──
+   Usado por el carrusel de testimonios (loop infinito + autoplay) y por el
+   de reels de Instagram (finito, sin autoplay). Antes esta lógica vivía
+   duplicada; ahora se configura por opciones.
+
+   config = {
+     trackSelector, prevSelector, nextSelector,
+     visibleCount: (anchoVentana) => n,
+     loop: bool,        // clona el set completo para avanzar sin fin
+     autoplayMs: 0      // 0 = sin autoplay
+   }
+*/
+function initTrackCarousel(carousel, config) {
+  const track = carousel.querySelector(config.trackSelector);
   if (!track) return;
 
   const originalSlides = Array.from(track.children);
   const total = originalSlides.length;
   if (total < 2) return;
 
-  // Clonamos el set completo y lo agregamos al final: permite avanzar
-  // indefinidamente hacia adelante y, al pasar el set clonado, resetear
-  // la posición sin transición para simular un loop infinito.
-  originalSlides.forEach(slide => {
-    const clone = slide.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true');
-    track.appendChild(clone);
-  });
+  const loop = config.loop !== false;
+  const autoplayMs = config.autoplayMs || 0;
 
-  function getVisibleCount() {
-    const w = window.innerWidth;
-    if (w <= 768) return 1;
-    if (w <= 900) return 2;
-    return 3;
+  // En modo loop clonamos el set completo y lo agregamos al final: permite
+  // avanzar indefinidamente hacia adelante y, al pasar el set clonado,
+  // resetear la posición sin transición para simular un loop infinito.
+  //
+  // El carrusel de reels NO clona: cada clon sería otro iframe de Instagram
+  // cargándose de nuevo, duplicando el peso de la página.
+  if (loop) {
+    originalSlides.forEach(slide => {
+      const clone = slide.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
   }
+
+  const getVisibleCount = () => config.visibleCount(window.innerWidth);
 
   let visible = getVisibleCount();
   let current = 0;
   const TRANSITION_MS = 600;
   let resetTimer = null;
 
+  const prevBtn = carousel.querySelector(config.prevSelector);
+  const nextBtn = carousel.querySelector(config.nextSelector);
+
+  // Sin loop hay principio y fin: las flechas se apagan en los extremos.
+  function maxIndex() {
+    return Math.max(0, total - visible);
+  }
+
+  function sincronizarFlechas() {
+    if (loop) return;
+    // Si entran todas las slides a la vez no hay nada que navegar: se
+    // esconden las flechas y las tarjetas se centran en vez de quedar
+    // pegadas a la izquierda con una columna vacia al lado.
+    carousel.classList.toggle('sin-navegacion', total <= visible);
+    prevBtn && prevBtn.setAttribute('aria-disabled', current <= 0 ? 'true' : 'false');
+    nextBtn && nextBtn.setAttribute('aria-disabled', current >= maxIndex() ? 'true' : 'false');
+  }
+
   function update(withTransition) {
     track.style.transition = withTransition ? `transform ${TRANSITION_MS}ms ${EASE_OUT}` : 'none';
     track.style.transform = `translateX(-${current * (100 / visible)}%)`;
+    sincronizarFlechas();
   }
 
   // El reset se agenda por tiempo (no por "transitionend"): en pestañas en
   // segundo plano o desenfocadas Chrome puede no disparar ese evento nunca,
   // dejando el índice crecer sin límite hasta mostrar espacio vacío.
   function next() {
+    if (!loop) {
+      if (current >= maxIndex()) return;
+      current++;
+      update(true);
+      return;
+    }
+
     clearTimeout(resetTimer);
 
     // Si venimos de un ciclo ya completado, normalizamos sin animar ANTES de
@@ -478,6 +518,13 @@ document.querySelectorAll('[data-testimonio-carousel]').forEach(carousel => {
   }
 
   function prev() {
+    if (!loop) {
+      if (current <= 0) return;
+      current--;
+      update(true);
+      return;
+    }
+
     clearTimeout(resetTimer);
     if (current === 0) {
       current = total;
@@ -493,31 +540,98 @@ document.querySelectorAll('[data-testimonio-carousel]').forEach(carousel => {
 
   update(false);
 
-  const AUTOPLAY_MS = 4500;
   // Movimiento constante y no solicitado: no arranca con reduced-motion.
-  let autoplay = sinMovimiento() ? null : setInterval(next, AUTOPLAY_MS);
+  const puedeAutoplay = () => autoplayMs > 0 && !sinMovimiento();
+  let autoplay = puedeAutoplay() ? setInterval(next, autoplayMs) : null;
 
   function restartAutoplay() {
     clearInterval(autoplay);
-    autoplay = sinMovimiento() ? null : setInterval(next, AUTOPLAY_MS);
+    autoplay = puedeAutoplay() ? setInterval(next, autoplayMs) : null;
   }
 
-  carousel.addEventListener('mouseenter', () => clearInterval(autoplay));
-  carousel.addEventListener('mouseleave', restartAutoplay);
+  if (autoplayMs > 0) {
+    carousel.addEventListener('mouseenter', () => clearInterval(autoplay));
+    carousel.addEventListener('mouseleave', restartAutoplay);
+  }
 
-  const prevBtn = carousel.querySelector('[data-testimonio-prev]');
-  const nextBtn = carousel.querySelector('[data-testimonio-next]');
   prevBtn && prevBtn.addEventListener('click', () => { prev(); restartAutoplay(); });
   nextBtn && nextBtn.addEventListener('click', () => { next(); restartAutoplay(); });
+
+  // Swipe tactil y drag de mouse. Es opt-in porque el track se mueve por
+  // transform y no por scroll nativo: el gesto hay que cablearlo a mano, y
+  // los carruseles que embeben iframes (reels) no lo quieren, ahi el gesto
+  // pertenece al contenido de adentro.
+  if (config.swipe) {
+    const UMBRAL = 40; // px de desplazamiento antes de contar como swipe
+    let inicioX = 0;
+    let inicioY = 0;
+    let activo = false;
+
+    track.addEventListener('pointerdown', e => {
+      // Solo boton primario del mouse; el resto abre menues contextuales.
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      inicioX = e.clientX;
+      inicioY = e.clientY;
+      activo = true;
+    });
+
+    track.addEventListener('pointerup', e => {
+      if (!activo) return;
+      activo = false;
+
+      const dx = e.clientX - inicioX;
+      const dy = e.clientY - inicioY;
+
+      // Si el gesto fue mas vertical que horizontal es un scroll de pagina,
+      // no un swipe: no se toca el carrusel ni se cancela el scroll.
+      if (Math.abs(dx) < UMBRAL || Math.abs(dx) <= Math.abs(dy)) return;
+
+      dx < 0 ? next() : prev();
+      restartAutoplay();
+    });
+
+    track.addEventListener('pointercancel', () => { activo = false; });
+  }
 
   window.addEventListener('resize', () => {
     const newVisible = getVisibleCount();
     if (newVisible !== visible) {
       visible = newVisible;
+      if (!loop && current > maxIndex()) current = maxIndex();
       update(false);
     }
   });
+}
+
+/* ── Carrusel de testimonios (loop infinito, 3 tarjetas) ── */
+document.querySelectorAll('[data-testimonio-carousel]').forEach(carousel => {
+  initTrackCarousel(carousel, {
+    trackSelector: '.testimonio-carousel-track',
+    prevSelector: '[data-testimonio-prev]',
+    nextSelector: '[data-testimonio-next]',
+    visibleCount: w => (w <= 768 ? 1 : w <= 900 ? 2 : 3),
+    loop: true,
+    autoplayMs: 4500,
+  });
 });
+
+/* ── Carrusel de reels de Instagram ──────────── */
+// Finito y sin autoplay: son videos embebidos, moverlos solos mientras
+// alguien mira uno es molesto, y clonar slides duplicaría los iframes.
+document.querySelectorAll('[data-reels-carousel]').forEach(carousel => {
+  initTrackCarousel(carousel, {
+    trackSelector: '.reels-track',
+    prevSelector: '[data-reels-prev]',
+    nextSelector: '[data-reels-next]',
+    visibleCount: w => (w <= 700 ? 1 : w <= 1024 ? 2 : 3),
+    loop: false,
+    autoplayMs: 0,
+  });
+});
+
+/* Los reels ya no usan embed.js: cada tarjeta es un <iframe> de
+   instagram.com/.../embed/ recortado por CSS, con loading="lazy" nativo.
+   Eso saca ~150 kB de JS de terceros de la pagina. */
 
 /* ── Redirect de anclas legadas ──────────────── */
 // Redirige URLs viejas con hash (#premium, #ginecologica, etc.)
@@ -530,7 +644,6 @@ document.querySelectorAll('[data-testimonio-carousel]').forEach(carousel => {
     '#tech':        '/carritos-auxiliares/luma-tech/',
     '#luminaria':   '/luminarias/',
     '#nosotros':    '/nosotros/',
-    '#contacto':    '/contacto/',
   };
 
   const hash = window.location.hash;

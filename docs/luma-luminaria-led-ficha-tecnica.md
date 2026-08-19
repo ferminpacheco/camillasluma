@@ -82,3 +82,9 @@ Según el documento interno: **sin stock**, con nuevo ingreso estimado en aproxi
 ---
 
 *Documento elaborado por Jungle Growth para LUMA. Descripción comercial y características provistas por el cliente; estructura y componentes derivados de las fotografías de producto.*
+
+## Videos Instagram
+- https://www.instagram.com/reel/DXr8nQLDoun/
+- https://www.instagram.com/p/DU9NJGOj0Wu/
+- https://www.instagram.com/reel/DbJd31LMidG/
+- https://www.instagram.com/p/DaDcws_DH8i/

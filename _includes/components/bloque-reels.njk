@@ -1,0 +1,145 @@
+{#
+  BLOQUE REELS DE INSTAGRAM — componente compartido.
+
+  Uso desde una página de producto:
+
+    {% set reelsTitulo = "LUMA Premium en acción" %}
+    {% include "components/bloque-reels.njk" %}
+
+  Los reels se leen de la variable `instagram_reels` del front matter de la
+  página (lista de URLs). Si la lista está vacía se renderizan tarjetas
+  placeholder marcadas con ⚠️ — NO se inventan reels.
+
+  Los embeds usan el script oficial de Instagram (embed.js), que se carga
+  de forma diferida recién cuando el bloque entra en viewport (ver main.js).
+#}
+
+{% set reelsTitulo = reelsTitulo | default("Seguinos en Instagram") %}
+{% set reelsBajada = reelsBajada | default("Mirá los equipos LUMA en consultorios reales.") %}
+{% set igHandleConfirmado = site.instagram and "IG_HANDLE" not in site.instagram %}
+{# reelsFullBleed: recorta las bandas negras laterales para que el video llene
+   la tarjeta. Solo activar si TODOS los videos de esa pagina son verticales
+   9:16. Si alguno es 4:5 o cuadrado, Instagram no le pone bandas y el
+   recorte le come los costados. #}
+{% set reelsFullBleed = reelsFullBleed | default(false) %}
+
+<section class="reels-seccion" aria-labelledby="reels-titulo">
+  <div class="reels-inner">
+
+    <h2 id="reels-titulo" class="reels-titulo">{{ reelsTitulo }}</h2>
+    <p class="reels-bajada">{{ reelsBajada }}</p>
+
+    <!-- Cabecera de perfil -->
+    <div class="reels-perfil">
+      <div class="reels-perfil-avatar">
+        <img
+          src="/images/logo_luma_2.png"
+          alt="Logo de LUMA — perfil de Instagram"
+          width="1024"
+          height="1024"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="reels-perfil-datos">
+        <span class="reels-perfil-nombre">LUMA</span>
+        {% if igHandleConfirmado %}
+          <a
+            class="reels-perfil-handle"
+            href="https://www.instagram.com/{{ site.instagram }}/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >@{{ site.instagram }}</a>
+        {% else %}
+          <span class="reels-perfil-handle">@{{ site.instagram }}</span>
+        {% endif %}
+      </div>
+
+      {% if igHandleConfirmado %}
+        <a
+          class="reels-seguir"
+          href="https://www.instagram.com/{{ site.instagram }}/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+          Seguir
+        </a>
+      {% else %}
+        {# Sin handle confirmado el botón no puede apuntar a ningún lado.
+           Se muestra inerte y marcado, no se inventa una URL. #}
+        <span class="reels-seguir is-pendiente" aria-disabled="true">
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+          Seguir
+        </span>
+      {% endif %}
+    </div>
+
+    {% if not igHandleConfirmado %}
+      <p class="placeholder-note reels-nota">⚠️ Instagram: {{ site.instagram }} — el botón "Seguir" se activa solo cuando se confirme el handle en <code>_data/site.json</code>.</p>
+    {% endif %}
+
+    <!-- Carrusel -->
+    <div class="reels-carousel" data-reels-carousel>
+      <button type="button" class="reels-nav reels-prev" data-reels-prev aria-label="Reel anterior">
+        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+      </button>
+
+      <div class="reels-viewport">
+        <div class="reels-track">
+
+          {% if instagram_reels and instagram_reels.length %}
+            {% for reel in instagram_reels %}
+              <div class="reels-slide">
+                <div class="reel-card">
+                  {#
+                    El iframe es de instagram.com: otro origen, así que su
+                    interior no se puede estilar. Para mostrar solo el video y
+                    esconder el header, los likes y la caja de comentarios, el
+                    iframe se sube 58px y se recorta con el marco (overflow
+                    hidden). Ver .reel-marco en main.css.
+                  #}
+                  <div class="reel-marco{% if reelsFullBleed %} reel-marco--full{% endif %}">
+                    {# Fallback debajo del iframe: si Instagram no carga
+                       (adblocker, sin conexion) queda este link a la vista. #}
+                    <a class="reel-fallback" href="{{ reel }}" target="_blank" rel="noopener noreferrer">
+                      Ver en Instagram
+                    </a>
+                    <iframe
+                      class="reel-frame"
+                      src="{{ reel | igEmbed }}"
+                      title="Reel de Instagram de LUMA"
+                      loading="lazy"
+                      scrolling="no"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            {# Placeholders: la lista `instagram_reels` del front matter está vacía. #}
+            {% for i in range(0, 4) %}
+              <div class="reels-slide">
+                <div class="reel-card reel-card--placeholder">
+                  <i class="fab fa-instagram reel-placeholder-icono" aria-hidden="true"></i>
+                  <p class="reel-placeholder-texto">⚠️ Reel a confirmar</p>
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+
+        </div>
+      </div>
+
+      <button type="button" class="reels-nav reels-next" data-reels-next aria-label="Reel siguiente">
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    {% if not instagram_reels or not instagram_reels.length %}
+      <p class="placeholder-note reels-nota">⚠️ Faltan las URLs de los reels. Cargalas en <code>instagram_reels</code>, al final del front matter de esta página.</p>
+    {% endif %}
+
+  </div>
+</section>

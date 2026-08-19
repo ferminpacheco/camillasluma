@@ -26,6 +26,18 @@ schemaFaqs:
     a: "Tiene comando de mano para ajuste de posiciones sin necesidad de que el profesional se desplace."
   - q: "¿La camilla ginecológica tiene garantía oficial?"
     a: "Sí, cuenta con garantía oficial LUMA. Consultá los términos en nuestra página de nosotros."
+
+# ── REELS DE INSTAGRAM ────────────────────────────────────
+# URLs tomadas de docs/luma-ginecologica-ficha-tecnica.md.
+# Formato aceptado: https://www.instagram.com/reel/CODIGO/ (o /p/CODIGO/).
+# Si la lista queda vacía, el bloque renderiza tarjetas placeholder ⚠️.
+instagram_reels:
+  - "https://www.instagram.com/reel/DYM_Tm2ln5E/"
+  - "https://www.instagram.com/reel/DXr8nQLDoun/"
+  - "https://www.instagram.com/reel/DW153rHk7oK/"
+  - "https://www.instagram.com/reel/DUtkMqWj8Li/"
+  - "https://www.instagram.com/reel/DboRjcgswvo/"
+  - "https://www.instagram.com/reel/DbJd31LMidG/"
 ---
 
 <!-- HERO DE PRODUCTO -->
@@ -100,7 +112,7 @@ schemaFaqs:
         <span class="badge"><i class="fas fa-star" aria-hidden="true"></i> 19% OFF precio lista</span>
       </div>
       <div class="cta-doble">
-        <a href="/contacto/" class="cta-button">Pedí tu cotización</a>
+        <a href="{{ site.whatsapp_link }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
         <a href="/nosotros/#showrooms" class="cta-button-light">Agendá una visita al showroom</a>
       </div>
       <div class="precio-box">
@@ -267,6 +279,11 @@ schemaFaqs:
     </div>
   </div>
 </section>
+
+<!-- REELS DE INSTAGRAM -->
+{% set reelsTitulo = "La LUMA Ginecológica en acción" %}
+{% set reelsBajada = "Mirá la camilla funcionando en consultorios reales, en nuestro Instagram." %}
+{% include "components/bloque-reels.njk" %}
 
 <!-- TESTIMONIOS -->
 <!-- Testimonios mock (no verificados). Fuente: luma-testimonios.md.
