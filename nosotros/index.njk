@@ -3,17 +3,7 @@ layout: base.njk
 title: "Nosotros | LUMA — Equipamiento Médico Estético Premium"
 description: "Conocé LUMA: tecnología, elegancia y respaldo postventa para profesionales de la estética médica. Garantía oficial y dos showrooms en Palermo y Belgrano, CABA."
 canonical: "https://camillasluma.com/nosotros/"
-breadcrumbs:
-  - label: "Inicio"
-    url: "/"
-  - label: "Nosotros"
 ---
-
-{% set breadcrumbs = [
-  { label: "Inicio", url: "/" },
-  { label: "Nosotros" }
-] %}
-{% include "components/breadcrumb.njk" %}
 
 <!-- HERO NOSOTROS -->
 <section class="nosotros-hero">
@@ -27,14 +17,10 @@ breadcrumbs:
      En la home se incluye con porQueLumaAzul = true. -->
 {% include "components/bloque-por-que-luma.njk" %}
 
-<!-- GARANTÍA — resumen, condiciones completas en /garantia/ -->
-<section id="garantia" class="nosotros-seccion bg-fondo">
-  <div class="nosotros-seccion-inner">
-    <h2>Garantía oficial</h2>
-    {% include "components/bloque-garantia.njk" %}
-    <p style="margin-top: 1rem;">Todos los productos LUMA incluyen garantía oficial con respaldo postventa directo. Ante cualquier inconveniente, nuestro equipo técnico acompaña la resolución sin intermediarios. <a href="{{ site.garantia_url }}">Ver condiciones completas →</a></p>
-  </div>
-</section>
+<!-- GARANTÍA — mismo bloque destacado que la home. El ancla #garantia se
+     pasa por parámetro porque en / la sección no la necesita. -->
+{% set garantiaAnchor = "garantia" %}
+{% include "components/bloque-garantia-destacado.njk" %}
 
 <!-- SHOWROOMS — ancla requerida por el resto del sitio -->
 {% include "components/bloque-showroom.njk" %}
@@ -43,6 +29,15 @@ breadcrumbs:
      son fotos reales de nuestra participación, los testimonios de abajo
      todavía son mock. La prueba verificable primero. -->
 {% include "components/bloque-congresos.njk" %}
+
+<!-- CTA CIERRE -->
+<section class="cta-producto-cierre cta-producto-cierre--imagen" style="--cta-bg-imagen: url('/images/fondo-3.png');">
+  <div class="cta-producto-cierre-inner">
+    <h2>Agendá tu visita al showroom</h2>
+    <p>La mejor forma de conocer LUMA es experimentarla en persona. Te esperamos en Palermo o Belgrano.</p>
+    {% include "components/cta-doble.njk" %}
+  </div>
+</section>
 
 <!-- PRUEBA SOCIAL / CENTROS -->
 <!-- Testimonios mock (no verificados). Fuente: luma-testimonios.md.
@@ -133,7 +128,7 @@ breadcrumbs:
         <i class="fab fa-whatsapp icon" aria-hidden="true"></i>
         <h3>WhatsApp</h3>
         <p>Lun a Vie · 8 a 17 hs</p>
-        <a href="{{ site.whatsapp_link }}" target="_blank" rel="noopener">
+        <a href="{{ whatsappLink }}" target="_blank" rel="noopener">
           {{ site.whatsapp_numero }}
         </a>
       </div>
@@ -145,15 +140,6 @@ breadcrumbs:
         <a href="#showrooms">Conocé los showrooms</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- CTA CIERRE -->
-<section class="cta-producto-cierre cta-producto-cierre--imagen" style="--cta-bg-imagen: url('/images/fondo-3.png');">
-  <div class="cta-producto-cierre-inner">
-    <h2>Agendá tu visita al showroom</h2>
-    <p>La mejor forma de conocer LUMA es experimentarla en persona. Te esperamos en Palermo o Belgrano.</p>
-    {% include "components/cta-doble.njk" %}
   </div>
 </section>
 

@@ -10,7 +10,26 @@ const motionReducida = window.matchMedia('(prefers-reduced-motion: reduce)');
 const sinMovimiento = () => motionReducida.matches;
 
 /* ── Menú mobile ──────────────────────────────── */
+// El mismo breakpoint que usa el CSS para pasar al menú desplegable.
+// Todo lo que sigue distingue mobile de desktop a partir de acá.
+const menuMobile = window.matchMedia('(max-width: 768px)');
+
+// Un dropdown abierto en mobile es estado de la página, no del hover:
+// se marca con la clase `is-open` sobre el <li class="dropdown">.
+function cerrarDropdowns() {
+  document.querySelectorAll('.main-nav .dropdown.is-open').forEach(dropdown => {
+    dropdown.classList.remove('is-open');
+    const toggle = dropdown.querySelector('.dropdown-toggle');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+  });
+}
+
 function sincronizarMenu(abierto) {
+  // Los botones flotantes se esconden con el menú abierto: si no, el de
+  // WhatsApp queda flotando por encima del panel y tapa la última opción.
+  document.documentElement.toggleAttribute('data-menu-abierto', abierto);
+  if (!abierto) cerrarDropdowns();
+
   const toggle = document.querySelector('.menu-toggle');
   if (!toggle) return;
 
@@ -29,12 +48,59 @@ function toggleMenu() {
   sincronizarMenu(nav.classList.toggle('active'));
 }
 
+// Un toggle de dropdown en mobile, todavía cerrado, despliega en vez de
+// navegar: por eso no cierra el menú entero.
+function despliegaSubmenu(link) {
+  return (
+    menuMobile.matches &&
+    link.classList.contains('dropdown-toggle') &&
+    link.parentElement &&
+    !link.parentElement.classList.contains('is-open')
+  );
+}
+
+/* La decisión se toma una sola vez por click, en fase de captura, antes de
+   que ningún listener toque el DOM. Si cada uno la evaluara por su cuenta,
+   el que cierra el menú borraría `is-open` primero y el segundo toque
+   volvería a abrir el submenú en lugar de navegar. */
+let toqueDespliega = false;
+
+document.addEventListener('click', (evento) => {
+  const link = evento.target.closest ? evento.target.closest('.main-nav a') : null;
+  toqueDespliega = !!link && despliegaSubmenu(link);
+}, true);
+
 document.querySelectorAll('.main-nav a').forEach(link => {
   link.addEventListener('click', () => {
+    if (toqueDespliega) return;
     const nav = document.querySelector('.main-nav');
     if (nav) nav.classList.remove('active');
     sincronizarMenu(false);
   });
+});
+
+/* ── Dropdowns del menú mobile ────────────────
+   En una pantalla táctil no hay hover: sin esto, tocar "Camillas" navega
+   directo al hub y el submenú (Premium / One / Ginecológica) no se llega
+   a ver nunca, aunque el chevron prometa que se despliega.
+   Primer toque: abre. Segundo toque sobre el mismo link: navega. */
+document.querySelectorAll('.main-nav .dropdown > .dropdown-toggle').forEach(toggle => {
+  toggle.setAttribute('aria-expanded', 'false');
+
+  toggle.addEventListener('click', (evento) => {
+    if (!toqueDespliega) return;
+    evento.preventDefault();
+
+    // Uno solo abierto por vez: dos submenús desplegados no entran en pantalla.
+    cerrarDropdowns();
+    toggle.parentElement.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+  });
+});
+
+// Al pasar a desktop el hover vuelve a mandar: el estado táctil sobra.
+menuMobile.addEventListener('change', (evento) => {
+  if (!evento.matches) cerrarDropdowns();
 });
 
 // El toggle es un <div role="button">: el teclado no lo activa solo.

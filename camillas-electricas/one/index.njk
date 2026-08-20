@@ -3,17 +3,12 @@ layout: product.njk
 title: "Camilla Eléctrica One 3 Motores | LUMA"
 description: "Camilla eléctrica de 3 motores con botonera de pie, carga máxima 200 kg y ángulos de reclinación 0°-90°. Opción accesible de la línea LUMA para Argentina."
 canonical: "https://camillasluma.com/camillas-electricas/one/"
-breadcrumbs:
-  - label: "Inicio"
-    url: "/"
-  - label: "Camillas Eléctricas"
-    url: "/camillas-electricas/"
-  - label: "Camilla One"
+# Mensaje precargado del link de WhatsApp en esta página (ver _data/eleventyComputed.js).
+waMensaje: "Hola! Quiero más información sobre la Camilla LUMA One."
 schemaProduct:
   name: "Camilla Eléctrica One LUMA"
   description: "Camilla eléctrica de 3 motores con botonera de pie, carga máxima 200 kg y ángulos de reclinación de 0° a 90° en respaldo y apoyapiernas. Opción accesible de la línea LUMA."
   image: "/images/luma-one/luma-one-3.jpg"
-  price: "2400"
   outOfStock: false
 schemaFaqs:
   - q: "¿Cuántos motores tiene la Camilla One?"
@@ -110,12 +105,12 @@ instagram_reels:
         <span class="badge"><i class="fas fa-weight-hanging" aria-hidden="true"></i> Carga máx. 200 kg</span>
       </div>
       <div class="cta-doble">
-        <a href="{{ site.whatsapp_link }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
+        <a href="{{ whatsappLink }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
         <a href="/nosotros/#showrooms" class="cta-button-light">Agendá una visita al showroom</a>
       </div>
       <div class="precio-box">
-        <p class="precio-actual">Precio promocional: USD 2.400 + IVA <span class="precio-anterior">antes USD 3.000 + IVA</span></p>
-        <p class="precio-iva-nota">El precio no incluye IVA. Venta por cotización.</p>
+        <p class="precio-actual">Precio: a consultar</p>
+        <p class="precio-iva-nota">Venta por cotización. Escribinos para recibir el valor actualizado.</p>
       </div>
     </div>
   </div>
@@ -332,7 +327,7 @@ instagram_reels:
     <h2>Otros modelos de la línea</h2>
     <div class="relacionados-grid">
       <a href="/camillas-electricas/premium/" class="relacionado-card">
-        <img src="/images/camilla-electrica-luma-premium.webp" alt="LUMA Premium" width="300" height="300" loading="lazy">
+        <img src="/images\luma-premium\portada-luma-premium-blanca.png" alt="LUMA Premium" width="300" height="300" loading="lazy">
         <span>LUMA Premium</span>
       </a>
       <a href="/camillas-electricas/ginecologica/" class="relacionado-card">

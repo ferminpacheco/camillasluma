@@ -22,19 +22,16 @@
         <ul class="dropdown-menu">
           <li>
             <a href="/camillas-electricas/premium/">
-              <i class="fas fa-fire-flame-simple" aria-hidden="true"></i>
               Camilla Premium
             </a>
           </li>
           <li>
             <a href="/camillas-electricas/one/">
-              <i class="fas fa-star" aria-hidden="true"></i>
               Camilla One
             </a>
           </li>
           <li>
             <a href="/camillas-electricas/ginecologica/">
-              <i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i>
               Camilla Ginecológica
             </a>
           </li>
@@ -48,19 +45,16 @@
         <ul class="dropdown-menu">
           <li>
             <a href="/carritos-auxiliares/luma-cart/">
-              <i class="fas fa-cart-flatbed" aria-hidden="true"></i>
               Luma Cart
             </a>
           </li>
           <li>
             <a href="/carritos-auxiliares/luma-tech/">
-              <i class="fas fa-plug" aria-hidden="true"></i>
               Luma Tech
             </a>
           </li>
           <li>
             <a href="/carritos-auxiliares/cart-gold/">
-              <i class="fas fa-trophy" aria-hidden="true"></i>
               Cart Gold
             </a>
           </li>
@@ -70,10 +64,17 @@
       <li><a href="/luminarias/">Luminarias</a></li>
       <li><a href="/nosotros/">Nosotros</a></li>
       <li><a href="/blog/">Blog</a></li>
+
+      <!-- El CTA cierra el menú desplegable en mobile. En desktop este ítem
+           está oculto: ahí el botón vive fuera del <nav>, a la derecha del
+           header. Una sola fuente de verdad para el link, dos ubicaciones. -->
+      <li class="nav-cta-mobile">
+        <a href="{{ whatsappLink }}" target="_blank" rel="noopener">Pedí tu cotización</a>
+      </li>
     </ul>
   </nav>
 
-  <a href="{{ site.whatsapp_link }}" class="cta-header" target="_blank" rel="noopener">Pedí tu cotización</a>
+  <a href="{{ whatsappLink }}" class="cta-header" target="_blank" rel="noopener">Pedí tu cotización</a>
 
   <div
     class="menu-toggle"

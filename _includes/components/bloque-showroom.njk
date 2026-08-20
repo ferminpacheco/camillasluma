@@ -20,7 +20,9 @@
         <div class="showroom-card-body">
           <h3>Palermo, CABA</h3>
           <a
-            href="{{ site.whatsapp_link }}"
+            {# Cada showroom manda su propio mensaje: el CTA dice "Agendá tu
+               visita", el chat tiene que arrancar diciendo eso y de cuál. #}
+            href="{{ 'Hola! Quiero agendar una visita al showroom de Palermo.' | waLink }}"
             class="cta-button-light"
             target="_blank"
             rel="noopener"
@@ -41,7 +43,9 @@
         <div class="showroom-card-body">
           <h3>Belgrano, CABA</h3>
           <a
-            href="{{ site.whatsapp_link }}"
+            {# Cada showroom manda su propio mensaje: el CTA dice "Agendá tu
+               visita", el chat tiene que arrancar diciendo eso y de cuál. #}
+            href="{{ 'Hola! Quiero agendar una visita al showroom de Belgrano.' | waLink }}"
             class="cta-button-light"
             target="_blank"
             rel="noopener"

@@ -11,7 +11,7 @@ canonical: "https://camillasluma.com/"
     <h1>Diseño y tecnología<br>para tu espacio</h1>
     <p>Camillas eléctricas premium: precisión, confort y estilo para clínicas y centros estéticos.</p>
     <div class="cta-doble">
-      <a href="{{ site.whatsapp_link }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
+      <a href="{{ whatsappLink }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
       <a href="/camillas-electricas/" class="cta-button-light">Ver modelos</a>
     </div>
   </div>
@@ -98,13 +98,11 @@ canonical: "https://camillasluma.com/"
      fotos reales, los testimonios de abajo todavía son mock. -->
 {% include "components/bloque-congresos.njk" %}
 
-<!-- REVIEWS / PRUEBA SOCIAL (mockup — sin schema Review) -->
-{% include "components/bloque-reviews.njk" %}
-
-<!-- GARANTÍA / CONFIANZA — version destacada (3 cards + CTA a /garantia/).
-     Es un componente propio de la home: el bloque de una linea sigue siendo
-     bloque-garantia.njk y se usa en producto, hub, luminarias y nosotros. -->
-{% include "components/bloque-garantia-home.njk" %}
+<!-- REVIEWS / PRUEBA SOCIAL (mockup — sin schema Review)
+     OCULTO a pedido del cliente (19/08/2026): los testimonios siguen siendo
+     placeholder. Para reactivarlo, descomentar el include. El componente
+     sigue vivo y se usa en otras paginas. -->
+{# include "components/bloque-reviews.njk" #}
 
 <!-- SHOWROOM -->
 <section class="home-showroom">
@@ -113,19 +111,13 @@ canonical: "https://camillasluma.com/"
     <p>Las camillas LUMA se ven, se tocan y se prueban en nuestros showrooms en CABA. Agendá tu visita con turno previo y experimentá la diferencia.</p>
     <div class="cta-doble" style="justify-content: center;">
       <a href="/nosotros/#showrooms" class="cta-button">Agendá una visita al showroom</a>
-      <a href="{{ site.whatsapp_link }}" class="cta-button-light" target="_blank" rel="noopener">Pedí tu cotización</a>
+      <a href="{{ whatsappLink }}" class="cta-button-light" target="_blank" rel="noopener">Pedí tu cotización</a>
     </div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
-<section class="cta-final">
-  <div class="cta-text">
-    <h2>Marcá la diferencia en tu clínica</h2>
-    <p>Camillas eléctricas premium: tecnología, diseño y confort para profesionales exigentes.</p>
-  </div>
-  <div class="cta-buttons">
-    <a href="/camillas-electricas/" class="cta-button">Ver modelos</a>
-    <a href="{{ site.whatsapp_link }}" class="cta-button-light" target="_blank" rel="noopener">Hablá con un asesor</a>
-  </div>
-</section>
+<!-- GARANTÍA / CONFIANZA — version destacada (3 cards + CTA a /garantia/).
+     Mismo componente que /nosotros/. El bloque de una linea sigue siendo
+     bloque-garantia.njk y se usa en producto, hub y luminarias. -->
+{% include "components/bloque-garantia-destacado.njk" %}
+

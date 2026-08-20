@@ -3,13 +3,6 @@ layout: base.njk
 ---
 <article class="blog-post" itemscope itemtype="https://schema.org/BlogPosting">
 
-  {% set breadcrumbs = [
-    { label: "Inicio", url: "/" },
-    { label: "Blog",   url: "/blog/" },
-    { label: title }
-  ] %}
-  {% include "components/breadcrumb.njk" %}
-
   <header class="post-header">
     <div class="post-meta">
       {% if category %}<span class="post-categoria">{{ category }}</span>{% endif %}

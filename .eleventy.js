@@ -1,9 +1,17 @@
+const { linkWhatsapp } = require("./_lib/whatsapp.js");
+
 module.exports = function (eleventyConfig) {
   // Passthrough: assets, imágenes y archivos estáticos de raíz
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy({ "Garantia.pdf": "assets/pdf/garantia-luma.pdf" });
+
+  // WhatsApp: link con mensaje precargado para un botón puntual.
+  // El caso normal es `whatsappLink` (mensaje por página, ver
+  // _data/eleventyComputed.js). Este filtro es para los botones que dentro
+  // de una misma página necesitan su propio mensaje.
+  eleventyConfig.addFilter("waLink", (mensaje) => linkWhatsapp(mensaje));
 
   // Filtros de fecha para el blog
   eleventyConfig.addFilter("htmlDateString", (dateObj) => {

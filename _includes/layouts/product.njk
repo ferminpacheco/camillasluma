@@ -1,8 +1,6 @@
 ---
 layout: base.njk
 ---
-{% include "components/breadcrumb.njk" %}
-
 {{ content | safe }}
 
 {% if schemaProduct %}
@@ -10,20 +8,6 @@ layout: base.njk
 {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      "@id": "{{ canonical }}#breadcrumb",
-      "itemListElement": [
-        {% for crumb in breadcrumbs %}
-        {
-          "@type": "ListItem",
-          "position": {{ loop.index }},
-          "name": "{{ crumb.label }}"{% if crumb.url %},
-          "item": "{{ site.url }}{{ crumb.url }}"{% endif %}
-        }{% if not loop.last %},{% endif %}
-        {% endfor %}
-      ]
-    },
     {
       "@type": "Product",
       "@id": "{{ canonical }}#product",
@@ -35,16 +19,6 @@ layout: base.njk
       },
       "image": "{{ site.url }}{{ schemaProduct.image }}",
       "url": "{{ canonical }}",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "price": "{{ schemaProduct.price }}",
-        "priceValidUntil": "2026-12-31",
-        "availability": "{% if schemaProduct.outOfStock %}https://schema.org/OutOfStock{% else %}https://schema.org/InStock{% endif %}",
-        "seller": {
-          "@id": "{{ site.url }}/#organization"
-        }
-      },
       "manufacturer": {
         "@id": "{{ site.url }}/#organization"
       }

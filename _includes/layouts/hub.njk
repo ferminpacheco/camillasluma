@@ -1,8 +1,6 @@
 ---
 layout: base.njk
 ---
-{% include "components/breadcrumb.njk" %}
-
 {{ content | safe }}
 
 {% if schemaHub %}
@@ -10,20 +8,6 @@ layout: base.njk
 {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      "@id": "{{ canonical }}#breadcrumb",
-      "itemListElement": [
-        {% for crumb in breadcrumbs %}
-        {
-          "@type": "ListItem",
-          "position": {{ loop.index }},
-          "name": "{{ crumb.label }}"{% if crumb.url %},
-          "item": "{{ site.url }}{{ crumb.url }}"{% endif %}
-        }{% if not loop.last %},{% endif %}
-        {% endfor %}
-      ]
-    },
     {
       "@type": "ItemList",
       "@id": "{{ canonical }}#itemlist",

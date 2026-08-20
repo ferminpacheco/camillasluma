@@ -1,13 +1,21 @@
 {#
-  BLOQUE GARANTÍA — versión destacada para la home.
+  BLOQUE GARANTÍA — versión destacada (3 cards + CTA a /garantia/).
 
   Uso:
 
-    {% include "components/bloque-garantia-home.njk" %}
+    {% include "components/bloque-garantia-destacado.njk" %}
+
+  Con ancla propia (para linkear /nosotros/#garantia):
+
+    {% set garantiaAnchor = "garantia" %}
+    {% include "components/bloque-garantia-destacado.njk" %}
+
+  En uso en / y en /nosotros/. UNA sola fuente de verdad: si cambia el copy
+  de la garantía, cambia acá y se propaga a las dos.
 
   ⚠️ NO confundir con `bloque-garantia.njk`, que es la nota inline de una
-  línea y sigue en uso en las 10 páginas de producto, hub, luminarias y
-  nosotros. Este componente es solo para la home: mismo dato, otra jerarquía.
+  línea y sigue en uso en las páginas de producto, hub y luminarias.
+  Mismo dato, otra jerarquía.
 
   Las cards reutilizan `.cuidado-grid` / `.cuidado-card` / `.cuidado-icono`,
   las mismas clases que la fila de /garantia/. No hay CSS de card propio: si
@@ -19,11 +27,11 @@
   que no esté en esas dos fuentes: es una promesa contractual.
 #}
 
-<section class="home-garantia" aria-labelledby="home-garantia-titulo">
-  <div class="home-garantia-inner">
+<section class="garantia-destacada"{% if garantiaAnchor %} id="{{ garantiaAnchor }}"{% endif %} aria-labelledby="garantia-destacada-titulo">
+  <div class="garantia-destacada-inner">
 
-    <h2 id="home-garantia-titulo">Garantía oficial LUMA</h2>
-    <p class="home-garantia-bajada">Todos los equipos LUMA salen con garantía oficial y respaldo postventa directo de fábrica.</p>
+    <h2 id="garantia-destacada-titulo">Garantía oficial LUMA</h2>
+    <p class="garantia-destacada-bajada">Todos los equipos LUMA salen con garantía oficial y respaldo postventa directo de fábrica.</p>
 
     <div class="cuidado-grid">
       <div class="cuidado-card">
@@ -45,7 +53,7 @@
       </div>
     </div>
 
-    <div class="home-garantia-cta">
+    <div class="garantia-destacada-cta">
       <a href="{{ site.garantia_url }}" class="cta-button-light">Ver todos los términos de la garantía</a>
     </div>
 

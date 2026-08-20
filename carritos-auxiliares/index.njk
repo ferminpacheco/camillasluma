@@ -3,10 +3,8 @@ layout: hub.njk
 title: "Carritos Auxiliares para Estética | LUMA"
 description: "Carritos auxiliares de diseño para cabinas profesionales: LUMA Cart, LUMA Tech y Cart Gold. Mobiliario que acompaña la línea LUMA."
 canonical: "https://camillasluma.com/carritos-auxiliares/"
-breadcrumbs:
-  - label: "Inicio"
-    url: "/"
-  - label: "Carritos Auxiliares"
+# Mensaje precargado del link de WhatsApp en esta página (ver _data/eleventyComputed.js).
+waMensaje: "Hola! Quiero más información sobre los carritos auxiliares LUMA."
 schemaHub:
   items:
     - name: "LUMA Cart — Carrito Auxiliar para Estética"
@@ -25,12 +23,13 @@ schemaFaqs:
 ---
 
 <!-- HERO DE CATEGORÍA -->
-<section class="hub-hero">
+<section class="hub-hero hub-hero--imagen"
+         style="--hero-bg-imagen: url('/images/banner-carritos-1.png'); --hero-overlay-op: 0.62;">
   <div class="hub-hero-inner">
     <h1>Carritos auxiliares para cabinas profesionales</h1>
     <p class="hub-bajada">Mobiliario de diseño para completar tu espacio. Tres modelos pensados para distintas necesidades: orden general, aparatología o máximo impacto visual.</p>
     <div class="cta-doble">
-      <a href="{{ site.whatsapp_link }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
+      <a href="{{ whatsappLink }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
       <a href="/nosotros/#showrooms" class="cta-button-light">Ver en showroom</a>
     </div>
   </div>
@@ -54,7 +53,7 @@ schemaFaqs:
         <a href="/carritos-auxiliares/luma-cart/">
           <div class="hub-producto-imagen">
             <img
-              src="/images/luma-cart/luma-cart-1.png"
+              src="/images/luma-cart/image-10.png"
               alt="LUMA Cart — carrito auxiliar minimalista"
               width="400"
               height="300"
@@ -73,7 +72,7 @@ schemaFaqs:
         <a href="/carritos-auxiliares/luma-tech/">
           <div class="hub-producto-imagen">
             <img
-              src="/images/luma-tech/luma-tech-1.png"
+              src="/images/luma-tech/luma-tech-8.png"
               alt="LUMA Tech — carrito reforzado para aparatología estética"
               width="400"
               height="300"
@@ -92,7 +91,7 @@ schemaFaqs:
         <a href="/carritos-auxiliares/cart-gold/">
           <div class="hub-producto-imagen">
             <img
-              src="/images/luma-cart-gold/luma-cart-gold-1.png"
+              src="/images/luma-cart-gold/luma-cart-gold-8.png"
               alt="LUMA Cart Gold — carro auxiliar premium con estructura dorada"
               width="400"
               height="300"
@@ -168,6 +167,16 @@ schemaFaqs:
   </div>
 </section>
 
+<!-- CTA CIERRE -->
+<section class="cta-producto-cierre cta-producto-cierre--imagen"
+         style="--cta-bg-imagen: url('/images/banner-carritos-2.png'); --cta-overlay-op: 0.62; --cta-pad-y: 8.5rem;">
+  <div class="cta-producto-cierre-inner">
+    <h2>Completá tu cabina con accesorios LUMA</h2>
+    <p>Pedí tu cotización o vení a verlos en nuestros showrooms en CABA.</p>
+    {% include "components/cta-doble.njk" %}
+  </div>
+</section>
+
 <!-- FAQ HUB -->
 <section class="faq-seccion">
   <div class="faq-inner">
@@ -206,11 +215,3 @@ schemaFaqs:
   </div>
 </section>
 
-<!-- CTA CIERRE -->
-<section class="cta-producto-cierre">
-  <div class="cta-producto-cierre-inner">
-    <h2>Completá tu cabina con accesorios LUMA</h2>
-    <p>Pedí tu cotización o vení a verlos en nuestros showrooms en CABA.</p>
-    {% include "components/cta-doble.njk" %}
-  </div>
-</section>

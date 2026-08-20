@@ -3,10 +3,8 @@ layout: hub.njk
 title: "Camillas Eléctricas para Estética y Consultorios | LUMA"
 description: "Línea completa de camillas eléctricas de 3 motores: Premium, One y Ginecológica. Diseño premium, garantía oficial, envíos a todo el país."
 canonical: "https://camillasluma.com/camillas-electricas/"
-breadcrumbs:
-  - label: "Inicio"
-    url: "/"
-  - label: "Camillas Eléctricas"
+# Mensaje precargado del link de WhatsApp en esta página (ver _data/eleventyComputed.js).
+waMensaje: "Hola! Quiero más información sobre las camillas eléctricas LUMA."
 schemaHub:
   items:
     - name: "Camilla Eléctrica Premium LUMA"
@@ -32,7 +30,7 @@ schemaFaqs:
     <h1>Camillas eléctricas premium para estética y consultorios</h1>
     <p class="hub-bajada">Tres modelos diseñados para profesionales de la dermatología, cirugía plástica, ginecología y medicina estética. 3 motores independientes, diseño minimalista y garantía oficial.</p>
     <div class="cta-doble">
-      <a href="{{ site.whatsapp_link }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
+      <a href="{{ whatsappLink }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
       <a href="/nosotros/#showrooms" class="cta-button-light">Ver en showroom</a>
     </div>
   </div>
@@ -170,6 +168,15 @@ schemaFaqs:
   </div>
 </section>
 
+<!-- CTA CIERRE -->
+<section class="cta-producto-cierre cta-producto-cierre--imagen" style="--cta-bg-imagen: url('/images/banner-camillas-electricas.webp'); --cta-overlay-op: 0.62;">
+  <div class="cta-producto-cierre-inner">
+    <h2>¿Cuál es la camilla ideal para tu consultorio?</h2>
+    <p>Pedí tu cotización personalizada o vení a probarlas al showroom.</p>
+    {% include "components/cta-doble.njk" %}
+  </div>
+</section>
+
 <!-- DIFERENCIALES -->
 <section class="hub-seccion bg-fondo">
   <div class="hub-seccion-inner">
@@ -226,14 +233,5 @@ schemaFaqs:
       </details>
 
     </div>
-  </div>
-</section>
-
-<!-- CTA CIERRE -->
-<section class="cta-producto-cierre">
-  <div class="cta-producto-cierre-inner">
-    <h2>¿Cuál es la camilla ideal para tu consultorio?</h2>
-    <p>Pedí tu cotización personalizada o vení a probarlas al showroom.</p>
-    {% include "components/cta-doble.njk" %}
   </div>
 </section>

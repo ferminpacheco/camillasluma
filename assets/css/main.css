@@ -89,6 +89,12 @@ body > section:first-of-type {
   transition: background-color 0.3s;
 }
 
+/* El CTA duplicado dentro del <nav> solo existe en mobile: ahí el botón
+   del header se esconde y este ocupa su lugar, al final de la lista. */
+.nav-cta-mobile {
+  display: none;
+}
+
 /* Dropdowns */
 .dropdown {
   position: relative;
@@ -158,11 +164,6 @@ body > section:first-of-type {
 
 .dropdown-menu li a:hover {
   background-color: var(--color-fondo);
-  color: var(--color-principal);
-}
-
-.dropdown-menu i {
-  margin-right: 10px;
   color: var(--color-principal);
 }
 
@@ -683,42 +684,6 @@ body > section:first-of-type {
   padding-top: var(--space-md);
   font-size: 0.8em;
   opacity: 0.6;
-}
-
-/* ── BREADCRUMB ──────────────────────────────── */
-
-.breadcrumb-nav {
-  padding: var(--space-sm) 5%;
-  background-color: var(--color-fondo);
-  border-bottom: 1px solid var(--gris-claro);
-}
-
-body main .breadcrumb-nav {
-  padding-top: 130px;
-}
-
-.breadcrumb {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: 0.85em;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.breadcrumb li a {
-  color: var(--color-principal);
-  text-decoration: none;
-}
-
-.breadcrumb li a:hover {
-  text-decoration: underline;
-}
-
-.breadcrumb-sep {
-  color: var(--gris);
 }
 
 /* ── BLOQUES REUTILIZABLES ───────────────────── */
@@ -1527,10 +1492,29 @@ body main .breadcrumb-nav {
   background-repeat: no-repeat;
 }
 
+/* Variante genérica: la imagen y la opacidad del overlay se pasan por
+   custom properties desde el template (mismo criterio que .cta-producto-cierre--imagen). */
+.hub-hero--imagen {
+  background-image:
+    linear-gradient(135deg,
+      rgba(10, 41, 86, var(--hero-overlay-op, 0.65)),
+      rgba(10, 41, 86, calc(var(--hero-overlay-op, 0.65) - 0.15))),
+    var(--hero-bg-imagen);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Más aire arriba y abajo para que se lea la foto de fondo. */
+.hub-hero--imagen .hub-hero-inner {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
 .hub-hero-inner {
   max-width: 900px;
   margin: 0 auto;
-  padding: 3rem 5%;
+  padding: 8rem 5%;
   text-align: center;
 }
 
@@ -1549,6 +1533,13 @@ body main .breadcrumb-nav {
 
 .hub-hero .cta-doble {
   justify-content: center;
+}
+
+/* Sobre el overlay navy del banner, el navy del botón base se pierde.
+   Mismo tratamiento que .cta-producto-cierre .cta-button. */
+.hub-hero .cta-button {
+  background-color: var(--color-blanco);
+  color: var(--color-principal);
 }
 
 .hub-hero .cta-button-light {
@@ -1869,7 +1860,7 @@ body main .breadcrumb-nav {
 /* ── NOSOTROS HERO ───────────────────────────── */
 
 .nosotros-hero {
-  padding: 80px 0px;
+  padding: 0px;
   /* El color queda como fallback: si la imagen no carga, el texto blanco
      sigue teniendo fondo navy y no se pierde sobre blanco. */
   background-color: var(--color-principal);
@@ -1893,7 +1884,7 @@ body main .breadcrumb-nav {
 .nosotros-hero-inner {
   max-width: 800px;
   margin: 0 auto;
-  padding: 3rem 5%;
+  padding: 10rem 5%;
   text-align: center;
 }
 
@@ -2001,9 +1992,23 @@ body main .breadcrumb-nav {
 /* ── HOME SHOWROOM ───────────────────────────── */
 
 .home-showroom {
-  background: var(--color-principal);
+  /* Foto del stand + overlay navy. El fondo navy plano queda como fallback
+     si la imagen no carga, asi el texto blanco nunca se queda sin contraste.
+     La foto tiene zonas muy claras (pared beige), por eso el overlay va en
+     0.72 -> 0.62: es el minimo que sostiene AA con texto blanco. */
+  background-color: var(--color-principal);
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(10, 41, 86, 0.72) 0%,
+      rgba(10, 41, 86, 0.62) 100%
+    ),
+    url('/images/fondo-5.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: var(--color-blanco);
-  padding: var(--space-lg) 5%;
+  padding: var(--space-xl) 5%;
 }
 
 .home-showroom-inner {
@@ -2229,7 +2234,7 @@ body main .breadcrumb-nav {
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, var(--navy) 0%, #123566 60%, var(--acero) 160%);
-  padding: 7rem 5%;
+  padding: var(--cta-pad-y, 7rem) 5%;
 }
 
 .cta-producto-cierre::before {
@@ -2244,7 +2249,9 @@ body main .breadcrumb-nav {
 
 .cta-producto-cierre--imagen {
   background-image:
-    linear-gradient(135deg, rgba(10, 41, 86, 0.88), rgba(10, 41, 86, 0.68)),
+    linear-gradient(135deg,
+      rgba(10, 41, 86, var(--cta-overlay-op, 0.88)),
+      rgba(10, 41, 86, calc(var(--cta-overlay-op, 0.88) - 0.20))),
     var(--cta-bg-imagen);
   background-size: cover;
   background-position: center;
@@ -2584,7 +2591,7 @@ body main .breadcrumb-nav {
     flex-basis: 100% !important;
   }
   .testimonio-carousel {
-    padding: 0 34px !important;
+    padding: 0 44px !important;
   }
   .testimonio-carousel-nav {
     width: 32px;
@@ -2694,13 +2701,6 @@ body main .breadcrumb-nav {
   .valor-item {
     min-height: 320px;
     padding: 30px 15px;
-  }
-  .whatsapp-float {
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-    bottom: 20px;
-    right: 20px;
   }
 }
 
@@ -3457,7 +3457,7 @@ a.reels-seguir:hover {
     flex-basis: 100%;
   }
   .reels-carousel {
-    padding: 0 34px;
+    padding: 0 44px;
   }
   .reels-nav {
     width: 32px;
@@ -3529,30 +3529,31 @@ a.reels-seguir:hover {
   color: rgba(255, 255, 255, 0.85);
 }
 
-/* ── GARANTIA EN LA HOME ──────────────────────
-   Version destacada del bloque de garantia, solo para /.
-   Markup: _includes/components/bloque-garantia-home.njk
+/* ── GARANTIA DESTACADA ───────────────────────
+   Version destacada del bloque de garantia (3 cards + CTA).
+   En uso en / y en /nosotros/#garantia.
+   Markup: _includes/components/bloque-garantia-destacado.njk
 
    Las cards no tienen estilos propios: usan .cuidado-grid / .cuidado-card,
    las mismas que la fila de /garantia/. Aca solo va el contenedor.
    ============================================= */
 
-.home-garantia {
+.garantia-destacada {
   padding: var(--space-lg) 5%;
   background: var(--color-fondo);
 }
 
-.home-garantia-inner {
+.garantia-destacada-inner {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.home-garantia-inner h2 {
+.garantia-destacada-inner h2 {
   text-align: center;
   margin-bottom: 0.5rem;
 }
 
-.home-garantia-bajada {
+.garantia-destacada-bajada {
   text-align: center;
   color: var(--gris);
   max-width: 720px;
@@ -3562,7 +3563,7 @@ a.reels-seguir:hover {
 /* .cuidado-grid ya trae margin-top: 1.5rem, asi que el aire entre la bajada
    y las cards lo pone la grilla y no hace falta duplicarlo aca. */
 
-.home-garantia-cta {
+.garantia-destacada-cta {
   margin-top: var(--space-md);
   text-align: center;
 }
@@ -3684,5 +3685,277 @@ a.reels-seguir:hover {
   }
   .congreso-portada-img {
     aspect-ratio: 16 / 10;
+  }
+}
+
+/* =============================================
+   CAPA MOBILE — correcciones de renderizado
+   Va al final del archivo a propósito: son ajustes sobre reglas que ya
+   existen más arriba, y desde acá ganan por orden de cascada sin
+   necesidad de sumar más !important al bloque de 768px.
+   ============================================= */
+
+@media (max-width: 768px) {
+  /* ── MENÚ: submenús que se abren con el dedo ──
+     En touch no hay hover, así que tocar "Camillas" navegaba al hub y el
+     submenú (Premium / One / Ginecológica) no se veía nunca, aunque el
+     chevron prometiera lo contrario. La fuente de verdad pasa a ser la
+     clase `.is-open` que pone el JS; las reglas de hover/focus de más
+     arriba se apagan acá para que no queden dos estados peleando. */
+  .main-nav .dropdown:hover > .dropdown-menu,
+  .main-nav .dropdown:focus-within > .dropdown-menu {
+    display: none;
+  }
+
+  .main-nav .dropdown.is-open > .dropdown-menu {
+    display: block;
+  }
+
+  .main-nav .dropdown-toggle .arrow-down {
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+
+  .main-nav .dropdown.is-open > .dropdown-toggle .arrow-down {
+    transform: rotate(180deg);
+  }
+
+  /* El submenú tiene que leerse como un nivel por debajo, no como otra
+     lista suelta del mismo peso. */
+  .main-nav .dropdown-menu {
+    background: rgba(10, 41, 86, 0.04);
+    border-radius: 6px;
+    margin: 0.25rem 0.75rem;
+    padding: 0.25rem 0;
+    width: auto;
+  }
+
+  .main-nav .dropdown-menu li a {
+    font-size: 0.95em;
+  }
+
+  /* ── ÁREAS DE TOQUE ──
+     44px es el mínimo cómodo para un pulgar. Los links del menú medían
+     20px de alto, los del footer también, y el CTA del header 29px. */
+  .main-nav ul li {
+    margin: 0;
+  }
+
+  .main-nav ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 15px;
+  }
+
+  .main-nav {
+    padding: 8px 0 16px;
+  }
+
+  .menu-toggle {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* El CTA se mudó adentro del menú desplegable: en el header solo quedan
+     el logo y la hamburguesa. El botón flotante de WhatsApp sigue siendo
+     el canal de contacto siempre visible. */
+  .cta-header {
+    display: none;
+  }
+
+  .nav-cta-mobile {
+    display: block;
+    margin-top: 0.5rem;
+    padding: 0 24px;
+  }
+
+  /* Gana sobre `.main-nav ul li a`, que pinta los links del menú con el
+     color de texto y sin fondo. */
+  .main-nav .nav-cta-mobile a {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    border-radius: 5px;
+    padding: 14px 20px;
+    font-weight: bold;
+  }
+
+  .footer-nav-col ul li {
+    margin-bottom: 0;
+  }
+
+  .footer-nav-col ul li a {
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+  }
+
+  /* El teléfono y el mail del footer son los dos links más importantes del
+     sitio en un celular — se tocan para llamar y para escribir — y medían
+     20px de alto. */
+  .footer-contact a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .reels-perfil-handle,
+  .pdf-descarga-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+  }
+
+  /* Las tres cajas de contacto de /nosotros/ (mail, teléfono, showrooms)
+     son acciones de conversión, no texto: 23px de alto era la mitad de lo
+     que necesita un pulgar. */
+  .method-box a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  /* La 404 es justo donde alguien perdido necesita acertarle al link. */
+  .error-404__links .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  /* Los links sueltos dentro de un párrafo quedan como están: estirarlos a
+     44px rompería el interlineado del texto, y la propia norma (WCAG 2.5.8)
+     exceptúa los links en línea dentro de una oración. */
+
+  .carousel-arrow,
+  .testimonio-carousel-nav,
+  .reels-nav {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Los dots se dejan chicos a la vista pero se agrandan al tacto: el área
+     crece a lo alto, que es espacio libre, y a lo ancho solo hasta el paso
+     entre dots (16px) para no robarle el toque al vecino. */
+  .carousel-dot {
+    position: relative;
+  }
+
+  .carousel-dot::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 44px;
+  }
+
+  .color-swatch {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* ── BOTONES FLOTANTES ──
+     Un botón fijo siempre tapa algo; lo que se puede hacer es que tape lo
+     menos posible. Los dos se achican y se pegan a la esquina, en una sola
+     columna a la derecha: el texto del sitio es todo alineado a izquierda,
+     así que la esquina derecha es la que menos contenido tiene debajo.
+     Antes ocupaban 60px y 50px arrancando a 95px del piso, y entre los dos
+     barrían media pantalla de alto. */
+  .whatsapp-float {
+    width: 52px;
+    height: 52px;
+    font-size: 26px;
+    bottom: 16px;
+    right: 16px;
+    /* Por debajo del header (1000) para no flotar sobre el menú abierto. */
+    z-index: 900;
+  }
+
+  #backToTop {
+    width: 40px;
+    height: 40px;
+    bottom: 76px;
+    right: 22px;
+    font-size: 16px;
+    z-index: 890;
+  }
+
+  /* Con el menú desplegado no hay contenido que consultar detrás: los
+     flotantes solo estorban y tapan la última opción de la lista. */
+  [data-menu-abierto] .whatsapp-float,
+  [data-menu-abierto] #backToTop {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* ── CTA DOBLE ──
+     Era el defecto visual más repetido del sitio: los dos botones
+     quedaban con anchos distintos y desalineados en el hero de la home,
+     el del hub, la ficha de producto, el banner de showroom y el cierre.
+     En una columna de 390px el par se lee como par solo si comparten
+     ancho. */
+  .cta-doble {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .cta-doble .cta-button,
+  .cta-doble .cta-button-light {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 15px 20px;
+  }
+
+  /* Estos dos declaran `align-items` con más especificidad más arriba:
+     sin repetirlo acá, el par no estira. */
+  .cta-producto-cierre .cta-doble,
+  .hub-hero .cta-doble {
+    align-items: stretch;
+  }
+
+  .cta-buttons {
+    max-width: 100%;
+  }
+
+  /* ── TIPOGRAFÍA Y QUIEBRES ──
+     El precio se partía en "USD 3.240 +" / "IVA antes USD 4.000 + IVA",
+     con el tachado pegado al vigente. En su propia línea se entiende de
+     una. */
+  .precio-anterior {
+    display: block;
+    margin-left: 0;
+    margin-top: 0.25rem;
+    font-size: 0.85em;
+  }
+
+  /* Mínimos legibles: el label del badge estaba en 8px. */
+  .producto-banner-badge-label {
+    font-size: 0.6rem;
+  }
+
+  .footer-nav-col h4,
+  .footer-contact h4 {
+    font-size: 0.8rem;
+  }
+
+  /* ── ENCUADRE DE FOTOS DE FONDO ──
+     En una columna angosta la sección es mucho más alta que ancha y el
+     `center` del desktop deja las caras fuera de cuadro: se ven torsos y
+     piernas. Subir el foco recupera a las personas. */
+  .nosotros-hero {
+    padding: 56px 0;
+    background-position: center 22%;
+  }
+
+  .home-showroom {
+    padding: 4.5rem 5%;
   }
 }

@@ -3,17 +3,9 @@ layout: base.njk
 title: "Garantía Oficial LUMA — 12 Meses de Cobertura"
 description: "Conocé la garantía oficial de LUMA: 12 meses de cobertura en fabricación, materiales, motores y sistema eléctrico. Cómo funciona, plazos de reparación y exclusiones."
 canonical: "https://camillasluma.com/garantia/"
-breadcrumbs:
-  - label: "Inicio"
-    url: "/"
-  - label: "Garantía"
+# Mensaje precargado del link de WhatsApp en esta página (ver _data/eleventyComputed.js).
+waMensaje: "Hola! Tengo una consulta sobre la garantía de mi equipo LUMA."
 ---
-
-{% set breadcrumbs = [
-  { label: "Inicio", url: "/" },
-  { label: "Garantía" }
-] %}
-{% include "components/breadcrumb.njk" %}
 
 <!-- HERO -->
 <section class="nosotros-hero">
@@ -88,7 +80,7 @@ breadcrumbs:
     <h2>¿Necesitás hacer válida tu garantía?</h2>
     <p>Escribinos y coordinamos la evaluación de tu equipo.</p>
     <div class="cta-doble">
-      <a href="{{ site.whatsapp_link }}" class="cta-button" target="_blank" rel="noopener">Escribinos por WhatsApp</a>
+      <a href="{{ whatsappLink }}" class="cta-button" target="_blank" rel="noopener">Escribinos por WhatsApp</a>
       <a href="mailto:{{ site.email }}" class="cta-button-light">{{ site.email }}</a>
     </div>
   </div>
@@ -138,7 +130,7 @@ breadcrumbs:
       <details class="faq-item">
         <summary>¿Cómo hago válida mi garantía?</summary>
         <div class="faq-respuesta">
-          <p>Escribinos por WhatsApp al <a href="{{ site.whatsapp_link }}" target="_blank" rel="noopener">{{ site.whatsapp_numero }}</a> o a <a href="mailto:{{ site.email }}">{{ site.email }}</a> y coordinamos la evaluación de tu equipo.</p>
+          <p>Escribinos por WhatsApp al <a href="{{ whatsappLink }}" target="_blank" rel="noopener">{{ site.whatsapp_numero }}</a> o a <a href="mailto:{{ site.email }}">{{ site.email }}</a> y coordinamos la evaluación de tu equipo.</p>
         </div>
       </details>
 
@@ -159,20 +151,6 @@ breadcrumbs:
 {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      "@id": "{{ canonical }}#breadcrumb",
-      "itemListElement": [
-        {% for crumb in breadcrumbs %}
-        {
-          "@type": "ListItem",
-          "position": {{ loop.index }},
-          "name": "{{ crumb.label }}"{% if crumb.url %},
-          "item": "{{ site.url }}{{ crumb.url }}"{% endif %}
-        }{% if not loop.last %},{% endif %}
-        {% endfor %}
-      ]
-    },
     {
       "@type": "FAQPage",
       "@id": "{{ canonical }}#faq",
