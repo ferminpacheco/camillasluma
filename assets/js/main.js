@@ -203,10 +203,10 @@ function cambiarColor(color) {
   if (color === 'negro') {
     imagen.src = '/assets/img/luma-luminaria.webp';
     // fallback mientras se migran las imágenes:
-    imagen.onerror = () => { imagen.src = '/images/luma_luminaria.png'; };
+    imagen.onerror = () => { imagen.src = '/images/luma_luminaria.webp'; };
   } else if (color === 'blanco') {
     imagen.src = '/assets/img/luma-luminaria-blanca.webp';
-    imagen.onerror = () => { imagen.src = '/images/luma_luminaria_blanca.png'; };
+    imagen.onerror = () => { imagen.src = '/images/luma_luminaria_blanca.webp'; };
   }
 
   dots.forEach(dot => {

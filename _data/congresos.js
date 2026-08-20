@@ -144,9 +144,9 @@ const ALTS = {
      clientes con equipamiento LUMA instalado. El alt describe lo que se ve
      y a propósito no menciona el congreso — no hay foto que respalde una
      afirmación de participación. Reemplazar cuando lleguen fotos del stand. */
-  "the-global-plastic-surgery/01-consultorio-camilla-premium-lampara-led.jpg":
+  "the-global-plastic-surgery/01-consultorio-camilla-premium-lampara-led.webp":
     "Consultorio con una camilla eléctrica LUMA blanca, lámpara LED de aro y carro auxiliar.",
-  "the-global-plastic-surgery/02-consultorio-camilla-instalada.jpg":
+  "the-global-plastic-surgery/02-consultorio-camilla-instalada.webp":
     "Camilla eléctrica LUMA recién instalada en un consultorio, con la iluminación de base encendida.",
 };
 

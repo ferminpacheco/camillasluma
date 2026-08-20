@@ -1,0 +1,33 @@
+{#
+  MEDIOS DE PAGO + ENVÍOS — bloque del hero de producto.
+
+  Uso (va dentro de .producto-hero-info, después de .precio-box):
+
+    {% include "components/bloque-pago-envio.njk" %}
+
+  En uso en las 7 páginas de producto (3 camillas, 3 carritos, luminarias).
+  UNA sola fuente de verdad: si cambian los medios de pago o la política de
+  envíos, se cambia acá y se propaga a las 7.
+
+  ⚠️ Sin cifras: no va cotización del dólar, ni precios, ni mínimos. La venta
+  es por cotización y el tipo de cambio es el del día del pago — publicar un
+  número lo deja desactualizado al día siguiente.
+#}
+
+<div class="pago-envio">
+  <p class="pago-envio-item">
+    <i class="fas fa-wallet" aria-hidden="true"></i>
+    <span>
+      <strong>Medios de pago:</strong> efectivo, transferencia bancaria o depósito.
+      Podés abonar en dólares o en pesos, al tipo de cambio oficial vigente
+      del día del pago.
+    </span>
+  </p>
+  <p class="pago-envio-item">
+    <i class="fas fa-truck" aria-hidden="true"></i>
+    <span>
+      <strong>Envíos a todo el país.</strong>
+      Envío <strong>gratuito</strong> a CABA y GBA.
+    </span>
+  </p>
+</div>
