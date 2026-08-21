@@ -97,6 +97,8 @@ const CONGRESOS = [
    Un archivo que no esté acá no queda sin alt: cae al fallback derivado
    del nombre de archivo (ver `altDeArchivo`). */
 const ALTS = {
+  "radla/00-stand-camilla-premium-mostrador-atencion.webp":
+    "Stand de LUMA en RADLA: camilla eléctrica Premium blanca con iluminación LED en la base, carro auxiliar, pantalla de marca y personal de LUMA atendiendo en el mostrador.",
   "radla/01-stand-camilla-premium-vista-general.webp":
     "Stand de LUMA en RADLA con una camilla eléctrica Premium blanca iluminada, lámpara LED de aro y pantalla con material de marca.",
   "radla/02-cabecera-camilla-premium.webp":

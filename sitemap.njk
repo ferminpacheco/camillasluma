@@ -4,6 +4,12 @@ eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {# /blog/ queda fuera del sitemap a pedido del cliente: el blog todavia no
+     arranco. Como tampoco tiene links entrantes en header ni footer, dejarlo
+     aca solo lograria que Google indexe un hub vacio. Restaurar junto con los
+     links cuando se publique el primer articulo.
+     OJO: los comentarios Nunjucks no pueden ir DENTRO del {% raw %}{% set %}{% endraw %}
+     de abajo — rompen el parseo de la expresion. #}
   {% set pages = [
     { url: "/", changefreq: "monthly", priority: "1.0" },
     { url: "/camillas-electricas/", changefreq: "monthly", priority: "0.9" },
@@ -16,8 +22,7 @@ eleventyExcludeFromCollections: true
     { url: "/carritos-auxiliares/cart-gold/", changefreq: "monthly", priority: "0.8" },
     { url: "/luminarias/", changefreq: "monthly", priority: "0.8" },
     { url: "/nosotros/", changefreq: "monthly", priority: "0.7" },
-    { url: "/garantia/", changefreq: "monthly", priority: "0.7" },
-    { url: "/blog/", changefreq: "weekly", priority: "0.7" }
+    { url: "/garantia/", changefreq: "monthly", priority: "0.7" }
   ] %}
   {% for p in pages %}
   <url>
