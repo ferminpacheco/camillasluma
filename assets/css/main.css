@@ -58,6 +58,7 @@ body > section:first-of-type {
   display: flex;
   justify-content: flex-end;
   margin-right: 20px;
+  padding: 20px 0px;
 }
 
 .main-nav ul {
@@ -2514,7 +2515,7 @@ body > section:first-of-type {
 
 @media (max-width: 768px) {
   .main-header {
-    padding: 5px 15px;
+    padding: 10px 15px;
   }
   .logo-img {
     max-width: 60px !important;
@@ -3599,6 +3600,15 @@ a.reels-seguir:hover {
 
 /* .cuidado-grid ya trae margin-top: 1.5rem, asi que el aire entre la bajada
    y las cards lo pone la grilla y no hace falta duplicarlo aca. */
+
+/* .cuidado-grid--2 trae max-width: 800px pero sin centrado, porque en
+   /garantia/ la fila va alineada a la izquierda con el resto del texto.
+   Aca el bloque es centrado, asi que el centrado se agrega solo en este
+   contexto y no se toca el variant compartido. */
+.garantia-destacada .cuidado-grid--2 {
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .garantia-destacada-cta {
   margin-top: var(--space-md);

@@ -41,8 +41,22 @@
   <meta name="twitter:title" content="{{ title }}">
   <meta name="twitter:description" content="{{ description }}">
 
+  {# FAVICON — es el icono que Google muestra en los resultados de busqueda.
+
+     ⚠️ EXCEPCION DELIBERADA a la convencion de "todo WebP" del proyecto:
+     este archivo se queda en PNG a proposito. Google documenta que acepta
+     "cualquier formato de favicon valido" (ICO, PNG, GIF, JPEG, SVG, APNG);
+     WebP NO es uno de ellos. Antes esto apuntaba a favicon.webp declarado
+     como type="image/png" — el MIME no coincidia con el archivo y el sitio
+     salia sin icono en las SERP. NO convertir este PNG a WebP.
+
+     Requisitos de Google que cumple: cuadrado 1:1, mayor a 48x48 (es 100x100),
+     rel="icon" en el <head>, y rastreable (robots.txt permite todo).
+     La URL tiene que mantenerse ESTABLE: Google la cachea, cambiarla reinicia
+     el proceso de deteccion. No renombrar este archivo. #}
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/images/favicon.webp">
+  <link rel="icon" type="image/png" href="/images/logo_luma_favicon.png">
+  <link rel="apple-touch-icon" href="/images/logo_luma_favicon.png">
 
   <!-- Google Fonts: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -1,5 +1,5 @@
 {#
-  BLOQUE GARANTÍA — versión destacada (3 cards + CTA a /garantia/).
+  BLOQUE GARANTÍA — versión destacada (2 cards + CTA a /garantia/).
 
   Uso:
 
@@ -21,19 +21,23 @@
   las mismas clases que la fila de /garantia/. No hay CSS de card propio: si
   cambia el diseño de esa fila, cambia acá también.
 
-  El copy de las tres cards sale de /garantia/index.njk y del PDF oficial
+  El copy de las cards sale de /garantia/index.njk y del PDF oficial
   (plazo de 12 meses, cobertura de motores y sistema eléctrico, reparación
-  sin costo de service, plazo de hasta 20 días corridos). No agregar nada
-  que no esté en esas dos fuentes: es una promesa contractual.
+  sin costo de service). No agregar nada que no esté en esas dos fuentes:
+  es una promesa contractual.
+
+  ⚠️ Había una tercera card ("Respaldo postventa directo", plazo de 20 días
+  corridos). Se sacó por pedido del cliente (Marcelo): no comunicar detalles
+  del servicio postventa por ahora. No reponerla sin confirmación.
 #}
 
 <section class="garantia-destacada"{% if garantiaAnchor %} id="{{ garantiaAnchor }}"{% endif %} aria-labelledby="garantia-destacada-titulo">
   <div class="garantia-destacada-inner">
 
     <h2 id="garantia-destacada-titulo">Garantía oficial LUMA</h2>
-    <p class="garantia-destacada-bajada">Todos los equipos LUMA salen con garantía oficial y respaldo postventa directo de fábrica.</p>
+    <p class="garantia-destacada-bajada">Todos los equipos LUMA salen con garantía oficial de fábrica.</p>
 
-    <div class="cuidado-grid">
+    <div class="cuidado-grid cuidado-grid--2">
       <div class="cuidado-card">
         {# fa-shield-halved (nombre FA6) no existe en el build 6.0.0-beta3 que
            carga el sitio: renderiza vacío. Mismo caso que en /nosotros/. #}
@@ -44,12 +48,7 @@
       <div class="cuidado-card">
         <div class="cuidado-icono"><i class="fas fa-bolt" aria-hidden="true"></i></div>
         <h3>Motores y sistema eléctrico incluidos</h3>
-        <p>En los modelos eléctricos la cobertura alcanza motores, comandos y sistema eléctrico. La reparación no tiene costo de service ni de mano de obra.</p>
-      </div>
-      <div class="cuidado-card">
-        <div class="cuidado-icono"><i class="fas fa-headset" aria-hidden="true"></i></div>
-        <h3>Respaldo postventa directo</h3>
-        <p>Coordinás con nuestro equipo técnico, sin intermediarios. Plazo de reparación: hasta 20 días corridos desde que recibimos el equipo.</p>
+        <p>En los modelos eléctricos la cobertura alcanza motores, comandos y sistema eléctrico. Durante el período de garantía, la reparación no tiene costo de service ni de mano de obra.</p>
       </div>
     </div>
 
