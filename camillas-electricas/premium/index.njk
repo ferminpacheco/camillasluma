@@ -3,6 +3,8 @@ layout: product.njk
 title: "Camilla Eléctrica Premium 3 Motores | LUMA"
 description: "Camilla eléctrica premium de 3 motores con control de pie. Diseño minimalista, silla profesional incluida. Para clínicas y centros estéticos en Argentina."
 canonical: "https://camillasluma.com/camillas-electricas/premium/"
+ogImage: "/images/og/premium.jpg"
+ogImageAlt: "Camilla eléctrica LUMA Premium de 3 motores, blanca, en un consultorio."
 # Mensaje precargado del link de WhatsApp en esta página (ver _data/eleventyComputed.js).
 waMensaje: "Hola! Quiero más información sobre la Camilla LUMA Premium."
 schemaProduct:
@@ -41,6 +43,9 @@ instagram_reels:
 
 <!-- HERO DE PRODUCTO -->
 <section class="producto-hero">
+  {# La ruta va adentro del hero para tomar su fondo blanco. #}
+  {% include "components/breadcrumbs.njk" %}
+
   <div class="producto-hero-inner">
     <div class="producto-hero-imagen">
       <div class="carousel" data-carousel>
@@ -93,8 +98,8 @@ instagram_reels:
       </div>
     </div>
     <div class="producto-hero-info">
-      <p class="modelo-tipo">Camilla Eléctrica Profesional · 3 Motores + Control de Pie</p>
-      <h1>LUMA Premium</h1>
+      <p class="modelo-tipo">Control de Pie · Silla Profesional Incluida</p>
+      <h1>LUMA Premium <span class="h1-categoria">Camilla eléctrica de 3 motores para estética</span></h1>
       <p class="producto-bajada">Diseñada para clínicas estéticas y consultorios que buscan combinar tecnología funcional con una experiencia superior para el profesional y el paciente.</p>
       <div class="color-picker" data-color-picker aria-label="Elegí el color de la LUMA Premium">
         <button type="button" class="color-swatch is-active" data-color-goto="0" style="--swatch-color:#FFFFFF;" aria-label="Color blanco"></button>
@@ -352,20 +357,72 @@ instagram_reels:
 <!-- PRODUCTOS RELACIONADOS -->
 <section class="producto-seccion">
   <div class="producto-seccion-inner">
-    <h2>Completá tu consultorio</h2>
+    <h2>Otros equipos LUMA</h2>
     <div class="relacionados-grid">
-      <a href="/carritos-auxiliares/luma-cart/" class="relacionado-card">
-        <img src="/images\luma-cart\image-1.webp" alt="LUMA Cart — carrito auxiliar" width="300" height="300" loading="lazy">
-        <span>LUMA Cart</span>
+      <a href="/camillas-electricas/one/" class="relacionado-card">
+        <img src="/images/luma-one/luma-one-9.webp" alt="Camilla eléctrica LUMA One" width="300" height="300" loading="lazy">
+        <span>LUMA One<span class="relacionado-desc">Camilla eléctrica de 3 motores con botonera de pie</span></span>
       </a>
-      <a href="/carritos-auxiliares/luma-tech/" class="relacionado-card">
-        <img src="/images\luma-tech\luma-tech-1.webp" alt="LUMA Tech — carrito para aparatología" width="300" height="300" loading="lazy">
-        <span>LUMA Tech</span>
+      <a href="/carritos-auxiliares/cart-gold/" class="relacionado-card">
+        <img src="/images/luma-cart-gold/luma-cart-gold-8.webp" alt="LUMA Cart Gold, carrito auxiliar dorado" width="300" height="300" loading="lazy">
+        <span>LUMA Cart Gold<span class="relacionado-desc">Carrito auxiliar premium para estética</span></span>
       </a>
       <a href="/luminarias/" class="relacionado-card">
-        <img src="/images/luma_luminaria.webp" alt="Luminaria LED LUMA" width="300" height="300" loading="lazy">
-        <span>Luminaria LED</span>
+        <img src="/images/luma_luminaria.webp" alt="Luminaria LED LUMA para consultorio" width="300" height="300" loading="lazy">
+        <span>Luminaria LED LUMA<span class="relacionado-desc">Lámpara LED para consultorio estético</span></span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-seccion bg-fondo">
+  <div class="faq-inner">
+    <h2>Preguntas frecuentes sobre la LUMA Premium</h2>
+    <div class="faq-lista">
+
+      <details class="faq-item">
+        <summary>¿Cuántos motores tiene la Camilla LUMA Premium?</summary>
+        <div class="faq-respuesta">
+          <p>La LUMA Premium tiene <strong>3 motores independientes</strong>: uno controla la altura de la camilla, otro el respaldo y otro el apoya-piernas. Esto permite ajustar cada segmento de forma autónoma, sin mover al paciente ni interrumpir el procedimiento.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿La camilla viene con silla incluida?</summary>
+        <div class="faq-respuesta">
+          <p>Sí. La LUMA Premium incluye <strong>silla profesional de cortesía y cobertor de cristal</strong>. Es uno de los diferenciales del modelo frente a otras camillas del mercado nacional.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿En qué colores está disponible?</summary>
+        <div class="faq-respuesta">
+          <p>La LUMA Premium está disponible en <strong>blanco, beige y negro</strong>, con opciones en acabado dorado para quienes buscan un impacto visual diferenciado. Consultá disponibilidad de colores al momento de tu cotización.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Tiene garantía oficial?</summary>
+        <div class="faq-respuesta">
+          <p>Sí, todos los productos LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones completas →</a></p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Puedo verla antes de comprarla?</summary>
+        <div class="faq-respuesta">
+          <p>Sí. LUMA tiene dos showrooms en CABA — en Palermo y Belgrano — donde podés probar la camilla con turno previo. Es la forma que recomendamos para tomar la decisión: verla, tocarla y experimentarla en persona. <a href="/nosotros/#showrooms">Ver cómo agendarla →</a></p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué modos de uso tiene la LUMA Premium?</summary>
+        <div class="faq-respuesta">
+          <p>Tiene <strong>3 modos de uso</strong>: sillón (respaldo elevado, apoyapiernas bajo), semirreclinado (posición intermedia) y camilla plana (superficie totalmente horizontal). Los motores están <strong>certificados CE</strong>, con 6000 N de empuje.</p>
+        </div>
+      </details>
+
     </div>
   </div>
 </section>
@@ -455,54 +512,4 @@ instagram_reels:
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq-seccion bg-fondo">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre la LUMA Premium</h2>
-    <div class="faq-lista">
 
-      <details class="faq-item">
-        <summary>¿Cuántos motores tiene la Camilla LUMA Premium?</summary>
-        <div class="faq-respuesta">
-          <p>La LUMA Premium tiene <strong>3 motores independientes</strong>: uno controla la altura de la camilla, otro el respaldo y otro el apoya-piernas. Esto permite ajustar cada segmento de forma autónoma, sin mover al paciente ni interrumpir el procedimiento.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿La camilla viene con silla incluida?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. La LUMA Premium incluye <strong>silla profesional de cortesía y cobertor de cristal</strong>. Es uno de los diferenciales del modelo frente a otras camillas del mercado nacional.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿En qué colores está disponible?</summary>
-        <div class="faq-respuesta">
-          <p>La LUMA Premium está disponible en <strong>blanco, beige y negro</strong>, con opciones en acabado dorado para quienes buscan un impacto visual diferenciado. Consultá disponibilidad de colores al momento de tu cotización.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene garantía oficial?</summary>
-        <div class="faq-respuesta">
-          <p>Sí, todos los productos LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones completas →</a></p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Puedo verla antes de comprarla?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. LUMA tiene dos showrooms en CABA — en Palermo y Belgrano — donde podés probar la camilla con turno previo. Es la forma que recomendamos para tomar la decisión: verla, tocarla y experimentarla en persona. <a href="/nosotros/#showrooms">Ver cómo agendarla →</a></p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Qué modos de uso tiene la LUMA Premium?</summary>
-        <div class="faq-respuesta">
-          <p>Tiene <strong>3 modos de uso</strong>: sillón (respaldo elevado, apoyapiernas bajo), semirreclinado (posición intermedia) y camilla plana (superficie totalmente horizontal). Los motores están <strong>certificados CE</strong>, con 6000 N de empuje.</p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>

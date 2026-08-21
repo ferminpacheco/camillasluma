@@ -26,20 +26,41 @@
   <meta name="robots" content="noindex, nofollow">
   {% endif %}
 
+  {# IMAGEN DE COMPARTIR — la que se ve al pasar un link por WhatsApp.
+
+     Antes esto era `{% if ogImage %}` sin fallback y ninguna página definía
+     la variable, así que las 15 salían sin imagen: la preview quedaba como
+     un rectángulo de texto gris justo en el canal por el que LUMA vende.
+
+     El fallback es lo que impide que vuelva a pasar. Una página nueva que
+     se olvide de declarar `ogImage` comparte igual, con la tarjeta de marca.
+
+     Las tarjetas se generan con `npm run og` (ver _lib/og-cards.js). Están
+     en JPEG a propósito, no en WebP: el crawler de WhatsApp es poco
+     confiable con WebP. Ahí está la explicación completa. #}
+  {% set ogImagenFinal = ogImage if ogImage else site.og_default %}
+  {% set ogAltFinal = ogImageAlt if ogImageAlt else site.og_default_alt %}
+
   <!-- Open Graph -->
   <meta property="og:title" content="{{ title }}">
   <meta property="og:description" content="{{ description }}">
   <meta property="og:type" content="{{ ogType if ogType else 'website' }}">
   {% if canonical %}<meta property="og:url" content="{{ canonical }}">{% endif %}
   <meta property="og:site_name" content="{{ site.nombre }}">
-  {% if ogImage %}
-  <meta property="og:image" content="{{ site.url }}{{ ogImage }}">
-  {% endif %}
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:image" content="{{ site.url }}{{ ogImagenFinal }}">
+  <meta property="og:image:secure_url" content="{{ site.url }}{{ ogImagenFinal }}">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ ogAltFinal }}">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ title }}">
   <meta name="twitter:description" content="{{ description }}">
+  <meta name="twitter:image" content="{{ site.url }}{{ ogImagenFinal }}">
+  <meta name="twitter:image:alt" content="{{ ogAltFinal }}">
 
   {# FAVICON — es el icono que Google muestra en los resultados de busqueda.
 

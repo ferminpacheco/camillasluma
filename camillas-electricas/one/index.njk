@@ -3,6 +3,8 @@ layout: product.njk
 title: "Camilla Eléctrica One 3 Motores | LUMA"
 description: "Camilla eléctrica de 3 motores con botonera de pie, carga máxima 200 kg y ángulos de reclinación 0°-90°. Opción accesible de la línea LUMA para Argentina."
 canonical: "https://camillasluma.com/camillas-electricas/one/"
+ogImage: "/images/og/one.jpg"
+ogImageAlt: "Camilla eléctrica LUMA One de 3 motores en un consultorio de estética."
 # Mensaje precargado del link de WhatsApp en esta página (ver _data/eleventyComputed.js).
 waMensaje: "Hola! Quiero más información sobre la Camilla LUMA One."
 schemaProduct:
@@ -35,6 +37,9 @@ instagram_reels:
 
 <!-- HERO DE PRODUCTO -->
 <section class="producto-hero">
+  {# La ruta va adentro del hero para tomar su fondo blanco. #}
+  {% include "components/breadcrumbs.njk" %}
+
   <div class="producto-hero-inner">
     <div class="producto-hero-imagen">
       <div class="carousel" data-carousel>
@@ -96,8 +101,8 @@ instagram_reels:
       </div>
     </div>
     <div class="producto-hero-info">
-      <p class="modelo-tipo">Camilla Eléctrica Accesible · 3 Motores</p>
-      <h1>LUMA One</h1>
+      <p class="modelo-tipo">Línea Accesible · 200 kg de Carga</p>
+      <h1>LUMA One <span class="h1-categoria">Camilla eléctrica de 3 motores con botonera de pie</span></h1>
       <p class="producto-bajada">La puerta de entrada a la tecnología LUMA. Tres motores con control por botonera de pie, carga máxima de 200 kg y diseño minimalista, para profesionales que buscan dar el salto a una camilla eléctrica de calidad a un precio más accesible.</p>
       <div class="producto-badges">
         <span class="badge"><i class="fas fa-shield-alt" aria-hidden="true"></i> Garantía oficial</span>
@@ -123,7 +128,7 @@ instagram_reels:
 <section class="producto-seccion">
   <div class="producto-seccion-inner">
     <h2>¿Para quién es la LUMA One?</h2>
-    <p>Ideal para profesionales independientes, centros de estética en crecimiento o consultorios que buscan incorporar su primera camilla eléctrica sin resignar calidad de diseño. La One ofrece la misma tecnología de 3 motores de la línea LUMA, con control por botonera de pie, en un modelo de entrada más accesible.</p>
+    <p>Para quienes buscan disfrutar de toda la experiencia LUMA en una camilla eléctrica de 3 motores, sin resignar diseño, funcionalidad ni calidad. La LUMA One incorpora la misma tecnología de movimiento de la línea LUMA, con regulación eléctrica de altura, respaldo y piernas y control mediante botonera de pie, en una propuesta más accesible.</p>
   </div>
 </section>
 
@@ -304,11 +309,6 @@ instagram_reels:
         <p>Limpiar con un paño húmedo después de cada uso.</p>
       </div>
       <div class="cuidado-card">
-        <div class="cuidado-icono"><i class="fas fa-calendar-check" aria-hidden="true"></i></div>
-        <h3>Mantenimiento cada 30 días</h3>
-        <p>Aplicar una crema de limpieza especial cada 30 días.</p>
-      </div>
-      <div class="cuidado-card">
         <div class="cuidado-icono"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
         <h3>Superficie estable</h3>
         <p>Colocar sobre una superficie plana y estable.</p>
@@ -325,16 +325,65 @@ instagram_reels:
 <!-- RELACIONADOS -->
 <section class="producto-seccion bg-fondo">
   <div class="producto-seccion-inner">
-    <h2>Otros modelos de la línea</h2>
+    <h2>Otros equipos LUMA</h2>
     <div class="relacionados-grid">
       <a href="/camillas-electricas/premium/" class="relacionado-card">
-        <img src="/images\luma-premium\portada-luma-premium-blanca.webp" alt="LUMA Premium" width="300" height="300" loading="lazy">
-        <span>LUMA Premium</span>
+        <img src="/images/luma-premium/portada-luma-premium-blanca.webp" alt="Camilla eléctrica LUMA Premium" width="300" height="300" loading="lazy">
+        <span>LUMA Premium<span class="relacionado-desc">Camilla eléctrica de 3 motores para estética</span></span>
       </a>
       <a href="/camillas-electricas/ginecologica/" class="relacionado-card">
-        <img src="/images/luma-ginecologica/luma-ginecologica-8.webp" alt="LUMA Ginecológica" width="300" height="300" loading="lazy">
-        <span>LUMA Ginecológica</span>
+        <img src="/images/luma-ginecologica/luma-ginecologica-8.webp" alt="Camilla ginecológica eléctrica LUMA" width="300" height="300" loading="lazy">
+        <span>LUMA Ginecológica<span class="relacionado-desc">Camilla ginecológica eléctrica de 3 motores</span></span>
       </a>
+      <a href="/carritos-auxiliares/luma-cart/" class="relacionado-card">
+        <img src="/images/luma-cart/image-1.webp" alt="LUMA Cart, carrito auxiliar blanco" width="300" height="300" loading="lazy">
+        <span>LUMA Cart<span class="relacionado-desc">Carrito auxiliar para cabinas de estética</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-seccion bg-fondo">
+  <div class="faq-inner">
+    <h2>Preguntas frecuentes sobre la LUMA One</h2>
+    <div class="faq-lista">
+
+      <details class="faq-item">
+        <summary>¿En qué se diferencia la LUMA One de la Premium?</summary>
+        <div class="faq-respuesta">
+          <p>La <strong>LUMA One</strong> es la opción de entrada a la línea: comparte los 3 motores y el control por botonera de pie, con un precio más accesible. <a href="/camillas-electricas/premium/">Ver LUMA Premium →</a></p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cuántos motores tiene y cómo se controla?</summary>
+        <div class="faq-respuesta">
+          <p>Tiene <strong>3 motores independientes</strong> — altura general, respaldo y apoyapiernas — con control por <strong>botonera de pie</strong>.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cuál es la carga máxima y los ángulos de regulación?</summary>
+        <div class="faq-respuesta">
+          <p>Soporta hasta <strong>200 kg</strong> en la sección central. El respaldo y el apoyapiernas se reclinan de <strong>0° a 90°</strong> cada uno, de forma independiente.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué alimentación eléctrica necesita?</summary>
+        <div class="faq-respuesta">
+          <p>Funciona con <strong>AC 100–130 V o 220–240 V</strong>, con una potencia máxima de <strong>300 W</strong>.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Tiene garantía oficial?</summary>
+        <div class="faq-respuesta">
+          <p>Sí. Todos los productos LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
+        </div>
+      </details>
+
     </div>
   </div>
 </section>
@@ -419,51 +468,6 @@ instagram_reels:
       <button type="button" class="testimonio-carousel-nav testimonio-carousel-next" data-testimonio-next aria-label="Testimonio siguiente">
         <i class="fas fa-chevron-right" aria-hidden="true"></i>
       </button>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq-seccion bg-fondo">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre la LUMA One</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿En qué se diferencia la LUMA One de la Premium?</summary>
-        <div class="faq-respuesta">
-          <p>La <strong>LUMA One</strong> es la opción de entrada a la línea: comparte los 3 motores y el control por botonera de pie, con un precio más accesible. <a href="/camillas-electricas/premium/">Ver LUMA Premium →</a></p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Cuántos motores tiene y cómo se controla?</summary>
-        <div class="faq-respuesta">
-          <p>Tiene <strong>3 motores independientes</strong> — altura general, respaldo y apoyapiernas — con control por <strong>botonera de pie</strong>.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Cuál es la carga máxima y los ángulos de regulación?</summary>
-        <div class="faq-respuesta">
-          <p>Soporta hasta <strong>200 kg</strong> en la sección central. El respaldo y el apoyapiernas se reclinan de <strong>0° a 90°</strong> cada uno, de forma independiente.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Qué alimentación eléctrica necesita?</summary>
-        <div class="faq-respuesta">
-          <p>Funciona con <strong>AC 100–130 V o 220–240 V</strong>, con una potencia máxima de <strong>300 W</strong>.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene garantía oficial?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. Todos los productos LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
-        </div>
-      </details>
-
     </div>
   </div>
 </section>

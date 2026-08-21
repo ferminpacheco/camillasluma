@@ -1,0 +1,17 @@
+{
+  "_comentario": "Rótulos cortos de cada URL para las migas de pan (H-08). El nombre es el que ve el usuario en la ruta, no el <title>. Una página sin entrada acá simplemente no renderiza migas: así es como quedan afuera /nosotros/, /garantia/, /blog/ y la home.",
+
+  "/": "Inicio",
+
+  "/camillas-electricas/": "Camillas eléctricas",
+  "/camillas-electricas/premium/": "LUMA Premium",
+  "/camillas-electricas/one/": "LUMA One",
+  "/camillas-electricas/ginecologica/": "LUMA Ginecológica",
+
+  "/carritos-auxiliares/": "Carritos auxiliares",
+  "/carritos-auxiliares/luma-cart/": "LUMA Cart",
+  "/carritos-auxiliares/luma-tech/": "LUMA Tech",
+  "/carritos-auxiliares/cart-gold/": "LUMA Cart Gold",
+
+  "/luminarias/": "Luminaria LED"
+}

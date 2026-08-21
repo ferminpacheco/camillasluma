@@ -3,6 +3,8 @@ layout: product.njk
 title: "LUMA Cart — Carrito Auxiliar para Estética | LUMA"
 description: "Carrito auxiliar estético de diseño curvo y minimalista. Tres niveles de apoyo, ruedas giratorias y superficie de fácil limpieza para cabinas profesionales en Argentina."
 canonical: "https://camillasluma.com/carritos-auxiliares/luma-cart/"
+ogImage: "/images/og/luma-cart.jpg"
+ogImageAlt: "LUMA Cart, carrito auxiliar blanco de diseño curvo para estética."
 # Mensaje precargado del link de WhatsApp en esta página (ver _data/eleventyComputed.js).
 waMensaje: "Hola! Quiero más información sobre el LUMA Cart."
 schemaProduct:
@@ -32,6 +34,9 @@ instagram_reels:
 
 <!-- HERO DE PRODUCTO -->
 <section class="producto-hero">
+  {# La ruta va adentro del hero para tomar su fondo blanco. #}
+  {% include "components/breadcrumbs.njk" %}
+
   <div class="producto-hero-inner">
     <div class="producto-hero-imagen">
       <div class="carousel" data-carousel>
@@ -84,8 +89,8 @@ instagram_reels:
       </div>
     </div>
     <div class="producto-hero-info">
-      <p class="modelo-tipo">Mobiliario Auxiliar de Diseño</p>
-      <h1>LUMA Cart</h1>
+      <p class="modelo-tipo">Tres Niveles · Ruedas Giratorias · Diseño Curvo</p>
+      <h1>LUMA Cart <span class="h1-categoria">Carrito auxiliar para cabinas de estética</span></h1>
       <p class="producto-bajada">Diseño, orden y movilidad para espacios profesionales. Silueta curva, terminaciones limpias y superficie resistente que eleva la estética de cualquier espacio de trabajo.</p>
       <div class="producto-badges">
         <span class="badge"><i class="fas fa-shield-alt" aria-hidden="true"></i> Garantía oficial</span>
@@ -264,20 +269,65 @@ instagram_reels:
 <!-- RELACIONADOS -->
 <section class="producto-seccion">
   <div class="producto-seccion-inner">
-    <h2>Otros accesorios LUMA</h2>
+    <h2>Otros equipos LUMA</h2>
     <div class="relacionados-grid">
-      <a href="/carritos-auxiliares/luma-tech/" class="relacionado-card">
-        <img src="/images\luma-tech\luma-tech-1.webp" alt="LUMA Tech" width="300" height="300" loading="lazy">
-        <span>LUMA Tech</span>
+      <a href="/carritos-auxiliares/cart-gold/" class="relacionado-card">
+        <img src="/images/luma-cart-gold/luma-cart-gold-8.webp" alt="LUMA Cart Gold, carrito auxiliar dorado" width="300" height="300" loading="lazy">
+        <span>LUMA Cart Gold<span class="relacionado-desc">Carrito auxiliar premium para estética</span></span>
+      </a>
+      <a href="/camillas-electricas/ginecologica/" class="relacionado-card">
+        <img src="/images/luma-ginecologica/luma-ginecologica-8.webp" alt="Camilla ginecológica eléctrica LUMA" width="300" height="300" loading="lazy">
+        <span>LUMA Ginecológica<span class="relacionado-desc">Camilla ginecológica eléctrica de 3 motores</span></span>
       </a>
       <a href="/luminarias/" class="relacionado-card">
-        <img src="/images/luma_luminaria.webp" alt="Luminaria LED LUMA" width="300" height="300" loading="lazy">
-        <span>Luminaria LED</span>
+        <img src="/images/luma_luminaria.webp" alt="Luminaria LED LUMA para consultorio" width="300" height="300" loading="lazy">
+        <span>Luminaria LED LUMA<span class="relacionado-desc">Lámpara LED para consultorio estético</span></span>
       </a>
-      <a href="/camillas-electricas/premium/" class="relacionado-card">
-        <img src="/images\luma-premium\portada-luma-premium-blanca.webp" alt="LUMA Premium" width="300" height="300" loading="lazy">
-        <span>LUMA Premium</span>
-      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-seccion bg-fondo">
+  <div class="faq-inner">
+    <h2>Preguntas frecuentes sobre el LUMA Cart</h2>
+    <div class="faq-lista">
+
+      <details class="faq-item">
+        <summary>¿Cuántos niveles tiene el LUMA Cart?</summary>
+        <div class="faq-respuesta">
+          <p>El LUMA Cart tiene <strong>tres niveles de apoyo</strong>: la bandeja superior, de 45 × 36 cm, para productos de uso inmediato durante el tratamiento; un estante intermedio accesible por las aberturas laterales; y una bandeja inferior a ras del piso, que además funciona como pie del carrito.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué terminación y materiales tiene?</summary>
+        <div class="faq-respuesta">
+          <p>Tiene terminación <strong>laqueada brillante en blanco</strong>, con superficie lisa, resistente y de fácil limpieza. El cuerpo es una pieza moldeada continua, sin uniones ni tornillos a la vista, y las ruedas giratorias llevan horquilla cromada.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Se puede combinar visualmente con las camillas LUMA?</summary>
+        <div class="faq-respuesta">
+          <p>Sí, fue diseñado exactamente para eso. El LUMA Cart sigue el mismo lenguaje visual minimalista de las camillas: líneas limpias, acabado blanco y proporciones que integran el espacio sin competir con el equipo principal.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿En qué se diferencia del LUMA Tech?</summary>
+        <div class="faq-respuesta">
+          <p>El <strong>LUMA Cart</strong> es el modelo de uso general: tres niveles de apoyo, diseño curvo, para productos y accesorios. El <strong>LUMA Tech</strong> está pensado específicamente para aparatología: tiene estructura reforzada, zapatilla de enchufes integrada y apertura trasera para cables. <a href="/carritos-auxiliares/luma-tech/">Ver LUMA Tech →</a></p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Tiene garantía oficial?</summary>
+        <div class="faq-respuesta">
+          <p>Sí. Todos los accesorios LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
+        </div>
+      </details>
+
     </div>
   </div>
 </section>
@@ -366,50 +416,6 @@ instagram_reels:
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq-seccion bg-fondo">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre el LUMA Cart</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿Cuántos niveles tiene el LUMA Cart?</summary>
-        <div class="faq-respuesta">
-          <p>El LUMA Cart tiene <strong>tres niveles de apoyo</strong>: la bandeja superior, de 45 × 36 cm, para productos de uso inmediato durante el tratamiento; un estante intermedio accesible por las aberturas laterales; y una bandeja inferior a ras del piso, que además funciona como pie del carrito.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Qué terminación y materiales tiene?</summary>
-        <div class="faq-respuesta">
-          <p>Tiene terminación <strong>laqueada brillante en blanco</strong>, con superficie lisa, resistente y de fácil limpieza. El cuerpo es una pieza moldeada continua, sin uniones ni tornillos a la vista, y las ruedas giratorias llevan horquilla cromada.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Se puede combinar visualmente con las camillas LUMA?</summary>
-        <div class="faq-respuesta">
-          <p>Sí, fue diseñado exactamente para eso. El LUMA Cart sigue el mismo lenguaje visual minimalista de las camillas: líneas limpias, acabado blanco y proporciones que integran el espacio sin competir con el equipo principal.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿En qué se diferencia del LUMA Tech?</summary>
-        <div class="faq-respuesta">
-          <p>El <strong>LUMA Cart</strong> es el modelo de uso general: tres niveles de apoyo, diseño curvo, para productos y accesorios. El <strong>LUMA Tech</strong> está pensado específicamente para aparatología: tiene estructura reforzada, zapatilla de enchufes integrada y apertura trasera para cables. <a href="/carritos-auxiliares/luma-tech/">Ver LUMA Tech →</a></p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene garantía oficial?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. Todos los accesorios LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>
 
 <!-- CTA CIERRE -->
 <section class="cta-producto-cierre">

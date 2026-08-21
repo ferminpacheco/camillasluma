@@ -10,6 +10,8 @@
   "garantia": "12 meses de cobertura oficial en fabricación, materiales, motores y sistema eléctrico.",
   "garantia_url": "/garantia/",
   "garantia_pdf": "/assets/pdf/garantia-luma.pdf",
+  "og_default": "/images/og/default.jpg",
+  "og_default_alt": "LUMA — Camillas eléctricas y equipamiento médico estético.",
   "showroom_palermo": "Palermo, CABA",
   "showroom_belgrano": "Belgrano, CABA",
   "hex_oficiales": "{{HEX_OFICIALES}}"

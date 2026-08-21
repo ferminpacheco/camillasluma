@@ -3,6 +3,7 @@
    ============================================= */
 
 const { linkWhatsapp } = require("../_lib/whatsapp.js");
+const { construirMigas } = require("../_lib/migas.js");
 
 module.exports = {
   /*
@@ -33,4 +34,16 @@ module.exports = {
     distinto mensaje en cada URL. Una sola fuente de verdad.
   */
   whatsappLink: (data) => linkWhatsapp(data.waMensaje),
+
+  /*
+    Ruta de migas de pan de la página, armada desde `page.url` con los
+    rótulos de `_data/rutas.json` (ver _lib/migas.js).
+
+    Es dato computado y no front matter por la misma razón que el link de
+    WhatsApp: el componente `breadcrumbs.njk` se incluye desde el layout de
+    producto y desde los dos hubs, y en los tres casos necesita saber en qué
+    URL está renderizando. Una página que no figure en rutas.json recibe una
+    lista vacía y el componente no dibuja nada.
+  */
+  migas: (data) => construirMigas(data.page.url, data.rutas),
 };

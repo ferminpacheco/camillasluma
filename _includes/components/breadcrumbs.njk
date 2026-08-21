@@ -1,0 +1,51 @@
+{# ── MIGAS DE PAN ──────────────────────────────────────────────
+   Ruta visual + BreadcrumbList de schema, juntos y en el mismo lugar:
+   una sola fuente de verdad para las dos mitades de H-08.
+
+   La ruta viene de `migas` (dato computado, ver _data/eleventyComputed.js).
+   Si la página no está declarada en _data/rutas.json, `migas` llega vacío
+   y este include no emite nada.
+
+   Se incluye desde:
+     las 7 fichas                   adentro de <section class="producto-hero">
+     camillas-electricas/index.njk   después del banner, con migasHub
+     carritos-auxiliares/index.njk   después del banner, con migasHub
+
+   `migasHub` solo cambia el contenedor: las fichas y los hubs sangran el
+   contenido de forma distinta (la ficha aplica el 5% adentro de la caja de
+   1200px, el hub afuera), y la ruta tiene que alinear con lo que va debajo
+   en cada caso.
+   ──────────────────────────────────────────────────────────── #}
+{% if migas and migas.length > 1 %}
+<nav class="migas{% if migasHub %} migas--hub{% endif %}" aria-label="Ruta de navegación">
+  <ol class="migas-lista">
+    {%- for miga in migas %}
+    <li class="migas-item">
+      {%- if miga.actual %}
+      <span class="migas-actual" aria-current="page">{{ miga.nombre }}</span>
+      {%- else %}
+      <a href="{{ miga.url }}">{{ miga.nombre }}</a>
+      {%- endif %}
+    </li>
+    {%- endfor %}
+  </ol>
+</nav>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "{{ canonical }}#breadcrumb",
+  "itemListElement": [
+    {%- for miga in migas %}
+    {
+      "@type": "ListItem",
+      "position": {{ loop.index }},
+      "name": "{{ miga.nombre }}",
+      "item": "{{ site.url }}{{ miga.url }}"
+    }{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}
+</script>
+{% endif %}

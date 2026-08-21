@@ -1314,6 +1314,24 @@ body > section:first-of-type {
   flex: 1.2;
 }
 
+.producto-hero-info h1 {
+  line-height: 1.15;
+  margin-bottom: 0.25rem;
+}
+
+/* Segunda línea del H1 de las fichas: la categoría con la que la gente
+   busca. Vive DENTRO del H1 (Google lee el texto completo) pero pesa
+   menos que el nombre del modelo. Fix H-04 de la auditoría SEO. */
+.h1-categoria {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.45em;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-texto);
+  opacity: 0.75;
+}
+
 .modelo-tipo {
   font-size: 0.8em;
   text-transform: uppercase;
@@ -1511,6 +1529,107 @@ body > section:first-of-type {
   padding: 0.75rem 1rem;
   font-weight: 600;
   font-size: 0.9em;
+}
+
+/* Segunda línea de la tarjeta: qué es el producto, no solo cómo se llama.
+   Va dentro del <a> para que el texto del enlace sea descriptivo. H-05. */
+.relacionado-card .relacionado-desc {
+  padding: 0.25rem 0 0;
+  font-weight: 400;
+  font-size: 0.92em;
+  line-height: 1.35;
+  opacity: 0.7;
+}
+
+/* ── MIGAS DE PAN ─────────────────────────────
+   Separador: la onda ~ del logo, que ya vive en tokens.css como --onda.
+   No es texto: es un ::before decorativo entre ítem e ítem. H-08.
+
+   Dos ubicaciones, un solo componente:
+     fichas  adentro de .producto-hero, sobre su fondo blanco
+     hubs    después del banner navy, sobre el fondo de la página
+   ============================================= */
+
+.migas {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.1rem 5%;
+  font-size: 0.82em;
+}
+
+/* En las fichas la ruta vive adentro de .producto-hero para tomar su fondo
+   blanco. El despeje del header fijo ya lo pone la sección (regla global
+   `body > main > *:first-child`), así que acá solo va el aire propio; el
+   de abajo lo pone el padding del .producto-hero-inner. */
+.producto-hero .migas {
+  padding-top: 0.9rem;
+  padding-bottom: 0;
+}
+
+/* En los hubs el 5% va afuera de la caja de 1200px, igual que en
+   .hub-seccion, para que la ruta alinee con el contenido de abajo. */
+.migas--hub {
+  max-width: none;
+}
+
+.migas--hub .migas-lista {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.migas-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.7rem;
+}
+
+.migas-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+
+.migas-item + .migas-item::before {
+  content: var(--onda);
+  font-family: var(--font-titulo);
+  font-size: 1.2em;
+  line-height: 1;
+  color: var(--acero);
+  transform: translateY(-0.1em);
+}
+
+/* Subrayado que entra desde la izquierda, sin mover el texto. */
+.migas a {
+  color: var(--gris);
+  text-decoration: none;
+  background-image: linear-gradient(var(--color-principal), var(--color-principal));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  transition: color var(--dur-fast) var(--ease-out),
+              background-size var(--dur-fast) var(--ease-out);
+}
+
+.migas a:hover,
+.migas a:focus-visible {
+  color: var(--color-principal);
+  background-size: 100% 1px;
+}
+
+/* La página actual no es un enlace: se marca con un trazo en degradé
+   que se apaga hacia la derecha. */
+.migas-actual {
+  color: var(--color-principal);
+  font-weight: 600;
+  padding-bottom: 3px;
+  background-image: linear-gradient(to right, var(--acero), rgba(113, 149, 169, 0));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 2px;
 }
 
 /* ── HUB HERO ────────────────────────────────── */
@@ -1981,6 +2100,7 @@ body > section:first-of-type {
 }
 
 .linea-card {
+  position: relative;
   display: block;
   text-decoration: none;
   color: var(--color-texto);
@@ -2025,6 +2145,30 @@ body > section:first-of-type {
   font-size: 0.85em;
   font-weight: 600;
   color: var(--color-principal);
+}
+
+.linea-card-titulo {
+  color: inherit;
+  text-decoration: none;
+}
+
+.linea-card-titulo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.linea-card-body p a {
+  position: relative;
+  z-index: 1;
+  color: var(--color-principal);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.linea-card-body p a:hover,
+.linea-card-body p a:focus-visible {
+  text-decoration: underline;
 }
 
 /* ── HOME SHOWROOM ───────────────────────────── */
@@ -2563,7 +2707,6 @@ body > section:first-of-type {
     text-align: left !important;
   }
   .camilla-img {
-    max-width: 80% !important;
     margin: 0 auto;
   }
   .producto-banner-badge {
@@ -2609,6 +2752,9 @@ body > section:first-of-type {
   .producto-hero-info {
     flex: 1 1 100% !important;
     width: 100% !important;
+  }
+  .h1-categoria {
+    font-size: 0.52em;
   }
   .hub-productos-grid,
   .lineas-grid,
@@ -3760,6 +3906,7 @@ a.reels-seguir:hover {
 
   .main-nav .dropdown-toggle .arrow-down {
     transition: transform var(--dur-fast) var(--ease-out);
+    margin-left: 8px;
   }
 
   .main-nav .dropdown.is-open > .dropdown-toggle .arrow-down {

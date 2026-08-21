@@ -3,6 +3,8 @@ layout: product.njk
 title: "LUMA Cart Gold — Carrito Auxiliar Premium Dorado | LUMA"
 description: "Carro auxiliar premium con 3 niveles, cajón central y estructura en dorado pulido. El accesorio de mayor impacto visual de la línea LUMA. Precio a consultar."
 canonical: "https://camillasluma.com/carritos-auxiliares/cart-gold/"
+ogImage: "/images/og/cart-gold.jpg"
+ogImageAlt: "LUMA Cart Gold, carro auxiliar premium con estructura dorada."
 # Mensaje precargado del link de WhatsApp en esta página (ver _data/eleventyComputed.js).
 waMensaje: "Hola! Quiero más información sobre el LUMA Cart Gold."
 schemaProduct:
@@ -32,6 +34,9 @@ instagram_reels:
 
 <!-- HERO DE PRODUCTO -->
 <section class="producto-hero">
+  {# La ruta va adentro del hero para tomar su fondo blanco. #}
+  {% include "components/breadcrumbs.njk" %}
+
   <div class="producto-hero-inner">
     <div class="producto-hero-imagen">
       <div class="carousel" data-carousel>
@@ -84,8 +89,8 @@ instagram_reels:
       </div>
     </div>
     <div class="producto-hero-info">
-      <p class="modelo-tipo">Mobiliario Auxiliar Premium</p>
-      <h1>LUMA Cart Gold</h1>
+      <p class="modelo-tipo">Tres Niveles · Cajón Central · Dorado Pulido</p>
+      <h1>LUMA Cart Gold <span class="h1-categoria">Carrito auxiliar premium para estética</span></h1>
       <p class="producto-bajada">El carrito de mayor impacto visual de la línea LUMA. Tres niveles, cajón central y estructura en dorado pulido, para espacios que exigen distinción.</p>
       <div class="producto-badges">
         <span class="badge"><i class="fas fa-shield-alt" aria-hidden="true"></i> Garantía oficial</span>
@@ -307,20 +312,65 @@ instagram_reels:
 <!-- RELACIONADOS -->
 <section class="producto-seccion">
   <div class="producto-seccion-inner">
-    <h2>Otros accesorios LUMA</h2>
+    <h2>Otros equipos LUMA</h2>
     <div class="relacionados-grid">
       <a href="/carritos-auxiliares/luma-cart/" class="relacionado-card">
-        <img src="/images/luma-cart/image-1.webp" alt="LUMA Cart" width="300" height="300" loading="lazy">
-        <span>LUMA Cart</span>
+        <img src="/images/luma-cart/image-1.webp" alt="LUMA Cart, carrito auxiliar blanco" width="300" height="300" loading="lazy">
+        <span>LUMA Cart<span class="relacionado-desc">Carrito auxiliar para cabinas de estética</span></span>
       </a>
       <a href="/carritos-auxiliares/luma-tech/" class="relacionado-card">
-        <img src="/images/luma-tech/luma-tech-1.webp" alt="LUMA Tech" width="300" height="300" loading="lazy">
-        <span>LUMA Tech</span>
+        <img src="/images/luma-tech/luma-tech-1.webp" alt="LUMA Tech, carrito reforzado para aparatología" width="300" height="300" loading="lazy">
+        <span>LUMA Tech<span class="relacionado-desc">Carrito para aparatología estética</span></span>
       </a>
-      <a href="/luminarias/" class="relacionado-card">
-        <img src="/images/luma_luminaria.webp" alt="Luminaria LED LUMA" width="300" height="300" loading="lazy">
-        <span>Luminaria LED</span>
+      <a href="/camillas-electricas/premium/" class="relacionado-card">
+        <img src="/images/luma-premium/portada-luma-premium-blanca.webp" alt="Camilla eléctrica LUMA Premium" width="300" height="300" loading="lazy">
+        <span>LUMA Premium<span class="relacionado-desc">Camilla eléctrica de 3 motores para estética</span></span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-seccion bg-fondo">
+  <div class="faq-inner">
+    <h2>Preguntas frecuentes sobre el LUMA Cart Gold</h2>
+    <div class="faq-lista">
+
+      <details class="faq-item">
+        <summary>¿Es lo mismo que el LUMA Cart?</summary>
+        <div class="faq-respuesta">
+          <p>No, aunque comparten nombre son productos distintos. El <strong>LUMA Cart</strong> es una pieza moldeada blanca de estructura única. El <strong>LUMA Cart Gold</strong> es un carro de tres niveles montado sobre estructura de tubo dorado, con un cajón central que el Cart no tiene. <a href="/carritos-auxiliares/luma-cart/">Ver LUMA Cart →</a></p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cuántos niveles y cajones tiene?</summary>
+        <div class="faq-respuesta">
+          <p>Tiene <strong>tres niveles de almacenamiento</strong>: una bandeja superior con asas integradas, un módulo central con cajón, y una bandeja inferior más profunda, tipo batea, con manijas caladas y frente rebajado.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cuál es el precio del LUMA Cart Gold?</summary>
+        <div class="faq-respuesta">
+          <p class="placeholder-note">⚠️ El precio se confirma por cotización. Contactanos para recibir el valor actualizado.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué terminación tiene?</summary>
+        <div class="faq-respuesta">
+          <p>Los módulos son de <strong>blanco laqueado brillante</strong> y la estructura de tubo es de <strong>dorado pulido</strong>, incluyendo el tirador del cajón y la horquilla de las ruedas.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Tiene garantía oficial?</summary>
+        <div class="faq-respuesta">
+          <p>Sí. Todos los accesorios LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
+        </div>
+      </details>
+
     </div>
   </div>
 </section>
@@ -409,47 +459,3 @@ instagram_reels:
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq-seccion bg-fondo">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre el LUMA Cart Gold</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿Es lo mismo que el LUMA Cart?</summary>
-        <div class="faq-respuesta">
-          <p>No, aunque comparten nombre son productos distintos. El <strong>LUMA Cart</strong> es una pieza moldeada blanca de estructura única. El <strong>LUMA Cart Gold</strong> es un carro de tres niveles montado sobre estructura de tubo dorado, con un cajón central que el Cart no tiene. <a href="/carritos-auxiliares/luma-cart/">Ver LUMA Cart →</a></p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Cuántos niveles y cajones tiene?</summary>
-        <div class="faq-respuesta">
-          <p>Tiene <strong>tres niveles de almacenamiento</strong>: una bandeja superior con asas integradas, un módulo central con cajón, y una bandeja inferior más profunda, tipo batea, con manijas caladas y frente rebajado.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Cuál es el precio del LUMA Cart Gold?</summary>
-        <div class="faq-respuesta">
-          <p class="placeholder-note">⚠️ El precio se confirma por cotización. Contactanos para recibir el valor actualizado.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Qué terminación tiene?</summary>
-        <div class="faq-respuesta">
-          <p>Los módulos son de <strong>blanco laqueado brillante</strong> y la estructura de tubo es de <strong>dorado pulido</strong>, incluyendo el tirador del cajón y la horquilla de las ruedas.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene garantía oficial?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. Todos los accesorios LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>

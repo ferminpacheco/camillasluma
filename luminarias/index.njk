@@ -3,6 +3,8 @@ layout: product.njk
 title: "Luminaria LED para Consultorio Estético | LUMA"
 description: "Lámpara LED de precisión para tratamientos estéticos. Intensidad regulable, luz cálida o blanca, altura ajustable. Disponible en blanco y negro."
 canonical: "https://camillasluma.com/luminarias/"
+ogImage: "/images/og/luminarias.jpg"
+ogImageAlt: "Luminaria LED LUMA para consultorio de estética."
 # Mensaje precargado del link de WhatsApp en esta página (ver _data/eleventyComputed.js).
 waMensaje: "Hola! Quiero más información sobre las luminarias LED de LUMA."
 schemaProduct:
@@ -33,6 +35,9 @@ instagram_reels:
 
 <!-- HERO DE PRODUCTO -->
 <section class="producto-hero">
+  {# La ruta va adentro del hero para tomar su fondo blanco. #}
+  {% include "components/breadcrumbs.njk" %}
+
   <div class="producto-hero-inner">
     <div class="producto-hero-imagen">
       <div class="carousel" data-carousel>
@@ -67,8 +72,8 @@ instagram_reels:
       </div>
     </div>
     <div class="producto-hero-info">
-      <p class="modelo-tipo">Iluminación Profesional de Alta Precisión</p>
-      <h1>Luminaria LED LUMA</h1>
+      <p class="modelo-tipo">Intensidad Regulable · Luz Cálida o Blanca · Altura Ajustable</p>
+      <h1>Luminaria LED LUMA <span class="h1-categoria">Lámpara para consultorio estético</span></h1>
       <p class="producto-bajada">Iluminación uniforme y precisa para tratamientos estéticos. Diseño moderno y minimalista que integra la línea visual de todos los equipos LUMA.</p>
       <div class="color-picker" data-color-picker aria-label="Elegí el color de la Luminaria LED LUMA">
         <button type="button" class="color-swatch is-active" data-color-goto="0" style="--swatch-color:#1A1A1A;" aria-label="Color negro"></button>
@@ -196,20 +201,58 @@ instagram_reels:
 <!-- RELACIONADOS -->
 <section class="producto-seccion bg-fondo">
   <div class="producto-seccion-inner">
-    <h2>Completá tu consultorio</h2>
+    <h2>Otros equipos LUMA</h2>
     <div class="relacionados-grid">
       <a href="/camillas-electricas/premium/" class="relacionado-card">
-        <img src="/images\luma-premium\portada-luma-premium-blanca.webp" alt="LUMA Premium" width="300" height="300" loading="lazy">
-        <span>LUMA Premium</span>
+        <img src="/images/luma-premium/portada-luma-premium-blanca.webp" alt="Camilla eléctrica LUMA Premium" width="300" height="300" loading="lazy">
+        <span>LUMA Premium<span class="relacionado-desc">Camilla eléctrica de 3 motores para estética</span></span>
       </a>
-      <a href="/carritos-auxiliares/luma-cart/" class="relacionado-card">
-        <img src="/images\luma-cart\image-1.webp" alt="LUMA Cart" width="300" height="300" loading="lazy">
-        <span>LUMA Cart</span>
+      <a href="/camillas-electricas/one/" class="relacionado-card">
+        <img src="/images/luma-one/luma-one-9.webp" alt="Camilla eléctrica LUMA One" width="300" height="300" loading="lazy">
+        <span>LUMA One<span class="relacionado-desc">Camilla eléctrica de 3 motores con botonera de pie</span></span>
       </a>
       <a href="/carritos-auxiliares/luma-tech/" class="relacionado-card">
-        <img src="/images\luma-tech\luma-tech-1.webp" alt="LUMA Tech" width="300" height="300" loading="lazy">
-        <span>LUMA Tech</span>
+        <img src="/images/luma-tech/luma-tech-1.webp" alt="LUMA Tech, carrito reforzado para aparatología" width="300" height="300" loading="lazy">
+        <span>LUMA Tech<span class="relacionado-desc">Carrito para aparatología estética</span></span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-seccion bg-fondo">
+  <div class="faq-inner">
+    <h2>Preguntas frecuentes sobre la Luminaria LED LUMA</h2>
+    <div class="faq-lista">
+
+      <details class="faq-item">
+        <summary>¿Qué diferencia hay entre color de luz cálida y blanca?</summary>
+        <div class="faq-respuesta">
+          <p>La <strong>luz blanca (fría)</strong> es la más usada en procedimientos médicos y estéticos: brinda alta fidelidad cromática y visibilidad de detalle. La <strong>luz cálida</strong> es ideal para espacios de bienestar y consultas donde el confort visual del paciente es prioritario. La luminaria LUMA te permite elegir el color según tu práctica.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Viene en distintos tamaños?</summary>
+        <div class="faq-respuesta">
+          <p>No, la Luminaria LED LUMA tiene <strong>un tamaño único</strong>. Lo que sí es regulable es su <strong>altura</strong>, mediante una unión telescópica en el caño vertical, lo que le permite adaptarse a la postura del profesional y a la altura de la camilla.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Tiene intensidad regulable?</summary>
+        <div class="faq-respuesta">
+          <p>Sí. La intensidad de luz es <strong>regulable</strong>, lo que permite ajustar la iluminación según el procedimiento y las preferencias del profesional.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Tiene garantía oficial?</summary>
+        <div class="faq-respuesta">
+          <p>Sí. Todos los productos LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
+        </div>
+      </details>
+
     </div>
   </div>
 </section>
@@ -294,51 +337,6 @@ instagram_reels:
       <button type="button" class="testimonio-carousel-nav testimonio-carousel-next" data-testimonio-next aria-label="Testimonio siguiente">
         <i class="fas fa-chevron-right" aria-hidden="true"></i>
       </button>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq-seccion bg-fondo">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre la Luminaria LED LUMA</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿Cuándo va a estar disponible la luminaria?</summary>
-        <div class="faq-respuesta">
-          <p>La Luminaria LED LUMA está <strong>sin stock al momento</strong>, con ingreso estimado en aproximadamente 2 meses. Si querés reservar tu unidad o que te avisemos cuando llegue, escribinos por WhatsApp y lo coordinamos.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Qué diferencia hay entre color de luz cálida y blanca?</summary>
-        <div class="faq-respuesta">
-          <p>La <strong>luz blanca (fría)</strong> es la más usada en procedimientos médicos y estéticos: brinda alta fidelidad cromática y visibilidad de detalle. La <strong>luz cálida</strong> es ideal para espacios de bienestar y consultas donde el confort visual del paciente es prioritario. La luminaria LUMA te permite elegir el color según tu práctica.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Viene en distintos tamaños?</summary>
-        <div class="faq-respuesta">
-          <p>No, la Luminaria LED LUMA tiene <strong>un tamaño único</strong>. Lo que sí es regulable es su <strong>altura</strong>, mediante una unión telescópica en el caño vertical, lo que le permite adaptarse a la postura del profesional y a la altura de la camilla.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene intensidad regulable?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. La intensidad de luz es <strong>regulable</strong>, lo que permite ajustar la iluminación según el procedimiento y las preferencias del profesional.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene garantía oficial?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. Todos los productos LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
-        </div>
-      </details>
-
     </div>
   </div>
 </section>

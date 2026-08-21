@@ -3,6 +3,8 @@ layout: hub.njk
 title: "Carritos Auxiliares para Estética | LUMA"
 description: "Carritos auxiliares de diseño para cabinas profesionales: LUMA Cart, LUMA Tech y Cart Gold. Mobiliario que acompaña la línea LUMA."
 canonical: "https://camillasluma.com/carritos-auxiliares/"
+ogImage: "/images/og/carritos-auxiliares.jpg"
+ogImageAlt: "Carritos auxiliares LUMA para cabinas de estética."
 # Mensaje precargado del link de WhatsApp en esta página (ver _data/eleventyComputed.js).
 waMensaje: "Hola! Quiero más información sobre los carritos auxiliares LUMA."
 schemaHub:
@@ -34,6 +36,10 @@ schemaFaqs:
     </div>
   </div>
 </section>
+
+{# La ruta va después del banner, sobre el fondo de la página. #}
+{% set migasHub = true %}
+{% include "components/breadcrumbs.njk" %}
 
 <!-- INTRO -->
 <section class="hub-seccion">

@@ -3,6 +3,8 @@ layout: product.njk
 title: "Camilla Ginecológica Eléctrica 3 Motores | LUMA"
 description: "Camilla ginecológica eléctrica con pierneras ajustables y removibles, iluminación LED en base y comando de mano. Para consultorios médicos en Argentina."
 canonical: "https://camillasluma.com/camillas-electricas/ginecologica/"
+ogImage: "/images/og/ginecologica.jpg"
+ogImageAlt: "Camilla ginecológica eléctrica LUMA con pierneras ajustables."
 # Mensaje precargado del link de WhatsApp en esta página (ver _data/eleventyComputed.js).
 waMensaje: "Hola! Quiero más información sobre la Camilla Ginecológica LUMA."
 schemaProduct:
@@ -37,6 +39,9 @@ instagram_reels:
 
 <!-- HERO DE PRODUCTO -->
 <section class="producto-hero">
+  {# La ruta va adentro del hero para tomar su fondo blanco. #}
+  {% include "components/breadcrumbs.njk" %}
+
   <div class="producto-hero-inner">
     <div class="producto-hero-imagen">
       <div class="carousel" data-carousel>
@@ -98,8 +103,8 @@ instagram_reels:
       </div>
     </div>
     <div class="producto-hero-info">
-      <p class="modelo-tipo">Camilla Médica Especializada · 3 Motores + Pierneras</p>
-      <h1>LUMA Ginecológica</h1>
+      <p class="modelo-tipo">Pierneras Ajustables · LED en Base · Comando de Mano</p>
+      <h1>LUMA Ginecológica <span class="h1-categoria">Camilla ginecológica eléctrica de 3 motores</span></h1>
       <p class="producto-bajada">Diseñada para consultorios que requieren máxima precisión. Pierneras ajustables y removibles para doble uso, iluminación LED integrada y comando de mano.</p>
       <div class="producto-badges">
         <span class="badge"><i class="fas fa-shield-alt" aria-hidden="true"></i> Garantía oficial</span>
@@ -257,20 +262,65 @@ instagram_reels:
 <!-- PRODUCTOS RELACIONADOS -->
 <section class="producto-seccion">
   <div class="producto-seccion-inner">
-    <h2>Completá tu consultorio</h2>
+    <h2>Otros equipos LUMA</h2>
     <div class="relacionados-grid">
-      <a href="/camillas-electricas/premium/" class="relacionado-card">
-        <img src="/images\luma-premium\portada-luma-premium-blanca.webp" alt="LUMA Premium" width="300" height="300" loading="lazy">
-        <span>LUMA Premium</span>
+      <a href="/camillas-electricas/one/" class="relacionado-card">
+        <img src="/images/luma-one/luma-one-9.webp" alt="Camilla eléctrica LUMA One" width="300" height="300" loading="lazy">
+        <span>LUMA One<span class="relacionado-desc">Camilla eléctrica de 3 motores con botonera de pie</span></span>
       </a>
       <a href="/carritos-auxiliares/luma-tech/" class="relacionado-card">
-        <img src="/images\luma-tech\luma-tech-1.webp" alt="LUMA Tech" width="300" height="300" loading="lazy">
-        <span>LUMA Tech</span>
+        <img src="/images/luma-tech/luma-tech-1.webp" alt="LUMA Tech, carrito reforzado para aparatología" width="300" height="300" loading="lazy">
+        <span>LUMA Tech<span class="relacionado-desc">Carrito para aparatología estética</span></span>
       </a>
       <a href="/luminarias/" class="relacionado-card">
-        <img src="/images/luma_luminaria.webp" alt="Luminaria LED LUMA" width="300" height="300" loading="lazy">
-        <span>Luminaria LED</span>
+        <img src="/images/luma_luminaria.webp" alt="Luminaria LED LUMA para consultorio" width="300" height="300" loading="lazy">
+        <span>Luminaria LED LUMA<span class="relacionado-desc">Lámpara LED para consultorio estético</span></span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-seccion bg-fondo">
+  <div class="faq-inner">
+    <h2>Preguntas frecuentes sobre la LUMA Ginecológica</h2>
+    <div class="faq-lista">
+
+      <details class="faq-item">
+        <summary>¿Se puede usar como camilla estándar además de ginecológica?</summary>
+        <div class="faq-respuesta">
+          <p>Sí, ese es uno de sus mayores diferenciales. Las pierneras son <strong>ajustables y removibles</strong>: al sacarlas, la camilla funciona exactamente como una camilla estándar de 3 motores. Un solo equipo para consultas de rutina y procedimientos especializados.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Las pierneras se pueden quitar fácilmente?</summary>
+        <div class="faq-respuesta">
+          <p>Sí. Las pierneras están diseñadas para montarse y retirarse de forma sencilla, sin herramientas. El cambio entre modo ginecológico y modo estándar se hace en segundos.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Tiene iluminación LED integrada?</summary>
+        <div class="faq-respuesta">
+          <p>Sí, la LUMA Ginecológica incluye <strong>iluminación LED integrada en la base</strong>. Esto permite trabajar con mayor visibilidad sin necesidad de una lámpara de consultorio adicional para procedimientos de la zona.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cuántos motores tiene?</summary>
+        <div class="faq-respuesta">
+          <p>Tiene <strong>3 motores independientes</strong>: altura, respaldo y apoya-piernas. El ajuste se realiza mediante comando de mano, lo que permite al profesional operar la camilla sin interrumpir el procedimiento.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Tiene garantía oficial?</summary>
+        <div class="faq-respuesta">
+          <p>Sí. Todos los productos LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
+        </div>
+      </details>
+
     </div>
   </div>
 </section>
@@ -359,47 +409,3 @@ instagram_reels:
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq-seccion bg-fondo">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre la LUMA Ginecológica</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿Se puede usar como camilla estándar además de ginecológica?</summary>
-        <div class="faq-respuesta">
-          <p>Sí, ese es uno de sus mayores diferenciales. Las pierneras son <strong>ajustables y removibles</strong>: al sacarlas, la camilla funciona exactamente como una camilla estándar de 3 motores. Un solo equipo para consultas de rutina y procedimientos especializados.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Las pierneras se pueden quitar fácilmente?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. Las pierneras están diseñadas para montarse y retirarse de forma sencilla, sin herramientas. El cambio entre modo ginecológico y modo estándar se hace en segundos.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene iluminación LED integrada?</summary>
-        <div class="faq-respuesta">
-          <p>Sí, la LUMA Ginecológica incluye <strong>iluminación LED integrada en la base</strong>. Esto permite trabajar con mayor visibilidad sin necesidad de una lámpara de consultorio adicional para procedimientos de la zona.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Cuántos motores tiene?</summary>
-        <div class="faq-respuesta">
-          <p>Tiene <strong>3 motores independientes</strong>: altura, respaldo y apoya-piernas. El ajuste se realiza mediante comando de mano, lo que permite al profesional operar la camilla sin interrumpir el procedimiento.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene garantía oficial?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. Todos los productos LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>

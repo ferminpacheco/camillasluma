@@ -3,6 +3,8 @@ layout: product.njk
 title: "LUMA Tech — Carrito Reforzado para Aparatología Estética | LUMA"
 description: "Carrito auxiliar de estructura reforzada para aparatología estética: mesa amplia, aperturas frontales, panel trasero para cables y ruedas con traba. Ideal para consultorios y cabinas profesionales."
 canonical: "https://camillasluma.com/carritos-auxiliares/luma-tech/"
+ogImage: "/images/og/luma-tech.jpg"
+ogImageAlt: "LUMA Tech, carrito reforzado para aparatología estética."
 # Mensaje precargado del link de WhatsApp en esta página (ver _data/eleventyComputed.js).
 waMensaje: "Hola! Quiero más información sobre el LUMA Tech."
 schemaProduct:
@@ -32,6 +34,9 @@ instagram_reels:
 
 <!-- HERO DE PRODUCTO -->
 <section class="producto-hero">
+  {# La ruta va adentro del hero para tomar su fondo blanco. #}
+  {% include "components/breadcrumbs.njk" %}
+
   <div class="producto-hero-inner">
     <div class="producto-hero-imagen">
       <div class="carousel" data-carousel>
@@ -84,8 +89,8 @@ instagram_reels:
       </div>
     </div>
     <div class="producto-hero-info">
-      <p class="modelo-tipo">Mobiliario Auxiliar para Aparatología</p>
-      <h1>LUMA Tech</h1>
+      <p class="modelo-tipo">Estructura Reforzada · Gestión de Cables · Ruedas con Traba</p>
+      <h1>LUMA Tech <span class="h1-categoria">Carrito para aparatología estética</span></h1>
       <p class="producto-bajada">Diseño y funcionalidad para espacios profesionales. Estructura reforzada, mesa amplia y gestión de cables para sostener y trasladar equipos de aparatología estética o médica de forma segura.</p>
       <div class="producto-badges">
         <span class="badge"><i class="fas fa-shield-alt" aria-hidden="true"></i> Garantía oficial</span>
@@ -319,20 +324,65 @@ instagram_reels:
 <!-- RELACIONADOS -->
 <section class="producto-seccion">
   <div class="producto-seccion-inner">
-    <h2>Otros accesorios LUMA</h2>
+    <h2>Otros equipos LUMA</h2>
     <div class="relacionados-grid">
       <a href="/carritos-auxiliares/luma-cart/" class="relacionado-card">
-        <img src="/images/luma-cart/image-1.webp" alt="LUMA Cart" width="300" height="300" loading="lazy">
-        <span>LUMA Cart</span>
+        <img src="/images/luma-cart/image-1.webp" alt="LUMA Cart, carrito auxiliar blanco" width="300" height="300" loading="lazy">
+        <span>LUMA Cart<span class="relacionado-desc">Carrito auxiliar para cabinas de estética</span></span>
       </a>
-      <a href="/luminarias/" class="relacionado-card">
-        <img src="/images/luma_luminaria.webp" alt="Luminaria LED LUMA" width="300" height="300" loading="lazy">
-        <span>Luminaria LED</span>
+      <a href="/carritos-auxiliares/cart-gold/" class="relacionado-card">
+        <img src="/images/luma-cart-gold/luma-cart-gold-8.webp" alt="LUMA Cart Gold, carrito auxiliar dorado" width="300" height="300" loading="lazy">
+        <span>LUMA Cart Gold<span class="relacionado-desc">Carrito auxiliar premium para estética</span></span>
       </a>
-      <a href="/camillas-electricas/premium/" class="relacionado-card">
-        <img src="/images\luma-premium\portada-luma-premium-blanca.webp" alt="LUMA Premium" width="300" height="300" loading="lazy">
-        <span>LUMA Premium</span>
+      <a href="/camillas-electricas/ginecologica/" class="relacionado-card">
+        <img src="/images/luma-ginecologica/luma-ginecologica-8.webp" alt="Camilla ginecológica eléctrica LUMA" width="300" height="300" loading="lazy">
+        <span>LUMA Ginecológica<span class="relacionado-desc">Camilla ginecológica eléctrica de 3 motores</span></span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-seccion bg-fondo">
+  <div class="faq-inner">
+    <h2>Preguntas frecuentes sobre el LUMA Tech</h2>
+    <div class="faq-lista">
+
+      <details class="faq-item">
+        <summary>¿Cómo se organizan los cables de los equipos?</summary>
+        <div class="faq-respuesta">
+          <p>El LUMA Tech tiene una <strong>apertura trasera específica para el paso de cables</strong> y un <strong>panel de acceso trasero</strong>, señalizado con la leyenda "OPEN", que se desliza hacia arriba para llegar a la conexión de los equipos. El frente del carrito queda limpio y sin cables a la vista.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Soporta el peso de equipos de aparatología pesada?</summary>
+        <div class="faq-respuesta">
+          <p>Sí. El LUMA Tech tiene <strong>estructura reforzada</strong>, diseñada para sostener, trasladar y utilizar equipos de aparatología estética o médica de forma segura. Las ruedas incluyen trabas para fijar el carrito en posición durante el tratamiento.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Para qué sirven las aperturas frontales?</summary>
+        <div class="faq-respuesta">
+          <p>Las <strong>dos aperturas curvas</strong>, con marco en gris plata, permiten guardar productos y accesorios al alcance de la mano durante el procedimiento.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿En qué se diferencia del LUMA Cart?</summary>
+        <div class="faq-respuesta">
+          <p>El <strong>LUMA Tech</strong> está diseñado para aparatología: estructura reforzada, mesa amplia y gestión de cables. El <strong>LUMA Cart</strong> es el modelo de uso general, más estético y liviano, ideal para productos e insumos de uso diario. <a href="/carritos-auxiliares/luma-cart/">Ver LUMA Cart →</a></p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Tiene garantía oficial?</summary>
+        <div class="faq-respuesta">
+          <p>Sí. Todos los accesorios LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
+        </div>
+      </details>
+
     </div>
   </div>
 </section>
@@ -417,51 +467,6 @@ instagram_reels:
       <button type="button" class="testimonio-carousel-nav testimonio-carousel-next" data-testimonio-next aria-label="Testimonio siguiente">
         <i class="fas fa-chevron-right" aria-hidden="true"></i>
       </button>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq-seccion bg-fondo">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre el LUMA Tech</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿Cómo se organizan los cables de los equipos?</summary>
-        <div class="faq-respuesta">
-          <p>El LUMA Tech tiene una <strong>apertura trasera específica para el paso de cables</strong> y un <strong>panel de acceso trasero</strong>, señalizado con la leyenda "OPEN", que se desliza hacia arriba para llegar a la conexión de los equipos. El frente del carrito queda limpio y sin cables a la vista.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Soporta el peso de equipos de aparatología pesada?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. El LUMA Tech tiene <strong>estructura reforzada</strong>, diseñada para sostener, trasladar y utilizar equipos de aparatología estética o médica de forma segura. Las ruedas incluyen trabas para fijar el carrito en posición durante el tratamiento.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Para qué sirven las aperturas frontales?</summary>
-        <div class="faq-respuesta">
-          <p>Las <strong>dos aperturas curvas</strong>, con marco en gris plata, permiten guardar productos y accesorios al alcance de la mano durante el procedimiento.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿En qué se diferencia del LUMA Cart?</summary>
-        <div class="faq-respuesta">
-          <p>El <strong>LUMA Tech</strong> está diseñado para aparatología: estructura reforzada, mesa amplia y gestión de cables. El <strong>LUMA Cart</strong> es el modelo de uso general, más estético y liviano, ideal para productos e insumos de uso diario. <a href="/carritos-auxiliares/luma-cart/">Ver LUMA Cart →</a></p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene garantía oficial?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. Todos los accesorios LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
-        </div>
-      </details>
-
     </div>
   </div>
 </section>
