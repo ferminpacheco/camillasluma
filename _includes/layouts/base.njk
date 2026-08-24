@@ -87,9 +87,14 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+  {# El filtro `asset` le agrega ?v=<hash-del-contenido> a la URL (ver
+     .eleventy.js). Es lo que habilita la caché de un año e `immutable`
+     que _headers aplica sobre /assets/css/ y /assets/js/: cuando el
+     archivo cambia, cambia el hash y el navegador lo baja de nuevo.
+     Si se suma otro CSS o JS propio, tiene que pasar por este filtro. #}
   <!-- Estilos LUMA -->
-  <link rel="stylesheet" href="/assets/css/tokens.css">
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="{{ '/assets/css/tokens.css' | asset }}">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | asset }}">
 
   <!-- Schema global: Organization + WebSite -->
   <script type="application/ld+json">
@@ -153,6 +158,6 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <script src="/assets/js/main.js" defer></script>
+  <script src="{{ '/assets/js/main.js' | asset }}" defer></script>
 </body>
 </html>

@@ -52,6 +52,30 @@
             {% endif %}
             <p class="congreso-descripcion">{{ congreso.descripcion }}</p>
             {#
+              Link al sitio oficial del congreso. Es opcional: viene de
+              `link` en _data/congresos.js y hoy solo lo tienen RADLA y
+              Masterhub. Sale a un dominio de terceros, así que va en
+              pestaña nueva con rel="noopener".
+
+              El rótulo visible es "Ver más" en todas las cards. Como en la
+              página hay varios links con ese mismo texto, el `aria-label`
+              suma el nombre del congreso: quien navega por lista de links
+              con lector de pantalla escucha a dónde va cada uno, en vez de
+              "Ver más, Ver más". Arranca con el texto visible a propósito
+              (criterio WCAG 2.5.3, Label in Name).
+            #}
+            {% if congreso.link %}
+              <a
+                class="congreso-link"
+                href="{{ congreso.link }}"
+                target="_blank"
+                rel="noopener"
+                aria-label="Ver más sobre {{ congreso.nombre }}"
+              >{# El &nbsp; ata la flecha a la última palabra: sin él, en las
+                  cards angostas el ↗ cae solo en la línea de abajo. #}
+                {{- "Ver más" }}&nbsp;<span aria-hidden="true">↗</span></a>
+            {% endif %}
+            {#
               ⚠️ PENDIENTE DE CONFIRMACIÓN (docs/luma-seccion-congresos.md §6):
               - {{CONGRESO_ANIO}}: año / edición de cada participación.
               - {{CONGRESO_PARTICIPACION}}: expositor con stand vs. asistente.

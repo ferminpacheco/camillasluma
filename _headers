@@ -1,0 +1,48 @@
+# =============================================
+# LUMA — Cache-Control para Netlify
+#
+# Netlify lee este archivo desde la raíz de la carpeta publicada, así que
+# llega a _site/ por passthrough (ver .eleventy.js). No hay netlify.toml a
+# propósito: la config del build vive en el panel de Netlify y no queremos
+# que un archivo del repo la pise.
+#
+# Sin este archivo Netlify sirve TODO con `max-age=0, must-revalidate`: el
+# navegador vuelve a preguntar por cada imagen en cada visita. Con ETag no
+# se re-descargan los bytes (responde 304), pero igual hay un viaje de ida
+# y vuelta por archivo — en una ficha de producto son 9 imágenes.
+#
+# ⚠️ Las reglas se aplican en orden y la más específica gana. Por eso el
+# `/*` general va PRIMERO y las excepciones después.
+# =============================================
+
+# Default para todo: el HTML nunca se cachea, así un deploy se ve al toque.
+# También cubre /sitemap.xml, /robots.txt y /assets/pdf/ (ver más abajo).
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# CSS y JS: un año, inmutable. Se puede porque base.njk los referencia con
+# el filtro `asset`, que le pega ?v=<hash-del-contenido> a la URL. Si el
+# archivo cambia, cambia el hash y el navegador lo baja de nuevo solo.
+# NO agregar acá nada que no lleve ese filtro.
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Imágenes: un año, pero SIN `immutable` a propósito. Los nombres no llevan
+# hash, así que si algún día se reemplaza una foto manteniendo el nombre,
+# `immutable` haría que el navegador ni siquiera revalide en un hard
+# refresh. Sin él, Ctrl+F5 alcanza para verla.
+#
+# Regla práctica: al reemplazar una foto, cambiarle el nombre de archivo.
+#
+# Incluye /images/og/*.jpg. Si se regenera con `npm run og`, las redes
+# igual cachean las previews por su cuenta; para forzarlas hay que usar el
+# depurador de cada plataforma, no depende de este header.
+/images/*
+  Cache-Control: public, max-age=31536000
+
+# El PDF de garantía NO está acá a propósito: cuelga de /assets/ pero no
+# lleva hash en la URL, y es un documento legal. Cae en el `/*` de arriba y
+# se revalida siempre, así una versión nueva llega enseguida.

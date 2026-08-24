@@ -1068,20 +1068,37 @@ body > section:first-of-type {
   background-color: var(--color-blanco);
 }
 
+/* La columna de la foto se estira hasta el alto de la columna de texto
+   (`stretch`), en vez de quedar clavada en un cuadrado más bajo que el
+   bloque de copy. Antes, con `align-items: center` y el track en 1/1, la
+   imagen medía lo mismo que su ancho y quedaba un hueco visible a los
+   costados en las 8 fichas de producto.
+
+   El texto se centra por su cuenta (`align-self` más abajo), así que si
+   alguna vez la foto fuera la más alta de la fila, el copy no queda
+   pegado arriba. El reparto de ancho también se invirtió: la foto pasó a
+   ser la columna ancha. */
 .producto-hero-inner {
   display: flex;
   gap: 3rem;
-  align-items: center;
-  max-width: 1200px;
+  align-items: stretch;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 3rem 5%;
 }
 
 .producto-hero-imagen {
-  flex: 1;
+  flex: 1.25;
+  display: flex;
   background-color: var(--color-principal);
   border-radius: 8px;
   overflow: hidden;
+}
+
+/* El carrusel llena la columna para que el track tenga un alto definido
+   contra el cual resolver su `height: 100%`. */
+.producto-hero-imagen .carousel {
+  flex: 1;
 }
 
 .producto-hero-imagen .camilla-img {
@@ -1097,6 +1114,16 @@ body > section:first-of-type {
   align-items: center;
   gap: 0.75rem;
   margin: 1rem 0 1.5rem;
+}
+
+/* Nota al pie del selector de color. Nació en /camillas-electricas/premium/
+   para desviar a quien busca el dorado hacia la línea Gold, que dejó de ser
+   un color de la Premium. */
+.producto-nota-color {
+  font-size: 0.85em;
+  opacity: 0.75;
+  line-height: 1.5;
+  margin: -0.75rem 0 1.5rem;
 }
 
 .color-swatch {
@@ -1134,9 +1161,16 @@ body > section:first-of-type {
   width: 100%;
 }
 
+/* `height: 100%` gana cuando el contenedor tiene alto definido — el hero
+   de producto, donde la columna se estira al alto del texto. Cuando no lo
+   tiene (mobile, donde el hero pasa a una sola columna), no resuelve y
+   manda el `aspect-ratio`: el track vuelve a ser cuadrado. Las fotos son
+   1:1 y van con `object-fit: cover`, así que el recorte al estirarse es
+   de unos pocos puntos porcentuales a los costados. */
 .carousel-track {
   position: relative;
   width: 100%;
+  height: 100%;
   aspect-ratio: 1 / 1;
 }
 
@@ -1311,7 +1345,8 @@ body > section:first-of-type {
 }
 
 .producto-hero-info {
-  flex: 1.2;
+  flex: 1;
+  align-self: center;
 }
 
 .producto-hero-info h1 {
@@ -1730,6 +1765,14 @@ body > section:first-of-type {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
+}
+
+/* Variante de 4 columnas: la usa /camillas-electricas/ desde que se sumó
+   la línea Gold. Va acá y no en el breakpoint porque la regla de 2
+   columnas del media query de tablet aparece más abajo en el archivo y,
+   a igual especificidad, gana ella. El hub de carritos sigue en 3. */
+.hub-productos-grid--cuatro {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .hub-producto-card {
@@ -3832,8 +3875,15 @@ a.reels-seguir:hover {
 
 /* ── Contenido ── */
 
+/* Columna flexible para que el link al sitio del congreso caiga al pie de
+   la card (`margin-top: auto` más abajo). Sin esto quedaría pegado al
+   final de la descripción y, como las descripciones tienen largos
+   distintos, los links de las cards no alinearían entre sí. */
 .congreso-info {
   padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .congreso-especialidad {
@@ -3862,6 +3912,38 @@ a.reels-seguir:hover {
   font-size: 0.9rem;
   line-height: 1.55;
   color: var(--color-texto);
+}
+
+/* Link al sitio oficial del congreso (opcional, ver bloque-congresos.njk).
+   `margin-top: auto` lo empuja al pie de la card; el `align-self` evita
+   que el <a>, como item flex, se estire a todo el ancho y quede con un
+   área clickeable mucho más grande que su texto. */
+.congreso-link {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-principal);
+  text-decoration: none;
+  background-image: linear-gradient(var(--color-principal), var(--color-principal));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  transition: background-size var(--dur-ui) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .congreso-link:hover {
+    background-size: 100% 1px;
+  }
+}
+
+.congreso-link:focus-visible {
+  outline: 2px solid var(--color-principal);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 /* Dos columnas antes de que la card quede demasiado angosta para el

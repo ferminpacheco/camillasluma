@@ -1,0 +1,464 @@
+---
+layout: product.njk
+title: "LUMA Gold | Camilla Eléctrica Dorada + Silla + LUMA Cart Gold"
+description: "La línea dorada de LUMA: camilla eléctrica de 3 motores en acabado gold, silla profesional dorada y LUMA Cart Gold incluidos. Para clínicas de alta gama en Argentina."
+canonical: "https://camillasluma.com/camillas-electricas/luma-gold/"
+ogImage: "/images/og/luma-gold.jpg"
+ogImageAlt: "Set LUMA Gold en un consultorio: camilla eléctrica de base dorada, silla profesional y carrito LUMA Cart Gold."
+# Mensaje precargado del link de WhatsApp en esta página (ver _data/eleventyComputed.js).
+waMensaje: "Hola! Quiero más información sobre la línea LUMA Gold."
+schemaProduct:
+  name: "LUMA Gold — Camilla Eléctrica Dorada con Silla y LUMA Cart Gold"
+  description: "Set LUMA Gold: camilla eléctrica de 3 motores en acabado dorado, silla profesional dorada y carrito auxiliar LUMA Cart Gold incluidos. Motores certificados CE, 3 modos de uso y colchón de espuma 4D de 15 cm."
+  image: "/images/luma-gold/luma-gold-set-1.webp"
+  outOfStock: false
+schemaFaqs:
+  - q: "¿Qué incluye la LUMA Gold?"
+    a: "La LUMA Gold incluye tres piezas: la camilla eléctrica de 3 motores en acabado dorado, la silla profesional dorada y el carrito auxiliar LUMA Cart Gold."
+  - q: "¿En qué se diferencia la LUMA Gold de la LUMA Premium?"
+    a: "Comparten la misma ficha técnica: 3 motores certificados CE, 6000 N de empuje, reclinación de 0° a 90° y colchón de espuma 4D de 15 cm. La LUMA Gold se diferencia por su acabado dorado y porque es la única línea que incluye la silla profesional dorada y el carrito LUMA Cart Gold."
+  - q: "¿Cuántos motores tiene la LUMA Gold?"
+    a: "Tiene 3 motores independientes que controlan la altura general, el respaldo y el apoyapiernas."
+  - q: "¿La LUMA Gold viene en otros colores?"
+    a: "No. La LUMA Gold es la línea dorada de LUMA. Si buscás la camilla en blanco, beige o negro, el modelo es la LUMA Premium."
+  - q: "¿El LUMA Cart Gold viene incluido?"
+    a: "Sí. El carrito auxiliar LUMA Cart Gold, de tres niveles y cajón central, está incluido en el set LUMA Gold. También se vende por separado."
+  - q: "¿La LUMA Gold tiene garantía?"
+    a: "Sí, cuenta con garantía oficial LUMA. Consultá los términos completos en nuestra página de garantía."
+  - q: "¿Hacen envíos a todo el país?"
+    a: "Sí, LUMA realiza envíos a todo el país. Consultá disponibilidad y costos de logística."
+
+# ── REELS DE INSTAGRAM ──────────────────────────────────────────
+# ⚠️ A CONFIRMAR: faltan los reels que muestren específicamente la línea
+# dorada completa (camilla + silla + Cart Gold). Mientras la lista esté
+# vacía el bloque queda comentado más abajo — no se reutilizan los reels
+# de la Premium blanca porque muestran otro producto.
+instagram_reels: []
+---
+
+{#
+  Fotos propias de la línea en /images/luma-gold/ (las pasó Marcelo el
+  24-08-2026). Las tres cuadradas muestran el set completo desde distintos
+  ángulos; `luma-gold-consultorio.webp` es la apaisada y es la que alimenta
+  el banner, la ficha de posición sillón y la tarjeta OG.
+  Los PNG originales quedaron en _originales/pre-webp/luma-gold/.
+#}
+
+<!-- HERO DE PRODUCTO -->
+<section class="producto-hero">
+  {# La ruta va adentro del hero para tomar su fondo blanco. #}
+  {% include "components/breadcrumbs.njk" %}
+
+  <div class="producto-hero-inner">
+    <div class="producto-hero-imagen">
+      <div class="carousel" data-carousel>
+        <div class="carousel-track">
+          <img
+            src="/images/luma-gold/luma-gold-set-1.webp"
+            alt="Set LUMA Gold en un consultorio: camilla eléctrica de base dorada, silla profesional y carrito LUMA Cart Gold"
+            class="carousel-slide is-active"
+            width="1024"
+            height="1024"
+            loading="eager"
+          >
+          <img
+            src="/images/luma-gold/luma-gold-set-2.webp"
+            alt="Camilla eléctrica LUMA Gold en posición sillón, con la silla profesional a juego en primer plano"
+            class="carousel-slide"
+            width="1024"
+            height="1024"
+            loading="lazy"
+          >
+          <img
+            src="/images/luma-gold/luma-gold-cart-1.webp"
+            alt="LUMA Cart Gold de tres niveles y cajón central, con la camilla LUMA Gold detrás"
+            class="carousel-slide"
+            width="1024"
+            height="1024"
+            loading="lazy"
+          >
+        </div>
+        <button type="button" class="carousel-arrow carousel-prev" data-carousel-prev aria-label="Imagen anterior">
+          <i class="fas fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="carousel-arrow carousel-next" data-carousel-next aria-label="Imagen siguiente">
+          <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </button>
+        <div class="carousel-dots" data-carousel-dots>
+          <button type="button" class="carousel-dot is-active" data-carousel-goto="0" aria-label="Ver el set completo"></button>
+          <button type="button" class="carousel-dot" data-carousel-goto="1" aria-label="Ver la camilla y la silla"></button>
+          <button type="button" class="carousel-dot" data-carousel-goto="2" aria-label="Ver el LUMA Cart Gold"></button>
+        </div>
+      </div>
+    </div>
+    <div class="producto-hero-info">
+      <p class="modelo-tipo">Línea Dorada · Silla y LUMA Cart Gold Incluidos</p>
+      <h1>LUMA Gold <span class="h1-categoria">Camilla eléctrica dorada de 3 motores con silla y carrito</span></h1>
+      <p class="producto-bajada">La línea de máxima jerarquía de LUMA. Un set completo en acabado dorado: la camilla eléctrica de 3 motores, la silla profesional y el LUMA Cart Gold, pensados para trabajar juntos en consultorios que buscan diferenciarse.</p>
+      <div class="producto-badges">
+        <span class="badge"><i class="fas fa-gem" aria-hidden="true"></i> Set completo en dorado</span>
+        <span class="badge"><i class="fas fa-shield-alt" aria-hidden="true"></i> Garantía oficial</span>
+        <span class="badge"><i class="fas fa-truck" aria-hidden="true"></i> Envíos a todo el país</span>
+      </div>
+      <div class="cta-doble">
+        <a href="{{ whatsappLink }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
+        <a href="/nosotros/#showrooms" class="cta-button-light">Agendá una visita al showroom</a>
+      </div>
+      <div class="precio-box">
+        <p class="precio-actual">Precio: a consultar</p>
+        <p class="precio-iva-nota">Venta por cotización. Escribinos para recibir el valor actualizado del set completo.</p>
+      </div>
+      {% include "components/bloque-pago-envio.njk" %}
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ INCLUYE EL SET -->
+<section class="producto-seccion">
+  <div class="producto-seccion-inner">
+    <h2>Qué incluye la LUMA Gold</h2>
+    <p>La LUMA Gold no es un color más de la línea: es un set pensado como conjunto. Las tres piezas comparten el mismo acabado dorado, de modo que el consultorio queda armado de una sola vez, sin combinar equipamiento de distintas líneas.</p>
+    <div class="material-cards-grid" style="margin-top: 1.5rem;">
+      <div class="material-card">
+        <div class="material-card-icono"><i class="fas fa-bed" aria-hidden="true"></i></div>
+        <h3>Camilla eléctrica dorada</h3>
+        <p>3 motores independientes, reclinación de 0° a 90° y 3 modos de uso: sillón, semirreclinado y camilla plana.</p>
+      </div>
+      <div class="material-card">
+        <div class="material-card-icono"><i class="fas fa-chair" aria-hidden="true"></i></div>
+        <h3>Silla profesional dorada</h3>
+        <p>La silla del profesional, en el mismo acabado que la camilla. Incluida en el set, no es un adicional.</p>
+      </div>
+      <div class="material-card">
+        <div class="material-card-icono"><i class="fas fa-dolly" aria-hidden="true"></i></div>
+        <h3>LUMA Cart Gold</h3>
+        <p>Carrito auxiliar de tres niveles con cajón central y estructura de tubo en dorado pulido. <a href="/carritos-auxiliares/cart-gold/">Ver su ficha completa →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "components/separador.njk" %}
+
+<!-- PARA QUIÉN ES -->
+<section class="producto-seccion" style="padding-top: 0;">
+  <div class="producto-seccion-inner">
+    <h2>¿Para quién es la LUMA Gold?</h2>
+    <p>Para el consultorio donde el equipamiento también comunica. Dermatología, cirugía plástica, medicina estética y estética avanzada: la LUMA Gold entrega la misma tecnología de 3 motores que la línea Premium, pero resuelta como un conjunto dorado que se lee como una decisión de diseño y no como una suma de partes.</p>
+    <p>Si buscás la misma camilla en blanco, beige o negro, el modelo es la <a href="/camillas-electricas/premium/">LUMA Premium</a>.</p>
+  </div>
+</section>
+
+<!-- BANNER -->
+<section class="producto-seccion" style="padding-top: 0;">
+  <div class="producto-seccion-inner">
+    <figure class="producto-banner">
+      <div class="producto-banner-media">
+        <img
+          src="/images/luma-gold/luma-gold-consultorio.webp"
+          alt="Consultorio de estética equipado con el set LUMA Gold completo: camilla, silla y carrito auxiliar"
+          width="1344"
+          height="752"
+          loading="lazy"
+        >
+        <div class="producto-banner-badge">
+          <span class="producto-banner-badge-num">3</span>
+          <span class="producto-banner-badge-label">Piezas en el set</span>
+        </div>
+      </div>
+      <figcaption class="producto-banner-caption">
+        <p>Camilla, silla y carrito con el mismo acabado dorado pulido: el consultorio armado como un conjunto.</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- CARACTERÍSTICAS PRINCIPALES -->
+<section class="producto-seccion bg-fondo">
+  <div class="producto-seccion-inner">
+    <div class="producto-ficha reverse">
+      <div class="ficha-imagen">
+        <img
+          src="/images/luma-gold/luma-gold-base-botonera.webp"
+          alt="Detalle de la base dorada de la camilla LUMA Gold, con la tira de luz LED y la botonera de seis controles"
+          class="camilla-img"
+          width="1024"
+          height="1024"
+          loading="lazy"
+        >
+      </div>
+      <div class="ficha-info">
+        <h2>Características principales</h2>
+        <ul class="features-list">
+          <li><i class="fas fa-check-circle" aria-hidden="true"></i> 3 motores independientes: altura general, respaldo y apoyapiernas</li>
+          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Motores certificados CE, con 6000 N de empuje</li>
+          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Control por comando de mano con cable</li>
+          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Respaldo y apoyapiernas reclinables de 0° a 90°</li>
+          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Carga máxima de 300 kg (sección central)</li>
+          <li><i class="fas fa-check-circle" aria-hidden="true"></i> 3 modos de uso: sillón, semirreclinado y camilla plana</li>
+          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Tapizado en cuero PVC resistente, relleno de espuma 4D (colchón de 15 cm)</li>
+          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Iluminación LED ambiental en la base</li>
+          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Silla profesional dorada y LUMA Cart Gold incluidos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FICHA TÉCNICA -->
+<section class="producto-seccion">
+  <div class="producto-seccion-inner">
+    <h2>Ficha técnica de la camilla</h2>
+
+    <div class="producto-ficha">
+      <div class="ficha-imagen">
+        <img
+          src="/images/luma-gold/luma-gold-camilla-lateral.webp"
+          alt="Camilla eléctrica LUMA Gold de perfil: colchón blanco de espuma 4D sobre base dorada con iluminación LED"
+          class="camilla-img"
+          width="1024"
+          height="1024"
+          loading="lazy"
+        >
+      </div>
+      <div class="ficha-info tabla-specs-grupo">
+        <h3>Sistema eléctrico y capacidad</h3>
+        <table class="tabla-specs">
+          <tbody>
+            <tr><td>Cantidad de motores</td><td>3 (altura general, respaldo, apoyapiernas)</td></tr>
+            <tr><td>Empuje del motor</td><td>6000 N</td></tr>
+            <tr><td>Certificación de motores</td><td>Motores certificados CE</td></tr>
+            <tr><td>Alimentación</td><td>AC 100–245 V · 50/65 Hz</td></tr>
+            <tr><td>Potencia máxima</td><td>300 W</td></tr>
+            <tr><td>Control</td><td>Comando de mano (control remoto con cable)</td></tr>
+            <tr><td>Carga máxima</td><td>300 kg (sección central)</td></tr>
+            <tr><td>Ángulo de reclinación del respaldo</td><td>0° a 90°</td></tr>
+            <tr><td>Ángulo de regulación del apoyapiernas</td><td>0° a 90°</td></tr>
+            <tr><td>Recorrido de elevación</td><td>12 cm</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3>Dimensiones</h3>
+
+    <div class="producto-ficha reverse">
+      <div class="ficha-imagen">
+        <img
+          src="/images/luma-gold/luma-gold-consultorio.webp"
+          alt="Camilla eléctrica LUMA Gold en posición sillón, vista lateral en el consultorio"
+          class="camilla-img"
+          width="1344"
+          height="752"
+          loading="lazy"
+        >
+      </div>
+      <div class="ficha-info tabla-specs-grupo">
+        <p style="font-weight: 600; margin-bottom: 0.5rem;">Posición sillón</p>
+        <table class="tabla-specs">
+          <tbody>
+            <tr><td>Largo total</td><td>190 cm</td></tr>
+            <tr><td>Almohada (ancho × alto)</td><td>44 × 31 cm</td></tr>
+            <tr><td>Sección de cabecera</td><td>44 cm</td></tr>
+            <tr><td>Sección de respaldo</td><td>70 cm</td></tr>
+            <tr><td>Rango de altura</td><td>60 – 76 cm</td></tr>
+            <tr><td>Largo de la base</td><td>120 cm</td></tr>
+            <tr><td>Ancho de la base</td><td>50 cm</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="producto-ficha">
+      <div class="ficha-imagen">
+        <img
+          src="/images/luma-gold/luma-gold-cart-1.webp"
+          alt="LUMA Cart Gold en primer plano, con la camilla LUMA Gold y la silla profesional al fondo"
+          class="camilla-img"
+          width="1024"
+          height="1024"
+          loading="lazy"
+        >
+      </div>
+      <div class="ficha-info tabla-specs-grupo">
+        <p style="font-weight: 600; margin-bottom: 0.5rem;">Posición camilla plana</p>
+        <table class="tabla-specs">
+          <tbody>
+            <tr><td>Largo total</td><td>190 cm</td></tr>
+            <tr><td>Ancho</td><td>71 cm</td></tr>
+            <tr><td>Rango de altura</td><td>60 – 76 cm</td></tr>
+            <tr><td>Largo de la base</td><td>120 cm</td></tr>
+            <tr><td>Ancho de la base</td><td>50 cm</td></tr>
+            <tr><td>Alto de la base</td><td>8 cm</td></tr>
+          </tbody>
+        </table>
+        <p class="placeholder-note" style="margin-top: 0.75rem;">Puede haber una diferencia de 1 a 5 mm en las medidas de cada unidad terminada. Prevalece el producto real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTÍA (bloque corto) -->
+<section class="producto-seccion bg-fondo" style="padding-top: 1rem; padding-bottom: 1rem;">
+  <div class="producto-seccion-inner">
+    {% include "components/bloque-garantia.njk" %}
+  </div>
+</section>
+
+<!-- CTA CIERRE -->
+<section class="cta-producto-cierre cta-producto-cierre--imagen" style="--cta-bg-imagen: url('/images/luma-gold/luma-gold-consultorio.webp');">
+  <div class="cta-producto-cierre-inner">
+    <h2>¿Querés ver la LUMA Gold en persona?</h2>
+    <p>Vení a nuestros showrooms en CABA o pedí tu cotización del set completo.</p>
+    {% include "components/cta-doble.njk" %}
+  </div>
+</section>
+
+<!-- MATERIALES Y CONSTRUCCIÓN -->
+<section class="producto-seccion">
+  <div class="producto-seccion-inner">
+    <h2>Materiales y construcción</h2>
+    <div class="material-cards-grid">
+      <div class="material-card">
+        <div class="material-card-icono"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
+        <h3>Estructura interna</h3>
+        <p>Placa multilaminada + espuma de alta densidad + herrajes metálicos</p>
+      </div>
+      <div class="material-card">
+        <div class="material-card-icono"><i class="fas fa-up-down" aria-hidden="true"></i></div>
+        <h3>Estructura de elevación</h3>
+        <p>Marco metálico</p>
+      </div>
+      <div class="material-card">
+        <div class="material-card-icono"><i class="fas fa-couch" aria-hidden="true"></i></div>
+        <h3>Tapizado</h3>
+        <p>Cuero PVC, resistente a la abrasión y a las manchas</p>
+      </div>
+      <div class="material-card">
+        <div class="material-card-icono"><i class="fas fa-cloud" aria-hidden="true"></i></div>
+        <h3>Relleno</h3>
+        <p>Espuma de alta densidad "4D" de alta resiliencia</p>
+      </div>
+      <div class="material-card">
+        <div class="material-card-icono"><i class="fas fa-ruler-vertical" aria-hidden="true"></i></div>
+        <h3>Espesor del colchón</h3>
+        <p>15 cm</p>
+      </div>
+      <div class="material-card">
+        <div class="material-card-icono"><i class="fas fa-lightbulb" aria-hidden="true"></i></div>
+        <h3>Iluminación</h3>
+        <p>Luz LED ambiental en la base</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "components/separador.njk" %}
+
+<!-- DIFERENCIALES / POSICIONAMIENTO -->
+<section class="producto-seccion">
+  <div class="producto-seccion-inner">
+    <h2>¿Por qué LUMA Gold?</h2>
+    <p>En el mercado argentino conviven dos extremos: las camillas italianas importadas (precio muy alto, tiempos de entrega largos) y las fábricas nacionales masivas (precio bajo, calidad y diseño que no acompañan la imagen de un consultorio premium). LUMA ocupa el lugar del medio con intención, y la línea Gold lleva esa idea al límite: el set completo resuelto en una sola estética, con stock en Argentina y respaldo directo.</p>
+    <ul class="features-list" style="margin-top: 1.5rem;">
+      <li><i class="fas fa-check-circle" aria-hidden="true"></i> Camilla, silla y carrito con el mismo acabado dorado</li>
+      <li><i class="fas fa-check-circle" aria-hidden="true"></i> Misma tecnología de 3 motores certificados CE de la línea Premium</li>
+      <li><i class="fas fa-check-circle" aria-hidden="true"></i> Stock en Argentina, entrega sin demoras de importación</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRODUCTOS RELACIONADOS -->
+<section class="producto-seccion">
+  <div class="producto-seccion-inner">
+    <h2>Otros equipos LUMA</h2>
+    <div class="relacionados-grid">
+      <a href="/camillas-electricas/premium/" class="relacionado-card">
+        <img src="/images/luma-premium/luma-premium-blanca-7.webp" alt="Camilla eléctrica LUMA Premium" width="300" height="300" loading="lazy">
+        <span>LUMA Premium<span class="relacionado-desc">La misma camilla en blanco, beige y negro</span></span>
+      </a>
+      <a href="/carritos-auxiliares/cart-gold/" class="relacionado-card">
+        <img src="/images/luma-cart-gold/luma-cart-gold-8.webp" alt="LUMA Cart Gold, carrito auxiliar dorado" width="300" height="300" loading="lazy">
+        <span>LUMA Cart Gold<span class="relacionado-desc">El carrito del set, también por separado</span></span>
+      </a>
+      <a href="/luminarias/" class="relacionado-card">
+        <img src="/images/luma_luminaria.webp" alt="Luminaria LED LUMA para consultorio estético" width="300" height="300" loading="lazy">
+        <span>Luminaria LED LUMA<span class="relacionado-desc">Lámpara LED para consultorio estético</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-seccion bg-fondo">
+  <div class="faq-inner">
+    <h2>Preguntas frecuentes sobre la LUMA Gold</h2>
+    <div class="faq-lista">
+
+      <details class="faq-item">
+        <summary>¿Qué incluye la LUMA Gold?</summary>
+        <div class="faq-respuesta">
+          <p>Tres piezas: la <strong>camilla eléctrica de 3 motores en acabado dorado</strong>, la <strong>silla profesional dorada</strong> y el <strong>LUMA Cart Gold</strong>, el carrito auxiliar de tres niveles con cajón central. Las tres comparten la misma terminación.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿En qué se diferencia de la LUMA Premium?</summary>
+        <div class="faq-respuesta">
+          <p>La ficha técnica de la camilla es la misma: 3 motores independientes certificados CE, 6000 N de empuje, reclinación de 0° a 90°, carga máxima de 300 kg y colchón de espuma 4D de 15 cm. La diferencia está en el <strong>acabado dorado</strong> y en que la Gold suma el <strong>LUMA Cart Gold</strong> al set. La <a href="/camillas-electricas/premium/">LUMA Premium</a> es la misma camilla en blanco, beige o negro, sin la silla ni el carrito.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Se puede comprar solo la camilla dorada, sin el carrito?</summary>
+        <div class="faq-respuesta">
+          <p>La LUMA Gold está pensada y cotizada como set completo. Si necesitás otra combinación, escribinos y lo vemos en la cotización. El <a href="/carritos-auxiliares/cart-gold/">LUMA Cart Gold</a> también se vende por separado.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cuántos motores tiene la LUMA Gold?</summary>
+        <div class="faq-respuesta">
+          <p>Tiene <strong>3 motores independientes</strong>: uno controla la altura de la camilla, otro el respaldo y otro el apoyapiernas. Esto permite ajustar cada segmento de forma autónoma, sin mover al paciente ni interrumpir el procedimiento.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Tiene garantía oficial?</summary>
+        <div class="faq-respuesta">
+          <p>Sí, la LUMA Gold cuenta con <strong>garantía oficial LUMA</strong>. <a href="{{ site.garantia_url }}">Ver condiciones completas →</a></p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Puedo verla antes de comprarla?</summary>
+        <div class="faq-respuesta">
+          <p>Sí. LUMA tiene dos showrooms en CABA — en Palermo y Belgrano — donde podés probar los equipos con turno previo. Es la forma que recomendamos para tomar la decisión: verla, tocarla y experimentarla en persona. <a href="/nosotros/#showrooms">Ver cómo agendarla →</a></p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+{#
+  ── REELS DE INSTAGRAM ──────────────────────────────────────────
+  Desactivado a propósito hasta que Marcelo pase los reels de la línea
+  dorada. Con `instagram_reels` vacío el bloque renderiza tarjetas
+  placeholder, y no corresponde reutilizar los de la Premium blanca
+  porque muestran otro producto. Para reactivarlo: cargar las URLs en el
+  front matter y descomentar el include.
+
+  set reelsFullBleed = true
+  set reelsTitulo = "La LUMA Gold en acción"
+  include "components/bloque-reels.njk"
+#}
+
+{#
+  ── TESTIMONIOS ─────────────────────────────────────────────────
+  Sin bloque de testimonios: los que existen en el sitio son mock (ver
+  luma-testimonios.md) y el cliente ya pidió ocultarlos en la home. No se
+  suman testimonios inventados a una página nueva. Cuando haya reseñas
+  reales de la línea Gold se arma acá — y recién ahí se evalúa el schema
+  Review, nunca antes.
+#}

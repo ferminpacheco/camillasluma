@@ -1,7 +1,7 @@
 ---
 layout: hub.njk
 title: "Camillas Eléctricas para Estética y Consultorios | LUMA"
-description: "Línea completa de camillas eléctricas de 3 motores: Premium, One y Ginecológica. Diseño premium, garantía oficial, envíos a todo el país."
+description: "Línea completa de camillas eléctricas de 3 motores: Premium, Gold, One y Ginecológica. Diseño premium, garantía oficial, envíos a todo el país."
 canonical: "https://camillasluma.com/camillas-electricas/"
 ogImage: "/images/og/camillas-electricas.jpg"
 ogImageAlt: "Línea de camillas eléctricas LUMA."
@@ -11,13 +11,17 @@ schemaHub:
   items:
     - name: "Camilla Eléctrica Premium LUMA"
       url: "/camillas-electricas/premium/"
+    - name: "LUMA Gold — Camilla Eléctrica Dorada con Silla y LUMA Cart Gold"
+      url: "/camillas-electricas/luma-gold/"
     - name: "Camilla Eléctrica One LUMA"
       url: "/camillas-electricas/one/"
     - name: "Camilla Ginecológica Eléctrica LUMA"
       url: "/camillas-electricas/ginecologica/"
 schemaFaqs:
   - q: "¿Qué tipos de camillas eléctricas vende LUMA?"
-    a: "LUMA ofrece tres modelos: la Camilla Premium (3 motores, silla incluida), la Camilla One (opción más accesible, 3 motores) y la Camilla Ginecológica (3 motores, pierneras ajustables y removibles)."
+    a: "LUMA ofrece cuatro modelos: la Camilla Premium (3 motores, control de pie), la LUMA Gold (la línea dorada, con silla dorada y LUMA Cart Gold incluidos), la Camilla One (opción más accesible, 3 motores) y la Camilla Ginecológica (3 motores, pierneras ajustables y removibles)."
+  - q: "¿Qué es la línea LUMA Gold?"
+    a: "La LUMA Gold es la línea dorada de LUMA: un set que incluye la camilla eléctrica de 3 motores en acabado dorado, la silla profesional dorada y el carrito auxiliar LUMA Cart Gold. Comparte la ficha técnica de la Camilla Premium."
   - q: "¿Cuántos motores tienen las camillas LUMA?"
     a: "Todos los modelos LUMA tienen 3 motores independientes: controlan altura, respaldo y apoyapiernas."
   - q: "¿Hacen envíos a todo el país?"
@@ -30,7 +34,7 @@ schemaFaqs:
 <section class="hub-hero hub-hero--camillas">
   <div class="hub-hero-inner">
     <h1>Camillas eléctricas premium para estética y consultorios</h1>
-    <p class="hub-bajada">Tres modelos diseñados para profesionales de la dermatología, cirugía plástica, ginecología y medicina estética. 3 motores independientes, diseño minimalista y garantía oficial.</p>
+    <p class="hub-bajada">Cuatro modelos diseñados para profesionales de la dermatología, cirugía plástica, ginecología y medicina estética. 3 motores independientes, diseño minimalista y garantía oficial.</p>
     <div class="cta-doble">
       <a href="{{ whatsappLink }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
       <a href="/nosotros/#showrooms" class="cta-button-light">Ver en showroom</a>
@@ -54,7 +58,10 @@ schemaFaqs:
 <section class="hub-seccion bg-fondo">
   <div class="hub-seccion-inner">
     <h2>Modelos de la línea</h2>
-    <div class="hub-productos-grid">
+    {# La variante --cuatro existe solo por este hub: con la línea Gold la
+       grilla pasó de 3 a 4 modelos y con `repeat(3, 1fr)` la cuarta card
+       quedaba sola en una segunda fila. El hub de carritos sigue en 3. #}
+    <div class="hub-productos-grid hub-productos-grid--cuatro">
 
       <article class="hub-producto-card">
         <a href="/camillas-electricas/premium/">
@@ -69,7 +76,26 @@ schemaFaqs:
           </div>
           <div class="hub-producto-info">
             <h3>LUMA Premium</h3>
-            <p>3 motores · control de pie · silla profesional incluida. El modelo insignia para clínicas y centros de alta gama.</p>
+            <p>3 motores · control de pie · LED en la base. El modelo insignia para clínicas y centros de alta gama.</p>
+            <span class="hub-ver-detalle">Ver detalle →</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="hub-producto-card">
+        <a href="/camillas-electricas/luma-gold/">
+          <div class="hub-producto-imagen">
+            <img
+              src="/images/luma-gold/luma-gold-set-1.webp"
+              alt="Set LUMA Gold: camilla eléctrica de base dorada, silla profesional y carrito LUMA Cart Gold"
+              width="400"
+              height="300"
+              loading="lazy"
+            >
+          </div>
+          <div class="hub-producto-info">
+            <h3>LUMA Gold</h3>
+            <p>La línea dorada. Camilla de 3 motores, silla profesional dorada y LUMA Cart Gold incluidos en un set completo.</p>
             <span class="hub-ver-detalle">Ver detalle →</span>
           </div>
         </a>
@@ -127,6 +153,7 @@ schemaFaqs:
           <tr>
             <th>Característica</th>
             <th>Premium</th>
+            <th>Gold</th>
             <th>One</th>
             <th>Ginecológica</th>
           </tr>
@@ -137,15 +164,25 @@ schemaFaqs:
             <td>3 independientes</td>
             <td>3 independientes</td>
             <td>3 independientes</td>
+            <td>3 independientes</td>
           </tr>
           <tr>
             <td>Control de pie</td>
             <td><i class="fas fa-check" aria-label="Sí"></i></td>
             <td><i class="fas fa-check" aria-label="Sí"></i></td>
             <td><i class="fas fa-check" aria-label="Sí"></i></td>
+            <td><i class="fas fa-check" aria-label="Sí"></i></td>
+          </tr>
+          <tr>
+            <td>Colores</td>
+            <td>Blanco · Beige · Negro</td>
+            <td>Dorado</td>
+            <td>Blanco</td>
+            <td>Blanco</td>
           </tr>
           <tr>
             <td>Pierneras</td>
+            <td>—</td>
             <td>—</td>
             <td>—</td>
             <td>Ajustables y removibles</td>
@@ -155,16 +192,28 @@ schemaFaqs:
             <td><i class="fas fa-check" aria-label="Sí"></i></td>
             <td><i class="fas fa-check" aria-label="Sí"></i></td>
             <td><i class="fas fa-check" aria-label="Sí"></i></td>
+            <td><i class="fas fa-check" aria-label="Sí"></i></td>
           </tr>
           <tr>
-            <td>Silla de cortesía</td>
-            <td>Incluida</td>
+            {# La Premium salió de esta fila el 24-08-2026: no hay stock de
+               sillas y la única línea que la incluye es la Gold. #}
+            <td>Silla profesional</td>
+            <td>—</td>
+            <td>Incluida (dorada)</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Carrito auxiliar</td>
+            <td>—</td>
+            <td>LUMA Cart Gold incluido</td>
             <td>—</td>
             <td>—</td>
           </tr>
           <tr>
             <td>Para quién</td>
             <td>Clínicas de alta gama</td>
+            <td>Consultorios que buscan diferenciarse</td>
             <td>Uso profesional diario</td>
             <td>Ginecología · Estética íntima</td>
           </tr>
@@ -190,7 +239,7 @@ schemaFaqs:
     {% include "components/bloque-garantia.njk" %}
     <ul class="features-list" style="margin-top: 1.5rem; max-width: 600px;">
       <li><i class="fas fa-check-circle" aria-hidden="true"></i> Envíos a todo el país</li>
-      <li><i class="fas fa-check-circle" aria-hidden="true"></i> Silla profesional incluida (modelos que aplica)</li>
+      <li><i class="fas fa-check-circle" aria-hidden="true"></i> Silla profesional incluida en la <a href="/camillas-electricas/luma-gold/">línea LUMA Gold</a></li>
       <li><i class="fas fa-check-circle" aria-hidden="true"></i> Showrooms en CABA para probar antes de comprar</li>
     </ul>
   </div>
@@ -205,7 +254,7 @@ schemaFaqs:
       <details class="faq-item">
         <summary>¿Qué camilla eléctrica LUMA es mejor para medicina estética?</summary>
         <div class="faq-respuesta">
-          <p>Depende del perfil del consultorio. La <strong>LUMA Premium</strong> es la opción más completa para clínicas de alta gama: 3 motores, control de pie, silla incluida y mayor variedad de colores. La <strong>LUMA One</strong> es ideal para profesionales en crecimiento que buscan tecnología de nivel con una inversión más accesible. Para consultorios que también realizan procedimientos ginecológicos o de estética íntima, la <strong>LUMA Ginecológica</strong> ofrece doble funcionalidad en un solo equipo.</p>
+          <p>Depende del perfil del consultorio. La <strong>LUMA Premium</strong> es la opción más completa para clínicas de alta gama: 3 motores, control de pie y variedad de colores (blanco, beige y negro). La <strong><a href="/camillas-electricas/luma-gold/">LUMA Gold</a></strong> es la misma camilla resuelta como set dorado completo: suma la silla profesional dorada y el LUMA Cart Gold. La <strong>LUMA One</strong> es ideal para profesionales en crecimiento que buscan tecnología de nivel con una inversión más accesible. Para consultorios que también realizan procedimientos ginecológicos o de estética íntima, la <strong>LUMA Ginecológica</strong> ofrece doble funcionalidad en un solo equipo.</p>
         </div>
       </details>
 

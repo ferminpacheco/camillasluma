@@ -78,6 +78,12 @@ const PAGINAS = [
     alt: "Camilla eléctrica LUMA Premium de 3 motores, blanca, en un consultorio.",
   },
   {
+    salida: "luma-gold.jpg",
+    tratamiento: "foto",
+    src: "images/luma-gold/luma-gold-consultorio.webp", // 1.79
+    alt: "Set LUMA Gold en un consultorio: camilla eléctrica de base dorada, silla profesional y carrito LUMA Cart Gold.",
+  },
+  {
     salida: "one.jpg",
     tratamiento: "foto",
     src: "images/luma-one/luma-one-9.webp", // 2.33

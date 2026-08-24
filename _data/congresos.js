@@ -45,7 +45,12 @@ const EXT_VIDEO = [".mp4", ".webm"];
 
    `carpetas`: se prueban en orden. El spec nombra el slug de la cuarta
    carpeta de tres formas distintas (§3 vs §9) y en disco está con una
-   cuarta, así que se aceptan todas en vez de romperse por un renombre. */
+   cuarta, así que se aceptan todas en vez de romperse por un renombre.
+
+   `link` (opcional): URL al sitio oficial del congreso. La card solo lo
+   renderiza si está — hoy lo tienen RADLA y Masterhub, los otros dos no.
+   El rótulo visible ("Ver más") es fijo y vive en bloque-congresos.njk:
+   es el mismo para todas las cards, así que no se repite acá. */
 const CONGRESOS = [
   {
     slug: "radla",
@@ -56,6 +61,7 @@ const CONGRESOS = [
     descripcion:
       "Uno de los congresos de dermatología más grandes de la región, con especialistas de 15 países latinoamericanos.",
     altBase: "LUMA en RADLA",
+    link: "https://radla2026.org/exposicion#patrocinadores",
   },
   {
     slug: "baas",
@@ -76,6 +82,7 @@ const CONGRESOS = [
     descripcion:
       "Congreso de referencia en rejuvenecimiento facial no quirúrgico de Latinoamérica, dirigido por el Dr. Fernando Felice. Es el único evento de la región con disección cadavérica en vivo.",
     altBase: "LUMA en Masterhub",
+    link: "https://masterhublatam.com/#speakers",
   },
   {
     slug: "global-plastic-surgery-congress",
