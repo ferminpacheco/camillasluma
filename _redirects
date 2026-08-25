@@ -1,0 +1,6 @@
+# Redirects de Netlify. Tiene que quedar en la raiz de la carpeta
+# publicada (_site/_redirects) para que Netlify lo lea.
+
+# El LUMA Cart Gold dejo de venderse por separado: solo existe dentro
+# del set LUMA Gold. La ficha propia se dio de baja el 25-08-2026.
+/carritos-auxiliares/cart-gold/   /camillas-electricas/luma-gold/   301

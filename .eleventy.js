@@ -49,6 +49,10 @@ module.exports = function (eleventyConfig) {
      carpeta publicada (_site/_headers) para que Netlify lo lea. */
   eleventyConfig.addPassthroughCopy("_headers");
 
+  /* Redirects de Netlify. Misma logica que _headers: se publica en la
+     raiz de _site para que Netlify lo lea. */
+  eleventyConfig.addPassthroughCopy("_redirects");
+
   // WhatsApp: link con mensaje precargado para un botón puntual.
   // El caso normal es `whatsappLink` (mensaje por página, ver
   // _data/eleventyComputed.js). Este filtro es para los botones que dentro

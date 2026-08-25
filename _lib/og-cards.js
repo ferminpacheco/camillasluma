@@ -114,23 +114,20 @@ const PAGINAS = [
     alt: "LUMA Tech, carrito reforzado para aparatología estética.",
   },
   {
-    salida: "cart-gold.jpg",
-    tratamiento: "foto",
-    src: "images/luma-cart-gold/luma-cart-gold-8.webp", // 1.79
-    alt: "LUMA Cart Gold, carro auxiliar premium con estructura dorada.",
-  },
-  {
     salida: "luminarias.jpg",
     tratamiento: "foto",
     src: "images/luma-luminarias/hf_20260814_234902_10a5b3ee-af42-4349-a93c-af481c88e31a.webp", // 1.79 — plano cerrado del arco LED
     alt: "Luminaria LED LUMA para consultorio de estética.",
   },
   {
-    /* Las 6 fotos de /images/radla/ son verticales (ar 0.55-0.75).
-       Recortarlas se comería el 61% del alto, así que van en lienzo. */
+    /* Las fotos de stand son verticales (ar 0.55-0.75). Recortarlas se
+       comería el 61% del alto, así que van en lienzo.
+       La foto vive en /images/the-global-plastic-surgery/ desde el
+       25-08-2026 (se movió de /images/radla/), pero sigue siendo la del
+       stand de RADLA: por eso el alt la nombra. */
     salida: "nosotros.jpg",
     tratamiento: "lienzo",
-    src: "images/radla/00-stand-camilla-premium-mostrador-atencion.webp",
+    src: "images/the-global-plastic-surgery/00-stand-camilla-premium-mostrador-atencion.webp",
     alt: "Stand de LUMA en el congreso RADLA con una camilla eléctrica Premium.",
   },
   {

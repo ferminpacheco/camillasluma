@@ -34,7 +34,7 @@
 |---|---|---|---|
 | ⭐⭐⭐⭐⭐ | "Las pierneras removibles la hacen mil veces más versátil de lo que esperaba." | Dra. Milagros Funes — Ginecóloga | Núñez, CABA |
 | ⭐⭐⭐⭐⭐ | "La luz LED en la base es un detalle que mis pacientes agradecen." | Dr. Tomás Herrera — Ginecólogo | Bahía Blanca, Buenos Aires |
-| ⭐⭐⭐⭐ | "El comando de mano cambió por completo la dinámica de mis consultas." | Dra. Julieta Acosta — Ginecóloga | Neuquén Capital, Neuquén |
+| ⭐⭐⭐⭐ | "El control manual cambió por completo la dinámica de mis consultas." | Dra. Julieta Acosta — Ginecóloga | Neuquén Capital, Neuquén |
 | ⭐⭐⭐⭐⭐ | "Preciso, cómodo y pensado realmente para ginecología, no adaptado." | Dr. Rodrigo Bianchi — Ginecólogo | Salta Capital, Salta |
 | ⭐⭐⭐⭐⭐ | "La bandeja extraíble me ordenó el consultorio de una sola vez." | Dra. Camila Ortiz — Ginecóloga | San Isidro, Buenos Aires |
 
@@ -45,7 +45,7 @@
 | ⭐ | Testimonio | Nombre y especialidad | Ubicación |
 |---|---|---|---|
 | ⭐⭐⭐⭐⭐ | "La regulación de intensidad es exactamente lo que le faltaba a mi sala." | Dr. Ignacio Vera — Dermatólogo | Villa Devoto, CABA |
-| ⭐⭐⭐⭐ | "Luz cálida y blanca en un mismo equipo, uso las dos todo el día." | Dra. Florencia Gómez — Médica Estética | Mar del Plata, Buenos Aires |
+| ⭐⭐⭐⭐ | "Los tres colores de luz en un mismo equipo, uso los tres todo el día." | Dra. Florencia Gómez — Médica Estética | Mar del Plata, Buenos Aires |
 | ⭐⭐⭐⭐⭐ | "Se adapta a la altura de cualquier procedimiento sin esfuerzo." | Dr. Matías Peralta — Cirujano Plástico | Vicente López, Buenos Aires |
 | ⭐⭐⭐⭐⭐ | "Terminé con las sombras raras en las fotos de resultados." | Dra. Agustina Leiva — Directora de Centro de Estética | Posadas, Misiones |
 | ⭐⭐⭐⭐ | "Diseño discreto que no compite con la estética del consultorio." | Dr. Santiago Correa — Dermatólogo | Almagro, CABA |

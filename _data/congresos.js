@@ -104,8 +104,6 @@ const CONGRESOS = [
    Un archivo que no esté acá no queda sin alt: cae al fallback derivado
    del nombre de archivo (ver `altDeArchivo`). */
 const ALTS = {
-  "radla/00-stand-camilla-premium-mostrador-atencion.webp":
-    "Stand de LUMA en RADLA: camilla eléctrica Premium blanca con iluminación LED en la base, carro auxiliar, pantalla de marca y personal de LUMA atendiendo en el mostrador.",
   "radla/01-stand-camilla-premium-vista-general.webp":
     "Stand de LUMA en RADLA con una camilla eléctrica Premium blanca iluminada, lámpara LED de aro y pantalla con material de marca.",
   "radla/02-cabecera-camilla-premium.webp":
@@ -124,7 +122,7 @@ const ALTS = {
     "Camilla eléctrica Premium de LUMA junto a una lámpara de pie LED en el stand de RADLA.",
   "radla/09-camilla-premium-reclinada.webp":
     "Camilla eléctrica Premium de LUMA reclinada en posición de trabajo, en el stand de RADLA.",
-  "radla/10-equipo-luma-atendiendo-mostrador.webp":
+  "radla/00-equipo-luma-atendiendo-mostrador.webp":
     "Integrante del equipo de LUMA atendiendo en el mostrador del stand de RADLA.",
   "radla/11-equipo-luma-mostrador-pantalla.webp":
     "Integrante del equipo de LUMA en el mostrador del stand de RADLA, con la camilla Premium en primer plano.",
@@ -149,10 +147,14 @@ const ALTS = {
   "masterhub/03-equipo-luma-entre-camillas.webp":
     "Equipo de LUMA junto a las camillas eléctricas y los banners de marca en Masterhub.",
 
-  /* ⚠️ Las fotos de esta carpeta NO son del congreso: son consultorios de
-     clientes con equipamiento LUMA instalado. El alt describe lo que se ve
-     y a propósito no menciona el congreso — no hay foto que respalde una
-     afirmación de participación. Reemplazar cuando lleguen fotos del stand. */
+  /* ⚠️ Ninguna foto de esta carpeta es del congreso. La 00- es del stand de
+     LUMA en RADLA y se movió acá el 25-08-2026 a pedido del cliente, para que
+     la card muestre un stand y no un consultorio; las otras dos son
+     consultorios de clientes. Los alt describen lo que se ve y a propósito no
+     mencionan el congreso — no hay foto que respalde una afirmación de
+     participación. Reemplazar cuando lleguen fotos reales del stand. */
+  "the-global-plastic-surgery/00-stand-camilla-premium-mostrador-atencion.webp":
+    "Stand de LUMA en un congreso médico: camilla eléctrica Premium blanca con iluminación LED en la base, carro auxiliar, pantalla de marca y personal atendiendo en el mostrador.",
   "the-global-plastic-surgery/01-consultorio-camilla-premium-lampara-led.webp":
     "Consultorio con una camilla eléctrica LUMA blanca, lámpara LED de aro y carro auxiliar.",
   "the-global-plastic-surgery/02-consultorio-camilla-instalada.webp":
