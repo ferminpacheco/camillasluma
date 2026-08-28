@@ -3,57 +3,73 @@
      Sin él el h2 arrancaba al 5% del viewport y quedaba ~300px a la izquierda
      del resto de los títulos de la página. #}
   <div class="bloque-showroom-inner">
+    <p class="section-tag">SHOWROOMS</p>
     <h2>Vení a probarla</h2>
-    <p>Dos showrooms en CABA con turno previo. Probá la camilla antes de decidir.</p>
+    <p class="bloque-showroom-bajada">Dos showrooms en CABA. Probá la camilla, sentí los materiales y decidí con todo a la vista.</p>
+
+    {# Las dos cards solo cambian foto, barrio y mensaje de WhatsApp: van por
+       loop para que el diseño no se bifurque al tocar una sola. Las medidas
+       reales viajan en la data: son el hint contra el que el browser reserva
+       la caja, si mienten vuelve el salto de layout. #}
+    {% set showrooms = [
+      {
+        barrio: "Palermo",
+        zona: "CABA",
+        imagen: "/images/showroom-palermo.webp",
+        alt: "Showroom LUMA en Palermo, CABA — camillas eléctricas en exhibición",
+        ancho: 1600,
+        alto: 900,
+        mensaje: "Hola! Quiero agendar una visita al showroom de Palermo."
+      },
+      {
+        barrio: "Belgrano",
+        zona: "CABA",
+        imagen: "/images/showroom-belgrano.webp",
+        alt: "Showroom LUMA en Belgrano, CABA — camillas eléctricas en exhibición",
+        ancho: 1600,
+        alto: 900,
+        mensaje: "Hola! Quiero agendar una visita al showroom de Belgrano."
+      }
+    ] %}
 
     <div class="showroom-grid">
+      {% for s in showrooms %}
+      <article class="showroom-card">
 
-      <div class="showroom-card">
-        <img
-          src="/images/showroom-palermo-1x1.webp"
-          alt="Showroom LUMA en Palermo, CABA — camillas eléctricas en exhibición"
-          class="showroom-card-imagen"
-          width="2000"
-          height="2000"
-          loading="lazy"
-        >
+        <div class="showroom-card-media">
+          <img
+            src="{{ s.imagen }}"
+            alt="{{ s.alt }}"
+            class="showroom-card-imagen"
+            width="{{ s.ancho }}"
+            height="{{ s.alto }}"
+            loading="lazy"
+          >
+          <h3 class="showroom-card-titulo">
+            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            {{ s.barrio }}<span class="showroom-card-zona">{{ s.zona }}</span>
+          </h3>
+        </div>
+
         <div class="showroom-card-body">
-          <h3>Palermo, CABA</h3>
+          <p class="showroom-card-nota">
+            <i class="fas fa-calendar-check" aria-hidden="true"></i>
+            <span>Se visita <strong>solo con turno previo</strong>: coordinamos día y horario por WhatsApp.</span>
+          </p>
+
           <a
             {# Cada showroom manda su propio mensaje: el CTA dice "Agendá tu
                visita", el chat tiene que arrancar diciendo eso y de cuál. #}
-            href="{{ 'Hola! Quiero agendar una visita al showroom de Palermo.' | waLink }}"
-            class="cta-button-light"
+            href="{{ s.mensaje | waLink }}"
+            class="cta-button showroom-card-cta"
             target="_blank"
             rel="noopener"
             data-track="showroom_click"
-          >Agendá tu visita</a>
+          ><i class="fab fa-whatsapp" aria-hidden="true"></i> Agendá tu visita</a>
         </div>
-      </div>
 
-      <div class="showroom-card">
-        <img
-          src="/images/showroom-belgrano-1x1.webp"
-          alt="Showroom LUMA en Belgrano, CABA — camillas eléctricas en exhibición"
-          class="showroom-card-imagen"
-          width="510"
-          height="510"
-          loading="lazy"
-        >
-        <div class="showroom-card-body">
-          <h3>Belgrano, CABA</h3>
-          <a
-            {# Cada showroom manda su propio mensaje: el CTA dice "Agendá tu
-               visita", el chat tiene que arrancar diciendo eso y de cuál. #}
-            href="{{ 'Hola! Quiero agendar una visita al showroom de Belgrano.' | waLink }}"
-            class="cta-button-light"
-            target="_blank"
-            rel="noopener"
-            data-track="showroom_click"
-          >Agendá tu visita</a>
-        </div>
-      </div>
-
+      </article>
+      {% endfor %}
     </div>
   </div>
 </section>

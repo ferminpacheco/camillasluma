@@ -763,6 +763,10 @@ body > section:first-of-type {
   margin: 0 auto;
 }
 
+.bloque-showroom-bajada {
+  max-width: 60ch;
+}
+
 .showroom-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -772,16 +776,39 @@ body > section:first-of-type {
   margin: var(--space-md) 0 0;
 }
 
+/* Columna: el body crece y empuja el CTA al piso, asi las dos cards
+   terminan con el boton sobre la misma linea aunque el texto cambie. */
 .showroom-card {
   background: var(--color-blanco);
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(10, 41, 86, 0.07);
   /* La imagen sangra hasta el borde: overflow recorta contra el radio. */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow var(--dur-ui) var(--ease-out);
+}
+
+/* Sin hover-lift a proposito, igual que .beneficio-card: la card entera no
+   es clickeable, el unico target es el CTA. La sombra y el zoom alcanzan
+   para que responda sin prometer un click que no existe. */
+@media (hover: hover) and (pointer: fine) {
+  .showroom-card:hover {
+    box-shadow: 0 14px 34px rgba(10, 41, 86, 0.16);
+  }
+}
+
+/* La foto y el nombre del barrio comparten caja: el titulo va montado sobre
+   la imagen y el degradado navy le sostiene el contraste. */
+.showroom-card-media {
+  position: relative;
   overflow: hidden;
 }
 
-/* Las dos fotos de origen son cuadradas (2000² y 510²). Se recortan a 4:3
-   con object-fit para que la card no quede desproporcionadamente alta. */
+/* Las dos fotos de origen son 16:9 (1600x900) y usan todo el ancho del
+   encuadre: la card respeta esa proporcion en vez de recortarlas a 4:3.
+   object-fit: cover queda como red de seguridad si alguna foto futura
+   entra con otra relacion. */
 .showroom-card-imagen {
   display: block;
   width: 100%;
@@ -789,17 +816,116 @@ body > section:first-of-type {
      como presentational hint y fijan la altura, dejando el aspect-ratio sin
      efecto. Sin esto la card renderiza con la altura cruda de la imagen. */
   height: auto;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+  transition: transform 400ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .showroom-card:hover .showroom-card-imagen {
+    transform: scale(1.05);
+  }
+}
+
+/* Degradado hasta 0.9 abajo: las dos fotos tienen pared clara justo donde
+   cae el titulo, con menos opacidad el blanco no sostiene AA. Arranca en 45%
+   para no ensuciar la mitad superior de la foto. */
+.showroom-card-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 41, 86, 0) 45%,
+    rgba(10, 41, 86, 0.90) 100%
+  );
+  pointer-events: none;
+}
+
+.showroom-card-titulo {
+  position: absolute;
+  z-index: 1;
+  left: var(--space-md);
+  right: var(--space-md);
+  bottom: 1.1rem;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  color: var(--color-blanco);
+  /* Los h3 del sitio no tienen regla global: heredan el 1.17em del browser,
+     que sobre una foto de 4:3 se lee como una nota al pie. */
+  font-size: 1.55rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.showroom-card-titulo i {
+  font-size: 0.8em;
+  color: var(--acero);
+}
+
+.showroom-card-zona {
+  font-family: var(--font-cuerpo);
+  font-size: 0.55em;
+  font-weight: 500;
+  letter-spacing: 2px;
+  opacity: 0.75;
 }
 
 .showroom-card-body {
   padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
 }
 
-.showroom-card h3 {
+/* Aviso de turno previo: chip circular + texto, mismo lenguaje que
+   .beneficio-icono pero en escala de linea. */
+.showroom-card-nota {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin: 0;
+  font-size: 0.95em;
+  line-height: 1.55;
+}
+
+.showroom-card-nota i {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-fondo);
   color: var(--color-principal);
-  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85em;
+  /* Alinea el circulo con la primera linea de texto, no con el bloque. */
+  margin-top: -0.15rem;
+}
+
+.showroom-card-nota strong {
+  color: var(--color-principal);
+}
+
+/* Navy pleno: el .cta-button-light que habia antes es navy al 10% y sobre la
+   card blanca practicamente no se despegaba del fondo. */
+.showroom-card-cta {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .showroom-card-cta:hover {
+    filter: brightness(1.2);
+  }
 }
 
 /* ── BLOG ────────────────────────────────────── */
@@ -2698,6 +2824,16 @@ body > section:first-of-type {
   .showroom-grid {
     grid-template-columns: 1fr;
   }
+  .showroom-card-titulo {
+    left: var(--space-sm);
+    right: var(--space-sm);
+    bottom: 0.9rem;
+    font-size: 1.35rem;
+  }
+  .showroom-card-body {
+    padding: 1.5rem;
+    gap: 1.25rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -3105,6 +3241,7 @@ body > section:first-of-type {
   .linea-card:hover,
   .hub-producto-card:hover,
   .hub-producto-card:hover .hub-producto-imagen img,
+  .showroom-card:hover .showroom-card-imagen,
   .relacionado-card:hover,
   .producto-ficha:hover .camilla-img,
   .color-swatch:hover,

@@ -80,7 +80,7 @@ const PAGINAS = [
   {
     salida: "luma-gold.jpg",
     tratamiento: "foto",
-    src: "images/luma-gold/luma-gold-consultorio.webp", // 1.79
+    src: "images/luma-gold/luma-gold-2.webp", // 2.33
     alt: "Set LUMA Gold en un consultorio: camilla eléctrica de base dorada, silla profesional y carrito LUMA Cart Gold.",
   },
   {
