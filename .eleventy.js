@@ -37,6 +37,13 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("robots.txt");
+
+  /* Clave de verificacion de IndexNow. Bing/Yandex piden este archivo en la
+     raiz del dominio y comparan su contenido con el nombre; si no devuelve
+     200 con el hash exacto, rechazan los pings de la API.
+     Va como passthrough porque Eleventy solo procesa njk/html/md: sin esta
+     linea el .txt queda en el repo pero nunca se publica en _site. */
+  eleventyConfig.addPassthroughCopy("66680b841a2b4510b405236b73559125.txt");
   eleventyConfig.addPassthroughCopy({ "Garantia.pdf": "assets/pdf/garantia-luma.pdf" });
 
   /* Fallback de favicon en la raíz. El favicon que declara el <head> sigue
