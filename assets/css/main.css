@@ -3323,10 +3323,10 @@ body > section:first-of-type {
    El navegador morfea entre documentos en vez de pegar
    un flash blanco. Firefox lo ignora y navega normal. */
 
-@view-transition {
+/* @view-transition {
   navigation: auto;
 }
-
+*/
 /* Elementos que persisten: en vez de desvanecerse con el resto
    de la página, se quedan quietos de un documento al otro. */
 .main-header {

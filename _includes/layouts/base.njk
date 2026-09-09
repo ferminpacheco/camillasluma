@@ -71,10 +71,20 @@
      como type="image/png" — el MIME no coincidia con el archivo y el sitio
      salia sin icono en las SERP. NO convertir este PNG a WebP.
 
-     Requisitos de Google que cumple: cuadrado 1:1, mayor a 48x48 (es 100x100),
-     rel="icon" en el <head>, y rastreable (robots.txt permite todo).
+     Requisitos de Google que cumple: cuadrado 1:1 y multiplo de 48px
+     (es 96x96 — Google pide 48/96/144, antes era 100x100 y quedaba fuera
+     de spec), rel="icon" en el <head>, y rastreable (robots.txt permite todo).
+
+     Va SIN transparencia, con fondo blanco opaco a proposito: el logo es
+     navy y sobre alfa transparente desaparecia en las SERP en modo oscuro,
+     en la barra de pestanas oscura de Chrome y en el apple-touch-icon (iOS
+     compone negro detras del alfa). No re-exportar con fondo transparente.
+
      La URL tiene que mantenerse ESTABLE: Google la cachea, cambiarla reinicia
-     el proceso de deteccion. No renombrar este archivo. #}
+     el proceso de deteccion. No renombrar este archivo.
+
+     El master 100x100 original (con alfa) queda en
+     _originales/pre-webp/logo_luma_favicon.png. #}
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/images/logo_luma_favicon.png">
   <link rel="apple-touch-icon" href="/images/logo_luma_favicon.png">
