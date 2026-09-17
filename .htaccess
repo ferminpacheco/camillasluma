@@ -1,0 +1,79 @@
+# =============================================
+# LUMA — configuración del servidor (Hostinger, LiteSpeed/Apache)
+#
+# Reemplaza a los viejos _headers y _redirects de Netlify.
+# Eleventy lo copia tal cual a la raíz de _site (ver .eleventy.js), así que
+# al subir el contenido de _site a public_html queda en su lugar.
+#
+# ⚠️ LiteSpeed ignora las expresiones `expr=` y los bloques <If> de
+# mod_headers. Por eso las reglas de caché van por extensión de archivo
+# (<FilesMatch>) y no por carpeta.
+# =============================================
+
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+AddType image/webp .webp
+AddType image/avif .avif
+
+# ---------------------------------------------
+# Redirects
+# ---------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1) www → dominio sin www, directo a https (un solo salto).
+  #    El canonical de todas las páginas es https://camillasluma.com/
+  RewriteCond %{HTTP_HOST} ^www\.camillasluma\.com$ [NC]
+  RewriteRule ^ https://camillasluma.com%{REQUEST_URI} [L,R=301,NE]
+
+  # 2) http → https. Usa el host pedido (no lo fuerza) para que la vista
+  #    previa del dominio temporal de Hostinger también funcione.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+
+  # 3) El LUMA Cart Gold dejó de venderse por separado: solo existe dentro
+  #    del set LUMA Gold. La ficha propia se dio de baja el 25-08-2026.
+  RewriteRule ^carritos-auxiliares/cart-gold/?$ https://%{HTTP_HOST}/camillas-electricas/luma-gold/ [L,R=301]
+</IfModule>
+
+# ---------------------------------------------
+# Cache-Control
+# ---------------------------------------------
+# Se desactiva mod_expires para que no agregue su propio Expires encima.
+<IfModule mod_expires.c>
+  ExpiresActive Off
+</IfModule>
+
+<IfModule mod_headers.c>
+  # HTML, sitemap, robots, clave de IndexNow, PDF de garantía y favicon:
+  # nunca se cachean, así un cambio subido se ve al toque. El PDF de
+  # garantía va acá a propósito: es un documento legal sin hash en la URL.
+  <FilesMatch "\.(html?|xml|txt|pdf|ico)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  # CSS y JS: un año, inmutable. Se puede porque base.njk los referencia
+  # con el filtro `asset`, que le pega ?v=<hash-del-contenido> a la URL.
+  # Si el archivo cambia, cambia el hash y el navegador lo baja de nuevo.
+  # NO agregar CSS/JS que no lleve ese filtro.
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Imágenes: un año, SIN `immutable` a propósito. Los nombres no llevan
+  # hash; sin immutable, Ctrl+F5 alcanza para ver una foto reemplazada.
+  # Regla práctica: al reemplazar una foto, cambiarle el nombre de archivo.
+  <FilesMatch "\.(webp|avif|jpe?g|png|gif|svg)$">
+    Header set Cache-Control "public, max-age=31536000"
+  </FilesMatch>
+</IfModule>
+
+# ---------------------------------------------
+# Compresión (LiteSpeed ya comprime solo; esto cubre Apache)
+# ---------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml application/javascript image/svg+xml
+</IfModule>

@@ -41,4 +41,15 @@ LEÉLO antes de ejecutar cualquier fase. Seguí el orden de la sección 12
 - Al terminar una fase, listame qué quedó como {{PLACEHOLDER}} / ⚠️ pendiente.
 
 ## Comandos
-<!-- completar una vez definido el stack (build / preview / validación) -->
+- Build: `npm run build` (Eleventy, sale en `_site/`).
+- Preview local: `npm run serve` (http://localhost:8080).
+
+## Hosting (desde sep-2026)
+- La web está en Hostinger (plan Single, LiteSpeed). YA NO se usa Netlify:
+  no crear `_headers`, `_redirects` ni `netlify.toml`.
+- Caché, redirects 301, página 404, https y www→sin www viven en `.htaccess`
+  (raíz del repo, Eleventy lo copia a `_site/`). Un redirect nuevo va ahí.
+- LiteSpeed ignora `<If>` y `expr=` en `.htaccess`: usar `<FilesMatch>`/`RewriteRule`.
+- Publicar: `npm run build`, comprimir el CONTENIDO de `_site/` (incluido
+  `.htaccess`) en un zip y subirlo a `public_html` desde el administrador de
+  archivos de Hostinger. Hostinger no corre el build.

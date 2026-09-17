@@ -52,13 +52,11 @@ module.exports = function (eleventyConfig) {
      hasta ahora eso devolvía la página 404 de 11 KB. */
   eleventyConfig.addPassthroughCopy("favicon.ico");
 
-  /* Reglas de Cache-Control para Netlify. Tiene que quedar en la raíz de la
-     carpeta publicada (_site/_headers) para que Netlify lo lea. */
-  eleventyConfig.addPassthroughCopy("_headers");
-
-  /* Redirects de Netlify. Misma logica que _headers: se publica en la
-     raiz de _site para que Netlify lo lea. */
-  eleventyConfig.addPassthroughCopy("_redirects");
+  /* Configuración del servidor (Hostinger): caché, redirects, 404 y https.
+     Tiene que quedar en la raíz de la carpeta publicada (_site/.htaccess)
+     para que el servidor la lea. Reemplaza a los _headers y _redirects
+     que se usaban con Netlify. */
+  eleventyConfig.addPassthroughCopy(".htaccess");
 
   // WhatsApp: link con mensaje precargado para un botón puntual.
   // El caso normal es `whatsappLink` (mensaje por página, ver
@@ -71,13 +69,13 @@ module.exports = function (eleventyConfig) {
      Sale: /assets/css/main.css?v=a3f9c1d2
 
      El sufijo es el hash del contenido del archivo. Sirve para que
-     _headers pueda cachear el CSS y el JS un año como `immutable`: si el
+     .htaccess pueda cachear el CSS y el JS un año como `immutable`: si el
      archivo cambia, cambia el hash, cambia la URL y el navegador se lo
      baja de nuevo. Sin esto habría que elegir entre caché larga (y que un
      cambio de estilos no le llegue nunca a quien ya visitó) o revalidar
      en cada carga.
 
-     El query string no cambia el archivo servido: Netlify entrega el
+     El query string no cambia el archivo servido: el servidor entrega el
      mismo /assets/css/main.css, la query es solo la clave de caché.
 
      Se cachea por (ruta + mtime) para no releer y hashear el archivo una
