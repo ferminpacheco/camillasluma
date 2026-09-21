@@ -4,31 +4,56 @@ eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {# /blog/ queda fuera del sitemap a pedido del cliente: el blog todavia no
-     arranco. Como tampoco tiene links entrantes en header ni footer, dejarlo
-     aca solo lograria que Google indexe un hub vacio. Restaurar junto con los
-     links cuando se publique el primer articulo.
-     OJO: los comentarios Nunjucks no pueden ir DENTRO del {% raw %}{% set %}{% endraw %}
-     de abajo — rompen el parseo de la expresion. #}
-  {% set pages = [
-    { url: "/", changefreq: "monthly", priority: "1.0" },
-    { url: "/camillas-electricas/", changefreq: "monthly", priority: "0.9" },
-    { url: "/camillas-electricas/premium/", changefreq: "monthly", priority: "0.9" },
-    { url: "/camillas-electricas/luma-gold/", changefreq: "monthly", priority: "0.9" },
-    { url: "/camillas-electricas/one/", changefreq: "monthly", priority: "0.9" },
-    { url: "/camillas-electricas/ginecologica/", changefreq: "monthly", priority: "0.9" },
-    { url: "/carritos-auxiliares/", changefreq: "monthly", priority: "0.8" },
-    { url: "/carritos-auxiliares/luma-cart/", changefreq: "monthly", priority: "0.8" },
-    { url: "/carritos-auxiliares/luma-tech/", changefreq: "monthly", priority: "0.8" },
-    { url: "/luminarias/", changefreq: "monthly", priority: "0.8" },
-    { url: "/nosotros/", changefreq: "monthly", priority: "0.7" },
-    { url: "/garantia/", changefreq: "monthly", priority: "0.7" }
-  ] %}
-  {% for p in pages %}
+  {#
+    Sitemap dinámico: sale de `collections.all`, así una página nueva entra
+    sola y una borrada sale sola. Quedan afuera:
+      - las que declaran `noindex: true` o `sitemapExclude: true`;
+      - /404.html y este archivo (eleventyExcludeFromCollections);
+      - el blog, que se maneja aparte más abajo.
+    <lastmod> viene del filtro `lastmod` (.eleventy.js): front matter
+    `updated`/`date` si existe, si no la fecha del último commit del archivo.
+    changefreq/priority se asignan por patrón de URL.
+  #}
+  {%- for p in collections.all -%}
+    {%- set url = p.url -%}
+    {%- set excluida = p.data.noindex or p.data.sitemapExclude or (url and url.startsWith("/blog/")) -%}
+    {%- if url and not excluida %}
+    {%- if url == "/" -%}
+      {%- set prio = "1.0" -%}
+    {%- elif url.startsWith("/camillas-electricas/") -%}
+      {%- set prio = "0.9" -%}
+    {%- elif url.startsWith("/carritos-auxiliares/") or url == "/luminarias/" -%}
+      {%- set prio = "0.8" -%}
+    {%- else -%}
+      {%- set prio = "0.7" -%}
+    {%- endif %}
   <url>
-    <loc>https://camillasluma.com{{ p.url }}</loc>
-    <changefreq>{{ p.changefreq }}</changefreq>
-    <priority>{{ p.priority }}</priority>
+    <loc>{{ site.url }}{{ url }}</loc>
+    <lastmod>{{ p.page | lastmod(p.data) }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>{{ prio }}</priority>
   </url>
-  {% endfor %}
+    {%- endif -%}
+  {%- endfor %}
+  {#
+    Blog: el hub y los posts entran solo si hay al menos un post en la
+    colección `posts`. Así un hub vacío no llega al sitemap, y cuando se
+    publique el primer artículo entran los dos sin tocar este archivo.
+  #}
+  {%- if collections.posts and collections.posts.length %}
+  <url>
+    <loc>{{ site.url }}/blog/</loc>
+    <lastmod>{{ collections.posts[0].page | lastmod(collections.posts[0].data) }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  {%- for post in collections.posts %}
+  <url>
+    <loc>{{ site.url }}{{ post.url }}</loc>
+    <lastmod>{{ post.page | lastmod(post.data) }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  {%- endfor %}
+  {%- endif %}
 </urlset>

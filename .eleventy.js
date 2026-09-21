@@ -101,6 +101,55 @@ module.exports = function (eleventyConfig) {
     }
   });
 
+  /* ── lastmod del sitemap ───────────────────────────────────────────
+     Fecha de última modificación real de cada página, para <lastmod>.
+     Nada hardcodeado. Orden de prioridad:
+       1. `updated` o `date` del front matter, si la página los declara
+          (los posts del blog).
+       2. Fecha del último commit que tocó el archivo fuente (git log).
+          Hostinger no corre el build: se construye en local, donde git
+          siempre está, así que este es el caso normal.
+       3. mtime del archivo, si git no está o el archivo tiene cambios
+          sin commitear (un cambio local es más nuevo que el último commit).
+     Se cachea por ruta: el sitemap lo pide una vez por página. */
+  const { execSync } = require("child_process");
+  const cacheLastmod = new Map();
+
+  function fechaGit(inputPath) {
+    try {
+      const sucio = execSync(`git status --porcelain -- "${inputPath}"`, {
+        cwd: __dirname, stdio: ["ignore", "pipe", "ignore"],
+      }).toString().trim();
+      if (sucio) return null;
+      const iso = execSync(`git log -1 --format=%cI -- "${inputPath}"`, {
+        cwd: __dirname, stdio: ["ignore", "pipe", "ignore"],
+      }).toString().trim();
+      return iso || null;
+    } catch {
+      return null;
+    }
+  }
+
+  eleventyConfig.addFilter("lastmod", (page, data = {}) => {
+    const explicita = data.updated || data.date;
+    if (explicita) return new Date(explicita).toISOString().split("T")[0];
+
+    const ruta = page && page.inputPath;
+    if (!ruta) return "";
+    if (!cacheLastmod.has(ruta)) {
+      let iso = fechaGit(ruta);
+      if (!iso) {
+        try {
+          iso = fs.statSync(path.join(__dirname, ruta)).mtime.toISOString();
+        } catch {
+          iso = new Date().toISOString();
+        }
+      }
+      cacheLastmod.set(ruta, iso.split("T")[0]);
+    }
+    return cacheLastmod.get(ruta);
+  });
+
   // Filtros de fecha para el blog
   eleventyConfig.addFilter("htmlDateString", (dateObj) => {
     if (!dateObj) return "";
