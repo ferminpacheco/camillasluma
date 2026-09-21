@@ -1,31 +1,40 @@
 ---
 layout: base.njk
-title: "Blog | LUMA — Recursos para Profesionales de la Estética"
-description: "Guías, comparativas y recursos para elegir el mejor equipamiento médico estético. Para médicos y dueños de centros estéticos."
+title: "Blog | LUMA — Guías para elegir equipamiento de consultorio"
+description: "Guías y comparativas para elegir camillas eléctricas y equipamiento médico estético con criterio. Para médicos y dueños de centros de estética."
 canonical: "https://camillasluma.com/blog/"
 ---
 
 <section class="blog-hub">
   <h1>Blog LUMA</h1>
-  <p>Recursos para profesionales de la estética y la medicina estética.</p>
+  <p class="blog-hub-bajada">Guías para elegir equipamiento de consultorio con criterio: qué mirar, qué comparar y qué preguntar antes de comprar.</p>
 
-  {% if collections.posts.length %}
-    <div class="blog-grid">
-      {% for post in collections.posts %}
-      <article class="blog-card">
+  {# Con un solo artículo el grid de 3 columnas dejaba dos huecos vacíos.
+     `auto-fit` con ancho mínimo hace que una card sola ocupe el ancho de
+     lectura y que, a medida que se sumen posts, se acomoden de a 2 o 3. #}
+  <div class="blog-grid">
+    {% for post in collections.posts %}
+    <article class="blog-card">
+      {% if post.data.imagen %}
+      <a href="{{ post.url }}" class="blog-card-media" tabindex="-1" aria-hidden="true">
+        <img
+          src="{{ post.data.imagen }}"
+          alt=""
+          width="{{ post.data.imagenAncho }}"
+          height="{{ post.data.imagenAlto }}"
+          loading="lazy"
+        >
+      </a>
+      {% endif %}
+      <div class="blog-card-body">
+        <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
         <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
         <p>{{ post.data.description }}</p>
-        <time datetime="{{ post.date | htmlDateString }}">
-          {{ post.date | readableDate }}
-        </time>
-      </article>
-      {% endfor %}
-    </div>
-  {% else %}
-    <p class="blog-empty">
-      ⚠️ Contenido pendiente — los artículos se publican en la etapa mensual.
-    </p>
-  {% endif %}
+        <a href="{{ post.url }}" class="blog-card-link">Leer la guía →</a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
 </section>
 
 <script type="application/ld+json">
@@ -34,7 +43,7 @@ canonical: "https://camillasluma.com/blog/"
   "@type": "Blog",
   "@id": "https://camillasluma.com/blog/#blog",
   "name": "Blog LUMA — Equipamiento Médico Estético",
-  "description": "Recursos y guías para profesionales que eligen equipamiento médico estético: comparativas de camillas, criterios de selección, specs explicadas.",
+  "description": "Guías y comparativas para profesionales que eligen equipamiento médico estético: camillas eléctricas, criterios de selección y especificaciones explicadas.",
   "url": "https://camillasluma.com/blog/",
   "publisher": {
     "@id": "https://camillasluma.com/#organization"
