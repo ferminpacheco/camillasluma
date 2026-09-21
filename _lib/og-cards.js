@@ -120,6 +120,16 @@ const PAGINAS = [
     alt: "Luminaria LED LUMA para consultorio de estética.",
   },
   {
+    /* Post del blog "precio de una camilla eléctrica". Base con botonera de
+       pie, control remoto y LED: muestra justo lo que el artículo explica.
+       Es 2.33, así que `cover` recorta ~18% a los costados; el detalle
+       queda centrado. No reutiliza la OG de ninguna ficha. */
+    salida: "precio-camilla-electrica.jpg",
+    tratamiento: "foto",
+    src: "images/luma-one/luma-one-10.webp", // 2.33
+    alt: "Base de una camilla eléctrica LUMA con botonera de pie y control remoto en un consultorio.",
+  },
+  {
     /* Las fotos de stand son verticales (ar 0.55-0.75). Recortarlas se
        comería el 61% del alto, así que van en lienzo.
        La foto vive en /images/the-global-plastic-surgery/ desde el
