@@ -1,78 +1,151 @@
 ---
 layout: base.njk
+ogType: article
 ---
-<article class="blog-post" itemscope itemtype="https://schema.org/BlogPosting">
+{#
+  LAYOUT DE POST DEL BLOG.
+
+  Front matter que lee (todo lo que no sea `title`/`description`/`date` es
+  opcional):
+    title         → H1 editorial.
+    seoTitle      → <title> (base.njk); si falta, usa `title`.
+    description   → bajada + meta description + BlogPosting.description.
+    date          → fecha de publicación (datePublished).
+    updated       → última actualización (dateModified). Si falta, = date.
+    category      → etiqueta chica arriba del H1.
+    migaActual    → rótulo del último nivel de las migas (ver _lib/migas.js).
+    imagen, imagenAlt, imagenAncho, imagenAlto
+                  → imagen destacada (también BlogPosting.image).
+    ogImage       → tarjeta 1200x630 JPEG (ver _lib/og-cards.js).
+    schemaFaqs    → [{ q, a }] : acordeón de FAQ y schema FAQPage salen del
+                    MISMO array, así el texto es idéntico en los dos lados.
+                    `a` admite HTML inline (<a>, <strong>).
+
+  Autor: siempre "Equipo LUMA" como Organization. No se inventan personas.
+#}
+<article class="blog-post">
+
+  {% include "components/breadcrumbs.njk" %}
 
   <header class="post-header">
     <div class="post-meta">
       {% if category %}<span class="post-categoria">{{ category }}</span>{% endif %}
     </div>
-    <h1 itemprop="headline">{{ title }}</h1>
-    {% if page.date %}
-    <time class="post-fecha" datetime="{{ page.date | htmlDateString }}" itemprop="datePublished">
-      {{ page.date | readableDate }}
-    </time>
-    {% endif %}
+    <h1>{{ title }}</h1>
+    <p class="post-fecha">
+      <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
+      {% if updated and (updated | htmlDateString) != (page.date | htmlDateString) %}
+        · Actualizado el <time datetime="{{ updated | htmlDateString }}">{{ updated | readableDate }}</time>
+      {% endif %}
+      · Por Equipo LUMA
+    </p>
     {% if description %}
-    <p class="post-descripcion" itemprop="description">{{ description }}</p>
+    <p class="post-descripcion">{{ description }}</p>
     {% endif %}
   </header>
 
-  <div class="post-body" itemprop="articleBody">
+  {% if imagen %}
+  <figure class="post-imagen">
+    <img
+      src="{{ imagen }}"
+      alt="{{ imagenAlt }}"
+      width="{{ imagenAncho }}"
+      height="{{ imagenAlto }}"
+      loading="eager"
+      fetchpriority="high"
+    >
+  </figure>
+  {% endif %}
+
+  <div class="post-body">
     {{ content | safe }}
   </div>
 
-  <!-- FAQ del post (opcional — descomentar y completar por artículo) -->
-  <!--
-  <section class="faq-seccion bg-fondo post-faq">
-    <div class="faq-inner">
-      <h2>Preguntas frecuentes</h2>
-      <div class="faq-lista">
-        <details class="faq-item">
-          <summary>Pregunta 1</summary>
-          <div class="faq-respuesta"><p>Respuesta 1.</p></div>
-        </details>
-      </div>
+  {% if schemaFaqs %}
+  <section class="post-faq" aria-labelledby="post-faq-titulo">
+    <h2 id="post-faq-titulo">Preguntas frecuentes</h2>
+    <div class="faq-lista">
+      {% for faq in schemaFaqs %}
+      <details class="faq-item">
+        <summary>{{ faq.q }}</summary>
+        <div class="faq-respuesta"><p>{{ faq.a | safe }}</p></div>
+      </details>
+      {% endfor %}
     </div>
   </section>
-  -->
+  {% endif %}
 
-  <!-- Autor -->
-  <div class="post-autor" itemprop="author" itemscope itemtype="https://schema.org/Organization">
-    <span itemprop="name">LUMA</span> — Equipamiento Médico Estético
+  <div class="post-autor">
+    Escrito por <strong>Equipo LUMA</strong> — Camillas eléctricas y equipamiento médico estético.
   </div>
 
-  <!-- CTA de cierre -->
   <div class="post-cta">
-    <h2>¿Querés equipar tu consultorio?</h2>
-    <p>Conocé la línea de camillas eléctricas y accesorios LUMA.</p>
+    <h2>¿Querés un presupuesto para tu consultorio?</h2>
+    <p>Pedí tu cotización según el modelo y el equipamiento que necesitás, o vení a probar las camillas al showroom.</p>
     {% include "components/cta-doble.njk" %}
   </div>
 
-  <!-- Schema BlogPosting -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "{{ title }}",
-    "description": "{{ description }}",
-    "datePublished": "{{ page.date | htmlDateString }}",
-    "author": {
-      "@type": "Organization",
-      "name": "LUMA",
-      "url": "https://camillasluma.com"
-    },
-    "publisher": {
-      "@id": "https://camillasluma.com/#organization"
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "{{ canonical }}"
-    }
-  }
-  </script>
-
 </article>
+
+{# Schema BlogPosting (+ FAQPage si hay FAQ). Las cadenas van por `dump`
+   (JSON.stringify) para que comillas o barras en el copy no rompan el JSON.
+   BreadcrumbList lo emite breadcrumbs.njk. #}
+{% set fechaPub = page.date | htmlDateString %}
+{% set fechaMod = (updated | htmlDateString) if updated else fechaPub %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "{{ canonical }}#article",
+      "headline": {{ title | dump | safe }},
+      "description": {{ description | dump | safe }},
+      "datePublished": "{{ fechaPub }}",
+      "dateModified": "{{ fechaMod }}",
+      "inLanguage": "es-AR",
+      "author": {
+        "@type": "Organization",
+        "name": "Equipo LUMA",
+        "url": "{{ site.url }}"
+      },
+      "publisher": {
+        "@id": "{{ site.url }}/#organization"
+      },
+      {% if imagen %}
+      "image": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}{{ imagen }}",
+        "width": {{ imagenAncho }},
+        "height": {{ imagenAlto }}
+      },
+      {% endif %}
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ canonical }}"
+      }
+    }
+    {% if schemaFaqs %},
+    {
+      "@type": "FAQPage",
+      "@id": "{{ canonical }}#faq",
+      "mainEntity": [
+        {% for faq in schemaFaqs %}
+        {
+          "@type": "Question",
+          "name": {{ faq.q | dump | safe }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ faq.a | dump | safe }}
+          }
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+    {% endif %}
+  ]
+}
+</script>
 
 {# Progreso de lectura: CSS puro con animation-timeline, sin JS.
    Va al final a propósito: es position:fixed, así que se dibuja arriba igual,
