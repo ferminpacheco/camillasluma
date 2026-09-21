@@ -936,23 +936,68 @@ body > section:first-of-type {
   margin: 0 auto;
 }
 
+.blog-hub-bajada {
+  max-width: 640px;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* `auto-fit` + ancho mínimo: con un solo post la card ocupa hasta 720px
+   (ancho de lectura) en vez de dejar dos huecos; con 2 o 3 se reparten. */
 .blog-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 720px));
   gap: var(--space-md);
   margin-top: var(--space-md);
 }
 
 .blog-card {
+  display: flex;
+  flex-direction: column;
   background: var(--color-blanco);
   border-radius: 10px;
-  padding: var(--space-md);
+  overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
+.blog-card-media {
+  display: block;
+  aspect-ratio: 21 / 9;
+  overflow: hidden;
+}
+
+.blog-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.blog-card-body {
+  padding: var(--space-md);
+}
+
 .blog-card h2 {
-  font-size: 1.1em;
-  margin-bottom: 0.5rem;
+  font-size: 1.2em;
+  margin: 0.5rem 0;
+  line-height: 1.35;
+}
+
+.blog-card p {
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+.blog-card-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--color-principal);
+  text-decoration: none;
+}
+
+.blog-card-link:hover {
+  text-decoration: underline;
 }
 
 .blog-card h2 a {
@@ -968,7 +1013,6 @@ body > section:first-of-type {
   font-size: 0.8em;
   opacity: 0.6;
   display: block;
-  margin-top: 0.5rem;
 }
 
 .blog-empty {
@@ -992,7 +1036,92 @@ body > section:first-of-type {
 }
 
 .post-body h2 { margin: var(--space-md) 0 var(--space-sm); }
+.post-body h3 { margin: var(--space-sm) 0 0.5rem; font-size: 1.1em; }
 .post-body p  { margin-bottom: var(--space-sm); }
+
+.post-body ul,
+.post-body ol {
+  margin: 0 0 var(--space-sm) 1.25rem;
+}
+
+.post-body li {
+  margin-bottom: 0.4rem;
+}
+
+.post-body a {
+  color: var(--color-principal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.post-imagen {
+  margin: 0 0 var(--space-md);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.post-imagen img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Tabla comparativa dentro de un post: reutiliza .comparador-scroll /
+   .comparador-tabla del hub (scroll horizontal). La primera columna queda
+   fija al scrollear para que en 375px el rótulo de la fila no se pierda. */
+.post-body .comparador-scroll {
+  margin: var(--space-sm) 0 var(--space-md);
+  border: 1px solid var(--gris-claro);
+  border-radius: 8px;
+}
+
+.post-body .comparador-tabla {
+  min-width: 720px;
+  font-size: 0.88em;
+}
+
+.post-body .comparador-tabla th,
+.post-body .comparador-tabla td {
+  vertical-align: top;
+  line-height: 1.45;
+}
+
+.post-body .comparador-tabla th:first-child,
+.post-body .comparador-tabla td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--color-blanco);
+  box-shadow: 1px 0 0 var(--gris-claro);
+  min-width: 120px;
+}
+
+.post-body .comparador-tabla thead th:first-child {
+  background: var(--color-principal);
+}
+
+.post-body .comparador-tabla tbody tr:nth-child(even) td:first-child {
+  background: var(--color-fondo);
+}
+
+.post-body .comparador-tabla a {
+  color: inherit;
+  font-weight: 600;
+}
+
+.post-body .comparador-tabla thead a {
+  color: var(--color-blanco);
+}
+
+.post-body .comparador-tabla .fa-check {
+  color: var(--color-principal);
+}
+
+.post-tabla-nota {
+  font-size: 0.85em;
+  opacity: 0.7;
+  margin-top: -1rem;
+}
 
 /* ── COLOR SELECTOR (luminaria) ──────────────── */
 
@@ -2476,7 +2605,13 @@ body > section:first-of-type {
 
 .post-faq {
   margin-top: var(--space-lg);
+  padding: var(--space-md);
+  background: var(--color-fondo);
   border-radius: 10px;
+}
+
+.post-faq h2 {
+  margin-bottom: var(--space-sm);
 }
 
 /* ── TESTIMONIO CONTEXTUAL (producto) ────────── */
@@ -2790,9 +2925,6 @@ body > section:first-of-type {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-md);
   }
-  .blog-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .hub-productos-grid,
   .lineas-grid,
   .relacionados-grid {
@@ -3033,9 +3165,6 @@ body > section:first-of-type {
   .footer-nav {
     flex-wrap: wrap;
     gap: var(--space-sm);
-  }
-  .blog-grid {
-    grid-template-columns: 1fr;
   }
   .whatsapp-float::before,
   .whatsapp-float::after {

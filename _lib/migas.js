@@ -11,9 +11,14 @@
    y el componente no renderiza nada. Ese es el mecanismo por el que
    /nosotros/, /garantia/ y la home quedan sin migas: no se las excluye
    desde el markup, simplemente no están en el mapa.
+
+   Excepción: el ÚLTIMO nivel puede venir por parámetro (`migaActual`, del
+   front matter de la página). Es para los posts del blog: cada artículo
+   tiene su slug y no tiene sentido registrarlos uno por uno en rutas.json.
+   Los niveles intermedios (/blog/) sí tienen que estar en el mapa.
    ============================================= */
 
-function construirMigas(url, rutas) {
+function construirMigas(url, rutas, migaActual) {
   if (!url || url === "/" || !rutas) return [];
 
   const segmentos = url.split("/").filter(Boolean);
@@ -22,10 +27,11 @@ function construirMigas(url, rutas) {
   const migas = [{ url: "/", nombre: rutas["/"] || "Inicio" }];
 
   let acumulada = "";
-  for (const segmento of segmentos) {
+  for (const [i, segmento] of segmentos.entries()) {
     acumulada += "/" + segmento;
     const nivel = acumulada + "/";
-    const nombre = rutas[nivel];
+    const ultimo = i === segmentos.length - 1;
+    const nombre = rutas[nivel] || (ultimo ? migaActual : null);
     if (!nombre) return [];
     migas.push({ url: nivel, nombre: nombre });
   }

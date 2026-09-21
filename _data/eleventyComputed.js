@@ -44,6 +44,10 @@ module.exports = {
     producto y desde los dos hubs, y en los tres casos necesita saber en qué
     URL está renderizando. Una página que no figure en rutas.json recibe una
     lista vacía y el componente no dibuja nada.
+
+    `migaActual` (front matter) pone el rótulo del último nivel cuando la
+    URL no está en rutas.json: es como los posts del blog obtienen
+    Inicio › Blog › {título corto} sin registrar cada slug.
   */
-  migas: (data) => construirMigas(data.page.url, data.rutas),
+  migas: (data) => construirMigas(data.page.url, data.rutas, data.migaActual),
 };

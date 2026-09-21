@@ -1,5 +1,5 @@
 {
-  "_comentario": "Rótulos cortos de cada URL para las migas de pan (H-08). El nombre es el que ve el usuario en la ruta, no el <title>. Una página sin entrada acá simplemente no renderiza migas: así es como quedan afuera /nosotros/, /garantia/, /blog/ y la home.",
+  "_comentario": "Rótulos cortos de cada URL para las migas de pan (H-08). El nombre es el que ve el usuario en la ruta, no el <title>. Una página sin entrada acá simplemente no renderiza migas: así es como quedan afuera /nosotros/, /garantia/ y la home. Los posts del blog no se registran uno por uno: el último nivel lo pone cada post con `migaActual` en su front matter (ver _lib/migas.js).",
 
   "/": "Inicio",
 
@@ -13,5 +13,7 @@
   "/carritos-auxiliares/luma-cart/": "LUMA Cart",
   "/carritos-auxiliares/luma-tech/": "LUMA Tech",
 
-  "/luminarias/": "Luminaria LED"
+  "/luminarias/": "Luminaria LED",
+
+  "/blog/": "Blog"
 }

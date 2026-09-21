@@ -126,10 +126,14 @@ module.exports = function (eleventyConfig) {
     return `${limpia}/embed/`;
   });
 
-  // Colección de posts del blog, ordenados por fecha descendente
+  /* Colección de posts del blog, ordenados por fecha descendente.
+     Se arma por el tag `post` del front matter y no por extensión: el glob
+     anterior (glob de archivos .md en blog/) dejaba afuera a los posts escritos en .njk,
+     que es lo que usa el sitio, y /blog/ quedaba vacío aunque hubiera
+     artículos publicados. Un post nuevo solo necesita `tags: post`. */
   eleventyConfig.addCollection("posts", function (collectionApi) {
     return collectionApi
-      .getFilteredByGlob("blog/**/*.md")
+      .getFilteredByTag("post")
       .sort((a, b) => b.date - a.date);
   });
 
