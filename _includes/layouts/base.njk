@@ -15,7 +15,11 @@
   })(window,document,'script','dataLayer','GTM-PC8NP4ZV');</script>
   <!-- End Google Tag Manager -->
 
-  <title>{{ title }}</title>
+  {# `seoTitle` permite que el <title> difiera del H1 (`title`). Lo usan los
+     posts del blog: el H1 es editorial y el <title> lleva la keyword + marca.
+     Si la página no lo define, <title> y H1 son el mismo texto, como siempre. #}
+  {% set tituloFinal = seoTitle if seoTitle else title %}
+  <title>{{ tituloFinal }}</title>
   <meta name="description" content="{{ description }}">
 
   {% if canonical %}
@@ -42,7 +46,7 @@
   {% set ogAltFinal = ogImageAlt if ogImageAlt else site.og_default_alt %}
 
   <!-- Open Graph -->
-  <meta property="og:title" content="{{ title }}">
+  <meta property="og:title" content="{{ tituloFinal }}">
   <meta property="og:description" content="{{ description }}">
   <meta property="og:type" content="{{ ogType if ogType else 'website' }}">
   {% if canonical %}<meta property="og:url" content="{{ canonical }}">{% endif %}
@@ -57,7 +61,7 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:title" content="{{ tituloFinal }}">
   <meta name="twitter:description" content="{{ description }}">
   <meta name="twitter:image" content="{{ site.url }}{{ ogImagenFinal }}">
   <meta name="twitter:image:alt" content="{{ ogAltFinal }}">
