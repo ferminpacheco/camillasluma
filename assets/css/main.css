@@ -1021,10 +1021,49 @@ body > section:first-of-type {
   margin-top: var(--space-md);
 }
 
+/* ── ANCHO DEL POST ──────────────────────────────
+   El artículo tiene dos anchos: el texto se queda en el ancho de lectura
+   (~800px, unos 75 caracteres por línea) y la imagen destacada y la tabla
+   comparativa usan todo el contenedor. Antes todo vivía en 780px y en
+   desktop la tabla quedaba apretada al pedo, con la mitad del ancho de la
+   pantalla vacío a los costados.
+
+   En mobile no cambia nada: `min(800px, 100%)` colapsa al ancho disponible
+   y las dos columnas laterales del grid quedan en cero. */
+
 .blog-post {
-  max-width: 780px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: var(--space-lg) 5%;
+}
+
+/* Todo lo que es texto, al ancho de lectura y centrado. */
+.blog-post > .migas,
+.post-header,
+.post-faq,
+.post-autor,
+.post-cta {
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+/* El cuerpo es un grid de tres columnas: la del medio es el texto y las de
+   los costados son el margen que la tabla puede invadir (`grid-column: full`).
+   Es el patrón "full bleed" y evita tener que calcular márgenes negativos. */
+.post-body {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(0, 1fr)
+    [texto-start] min(800px, 100%) [texto-end]
+    minmax(0, 1fr) [full-end];
+}
+
+.post-body > * {
+  grid-column: texto;
+}
+
+.post-body > .comparador-scroll {
+  grid-column: full;
 }
 
 .post-header {
@@ -1048,7 +1087,12 @@ body > section:first-of-type {
   margin-bottom: 0.4rem;
 }
 
-.post-body a {
+/* Solo los links de texto corrido. Acotado a p/li a propósito: cuando esto
+   era `.post-body a` le pisaba el color blanco al `.cta-button` del CTA de
+   WhatsApp y el botón quedaba con texto navy sobre fondo navy, ilegible.
+   La tabla comparativa tiene su propia regla de color más abajo. */
+.post-body p a,
+.post-body li a {
   color: var(--color-principal);
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -1056,6 +1100,7 @@ body > section:first-of-type {
 
 .post-imagen {
   margin: 0 0 var(--space-md);
+  width: 100%;
   border-radius: 10px;
   overflow: hidden;
 }
