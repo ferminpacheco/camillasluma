@@ -1,0 +1,82 @@
+[
+  {
+    "_nota": "PLACEHOLDER — foto de producto, no de un cliente. Reemplazar por foto real del cliente y borrar este campo y 'placeholder'.",
+    "placeholder": true,
+    "imagen": "/images/the-global-plastic-surgery/01-consultorio-camilla-premium-lampara-led.webp",
+    "modelo": "premium",
+    "alt": "Camilla LUMA Premium instalada en un consultorio, junto a una lámpara LED.",
+    "cita": "",
+    "nombre": "",
+    "publicar": true
+  },
+  {
+    "_nota": "PLACEHOLDER — foto de producto, no de un cliente. Reemplazar por foto real del cliente y borrar este campo y 'placeholder'.",
+    "placeholder": true,
+    "imagen": "/images/luma-one/luma-one-5.webp",
+    "modelo": "one",
+    "alt": "Camilla eléctrica LUMA One en un consultorio de estética.",
+    "cita": "PLACEHOLDER — cita de ejemplo para probar el pie de foto.",
+    "nombre": "PLACEHOLDER — Nombre y especialidad",
+    "publicar": true
+  },
+  {
+    "_nota": "PLACEHOLDER — foto de producto, no de un cliente. Reemplazar por foto real del cliente y borrar este campo y 'placeholder'.",
+    "placeholder": true,
+    "imagen": "/images/luma-gold/banner-luma-gold-2.webp",
+    "modelo": "gold",
+    "alt": "Equipo LUMA Gold con camilla, silla y carrito dorados en un consultorio.",
+    "cita": "",
+    "nombre": "",
+    "publicar": true
+  },
+  {
+    "_nota": "PLACEHOLDER — foto de producto, no de un cliente. Reemplazar por foto real del cliente y borrar este campo y 'placeholder'.",
+    "placeholder": true,
+    "imagen": "/images/luma-ginecologica/luma-ginecologica-12.webp",
+    "modelo": "ginecologica",
+    "alt": "Camilla LUMA Ginecológica en un consultorio.",
+    "cita": "",
+    "nombre": "",
+    "publicar": true
+  },
+  {
+    "_nota": "PLACEHOLDER — foto de producto, no de un cliente. Reemplazar por foto real del cliente y borrar este campo y 'placeholder'.",
+    "placeholder": true,
+    "imagen": "/images/luma-premium/luma-premium-blanca-7.webp",
+    "modelo": "premium",
+    "alt": "Camilla LUMA Premium blanca en una cabina de estética.",
+    "cita": "",
+    "nombre": "",
+    "publicar": true
+  },
+  {
+    "_nota": "PLACEHOLDER — foto de producto, no de un cliente. Reemplazar por foto real del cliente y borrar este campo y 'placeholder'.",
+    "placeholder": true,
+    "imagen": "/images/luma-cart/luma-cart-6.webp",
+    "modelo": "luma-cart",
+    "alt": "Carrito auxiliar LUMA Cart en un consultorio.",
+    "cita": "",
+    "nombre": "",
+    "publicar": true
+  },
+  {
+    "_nota": "PLACEHOLDER — foto de producto, no de un cliente. Reemplazar por foto real del cliente y borrar este campo y 'placeholder'.",
+    "placeholder": true,
+    "imagen": "/images/luma-tech/luma-tech-8.webp",
+    "modelo": "luma-tech",
+    "alt": "Carrito LUMA Tech con aparatología en un consultorio.",
+    "cita": "",
+    "nombre": "",
+    "publicar": true
+  },
+  {
+    "_nota": "PLACEHOLDER — foto de producto, no de un cliente. Reemplazar por foto real del cliente y borrar este campo y 'placeholder'.",
+    "placeholder": true,
+    "imagen": "/images/luma-luminarias/luminaria-blanca-1.webp",
+    "modelo": "luminaria",
+    "alt": "Luminaria LED LUMA blanca sobre una camilla en un consultorio.",
+    "cita": "",
+    "nombre": "",
+    "publicar": true
+  }
+]

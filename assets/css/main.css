@@ -4546,3 +4546,223 @@ a.reels-seguir:hover {
     padding: 4.5rem 5%;
   }
 }
+
+/* ── GALERÍA DE CLIENTES ──────────────────────
+   Banda de fotos reales de clientes (home + fichas).
+   Markup: _includes/components/galeria-clientes.njk
+   Datos:  _data/galeriaClientes.json (+ _lib/galeria.js)
+   JS:     main.js, bloque GALERÍA DE CLIENTES
+
+   Mismo azul que .por-que-luma--azul (⚠️ depende de {{HEX_OFICIALES}}).
+   La tira es un contenedor con scroll horizontal: el JS lo avanza solo y
+   el dedo / trackpad / teclado lo mueven de forma nativa. Sin JS o con
+   reduced-motion queda como tira manual con scroll-snap.
+   ============================================= */
+
+.galeria-clientes {
+  --galeria-alto: 260px;
+  --galeria-gap: 1.25rem;
+  position: relative;
+  padding: var(--space-lg) 0;
+  background: linear-gradient(135deg, var(--navy) 0%, #071C3B 100%);
+  color: var(--color-blanco);
+}
+
+.galeria-clientes-cabecera {
+  max-width: 1200px;
+  margin: 0 auto var(--space-md);
+  padding: 0 5%;
+  text-align: center;
+}
+
+.galeria-clientes-titulo {
+  color: var(--color-blanco);
+  margin-bottom: 0.5rem;
+}
+
+.galeria-clientes-bajada {
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* ── Tira ── */
+
+.galeria-clientes-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  /* Aire lateral para que la primera foto no arranque pegada al borde
+     cuando la tira está quieta (reduced-motion / sin JS). */
+  scroll-padding-inline: 5%;
+}
+
+.galeria-clientes-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.galeria-clientes-viewport:focus-visible {
+  outline: 2px solid var(--color-blanco);
+  outline-offset: 4px;
+}
+
+.galeria-clientes-track {
+  display: flex;
+  gap: var(--galeria-gap);
+  width: max-content;
+  margin: 0;
+  padding: 0 5%;
+  list-style: none;
+}
+
+/* En movimiento el padding lateral rompería el empalme del loop: cada
+   set tiene que medir exactamente lo mismo. */
+.galeria-clientes.is-marquee .galeria-clientes-track {
+  padding: 0;
+}
+
+.galeria-clientes-item {
+  flex: none;
+  /* Cada copia del set termina con el mismo gap que las separa entre sí. */
+}
+
+.galeria-clientes-figura {
+  margin: 0;
+}
+
+/* Misma altura para todas; el ancho sale de la proporción real de cada
+   foto (--ar = width / height, desde el template). Como alto y proporción
+   se conocen antes de que cargue la imagen, la tira no salta (CLS 0). */
+.galeria-clientes-img {
+  display: block;
+  height: var(--galeria-alto);
+  width: auto;
+  aspect-ratio: var(--ar);
+  max-width: none;
+  object-fit: cover;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.galeria-clientes-pie {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  /* El pie nunca ensancha la foto: se ajusta a su ancho. */
+  width: 0;
+  min-width: 100%;
+  margin-top: 0.65rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.galeria-clientes-modelo {
+  align-self: flex-start;
+  font-weight: 600;
+  color: var(--color-blanco);
+  text-decoration: none;
+}
+
+a.galeria-clientes-modelo {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size var(--dur-fast) var(--ease-out);
+}
+
+a.galeria-clientes-modelo::after {
+  content: " →";
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.galeria-clientes-modelo:hover {
+    background-size: 100% 1px;
+  }
+}
+
+a.galeria-clientes-modelo:focus-visible {
+  outline: 2px solid var(--color-blanco);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.galeria-clientes-cita {
+  font-style: italic;
+}
+
+.galeria-clientes-nombre {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ── Botón pausa / reproducir ── */
+
+.galeria-clientes-pausa {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 auto var(--space-sm);
+  padding: 0.45rem 0.95rem;
+  font-family: var(--font-cuerpo);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-blanco);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out), transform var(--dur-press) var(--ease-out);
+}
+
+.galeria-clientes-pausa[hidden] {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .galeria-clientes-pausa:hover {
+    background: rgba(255, 255, 255, 0.16);
+  }
+}
+
+.galeria-clientes-pausa:active {
+  transform: scale(0.97);
+}
+
+.galeria-clientes-pausa:focus-visible {
+  outline: 2px solid var(--color-blanco);
+  outline-offset: 3px;
+}
+
+/* Ícono dibujado con CSS: dos barras (pausar) o triángulo (reproducir). */
+.galeria-clientes-pausa-icono {
+  width: 10px;
+  height: 10px;
+  border-left: 3px solid currentColor;
+  border-right: 3px solid currentColor;
+  box-sizing: border-box;
+}
+
+.galeria-clientes-pausa[aria-pressed="true"] .galeria-clientes-pausa-icono {
+  border-right: 0;
+  border-left: 9px solid currentColor;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+/* ── Manual (sin JS o reduced-motion) ── */
+
+.galeria-clientes:not(.is-marquee) .galeria-clientes-viewport {
+  scroll-snap-type: x mandatory;
+}
+
+.galeria-clientes:not(.is-marquee) .galeria-clientes-item {
+  scroll-snap-align: start;
+}
+
+@media (max-width: 768px) {
+  .galeria-clientes {
+    --galeria-alto: 190px;
+    --galeria-gap: 0.85rem;
+  }
+}

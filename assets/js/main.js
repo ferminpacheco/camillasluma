@@ -699,6 +699,194 @@ document.querySelectorAll('[data-reels-carousel]').forEach(carousel => {
    instagram.com/.../embed/ recortado por CSS, con loading="lazy" nativo.
    Eso saca ~150 kB de JS de terceros de la pagina. */
 
+/* ── GALERÍA DE CLIENTES (cinta continua) ──────
+   Markup: _includes/components/galeria-clientes.njk
+
+   La tira es un contenedor con scroll horizontal nativo. Acá se lo avanza
+   a velocidad constante con requestAnimationFrame. Por qué scroll y no una
+   animación CSS con transform: así el dedo, el trackpad y el teclado
+   mueven la tira sin código extra, y retomar desde donde la dejó el
+   usuario es leer scrollLeft.
+
+   Loop sin saltos: se clona el set de fotos (copias con aria-hidden e
+   inert, invisibles para lectores de pantalla y teclado) y al recorrer el
+   ancho de un set se le resta ese ancho: la vista es idéntica, no se nota.
+
+   scrollLeft se redondea a píxel entero en varios navegadores; a ~35 px/s
+   eso se ve a saltitos. La parte decimal va como translateX del track, así
+   el movimiento queda suave también en pantallas de densidad 1.
+
+   Se pausa con: hover y foco sobre la tira, el dedo (retoma 3 s después
+   de soltar), fuera de pantalla, pestaña oculta y el botón. Si la pausa es
+   del botón, nada la reanuda sola. Con reduced-motion no arranca: queda
+   la tira manual con scroll-snap (igual que sin JS). */
+document.querySelectorAll('[data-galeria-clientes]').forEach(seccion => {
+  const viewport = seccion.querySelector('[data-galeria-viewport]');
+  const track = seccion.querySelector('[data-galeria-track]');
+  const boton = seccion.querySelector('[data-galeria-pausa]');
+  const textoBoton = boton && boton.querySelector('.galeria-clientes-pausa-texto');
+  if (!viewport || !track || !boton) return;
+
+  const originales = Array.from(track.children);
+  if (!originales.length) return;
+
+  const VELOCIDAD = 35;          // px por segundo
+  const RETOMA_TACTIL = 3000;    // ms después de soltar el dedo
+
+  const pausas = new Set();      // motivos de pausa activos
+  let periodo = 0;               // ancho de un set completo (con su gap)
+  let pos = 0;                   // posición acumulada en float
+  let ultimo = 0;
+  let raf = 0;
+  let timerTactil = 0;
+  let activo = false;            // modo cinta armado
+
+  const reproduciendo = () => activo && pausas.size === 0;
+
+  function limpiarClones() {
+    track.querySelectorAll('[data-galeria-clon]').forEach(el => el.remove());
+  }
+
+  // Clona sets hasta que la tira cubra un periodo + el ancho visible:
+  // es el mínimo para que al restar un periodo la vista no cambie.
+  function medir() {
+    limpiarClones();
+    const primero = originales[0];
+    const clonarSet = () => originales.forEach(li => {
+      const clon = li.cloneNode(true);
+      clon.setAttribute('data-galeria-clon', '');
+      clon.setAttribute('aria-hidden', 'true');
+      clon.inert = true;
+      clon.querySelectorAll('a').forEach(a => a.setAttribute('tabindex', '-1'));
+      track.appendChild(clon);
+    });
+
+    clonarSet();
+    const primerClon = track.querySelector('[data-galeria-clon]');
+    periodo = primerClon.offsetLeft - primero.offsetLeft;
+    if (periodo <= 0) return;
+
+    const copias = Math.ceil(viewport.clientWidth / periodo) + 1;
+    for (let i = 1; i < copias; i++) clonarSet();
+    pos = ((viewport.scrollLeft % periodo) + periodo) % periodo;
+  }
+
+  function pintar() {
+    const entero = Math.floor(pos);
+    viewport.scrollLeft = entero;
+    track.style.transform = `translateX(${-(pos - entero)}px)`;
+  }
+
+  function tick(ahora) {
+    raf = 0;
+    if (!reproduciendo()) return;
+    const dt = ultimo ? Math.min(ahora - ultimo, 100) : 0;
+    ultimo = ahora;
+    pos += VELOCIDAD * dt / 1000;
+    if (pos >= periodo) pos -= periodo;
+    pintar();
+    raf = requestAnimationFrame(tick);
+  }
+
+  function actualizar() {
+    const pausadoPorBoton = pausas.has('boton');
+    boton.setAttribute('aria-pressed', String(pausadoPorBoton));
+    textoBoton.textContent = pausadoPorBoton ? 'Reproducir fotos' : 'Pausar fotos';
+
+    if (reproduciendo()) {
+      if (!raf) {
+        // Retoma desde donde haya quedado la tira (el usuario pudo moverla).
+        pos = periodo ? ((viewport.scrollLeft % periodo) + periodo) % periodo : 0;
+        ultimo = 0;
+        raf = requestAnimationFrame(tick);
+      }
+    } else {
+      cancelAnimationFrame(raf);
+      raf = 0;
+      track.style.transform = '';
+    }
+  }
+
+  const pausar = motivo => { pausas.add(motivo); actualizar(); };
+  const seguir = motivo => { pausas.delete(motivo); actualizar(); };
+
+  function armar() {
+    if (activo || sinMovimiento()) return;
+    seccion.classList.add('is-marquee');
+    medir();
+    if (periodo <= 0) {
+      limpiarClones();
+      seccion.classList.remove('is-marquee');
+      return;
+    }
+    activo = true;
+    boton.hidden = false;
+    actualizar();
+  }
+
+  function desarmar() {
+    activo = false;
+    actualizar();
+    limpiarClones();
+    seccion.classList.remove('is-marquee');
+    boton.hidden = true;
+    viewport.scrollLeft = 0;
+  }
+
+  // Mientras el usuario la mueve a mano, la tira también da la vuelta.
+  viewport.addEventListener('scroll', () => {
+    if (!activo || reproduciendo() || periodo <= 0) return;
+    const max = viewport.scrollWidth - viewport.clientWidth;
+    if (viewport.scrollLeft <= 0) viewport.scrollLeft += periodo;
+    else if (viewport.scrollLeft >= max - 1) viewport.scrollLeft -= periodo;
+  }, { passive: true });
+
+  boton.addEventListener('click', () => {
+    pausas.has('boton') ? seguir('boton') : pausar('boton');
+  });
+
+  viewport.addEventListener('mouseenter', () => pausar('hover'));
+  viewport.addEventListener('mouseleave', () => seguir('hover'));
+
+  viewport.addEventListener('focusin', () => pausar('foco'));
+  viewport.addEventListener('focusout', e => {
+    if (!viewport.contains(e.relatedTarget)) seguir('foco');
+  });
+
+  viewport.addEventListener('touchstart', () => {
+    clearTimeout(timerTactil);
+    pausar('tactil');
+  }, { passive: true });
+  const soltar = () => {
+    clearTimeout(timerTactil);
+    timerTactil = setTimeout(() => seguir('tactil'), RETOMA_TACTIL);
+  };
+  viewport.addEventListener('touchend', soltar, { passive: true });
+  viewport.addEventListener('touchcancel', soltar, { passive: true });
+
+  new IntersectionObserver(([entrada]) => {
+    entrada.isIntersecting ? seguir('fuera') : pausar('fuera');
+  }).observe(seccion);
+
+  document.addEventListener('visibilitychange', () => {
+    document.hidden ? pausar('oculta') : seguir('oculta');
+  });
+
+  // Recalcula el periodo si cambia el ancho (rotación, resize).
+  let anchoPrevio = viewport.clientWidth;
+  new ResizeObserver(() => {
+    if (!activo || viewport.clientWidth === anchoPrevio) return;
+    anchoPrevio = viewport.clientWidth;
+    medir();
+  }).observe(viewport);
+
+  motionReducida.addEventListener('change', () => {
+    sinMovimiento() ? desarmar() : armar();
+  });
+
+  armar();
+});
+
 /* ── Redirect de anclas legadas ──────────────── */
 // Redirige URLs viejas con hash (#premium, #ginecologica, etc.)
 // a las nuevas URLs de la arquitectura.

@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 const { linkWhatsapp } = require("./_lib/whatsapp.js");
+const { galeriaFiltrar } = require("./_lib/galeria.js");
 
 module.exports = function (eleventyConfig) {
   /* ── Recarga de los archivos de datos JS en modo watch ──────────────
@@ -63,6 +64,10 @@ module.exports = function (eleventyConfig) {
   // _data/eleventyComputed.js). Este filtro es para los botones que dentro
   // de una misma página necesitan su propio mensaje.
   eleventyConfig.addFilter("waLink", (mensaje) => linkWhatsapp(mensaje));
+
+  // Galería de clientes: filtra y enriquece _data/galeriaClientes.json
+  // (publicar, placeholders, modelo, width/height). Ver _lib/galeria.js.
+  eleventyConfig.addFilter("galeriaFiltrar", galeriaFiltrar);
 
   /* ── Cache busting de assets ────────────────────────────────────────
      Uso:  <link rel="stylesheet" href="{{ '/assets/css/main.css' | asset }}">
