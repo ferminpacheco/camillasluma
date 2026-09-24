@@ -4698,60 +4698,6 @@ a.galeria-clientes-modelo:focus-visible {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* ── Botón pausa / reproducir ── */
-
-.galeria-clientes-pausa {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0 auto var(--space-sm);
-  padding: 0.45rem 0.95rem;
-  font-family: var(--font-cuerpo);
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--color-blanco);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 50px;
-  cursor: pointer;
-  transition: background-color var(--dur-fast) var(--ease-out), transform var(--dur-press) var(--ease-out);
-}
-
-.galeria-clientes-pausa[hidden] {
-  display: none;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .galeria-clientes-pausa:hover {
-    background: rgba(255, 255, 255, 0.16);
-  }
-}
-
-.galeria-clientes-pausa:active {
-  transform: scale(0.97);
-}
-
-.galeria-clientes-pausa:focus-visible {
-  outline: 2px solid var(--color-blanco);
-  outline-offset: 3px;
-}
-
-/* Ícono dibujado con CSS: dos barras (pausar) o triángulo (reproducir). */
-.galeria-clientes-pausa-icono {
-  width: 10px;
-  height: 10px;
-  border-left: 3px solid currentColor;
-  border-right: 3px solid currentColor;
-  box-sizing: border-box;
-}
-
-.galeria-clientes-pausa[aria-pressed="true"] .galeria-clientes-pausa-icono {
-  border-right: 0;
-  border-left: 9px solid currentColor;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-}
-
 /* ── Manual (sin JS o reduced-motion) ── */
 
 .galeria-clientes:not(.is-marquee) .galeria-clientes-viewport {

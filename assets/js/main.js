@@ -716,29 +716,28 @@ document.querySelectorAll('[data-reels-carousel]').forEach(carousel => {
    eso se ve a saltitos. La parte decimal va como translateX del track, así
    el movimiento queda suave también en pantallas de densidad 1.
 
-   Se pausa con: hover y foco sobre la tira, el dedo (retoma 3 s después
-   de soltar), fuera de pantalla, pestaña oculta y el botón. Si la pausa es
-   del botón, nada la reanuda sola. Con reduced-motion no arranca: queda
-   la tira manual con scroll-snap (igual que sin JS). */
+   Se pausa con: hover y foco sobre la tira, scroll manual con el dedo o
+   el trackpad (retoma 3 s después del último gesto), fuera de pantalla y
+   pestaña oculta. Sin botón de pausa a pedido del cliente. Con
+   reduced-motion no arranca: queda la tira manual con scroll-snap (igual
+   que sin JS). */
 document.querySelectorAll('[data-galeria-clientes]').forEach(seccion => {
   const viewport = seccion.querySelector('[data-galeria-viewport]');
   const track = seccion.querySelector('[data-galeria-track]');
-  const boton = seccion.querySelector('[data-galeria-pausa]');
-  const textoBoton = boton && boton.querySelector('.galeria-clientes-pausa-texto');
-  if (!viewport || !track || !boton) return;
+  if (!viewport || !track) return;
 
   const originales = Array.from(track.children);
   if (!originales.length) return;
 
   const VELOCIDAD = 35;          // px por segundo
-  const RETOMA_TACTIL = 3000;    // ms después de soltar el dedo
+  const RETOMA_MANUAL = 3000;    // ms después del último gesto manual
 
   const pausas = new Set();      // motivos de pausa activos
   let periodo = 0;               // ancho de un set completo (con su gap)
   let pos = 0;                   // posición acumulada en float
   let ultimo = 0;
   let raf = 0;
-  let timerTactil = 0;
+  let timerManual = 0;
   let activo = false;            // modo cinta armado
 
   const reproduciendo = () => activo && pausas.size === 0;
@@ -789,10 +788,6 @@ document.querySelectorAll('[data-galeria-clientes]').forEach(seccion => {
   }
 
   function actualizar() {
-    const pausadoPorBoton = pausas.has('boton');
-    boton.setAttribute('aria-pressed', String(pausadoPorBoton));
-    textoBoton.textContent = pausadoPorBoton ? 'Reproducir fotos' : 'Pausar fotos';
-
     if (reproduciendo()) {
       if (!raf) {
         // Retoma desde donde haya quedado la tira (el usuario pudo moverla).
@@ -820,7 +815,6 @@ document.querySelectorAll('[data-galeria-clientes]').forEach(seccion => {
       return;
     }
     activo = true;
-    boton.hidden = false;
     actualizar();
   }
 
@@ -829,7 +823,6 @@ document.querySelectorAll('[data-galeria-clientes]').forEach(seccion => {
     actualizar();
     limpiarClones();
     seccion.classList.remove('is-marquee');
-    boton.hidden = true;
     viewport.scrollLeft = 0;
   }
 
@@ -841,10 +834,6 @@ document.querySelectorAll('[data-galeria-clientes]').forEach(seccion => {
     else if (viewport.scrollLeft >= max - 1) viewport.scrollLeft -= periodo;
   }, { passive: true });
 
-  boton.addEventListener('click', () => {
-    pausas.has('boton') ? seguir('boton') : pausar('boton');
-  });
-
   viewport.addEventListener('mouseenter', () => pausar('hover'));
   viewport.addEventListener('mouseleave', () => seguir('hover'));
 
@@ -853,16 +842,23 @@ document.querySelectorAll('[data-galeria-clientes]').forEach(seccion => {
     if (!viewport.contains(e.relatedTarget)) seguir('foco');
   });
 
-  viewport.addEventListener('touchstart', () => {
-    clearTimeout(timerTactil);
-    pausar('tactil');
-  }, { passive: true });
-  const soltar = () => {
-    clearTimeout(timerTactil);
-    timerTactil = setTimeout(() => seguir('tactil'), RETOMA_TACTIL);
+  // Scroll manual: el dedo en mobile y el trackpad / rueda horizontal en
+  // desktop. Pausa mientras dura el gesto y retoma 3 s después.
+  const retomarLuego = () => {
+    clearTimeout(timerManual);
+    timerManual = setTimeout(() => seguir('manual'), RETOMA_MANUAL);
   };
-  viewport.addEventListener('touchend', soltar, { passive: true });
-  viewport.addEventListener('touchcancel', soltar, { passive: true });
+  viewport.addEventListener('touchstart', () => {
+    clearTimeout(timerManual);
+    pausar('manual');
+  }, { passive: true });
+  viewport.addEventListener('touchend', retomarLuego, { passive: true });
+  viewport.addEventListener('touchcancel', retomarLuego, { passive: true });
+  viewport.addEventListener('wheel', e => {
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return; // scroll de página
+    pausar('manual');
+    retomarLuego();
+  }, { passive: true });
 
   new IntersectionObserver(([entrada]) => {
     entrada.isIntersecting ? seguir('fuera') : pausar('fuera');
