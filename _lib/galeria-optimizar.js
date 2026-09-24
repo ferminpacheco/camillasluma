@@ -4,7 +4,7 @@
    Uso:   npm run galeria
 
    Toma cada foto de _originales/galeria-clientes/ (carpeta que NO se
-   publica) y escribe una versión WebP de máximo 800px de ancho en
+   publica) y escribe una versión WebP de máximo 800x640 en
    /images/galeria-clientes/, con el mismo nombre y extensión .webp.
    No se corre en cada build: se corre al sumar fotos y se commitea el
    resultado, igual que `npm run og`.
@@ -23,6 +23,10 @@ const RAIZ = path.join(__dirname, "..");
 const ORIGEN = path.join(RAIZ, "_originales", "galeria-clientes");
 const DESTINO = path.join(RAIZ, "images", "galeria-clientes");
 const ANCHO_MAXIMO = 800;
+/* La banda muestra las fotos a 260px de alto (520px en pantallas retina):
+   640 alcanza y sobra. Sin este tope una vertical de celular salía de
+   ~1067px de alto, el doble de lo que se ve. */
+const ALTO_MAXIMO = 640;
 const EXTENSIONES = [".jpg", ".jpeg", ".png", ".webp", ".avif", ".tif", ".tiff"];
 
 async function main() {
@@ -56,7 +60,7 @@ async function main() {
 
     const info = await sharp(origen)
       .rotate()
-      .resize({ width: ANCHO_MAXIMO, withoutEnlargement: true })
+      .resize({ width: ANCHO_MAXIMO, height: ALTO_MAXIMO, fit: "inside", withoutEnlargement: true })
       .webp({ quality: 78 })
       .toFile(destino);
 
