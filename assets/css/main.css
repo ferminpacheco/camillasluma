@@ -4671,8 +4671,10 @@ a.galeria-clientes-modelo {
   transition: background-size var(--dur-fast) var(--ease-out);
 }
 
+/* Espacio duro: la flecha nunca queda sola en la línea de abajo cuando
+   la foto es angosta (verticales en mobile). */
 a.galeria-clientes-modelo::after {
-  content: " →";
+  content: "\00a0→";
 }
 
 @media (hover: hover) and (pointer: fine) {

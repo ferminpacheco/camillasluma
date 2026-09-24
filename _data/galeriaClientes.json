@@ -1,5 +1,23 @@
 [
   {
+    "imagen": "/images/galeria-clientes/cliente-01-consultorio-premium.webp",
+    "modelo": "premium",
+    "alt": "Camilla LUMA Premium blanca recién instalada en un consultorio de paredes azules, con luz LED azul en la base.",
+    "cita": "",
+    "nombre": "",
+    "publicar": false,
+    "_nota": "Foto real (Drive de Micaela). publicar:false hasta tener 6 fotos reales; cambiar a true para mostrarla."
+  },
+  {
+    "_nota": "⚠️ A CONFIRMAR: modelo (¿Premium beige?) y si es consultorio de cliente o showroom. publicar:false hasta confirmar.",
+    "imagen": "/images/galeria-clientes/cliente-02-camilla-beige.webp",
+    "modelo": "premium",
+    "alt": "Camilla eléctrica LUMA beige en un consultorio con ventanales y vista a la ciudad.",
+    "cita": "",
+    "nombre": "",
+    "publicar": false
+  },
+  {
     "_nota": "PLACEHOLDER — foto de producto, no de un cliente. Reemplazar por foto real del cliente y borrar este campo y 'placeholder'.",
     "placeholder": true,
     "imagen": "/images/the-global-plastic-surgery/01-consultorio-camilla-premium-lampara-led.webp",
