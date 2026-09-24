@@ -1,0 +1,78 @@
+{#
+  GALERÍA DE CLIENTES — componente compartido.
+
+  Banda azul con fotos reales que mandan los clientes de su equipo LUMA
+  ya instalado. Es prueba social, NO reseñas: sin estrellas, sin puntajes
+  y sin schema (nada de Review ni AggregateRating).
+
+  Uso:
+
+    {% set galeriaModelo = "premium" %}   (opcional: filtra por modelo)
+    {% include "components/galeria-clientes.njk" %}
+
+  Parámetros opcionales (con `set` antes del include):
+    galeriaModelo       premium | one | gold | ginecologica | luma-cart |
+                        luma-tech | luminaria. Con menos de 3 fotos de ese
+                        modelo se muestran todas.
+    galeriaTitulo       H2. Default: "Así quedó LUMA en sus consultorios".
+    galeriaDescripcion  Bajada de una línea.
+
+  Datos: _data/galeriaClientes.json. La lógica (publicar, placeholders,
+  filtro por modelo, width/height) vive en _lib/galeria.js. Si no hay
+  ninguna foto publicable la sección no se renderiza.
+
+  El movimiento lo maneja main.js (bloque GALERÍA DE CLIENTES). Se pausa
+  con el mouse encima, con foco de teclado y al moverla a mano (dedo o
+  trackpad). Sin JS o con prefers-reduced-motion queda una tira que se
+  desliza a mano.
+#}
+
+{% set galeriaFotos = galeriaClientes | galeriaFiltrar(galeriaModelo) %}
+
+{% if galeriaFotos.length %}
+{% set galeriaTitulo = galeriaTitulo | default("Así quedó LUMA en sus consultorios") %}
+{% set galeriaDescripcion = galeriaDescripcion | default("Fotos reales que nos compartieron profesionales que ya trabajan con LUMA.") %}
+
+<section class="galeria-clientes" aria-labelledby="galeria-clientes-titulo" data-galeria-clientes>
+  <div class="galeria-clientes-cabecera">
+    <h2 id="galeria-clientes-titulo" class="galeria-clientes-titulo">{{ galeriaTitulo }}</h2>
+    <p class="galeria-clientes-bajada">{{ galeriaDescripcion }}</p>
+  </div>
+
+  <div class="galeria-clientes-viewport" data-galeria-viewport tabindex="0" role="region" aria-label="Fotos de clientes">
+    <ul class="galeria-clientes-track" data-galeria-track>
+      {% for foto in galeriaFotos %}
+        <li class="galeria-clientes-item">
+          <figure class="galeria-clientes-figura">
+            <img
+              class="galeria-clientes-img"
+              src="{{ foto.imagen }}"
+              alt="{{ foto.alt }}"
+              width="{{ foto.width }}"
+              height="{{ foto.height }}"
+              style="--ar: {{ foto.width }} / {{ foto.height }};"
+              loading="lazy"
+              decoding="async"
+            >
+            <figcaption class="galeria-clientes-pie">
+              {% if foto.url == page.url %}
+                <span class="galeria-clientes-modelo">{{ foto.rotulo }}</span>
+              {% else %}
+                <a class="galeria-clientes-modelo" href="{{ foto.url }}">{{ foto.rotulo }}</a>
+              {% endif %}
+              {% if foto.cita %}<q class="galeria-clientes-cita">{{ foto.cita }}</q>{% endif %}
+              {% if foto.nombre %}<span class="galeria-clientes-nombre">{{ foto.nombre }}</span>{% endif %}
+            </figcaption>
+          </figure>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{# Limpieza: `set` en Nunjucks queda vivo en toda la página. Sin esto, un
+   segundo include en la misma página heredaría el modelo del primero. #}
+{% set galeriaModelo = undefined %}
+{% set galeriaTitulo = undefined %}
+{% set galeriaDescripcion = undefined %}

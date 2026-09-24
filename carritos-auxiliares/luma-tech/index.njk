@@ -280,6 +280,10 @@ instagram_reels:
   </div>
 </section>
 
+<!-- GALERÍA DE CLIENTES — fotos reales de clientes, filtradas por modelo -->
+{% set galeriaModelo = "luma-tech" %}
+{% include "components/galeria-clientes.njk" %}
+
 <!-- GALERÍA AMBIENTADA -->
 <section class="producto-seccion bg-fondo">
   <div class="producto-seccion-inner">
@@ -375,6 +379,10 @@ instagram_reels:
 {% set reelsBajada = "Mirá el carrito en uso en consultorios reales, en nuestro Instagram." %}
 {% include "components/bloque-reels.njk" %}
 
+{#- TESTIMONIOS MOCK OCULTOS (24/09/2026): son inventados y la web ya tiene
+    prueba social real (galería de clientes). NO se borran: para volver a
+    mostrarlos, poner "mostrar_testimonios_mock": true en _data/site.json. #}
+{% if site.mostrar_testimonios_mock %}
 <!-- TESTIMONIOS -->
 <!-- Testimonios mock (no verificados). Fuente: luma-testimonios.md.
      IMPORTANTE: NO agregar schema Review/AggregateRating hasta contar con reseñas reales. -->
@@ -453,3 +461,4 @@ instagram_reels:
     </div>
   </div>
 </section>
+{% endif %}

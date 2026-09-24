@@ -41,6 +41,10 @@ ogImageAlt: "Stand de LUMA en el congreso RADLA con una camilla eléctrica Premi
   </div>
 </section>
 
+{#- TESTIMONIOS MOCK OCULTOS (24/09/2026): son inventados y la web ya tiene
+    prueba social real (galería de clientes). NO se borran: para volver a
+    mostrarlos, poner "mostrar_testimonios_mock": true en _data/site.json. #}
+{% if site.mostrar_testimonios_mock %}
 <!-- PRUEBA SOCIAL / CENTROS -->
 <!-- Testimonios mock (no verificados). Fuente: luma-testimonios.md.
      IMPORTANTE: NO agregar schema Review/AggregateRating hasta contar con reseñas reales. -->
@@ -102,6 +106,7 @@ ogImageAlt: "Stand de LUMA en el congreso RADLA con una camilla eléctrica Premi
     </div>
   </div>
 </section>
+{% endif %}
 
 <!-- CONTACTO — cards migradas desde la vieja pagina /contacto/ -->
 <section class="contacto-section" id="contacto">

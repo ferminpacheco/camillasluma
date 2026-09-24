@@ -8,7 +8,8 @@
   "scripts": {
     "build": "eleventy",
     "serve": "eleventy --serve --port=8080",
-    "og": "node _lib/og-cards.js"
+    "og": "node _lib/og-cards.js",
+    "galeria": "node _lib/galeria-optimizar.js"
   },
   "keywords": [],
   "author": "",

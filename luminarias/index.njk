@@ -88,8 +88,8 @@ instagram_reels:
         <a href="/nosotros/#showrooms" class="cta-button-light">Ver en showroom</a>
       </div>
       <div class="precio-box">
-        <p class="precio-actual">USD 102 + IVA</p>
-        <p class="precio-iva-nota">Precio de lista. Escribinos para conocer disponibilidad y formas de pago.</p>
+        <p class="precio-actual">Precio: a consultar</p>
+        <p class="precio-iva-nota">Venta por cotización. Escribinos para recibir el valor actualizado.</p>
       </div>
       {% include "components/bloque-pago-envio.njk" %}
     </div>
@@ -191,6 +191,10 @@ instagram_reels:
   </div>
 </section>
 
+<!-- GALERÍA DE CLIENTES — fotos reales de clientes, filtradas por modelo -->
+{% set galeriaModelo = "luminaria" %}
+{% include "components/galeria-clientes.njk" %}
+
 <!-- RELACIONADOS -->
 <section class="producto-seccion bg-fondo">
   <div class="producto-seccion-inner">
@@ -255,6 +259,10 @@ instagram_reels:
 {% set reelsBajada = "Mirá la luminaria en uso en consultorios reales, en nuestro Instagram." %}
 {% include "components/bloque-reels.njk" %}
 
+{#- TESTIMONIOS MOCK OCULTOS (24/09/2026): son inventados y la web ya tiene
+    prueba social real (galería de clientes). NO se borran: para volver a
+    mostrarlos, poner "mostrar_testimonios_mock": true en _data/site.json. #}
+{% if site.mostrar_testimonios_mock %}
 <!-- TESTIMONIOS -->
 <!-- Testimonios mock (no verificados). Fuente: luma-testimonios.md.
      IMPORTANTE: NO agregar schema Review/AggregateRating hasta contar con reseñas reales. -->
@@ -333,6 +341,7 @@ instagram_reels:
     </div>
   </div>
 </section>
+{% endif %}
 
 <!-- CTA CIERRE -->
 <section class="cta-producto-cierre cta-producto-cierre--imagen" style="--cta-bg-imagen: url('/images/luma-luminarias/hf_20260814_234841_f9447d71-9773-424a-87bc-beea4a9f98d3.webp');">
