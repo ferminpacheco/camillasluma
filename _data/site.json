@@ -14,5 +14,6 @@
   "og_default_alt": "LUMA — Camillas eléctricas y equipamiento médico estético.",
   "showroom_palermo": "Palermo, CABA",
   "showroom_belgrano": "Belgrano, CABA",
-  "hex_oficiales": "{{HEX_OFICIALES}}"
+  "hex_oficiales": "{{HEX_OFICIALES}}",
+  "mostrar_testimonios_mock": false
 }

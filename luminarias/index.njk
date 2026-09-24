@@ -259,6 +259,10 @@ instagram_reels:
 {% set reelsBajada = "Mirá la luminaria en uso en consultorios reales, en nuestro Instagram." %}
 {% include "components/bloque-reels.njk" %}
 
+{#- TESTIMONIOS MOCK OCULTOS (24/09/2026): son inventados y la web ya tiene
+    prueba social real (galería de clientes). NO se borran: para volver a
+    mostrarlos, poner "mostrar_testimonios_mock": true en _data/site.json. #}
+{% if site.mostrar_testimonios_mock %}
 <!-- TESTIMONIOS -->
 <!-- Testimonios mock (no verificados). Fuente: luma-testimonios.md.
      IMPORTANTE: NO agregar schema Review/AggregateRating hasta contar con reseñas reales. -->
@@ -337,6 +341,7 @@ instagram_reels:
     </div>
   </div>
 </section>
+{% endif %}
 
 <!-- CTA CIERRE -->
 <section class="cta-producto-cierre cta-producto-cierre--imagen" style="--cta-bg-imagen: url('/images/luma-luminarias/hf_20260814_234841_f9447d71-9773-424a-87bc-beea4a9f98d3.webp');">
