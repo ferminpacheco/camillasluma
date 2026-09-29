@@ -470,6 +470,41 @@ body > section:first-of-type {
   flex-shrink: 0;
 }
 
+/* ── ÍCONOS SVG ────────────────────────────────
+   Salen del shortcode {% icono %} (.eleventy.js). Reemplazan a la fuente
+   de Font Awesome: miden 1em y toman el color del texto, igual que antes,
+   así que los estilos que ya había sobre <i> siguen funcionando. */
+.icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  vertical-align: -0.125em;
+  font-style: normal;
+}
+
+/* El SVG mide 1em aunque el <i> sea más grande: hay estilos que usan el
+   <i> como círculo contenedor (ej. .showroom-card-nota i, 36px) con el
+   glifo chico al centro, como hacía la fuente de íconos. */
+.icono svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  overflow: visible;
+}
+
+.menu-icono-cerrar,
+[data-menu-abierto] .menu-icono-abrir {
+  display: none;
+}
+
+[data-menu-abierto] .menu-icono-cerrar {
+  display: inline-block;
+}
+
 /* ── CTA FINAL ───────────────────────────────── */
 
 .cta-final {
@@ -1984,6 +2019,24 @@ body > section:first-of-type {
   background-repeat: no-repeat;
 }
 
+/* En celular el banner de 2400 px es desperdicio: va la versión de 800 px
+   (npm run responsive). base.njk la precarga con `preloadFondo`. */
+@media (max-width: 800px) {
+  .hub-hero--camillas {
+    background-image:
+      linear-gradient(rgba(10, 41, 86, 0.75), rgba(10, 41, 86, 0.75)),
+      url('/images/banner-camillas-electricas-800.webp');
+  }
+
+  .hub-hero--imagen {
+    background-image:
+      linear-gradient(135deg,
+        rgba(10, 41, 86, var(--hero-overlay-op, 0.65)),
+        rgba(10, 41, 86, calc(var(--hero-overlay-op, 0.65) - 0.15))),
+      var(--hero-bg-imagen-mobile, var(--hero-bg-imagen));
+  }
+}
+
 /* Variante genérica: la imagen y la opacidad del overlay se pasan por
    custom properties desde el template (mismo criterio que .cta-producto-cierre--imagen). */
 .hub-hero--imagen {
@@ -2233,6 +2286,25 @@ body > section:first-of-type {
 .cuidado-grid--2 {
   grid-template-columns: repeat(2, 1fr);
   max-width: 800px;
+}
+
+/* Cuatro tarjetas (ej. "Para qué tratamientos sirve" de la Premium): en
+   3 columnas la cuarta quedaría sola en una fila. Cuatro en desktop, dos
+   en tablet; en celular manda la regla de 1fr. */
+.cuidado-grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Cantidad variable de tarjetas (ej. "Qué mirar antes de elegir", 5): las
+   que entren por fila, sin que ninguna quede angosta. */
+.cuidado-grid--auto {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .cuidado-grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .cuidado-card {
@@ -2643,7 +2715,10 @@ body > section:first-of-type {
   color: var(--color-texto);
 }
 
-.faq-respuesta a {
+.faq-respuesta a,
+.cuidado-card a,
+.features-list a,
+.producto-seccion-inner > p a {
   color: var(--color-principal);
   font-weight: 600;
 }

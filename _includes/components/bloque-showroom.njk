@@ -46,14 +46,14 @@
             loading="lazy"
           >
           <h3 class="showroom-card-titulo">
-            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            {% icono "map-marker-alt" %}
             {{ s.barrio }}<span class="showroom-card-zona">{{ s.zona }}</span>
           </h3>
         </div>
 
         <div class="showroom-card-body">
           <p class="showroom-card-nota">
-            <i class="fas fa-calendar-check" aria-hidden="true"></i>
+            {% icono "calendar-check" %}
             <span>Se visita <strong>solo con turno previo</strong>: coordinamos día y horario por WhatsApp.</span>
           </p>
 
@@ -65,7 +65,7 @@
             target="_blank"
             rel="noopener"
             data-track="showroom_click"
-          ><i class="fab fa-whatsapp" aria-hidden="true"></i> Agendá tu visita</a>
+          >{% icono "whatsapp" %} Agendá tu visita</a>
         </div>
 
       </article>

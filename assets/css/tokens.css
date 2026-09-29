@@ -36,6 +36,35 @@
   --onda: "~";
 }
 
+/* Poppins — autoalojada (antes venía de Google Fonts).
+   Solo el subset latin (cubre tildes, ñ, ¿¡, comillas y guiones) y solo
+   los pesos 400, 600 y 700: el 500 que usaban 3 estilos ahora se ve en
+   400. base.njk precarga 400 y 600, que son los de la primera pantalla.
+   Licencia: SIL Open Font License 1.1. */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/poppins-400-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/poppins-600-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/poppins-700-latin.woff2') format('woff2');
+}
+
 /* Behind the Nineties — @font-face para cuando se provea la licencia web.
    Reemplazar la ruta con el archivo real.
    ⚠️ A CONFIRMAR licencia antes de usar en producción. */

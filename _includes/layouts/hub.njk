@@ -23,18 +23,19 @@ layout: base.njk
         {% endfor %}
       ]
     }
-    {% if schemaFaqs %},
+    {% set faqsSchema = faqs | faqsVisibles %}
+    {% if faqsSchema.length %},
     {
       "@type": "FAQPage",
       "@id": "{{ canonical }}#faq",
       "mainEntity": [
-        {% for faq in schemaFaqs %}
+        {% for faq in faqsSchema %}
         {
           "@type": "Question",
-          "name": "{{ faq.q }}",
+          "name": {{ faq.q | dump | safe }},
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "{{ faq.a }}"
+            "text": {{ faq.a | textoPlano | dump | safe }}
           }
         }{% if not loop.last %},{% endif %}
         {% endfor %}

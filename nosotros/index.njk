@@ -55,7 +55,7 @@ ogImageAlt: "Stand de LUMA en el congreso RADLA con una camilla eléctrica Premi
 
     <div class="testimonio-carousel" data-testimonio-carousel>
       <button type="button" class="testimonio-carousel-nav testimonio-carousel-prev" data-testimonio-prev aria-label="Testimonio anterior">
-        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+        {% icono "chevron-left" %}
       </button>
 
       <div class="testimonio-carousel-viewport">
@@ -101,7 +101,7 @@ ogImageAlt: "Stand de LUMA en el congreso RADLA con una camilla eléctrica Premi
       </div>
 
       <button type="button" class="testimonio-carousel-nav testimonio-carousel-next" data-testimonio-next aria-label="Testimonio siguiente">
-        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        {% icono "chevron-right" %}
       </button>
     </div>
   </div>
@@ -117,13 +117,13 @@ ogImageAlt: "Stand de LUMA en el congreso RADLA con una camilla eléctrica Premi
 
     <div class="contact-methods">
       <div class="method-box">
-        <i class="fas fa-envelope icon" aria-hidden="true"></i>
+        {% icono "envelope", "icon" %}
         <h3>Correo</h3>
         <p>Resolvemos tus consultas rápidamente.</p>
         <a href="mailto:{{ site.email }}">{{ site.email }}</a>
       </div>
       <div class="method-box">
-        <i class="fab fa-whatsapp icon" aria-hidden="true"></i>
+        {% icono "whatsapp", "icon" %}
         <h3>WhatsApp</h3>
         <p>Lun a Vie · 8 a 17 hs</p>
         <a href="{{ whatsappLink }}" target="_blank" rel="noopener">
@@ -131,7 +131,7 @@ ogImageAlt: "Stand de LUMA en el congreso RADLA con una camilla eléctrica Premi
         </a>
       </div>
       <div class="method-box">
-        <i class="fas fa-map-marker-alt icon" aria-hidden="true"></i>
+        {% icono "map-marker-alt", "icon" %}
         <h3>Showrooms</h3>
         <p>{{ site.showroom_palermo }}</p>
         <p>{{ site.showroom_belgrano }}</p>

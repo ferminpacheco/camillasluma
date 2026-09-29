@@ -30,19 +30,19 @@
     <p>Diseño que transforma espacios. Calidad que hace la diferencia.</p>
     <div class="beneficios-grid">
       <div class="beneficio-card">
-        <div class="beneficio-icono"><i class="fas fa-sliders" aria-hidden="true"></i></div>
+        <div class="beneficio-icono">{% icono "sliders" %}</div>
         <h3>PRECISIÓN TECNOLÓGICA</h3>
         <p>3 motores independientes, control remoto manual y movimiento ultra silencioso en cada modelo.</p>
       </div>
       <div class="beneficio-card">
-        <div class="beneficio-icono"><i class="fas fa-gem" aria-hidden="true"></i></div>
+        <div class="beneficio-icono">{% icono "gem" %}</div>
         <h3>DISEÑO MINIMALISTA</h3>
         <p>Estética que eleva el espacio. Cada pieza está pensada para integrarse al consultorio moderno.</p>
       </div>
       <div class="beneficio-card">
         {# fa-shield-halved (nombre FA6) no existe en el build 6.0.0-beta3 que
            carga el sitio: renderiza vacío. Usar el nombre que sí resuelve. #}
-        <div class="beneficio-icono"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
+        <div class="beneficio-icono">{% icono "shield-alt" %}</div>
         {# Antes esta card era "RESPALDO POSTVENTA" (servicio tecnico directo).
            Reencuadrada a garantia por pedido del cliente (Marcelo): no
            comunicar el servicio postventa por ahora. No reponer sin OK. #}

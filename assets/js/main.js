@@ -36,10 +36,7 @@ function sincronizarMenu(abierto) {
   toggle.setAttribute('aria-expanded', abierto ? 'true' : 'false');
   toggle.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
 
-  const icono = toggle.querySelector('i');
-  if (!icono) return;
-  icono.classList.toggle('fa-bars', !abierto);
-  icono.classList.toggle('fa-xmark', abierto);
+  // El ícono (hamburguesa / cruz) lo cambia el CSS según [data-menu-abierto].
 }
 
 function toggleMenu() {
@@ -398,6 +395,75 @@ document.querySelectorAll('.faq-item').forEach(item => {
     };
   });
 });
+
+/* ── WhatsApp con origen ("Consulta #ONE-G4") ──
+   Cada link a wa.me sale con un segundo renglón que dice desde qué página
+   y de qué canal llegó la persona, para leerlo en el chat de ventas:
+
+     Hola! Quiero más información sobre la Camilla LUMA One.
+     Consulta #ONE-G4
+
+   ONE = página (data-wa-codigo del <body>, ver _data/codigosWa.json).
+   G   = origen: G Google Ads · I Instagram · W orgánico de buscador ·
+         D directo u otro.
+   4   = dígito al azar 1-9 (distingue consultas del mismo día).
+
+   Origen: se detecta al cargar y se guarda 30 días en localStorage con
+   regla de PRIMER CONTACTO: un origen G, I o W no se pisa nunca (ni con
+   D ni con otro canal) hasta que vence; un D sí se reemplaza si después
+   llega por un canal identificado.
+
+   El href se reescribe AL CARGAR, nunca en el clic: el disparador
+   "Clic WhatsApp" de GTM lee el href del link. No se toca ningún
+   data-track. Todo va en try/catch: si algo falla, el link queda como
+   venía del HTML (sin código) y la página sigue funcionando. */
+(function whatsappConOrigen() {
+  const CLAVE = 'luma_wa_origen';
+  const DURACION = 30 * 24 * 60 * 60 * 1000;
+  const BUSCADORES = /(^|\.)(google|bing|yahoo|duckduckgo|ecosia|yandex|search\.brave)\./i;
+
+  function origenDeEstaVisita() {
+    const p = new URLSearchParams(location.search);
+    const fuente = (p.get('utm_source') || '').toLowerCase();
+    const medio = (p.get('utm_medium') || '').toLowerCase();
+    let refHost = '';
+    try { refHost = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) {}
+
+    if (p.has('gclid') || p.has('gbraid') || p.has('wbraid') ||
+        (fuente === 'google' && medio === 'cpc')) return 'G';
+    if (fuente.includes('instagram') || /(^|\.)instagram\.com$/i.test(refHost)) return 'I';
+    if (refHost && BUSCADORES.test(refHost + '.')) return 'W';
+    return 'D';
+  }
+
+  function origenGuardado(actual) {
+    const ahora = Date.now();
+    let guardado = null;
+    try { guardado = JSON.parse(localStorage.getItem(CLAVE) || 'null'); } catch (e) {}
+    const vigente = guardado && guardado.o && ahora - guardado.t < DURACION;
+
+    if (vigente && (guardado.o !== 'D' || actual === 'D')) return guardado.o;
+    try { localStorage.setItem(CLAVE, JSON.stringify({ o: actual, t: ahora })); } catch (e) {}
+    return actual;
+  }
+
+  try {
+    const pagina = document.body.dataset.waCodigo || 'WEB';
+    const origen = origenGuardado(origenDeEstaVisita());
+    const digito = 1 + Math.floor(Math.random() * 9);
+    const codigo = `${pagina}-${origen}${digito}`;
+
+    document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+      try {
+        const [base, query = ''] = link.getAttribute('href').split('?');
+        const texto = new URLSearchParams(query).get('text') || '';
+        if (texto.includes('Consulta #')) return;
+        const nuevo = `${texto}${texto ? '\n' : ''}Consulta #${codigo}`;
+        link.setAttribute('href', `${base}?text=${encodeURIComponent(nuevo)}`);
+      } catch (e) {}
+    });
+  } catch (e) {}
+})();
 
 /* ── Tracking de conversión (Fase 5: GA4/GTM) ── */
 // Los eventos se cablean en la Fase 5 una vez instalado GTM.

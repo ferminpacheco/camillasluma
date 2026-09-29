@@ -12,16 +12,21 @@ schemaProduct:
   description: "Lámpara LED de precisión con intensidad regulable, tres colores de luz (fría, media y cálida) y altura regulable de 1,28 a 1,74 m. Disponible en blanco y negro, tamaño único."
   image: "/images/luma_luminaria.webp"
   outOfStock: true
-schemaFaqs:
-  - q: "¿La luminaria LUMA regula la intensidad de luz?"
-    a: "Sí, tiene intensidad regulable y permite elegir entre tres colores de luz — fría, media y cálida — según el tratamiento."
-  - q: "¿En qué colores está disponible?"
-    a: "Está disponible en blanco y negro, en un tamaño único con altura regulable de 1,28 a 1,74 m."
-  - q: "¿Hay stock disponible?"
-    a: "Actualmente la luminaria está sin stock. El próximo ingreso se estima en aproximadamente 2 meses. Podés consultarnos para anotarte en lista de espera."
-  - q: "¿La luminaria tiene garantía?"
-    a: "Sí, incluye garantía oficial LUMA. Consultá los detalles en nuestra página de nosotros."
-
+# Preguntas frecuentes: acordeón visible Y schema FAQPage salen de acá
+# (components/faq.njk). "a" es HTML. Ver .eleventy.js → faqsVisibles.
+faqs:
+  - q: "¿Qué diferencia hay entre los tres colores de luz?"
+    a: |
+      <p>La <strong>luz fría</strong> es la más usada en procedimientos médicos y estéticos: brinda alta fidelidad cromática y visibilidad de detalle. La <strong>luz media</strong> es un punto intermedio, cómodo para trabajar jornadas largas sin fatiga visual. La <strong>luz cálida</strong> es ideal para espacios de bienestar y consultas donde el confort visual del paciente es prioritario. La luminaria LUMA te permite elegir entre los tres según tu práctica.</p>
+  - q: "¿Viene en distintos tamaños?"
+    a: |
+      <p>No, la Luminaria LED LUMA tiene <strong>un tamaño único</strong>. Lo que sí es regulable es su <strong>altura, de 1,28 m a 1,74 m</strong>, mediante una unión telescópica en el caño vertical, lo que le permite adaptarse a la postura del profesional y a la altura de la camilla.</p>
+  - q: "¿Tiene intensidad regulable?"
+    a: |
+      <p>Sí. La intensidad de luz es <strong>regulable</strong>, lo que permite ajustar la iluminación según el procedimiento y las preferencias del profesional.</p>
+  - q: "¿Tiene garantía oficial?"
+    a: |
+      <p>Sí. Todos los productos LUMA incluyen <strong>[GARANTIA_MESES] meses de garantía oficial</strong>. Las condiciones completas están en la <a href="[GARANTIA_URL]">página de garantía</a>.</p>
 # ── REELS DE INSTAGRAM ────────────────────────────────────
 # URLs tomadas de docs/luma-luminaria-led-ficha-tecnica.md.
 # Formato aceptado: https://www.instagram.com/reel/CODIGO/ (o /p/CODIGO/).
@@ -44,6 +49,9 @@ instagram_reels:
         <div class="carousel-track">
           <img
             src="/images/luma_luminaria.webp"
+            srcset="/images/luma_luminaria-480.webp 480w, /images/luma_luminaria-640.webp 640w, /images/luma_luminaria.webp 1024w"
+            sizes="(max-width: 768px) 90vw, (max-width: 1440px) 47vw, 680px"
+            fetchpriority="high"
             alt="Luminaria LED LUMA — color negro"
             class="carousel-slide is-active"
             width="1024"
@@ -52,6 +60,8 @@ instagram_reels:
           >
           <img
             src="/images/luma-luminarias/portada-luminaria-blanca.webp"
+            srcset="/images/luma-luminarias/portada-luminaria-blanca-480.webp 480w, /images/luma-luminarias/portada-luminaria-blanca-640.webp 640w, /images/luma-luminarias/portada-luminaria-blanca.webp 1024w"
+            sizes="(max-width: 768px) 90vw, (max-width: 1440px) 47vw, 680px"
             alt="Luminaria LED LUMA — color blanco"
             class="carousel-slide"
             width="1024"
@@ -60,10 +70,10 @@ instagram_reels:
           >
         </div>
         <button type="button" class="carousel-arrow carousel-prev" data-carousel-prev aria-label="Imagen anterior">
-          <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          {% icono "chevron-left" %}
         </button>
         <button type="button" class="carousel-arrow carousel-next" data-carousel-next aria-label="Imagen siguiente">
-          <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          {% icono "chevron-right" %}
         </button>
         <div class="carousel-dots" data-carousel-dots>
           <button type="button" class="carousel-dot is-active" data-carousel-goto="0" aria-label="Ver color negro"></button>
@@ -80,8 +90,8 @@ instagram_reels:
         <button type="button" class="color-swatch" data-color-goto="1" style="--swatch-color:#FFFFFF;" aria-label="Color blanco"></button>
       </div>
       <div class="producto-badges">
-        <span class="badge"><i class="fas fa-shield-alt" aria-hidden="true"></i> Garantía oficial</span>
-        <span class="badge"><i class="fas fa-truck" aria-hidden="true"></i> Envíos a todo el país</span>
+        <span class="badge">{% icono "shield-alt" %} Garantía oficial</span>
+        <span class="badge">{% icono "truck" %} Envíos a todo el país</span>
       </div>
       <div class="cta-doble">
         <a href="{{ whatsappLink }}" class="cta-button" target="_blank" rel="noopener">Consultá disponibilidad</a>
@@ -147,13 +157,13 @@ instagram_reels:
       </div>
       <div class="ficha-info">
         <ul class="features-list">
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Iluminación clara y uniforme, sin puntos concentrados</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Intensidad regulable</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Tres colores de luz: fría, media y cálida</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Altura regulable de 1,28 a 1,74 m mediante unión telescópica</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Brazo en voladizo: ilumina la zona de trabajo sin que el pie estorbe</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Disponible en blanco y negro</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Diseño funcional y minimalista, línea visual LUMA</li>
+          <li>{% icono "check-circle" %} Iluminación clara y uniforme, sin puntos concentrados</li>
+          <li>{% icono "check-circle" %} Intensidad regulable</li>
+          <li>{% icono "check-circle" %} Tres colores de luz: fría, media y cálida</li>
+          <li>{% icono "check-circle" %} Altura regulable de 1,28 a 1,74 m mediante unión telescópica</li>
+          <li>{% icono "check-circle" %} Brazo en voladizo: ilumina la zona de trabajo sin que el pie estorbe</li>
+          <li>{% icono "check-circle" %} Disponible en blanco y negro</li>
+          <li>{% icono "check-circle" %} Diseño funcional y minimalista, línea visual LUMA</li>
         </ul>
       </div>
     </div>
@@ -216,43 +226,9 @@ instagram_reels:
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq-seccion bg-fondo">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre la Luminaria LED LUMA</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿Qué diferencia hay entre los tres colores de luz?</summary>
-        <div class="faq-respuesta">
-          <p>La <strong>luz fría</strong> es la más usada en procedimientos médicos y estéticos: brinda alta fidelidad cromática y visibilidad de detalle. La <strong>luz media</strong> es un punto intermedio, cómodo para trabajar jornadas largas sin fatiga visual. La <strong>luz cálida</strong> es ideal para espacios de bienestar y consultas donde el confort visual del paciente es prioritario. La luminaria LUMA te permite elegir entre los tres según tu práctica.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Viene en distintos tamaños?</summary>
-        <div class="faq-respuesta">
-          <p>No, la Luminaria LED LUMA tiene <strong>un tamaño único</strong>. Lo que sí es regulable es su <strong>altura, de 1,28 m a 1,74 m</strong>, mediante una unión telescópica en el caño vertical, lo que le permite adaptarse a la postura del profesional y a la altura de la camilla.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene intensidad regulable?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. La intensidad de luz es <strong>regulable</strong>, lo que permite ajustar la iluminación según el procedimiento y las preferencias del profesional.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene garantía oficial?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. Todos los productos LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>
+<!-- FAQ — una sola fuente: `faqs` del front matter (acordeón + schema FAQPage). -->
+{% set faqTitulo = "Preguntas frecuentes sobre la Luminaria LED LUMA" %}
+{% include "components/faq.njk" %}
 
 <!-- REELS DE INSTAGRAM -->
 {% set reelsTitulo = "La Luminaria LED en acción" %}
@@ -271,7 +247,7 @@ instagram_reels:
     <h2>Lo que dicen los profesionales</h2>
     <div class="testimonio-carousel" data-testimonio-carousel>
       <button type="button" class="testimonio-carousel-nav testimonio-carousel-prev" data-testimonio-prev aria-label="Testimonio anterior">
-        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+        {% icono "chevron-left" %}
       </button>
 
       <div class="testimonio-carousel-viewport">
@@ -336,7 +312,7 @@ instagram_reels:
       </div>
 
       <button type="button" class="testimonio-carousel-nav testimonio-carousel-next" data-testimonio-next aria-label="Testimonio siguiente">
-        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        {% icono "chevron-right" %}
       </button>
     </div>
   </div>
