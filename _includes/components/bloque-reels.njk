@@ -62,14 +62,14 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i class="fab fa-instagram" aria-hidden="true"></i>
+          {% icono "instagram" %}
           Seguir
         </a>
       {% else %}
         {# Sin handle confirmado el botón no puede apuntar a ningún lado.
            Se muestra inerte y marcado, no se inventa una URL. #}
         <span class="reels-seguir is-pendiente" aria-disabled="true">
-          <i class="fab fa-instagram" aria-hidden="true"></i>
+          {% icono "instagram" %}
           Seguir
         </span>
       {% endif %}
@@ -82,7 +82,7 @@
     <!-- Carrusel -->
     <div class="reels-carousel" data-reels-carousel>
       <button type="button" class="reels-nav reels-prev" data-reels-prev aria-label="Reel anterior">
-        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+        {% icono "chevron-left" %}
       </button>
 
       <div class="reels-viewport">
@@ -122,7 +122,7 @@
             {% for i in range(0, 4) %}
               <div class="reels-slide">
                 <div class="reel-card reel-card--placeholder">
-                  <i class="fab fa-instagram reel-placeholder-icono" aria-hidden="true"></i>
+                  {% icono "instagram", "reel-placeholder-icono" %}
                   <p class="reel-placeholder-texto">⚠️ Reel a confirmar</p>
                 </div>
               </div>
@@ -133,7 +133,7 @@
       </div>
 
       <button type="button" class="reels-nav reels-next" data-reels-next aria-label="Reel siguiente">
-        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        {% icono "chevron-right" %}
       </button>
     </div>
 

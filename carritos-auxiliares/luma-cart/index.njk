@@ -73,10 +73,10 @@ instagram_reels:
           >
         </div>
         <button type="button" class="carousel-arrow carousel-prev" data-carousel-prev aria-label="Imagen anterior">
-          <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          {% icono "chevron-left" %}
         </button>
         <button type="button" class="carousel-arrow carousel-next" data-carousel-next aria-label="Imagen siguiente">
-          <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          {% icono "chevron-right" %}
         </button>
         <div class="carousel-dots" data-carousel-dots>
           <button type="button" class="carousel-dot is-active" data-carousel-goto="0" aria-label="Ver imagen 1"></button>
@@ -91,8 +91,8 @@ instagram_reels:
       <h1>LUMA Cart <span class="h1-categoria">Carrito auxiliar para cabinas de estética</span></h1>
       <p class="producto-bajada">Diseño, orden y movilidad para espacios profesionales. Silueta curva, terminaciones limpias y superficie resistente que eleva la estética de cualquier espacio de trabajo.</p>
       <div class="producto-badges">
-        <span class="badge"><i class="fas fa-truck" aria-hidden="true"></i> Envíos a todo el país</span>
-        <span class="badge"><i class="fas fa-layer-group" aria-hidden="true"></i> 3 niveles de apoyo</span>
+        <span class="badge">{% icono "truck" %} Envíos a todo el país</span>
+        <span class="badge">{% icono "layer-group" %} 3 niveles de apoyo</span>
       </div>
       <div class="cta-doble">
         <a href="{{ whatsappLink }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
@@ -133,12 +133,12 @@ instagram_reels:
       </div>
       <div class="ficha-info">
         <ul class="features-list">
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Tres niveles de apoyo para productos y aparatología</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Aberturas funcionales: insumos siempre al alcance de la mano</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Ruedas giratorias con horquilla cromada, integradas en la base</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Terminación laqueada brillante</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Superficie lisa, resistente y de fácil limpieza</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Diseño curvo y minimalista línea LUMA</li>
+          <li>{% icono "check-circle" %} Tres niveles de apoyo para productos y aparatología</li>
+          <li>{% icono "check-circle" %} Aberturas funcionales: insumos siempre al alcance de la mano</li>
+          <li>{% icono "check-circle" %} Ruedas giratorias con horquilla cromada, integradas en la base</li>
+          <li>{% icono "check-circle" %} Terminación laqueada brillante</li>
+          <li>{% icono "check-circle" %} Superficie lisa, resistente y de fácil limpieza</li>
+          <li>{% icono "check-circle" %} Diseño curvo y minimalista línea LUMA</li>
         </ul>
       </div>
     </div>
@@ -223,32 +223,32 @@ instagram_reels:
     <h3>Componentes y estructura</h3>
     <div class="material-cards-grid">
       <div class="material-card">
-        <div class="material-card-icono"><i class="fas fa-table-cells" aria-hidden="true"></i></div>
+        <div class="material-card-icono">{% icono "table-cells" %}</div>
         <h4>Bandeja superior</h4>
         <p>Superficie principal de trabajo, de 45 × 36 cm, con borde perimetral elevado que contiene los productos y manija integrada en el lateral</p>
       </div>
       <div class="material-card">
-        <div class="material-card-icono"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
+        <div class="material-card-icono">{% icono "layer-group" %}</div>
         <h4>Estante intermedio</h4>
         <p>Segundo nivel de apoyo, accesible por las aberturas laterales del cuerpo</p>
       </div>
       <div class="material-card">
-        <div class="material-card-icono"><i class="fas fa-square" aria-hidden="true"></i></div>
+        <div class="material-card-icono">{% icono "square" %}</div>
         <h4>Bandeja inferior</h4>
         <p>Tercer nivel, a ras del piso, con borde perimetral. Funciona además como pie del carrito</p>
       </div>
       <div class="material-card">
-        <div class="material-card-icono"><i class="fas fa-shapes" aria-hidden="true"></i></div>
+        <div class="material-card-icono">{% icono "shapes" %}</div>
         <h4>Cuerpo</h4>
         <p>Pieza moldeada continua de silueta curva, sin uniones ni tornillos a la vista</p>
       </div>
       <div class="material-card">
-        <div class="material-card-icono"><i class="fas fa-circle-notch" aria-hidden="true"></i></div>
+        <div class="material-card-icono">{% icono "circle-notch" %}</div>
         <h4>Aberturas funcionales</h4>
         <p>Cortes curvos en el cuerpo que dan acceso al estante intermedio y aportan la silueta característica</p>
       </div>
       <div class="material-card">
-        <div class="material-card-icono"><i class="fas fa-dolly" aria-hidden="true"></i></div>
+        <div class="material-card-icono">{% icono "dolly" %}</div>
         <h4>Ruedas</h4>
         <p>Giratorias, con horquilla cromada, integradas en la base</p>
       </div>
@@ -336,7 +336,7 @@ instagram_reels:
     <h2>Lo que dicen los profesionales</h2>
     <div class="testimonio-carousel" data-testimonio-carousel>
       <button type="button" class="testimonio-carousel-nav testimonio-carousel-prev" data-testimonio-prev aria-label="Testimonio anterior">
-        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+        {% icono "chevron-left" %}
       </button>
 
       <div class="testimonio-carousel-viewport">
@@ -401,7 +401,7 @@ instagram_reels:
       </div>
 
       <button type="button" class="testimonio-carousel-nav testimonio-carousel-next" data-testimonio-next aria-label="Testimonio siguiente">
-        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        {% icono "chevron-right" %}
       </button>
     </div>
   </div>

@@ -36,10 +36,7 @@ function sincronizarMenu(abierto) {
   toggle.setAttribute('aria-expanded', abierto ? 'true' : 'false');
   toggle.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
 
-  const icono = toggle.querySelector('i');
-  if (!icono) return;
-  icono.classList.toggle('fa-bars', !abierto);
-  icono.classList.toggle('fa-xmark', abierto);
+  // El ícono (hamburguesa / cruz) lo cambia el CSS según [data-menu-abierto].
 }
 
 function toggleMenu() {

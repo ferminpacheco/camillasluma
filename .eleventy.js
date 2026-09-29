@@ -69,6 +69,40 @@ module.exports = function (eleventyConfig) {
   // (publicar, placeholders, modelo, width/height). Ver _lib/galeria.js.
   eleventyConfig.addFilter("galeriaFiltrar", galeriaFiltrar);
 
+  /* ── Íconos SVG inline ───────────────────────────────────────────
+     Reemplazan a Font Awesome por CDN (84 KB de CSS + 225 KB de fuentes,
+     bloqueantes, para usar 46 íconos). Cada ícono es un SVG de
+     _lib/iconos/<nombre>.svg, copiado de Font Awesome Free 6.0.0-beta3
+     (íconos bajo licencia CC BY 4.0 — https://fontawesome.com/license/free).
+
+     Uso:  {% icono "check-circle" %}
+           {% icono "chevron-down", "arrow-down" %}     clase extra
+           {% icono "check", "", "Sí" %}                 con texto accesible
+
+     Sale un <i> (no un <svg> suelto) con la clase fa-<nombre> a propósito:
+     así siguen funcionando los selectores CSS que ya existían
+     (.features-list i, .comparador-tabla .fa-check, etc.). El tamaño lo
+     da el font-size del contexto, igual que con la fuente de íconos.
+
+     Un nombre que no existe corta el build: mejor eso que un hueco. */
+  const cacheIconos = new Map();
+  eleventyConfig.addShortcode("icono", (nombre, clase = "", etiqueta = "") => {
+    if (!cacheIconos.has(nombre)) {
+      const archivo = path.join(__dirname, "_lib", "iconos", `${nombre}.svg`);
+      if (!fs.existsSync(archivo)) {
+        throw new Error(`[icono] No existe _lib/iconos/${nombre}.svg`);
+      }
+      const svg = fs.readFileSync(archivo, "utf8").trim()
+        .replace("<svg ", '<svg focusable="false" ');
+      cacheIconos.set(nombre, svg);
+    }
+    const clases = ["icono", `fa-${nombre}`, clase].filter(Boolean).join(" ");
+    const a11y = etiqueta
+      ? `role="img" aria-label="${etiqueta}"`
+      : 'aria-hidden="true"';
+    return `<i class="${clases}" ${a11y}>${cacheIconos.get(nombre)}</i>`;
+  });
+
   /* ── Cache busting de assets ────────────────────────────────────────
      Uso:  <link rel="stylesheet" href="{{ '/assets/css/main.css' | asset }}">
      Sale: /assets/css/main.css?v=a3f9c1d2

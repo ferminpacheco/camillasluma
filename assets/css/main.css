@@ -470,6 +470,41 @@ body > section:first-of-type {
   flex-shrink: 0;
 }
 
+/* ── ÍCONOS SVG ────────────────────────────────
+   Salen del shortcode {% icono %} (.eleventy.js). Reemplazan a la fuente
+   de Font Awesome: miden 1em y toman el color del texto, igual que antes,
+   así que los estilos que ya había sobre <i> siguen funcionando. */
+.icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  vertical-align: -0.125em;
+  font-style: normal;
+}
+
+/* El SVG mide 1em aunque el <i> sea más grande: hay estilos que usan el
+   <i> como círculo contenedor (ej. .showroom-card-nota i, 36px) con el
+   glifo chico al centro, como hacía la fuente de íconos. */
+.icono svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  overflow: visible;
+}
+
+.menu-icono-cerrar,
+[data-menu-abierto] .menu-icono-abrir {
+  display: none;
+}
+
+[data-menu-abierto] .menu-icono-cerrar {
+  display: inline-block;
+}
+
 /* ── CTA FINAL ───────────────────────────────── */
 
 .cta-final {
