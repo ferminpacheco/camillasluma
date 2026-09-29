@@ -69,6 +69,16 @@ module.exports = function (eleventyConfig) {
   // (publicar, placeholders, modelo, width/height). Ver _lib/galeria.js.
   eleventyConfig.addFilter("galeriaFiltrar", galeriaFiltrar);
 
+  /* ── Código de página para WhatsApp ──────────────────────────────
+     Sale en <body data-wa-codigo="ONE"> y lo usa main.js para armar el
+     "Consulta #ONE-G4" del mensaje. Mapa en _data/codigosWa.json. */
+  const codigosWa = require("./_data/codigosWa.json");
+  eleventyConfig.addFilter("codigoWa", (url = "") => {
+    if (codigosWa[url]) return codigosWa[url];
+    if (url.startsWith("/blog/")) return "BLG";
+    return "WEB";
+  });
+
   /* ── FAQ: una sola fuente para el acordeón y el schema ────────────
      Cada página declara `faqs:` en el front matter (q + a en HTML). El
      componente components/faq.njk dibuja el acordeón y product.njk /
