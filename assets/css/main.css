@@ -2295,6 +2295,12 @@ body > section:first-of-type {
   grid-template-columns: repeat(4, 1fr);
 }
 
+/* Cantidad variable de tarjetas (ej. "Qué mirar antes de elegir", 5): las
+   que entren por fila, sin que ninguna quede angosta. */
+.cuidado-grid--auto {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
 @media (max-width: 1100px) {
   .cuidado-grid--4 {
     grid-template-columns: repeat(2, 1fr);
@@ -2709,7 +2715,10 @@ body > section:first-of-type {
   color: var(--color-texto);
 }
 
-.faq-respuesta a {
+.faq-respuesta a,
+.cuidado-card a,
+.features-list a,
+.producto-seccion-inner > p a {
   color: var(--color-principal);
   font-weight: 600;
 }
