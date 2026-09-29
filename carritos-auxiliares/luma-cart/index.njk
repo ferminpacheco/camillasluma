@@ -12,14 +12,21 @@ schemaProduct:
   description: "Carrito auxiliar estético con tres niveles de apoyo, aberturas funcionales, ruedas giratorias y superficie de fácil limpieza. Ideal para centros de estética y consultorios."
   image: "/images/luma-cart/image-1.webp"
   outOfStock: false
-schemaFaqs:
-  - q: "¿Cuántos niveles de apoyo tiene el LUMA Cart?"
-    a: "Tiene tres niveles: bandeja superior de trabajo, estante intermedio accesible por las aberturas laterales, y bandeja inferior que además funciona como pie del carrito."
-  - q: "¿Qué terminación y superficie tiene?"
-    a: "Terminación laqueada brillante en blanco, con superficie lisa, resistente y de fácil limpieza."
+# Preguntas frecuentes: acordeón visible Y schema FAQPage salen de acá
+# (components/faq.njk). "a" es HTML. Ver .eleventy.js → faqsVisibles.
+faqs:
+  - q: "¿Cuántos niveles tiene el LUMA Cart?"
+    a: |
+      <p>El LUMA Cart tiene <strong>tres niveles de apoyo</strong>: la bandeja superior, de 45 × 36 cm, para productos de uso inmediato durante el tratamiento; un estante intermedio accesible por las aberturas laterales; y una bandeja inferior a ras del piso, que además funciona como pie del carrito.</p>
+  - q: "¿Qué terminación y materiales tiene?"
+    a: |
+      <p>Tiene terminación <strong>laqueada brillante en blanco</strong>, con superficie lisa, resistente y de fácil limpieza. El cuerpo es una pieza moldeada continua, sin uniones ni tornillos a la vista, y las ruedas giratorias llevan horquilla cromada.</p>
   - q: "¿Se puede combinar visualmente con las camillas LUMA?"
-    a: "Sí, comparte el mismo lenguaje visual minimalista de las camillas LUMA: silueta curva, líneas limpias y acabado blanco."
-
+    a: |
+      <p>Sí, fue diseñado exactamente para eso. El LUMA Cart sigue el mismo lenguaje visual minimalista de las camillas: líneas limpias, acabado blanco y proporciones que integran el espacio sin competir con el equipo principal.</p>
+  - q: "¿En qué se diferencia del LUMA Tech?"
+    a: |
+      <p>El <strong>LUMA Cart</strong> es el modelo de uso general: tres niveles de apoyo, diseño curvo, para productos y accesorios. El <strong>LUMA Tech</strong> está pensado específicamente para aparatología: tiene estructura reforzada, zapatilla de enchufes integrada y apertura trasera para cables. <a href="/carritos-auxiliares/luma-tech/">Ver LUMA Tech →</a></p>
 # ── REELS DE INSTAGRAM ────────────────────────────────────
 # URLs tomadas de docs/luma-cart-ficha-tecnica.md.
 # Formato aceptado: https://www.instagram.com/reel/CODIGO/ (o /p/CODIGO/).
@@ -290,43 +297,9 @@ instagram_reels:
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq-seccion bg-fondo">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre el LUMA Cart</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿Cuántos niveles tiene el LUMA Cart?</summary>
-        <div class="faq-respuesta">
-          <p>El LUMA Cart tiene <strong>tres niveles de apoyo</strong>: la bandeja superior, de 45 × 36 cm, para productos de uso inmediato durante el tratamiento; un estante intermedio accesible por las aberturas laterales; y una bandeja inferior a ras del piso, que además funciona como pie del carrito.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Qué terminación y materiales tiene?</summary>
-        <div class="faq-respuesta">
-          <p>Tiene terminación <strong>laqueada brillante en blanco</strong>, con superficie lisa, resistente y de fácil limpieza. El cuerpo es una pieza moldeada continua, sin uniones ni tornillos a la vista, y las ruedas giratorias llevan horquilla cromada.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Se puede combinar visualmente con las camillas LUMA?</summary>
-        <div class="faq-respuesta">
-          <p>Sí, fue diseñado exactamente para eso. El LUMA Cart sigue el mismo lenguaje visual minimalista de las camillas: líneas limpias, acabado blanco y proporciones que integran el espacio sin competir con el equipo principal.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿En qué se diferencia del LUMA Tech?</summary>
-        <div class="faq-respuesta">
-          <p>El <strong>LUMA Cart</strong> es el modelo de uso general: tres niveles de apoyo, diseño curvo, para productos y accesorios. El <strong>LUMA Tech</strong> está pensado específicamente para aparatología: tiene estructura reforzada, zapatilla de enchufes integrada y apertura trasera para cables. <a href="/carritos-auxiliares/luma-tech/">Ver LUMA Tech →</a></p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>
+<!-- FAQ — una sola fuente: `faqs` del front matter (acordeón + schema FAQPage). -->
+{% set faqTitulo = "Preguntas frecuentes sobre el LUMA Cart" %}
+{% include "components/faq.njk" %}
 
 <!-- REELS DE INSTAGRAM -->
 {% set reelsTitulo = "El LUMA Cart en acción" %}

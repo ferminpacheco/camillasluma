@@ -15,5 +15,6 @@
   "showroom_palermo": "Palermo, CABA",
   "showroom_belgrano": "Belgrano, CABA",
   "hex_oficiales": "{{HEX_OFICIALES}}",
-  "mostrar_testimonios_mock": false
+  "mostrar_testimonios_mock": false,
+  "garantia_meses": 12
 }

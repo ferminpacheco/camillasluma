@@ -13,11 +13,18 @@ schemaHub:
       url: "/carritos-auxiliares/luma-cart/"
     - name: "LUMA Tech — Carrito para Aparatología"
       url: "/carritos-auxiliares/luma-tech/"
-schemaFaqs:
-  - q: "¿Qué carritos auxiliares ofrece LUMA?"
-    a: "LUMA ofrece dos modelos: LUMA Cart (auxiliar clásico, diseño curvo) y LUMA Tech (para aparatología, con estructura reforzada y apertura trasera para cables)."
-  - q: "¿Se pueden combinar con las camillas LUMA?"
-    a: "Sí, los carritos LUMA están diseñados para complementar las camillas de la misma línea en clínicas y centros estéticos."
+# Preguntas frecuentes: acordeón visible Y schema FAQPage salen de acá
+# (components/faq.njk). "a" es HTML. Ver .eleventy.js → faqsVisibles.
+faqs:
+  - q: "¿Cuál es la diferencia entre el LUMA Cart y el LUMA Tech?"
+    a: |
+      <p>El <strong>LUMA Cart</strong> es el modelo de uso general: tres niveles, diseño curvo minimalista, para productos e insumos de uso diario. El <strong>LUMA Tech</strong> está diseñado para aparatología: estructura reforzada, mesa amplia y apertura trasera para gestión de cables. Si tu cabina trabaja con equipos de aparatología, el Tech es la elección; si buscás un carrito estético para productos, el Cart es el indicado.</p>
+  - q: "¿Los carritos van bien junto a las camillas LUMA?"
+    a: |
+      <p>Están diseñados exactamente para eso. Los carritos LUMA comparten el mismo lenguaje visual minimalista que las camillas: líneas limpias, colores neutros y proporciones pensadas para integrarse al espacio sin competir con el equipo principal.</p>
+  - q: "¿Hacen envíos a todo el país?"
+    a: |
+      <p>Sí. LUMA envía tanto camillas como carritos y accesorios a todo el territorio argentino. Para cotizar el envío a tu ciudad, escribinos por WhatsApp y te pasamos el costo.</p>
 preloadFondo:
   mobile: "/images/banner-carritos-1-800.webp"
   desktop: "/images/banner-carritos-1.webp"
@@ -157,33 +164,8 @@ preloadFondo:
 </section>
 
 <!-- FAQ HUB -->
-<section class="faq-seccion">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre carritos auxiliares</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿Cuál es la diferencia entre el LUMA Cart y el LUMA Tech?</summary>
-        <div class="faq-respuesta">
-          <p>El <strong>LUMA Cart</strong> es el modelo de uso general: tres niveles, diseño curvo minimalista, para productos e insumos de uso diario. El <strong>LUMA Tech</strong> está diseñado para aparatología: estructura reforzada, mesa amplia y apertura trasera para gestión de cables. Si tu cabina trabaja con equipos de aparatología, el Tech es la elección; si buscás un carrito estético para productos, el Cart es el indicado.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Los carritos van bien junto a las camillas LUMA?</summary>
-        <div class="faq-respuesta">
-          <p>Están diseñados exactamente para eso. Los carritos LUMA comparten el mismo lenguaje visual minimalista que las camillas: líneas limpias, colores neutros y proporciones pensadas para integrarse al espacio sin competir con el equipo principal.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Hacen envíos a todo el país?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. LUMA envía tanto camillas como carritos y accesorios a todo el territorio argentino. Para cotizar el envío a tu ciudad, escribinos por WhatsApp y te pasamos el costo.</p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>
+<!-- FAQ — una sola fuente: `faqs` del front matter (acordeón + schema FAQPage). -->
+{% set faqTitulo = "Preguntas frecuentes sobre carritos auxiliares" %}
+{% set faqFondo = false %}
+{% include "components/faq.njk" %}
 

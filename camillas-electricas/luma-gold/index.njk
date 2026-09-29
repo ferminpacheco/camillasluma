@@ -12,22 +12,27 @@ schemaProduct:
   description: "Set LUMA Gold: camilla eléctrica de 3 motores en acabado dorado, silla profesional dorada y carrito auxiliar LUMA Cart Gold incluidos. Motores certificados CE, 3 modos de uso y colchón de espuma 4D de 15 cm."
   image: "/images/luma-gold/portada-luma-gold.webp"
   outOfStock: false
-schemaFaqs:
+# Preguntas frecuentes: acordeón visible Y schema FAQPage salen de acá
+# (components/faq.njk). "a" es HTML. Ver .eleventy.js → faqsVisibles.
+faqs:
   - q: "¿Qué incluye la LUMA Gold?"
-    a: "La LUMA Gold incluye tres piezas: la camilla eléctrica de 3 motores en acabado dorado, la silla profesional dorada y el carrito auxiliar LUMA Cart Gold."
-  - q: "¿En qué se diferencia la LUMA Gold de la LUMA Premium?"
-    a: "Comparten la misma ficha técnica: 3 motores certificados CE, 6000 N de empuje, reclinación de 0° a 90° y colchón de espuma 4D de 15 cm. La LUMA Gold se diferencia por su acabado dorado y porque es la única línea que incluye la silla profesional dorada y el carrito LUMA Cart Gold."
+    a: |
+      <p>Tres piezas: la <strong>camilla eléctrica de 3 motores en acabado dorado</strong>, la <strong>silla profesional dorada</strong> y el <strong>LUMA Cart Gold</strong>, el carrito auxiliar de tres niveles con cajón central. Las tres comparten la misma terminación.</p>
+  - q: "¿En qué se diferencia de la LUMA Premium?"
+    a: |
+      <p>La ficha técnica de la camilla es la misma: 3 motores independientes certificados CE, 6000 N de empuje, reclinación de 0° a 90°, carga máxima de 300 kg y colchón de espuma 4D de 15 cm. La diferencia está en el <strong>acabado dorado</strong> y en que la Gold suma el <strong>LUMA Cart Gold</strong> al set. La <a href="/camillas-electricas/premium/">LUMA Premium</a> es la misma camilla en blanco, beige o negro, sin la silla ni el carrito.</p>
+  - q: "¿Se puede comprar solo la camilla dorada, sin el carrito?"
+    a: |
+      <p>La LUMA Gold está pensada y cotizada como set completo. Si necesitás otra combinación, escribinos y lo vemos en la cotización.</p>
   - q: "¿Cuántos motores tiene la LUMA Gold?"
-    a: "Tiene 3 motores independientes que controlan la altura general, el respaldo y el apoyapiernas."
-  - q: "¿La LUMA Gold viene en otros colores?"
-    a: "No. La LUMA Gold es la línea dorada de LUMA. Si buscás la camilla en blanco, beige o negro, el modelo es la LUMA Premium."
-  - q: "¿El LUMA Cart Gold viene incluido?"
-    a: "Sí. El carrito auxiliar LUMA Cart Gold, de tres niveles y cajón central, está incluido en el set LUMA Gold."
-  - q: "¿La LUMA Gold tiene garantía?"
-    a: "Sí, cuenta con garantía oficial LUMA. Consultá los términos completos en nuestra página de garantía."
-  - q: "¿Hacen envíos a todo el país?"
-    a: "Sí, LUMA realiza envíos a todo el país. Consultá disponibilidad y costos de logística."
-
+    a: |
+      <p>Tiene <strong>3 motores independientes</strong>: uno controla la altura de la camilla, otro el respaldo y otro el apoyapiernas. Esto permite ajustar cada segmento de forma autónoma, sin mover al paciente ni interrumpir el procedimiento.</p>
+  - q: "¿Tiene garantía oficial?"
+    a: |
+      <p>Sí. Todos los productos LUMA incluyen <strong>[GARANTIA_MESES] meses de garantía oficial</strong>. Las condiciones completas están en la <a href="[GARANTIA_URL]">página de garantía</a>.</p>
+  - q: "¿Puedo verla antes de comprarla?"
+    a: |
+      <p>Sí. LUMA tiene dos showrooms en CABA — en Palermo y Belgrano — donde podés probar los equipos con turno previo. Es la forma que recomendamos para tomar la decisión: verla, tocarla y experimentarla en persona. <a href="/nosotros/#showrooms">Ver cómo agendarla →</a></p>
 # ── REELS DE INSTAGRAM ──────────────────────────────────────────
 # ⚠️ A CONFIRMAR: faltan los reels que muestren específicamente la línea
 # dorada completa (camilla + silla + Cart Gold). Mientras la lista esté
@@ -402,57 +407,9 @@ instagram_reels: []
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq-seccion bg-fondo">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre la LUMA Gold</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿Qué incluye la LUMA Gold?</summary>
-        <div class="faq-respuesta">
-          <p>Tres piezas: la <strong>camilla eléctrica de 3 motores en acabado dorado</strong>, la <strong>silla profesional dorada</strong> y el <strong>LUMA Cart Gold</strong>, el carrito auxiliar de tres niveles con cajón central. Las tres comparten la misma terminación.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿En qué se diferencia de la LUMA Premium?</summary>
-        <div class="faq-respuesta">
-          <p>La ficha técnica de la camilla es la misma: 3 motores independientes certificados CE, 6000 N de empuje, reclinación de 0° a 90°, carga máxima de 300 kg y colchón de espuma 4D de 15 cm. La diferencia está en el <strong>acabado dorado</strong> y en que la Gold suma el <strong>LUMA Cart Gold</strong> al set. La <a href="/camillas-electricas/premium/">LUMA Premium</a> es la misma camilla en blanco, beige o negro, sin la silla ni el carrito.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Se puede comprar solo la camilla dorada, sin el carrito?</summary>
-        <div class="faq-respuesta">
-          <p>La LUMA Gold está pensada y cotizada como set completo. Si necesitás otra combinación, escribinos y lo vemos en la cotización.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Cuántos motores tiene la LUMA Gold?</summary>
-        <div class="faq-respuesta">
-          <p>Tiene <strong>3 motores independientes</strong>: uno controla la altura de la camilla, otro el respaldo y otro el apoyapiernas. Esto permite ajustar cada segmento de forma autónoma, sin mover al paciente ni interrumpir el procedimiento.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene garantía oficial?</summary>
-        <div class="faq-respuesta">
-          <p>Sí, la LUMA Gold cuenta con <strong>garantía oficial LUMA</strong>. <a href="{{ site.garantia_url }}">Ver condiciones completas →</a></p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Puedo verla antes de comprarla?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. LUMA tiene dos showrooms en CABA — en Palermo y Belgrano — donde podés probar los equipos con turno previo. Es la forma que recomendamos para tomar la decisión: verla, tocarla y experimentarla en persona. <a href="/nosotros/#showrooms">Ver cómo agendarla →</a></p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>
+<!-- FAQ — una sola fuente: `faqs` del front matter (acordeón + schema FAQPage). -->
+{% set faqTitulo = "Preguntas frecuentes sobre la LUMA Gold" %}
+{% include "components/faq.njk" %}
 
 {#
   ── REELS DE INSTAGRAM ──────────────────────────────────────────

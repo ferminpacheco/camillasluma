@@ -12,14 +12,21 @@ schemaProduct:
   description: "Carrito auxiliar de estructura reforzada para sostener y trasladar equipos de aparatología estética o médica. Mesa superior amplia, aperturas frontales, apertura trasera para cables, panel de acceso trasero y ruedas de alta movilidad con trabas."
   image: "/images/luma-tech/luma-tech-1.webp"
   outOfStock: false
-schemaFaqs:
-  - q: "¿Para qué está pensado el LUMA Tech?"
-    a: "Es un carrito auxiliar de estructura reforzada, diseñado para sostener y trasladar equipos de aparatología estética o médica en consultorios y cabinas profesionales."
+# Preguntas frecuentes: acordeón visible Y schema FAQPage salen de acá
+# (components/faq.njk). "a" es HTML. Ver .eleventy.js → faqsVisibles.
+faqs:
   - q: "¿Cómo se organizan los cables de los equipos?"
-    a: "El LUMA Tech tiene una apertura trasera específica para el paso de cables y un panel de acceso trasero, señalizado con la leyenda OPEN, que se desliza hacia arriba."
-  - q: "¿Tiene ruedas con traba?"
-    a: "Sí, incluye 4 ruedas de alta movilidad con trabas, para mayor estabilidad durante los procedimientos."
-
+    a: |
+      <p>El LUMA Tech tiene una <strong>apertura trasera específica para el paso de cables</strong> y un <strong>panel de acceso trasero</strong>, señalizado con la leyenda "OPEN", que se desliza hacia arriba para llegar a la conexión de los equipos. El frente del carrito queda limpio y sin cables a la vista.</p>
+  - q: "¿Soporta el peso de equipos de aparatología pesada?"
+    a: |
+      <p>Sí. El LUMA Tech tiene <strong>estructura reforzada</strong>, diseñada para sostener, trasladar y utilizar equipos de aparatología estética o médica de forma segura. Las ruedas incluyen trabas para fijar el carrito en posición durante el tratamiento.</p>
+  - q: "¿Para qué sirven las aperturas frontales?"
+    a: |
+      <p>Las <strong>dos aperturas curvas</strong>, con marco en gris plata, permiten guardar productos y accesorios al alcance de la mano durante el procedimiento.</p>
+  - q: "¿En qué se diferencia del LUMA Cart?"
+    a: |
+      <p>El <strong>LUMA Tech</strong> está diseñado para aparatología: estructura reforzada, mesa amplia y gestión de cables. El <strong>LUMA Cart</strong> es el modelo de uso general, más estético y liviano, ideal para productos e insumos de uso diario. <a href="/carritos-auxiliares/luma-cart/">Ver LUMA Cart →</a></p>
 # ── REELS DE INSTAGRAM ────────────────────────────────────
 # URLs tomadas de docs/luma-tech-ficha-tecnica.md.
 # Formato aceptado: https://www.instagram.com/reel/CODIGO/ (o /p/CODIGO/).
@@ -345,43 +352,9 @@ instagram_reels:
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq-seccion bg-fondo">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre el LUMA Tech</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿Cómo se organizan los cables de los equipos?</summary>
-        <div class="faq-respuesta">
-          <p>El LUMA Tech tiene una <strong>apertura trasera específica para el paso de cables</strong> y un <strong>panel de acceso trasero</strong>, señalizado con la leyenda "OPEN", que se desliza hacia arriba para llegar a la conexión de los equipos. El frente del carrito queda limpio y sin cables a la vista.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Soporta el peso de equipos de aparatología pesada?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. El LUMA Tech tiene <strong>estructura reforzada</strong>, diseñada para sostener, trasladar y utilizar equipos de aparatología estética o médica de forma segura. Las ruedas incluyen trabas para fijar el carrito en posición durante el tratamiento.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Para qué sirven las aperturas frontales?</summary>
-        <div class="faq-respuesta">
-          <p>Las <strong>dos aperturas curvas</strong>, con marco en gris plata, permiten guardar productos y accesorios al alcance de la mano durante el procedimiento.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿En qué se diferencia del LUMA Cart?</summary>
-        <div class="faq-respuesta">
-          <p>El <strong>LUMA Tech</strong> está diseñado para aparatología: estructura reforzada, mesa amplia y gestión de cables. El <strong>LUMA Cart</strong> es el modelo de uso general, más estético y liviano, ideal para productos e insumos de uso diario. <a href="/carritos-auxiliares/luma-cart/">Ver LUMA Cart →</a></p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>
+<!-- FAQ — una sola fuente: `faqs` del front matter (acordeón + schema FAQPage). -->
+{% set faqTitulo = "Preguntas frecuentes sobre el LUMA Tech" %}
+{% include "components/faq.njk" %}
 
 <!-- REELS DE INSTAGRAM -->
 {% set reelsTitulo = "El LUMA Tech en acción" %}

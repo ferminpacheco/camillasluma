@@ -12,16 +12,21 @@ schemaProduct:
   description: "Lámpara LED de precisión con intensidad regulable, tres colores de luz (fría, media y cálida) y altura regulable de 1,28 a 1,74 m. Disponible en blanco y negro, tamaño único."
   image: "/images/luma_luminaria.webp"
   outOfStock: true
-schemaFaqs:
-  - q: "¿La luminaria LUMA regula la intensidad de luz?"
-    a: "Sí, tiene intensidad regulable y permite elegir entre tres colores de luz — fría, media y cálida — según el tratamiento."
-  - q: "¿En qué colores está disponible?"
-    a: "Está disponible en blanco y negro, en un tamaño único con altura regulable de 1,28 a 1,74 m."
-  - q: "¿Hay stock disponible?"
-    a: "Actualmente la luminaria está sin stock. El próximo ingreso se estima en aproximadamente 2 meses. Podés consultarnos para anotarte en lista de espera."
-  - q: "¿La luminaria tiene garantía?"
-    a: "Sí, incluye garantía oficial LUMA. Consultá los detalles en nuestra página de nosotros."
-
+# Preguntas frecuentes: acordeón visible Y schema FAQPage salen de acá
+# (components/faq.njk). "a" es HTML. Ver .eleventy.js → faqsVisibles.
+faqs:
+  - q: "¿Qué diferencia hay entre los tres colores de luz?"
+    a: |
+      <p>La <strong>luz fría</strong> es la más usada en procedimientos médicos y estéticos: brinda alta fidelidad cromática y visibilidad de detalle. La <strong>luz media</strong> es un punto intermedio, cómodo para trabajar jornadas largas sin fatiga visual. La <strong>luz cálida</strong> es ideal para espacios de bienestar y consultas donde el confort visual del paciente es prioritario. La luminaria LUMA te permite elegir entre los tres según tu práctica.</p>
+  - q: "¿Viene en distintos tamaños?"
+    a: |
+      <p>No, la Luminaria LED LUMA tiene <strong>un tamaño único</strong>. Lo que sí es regulable es su <strong>altura, de 1,28 m a 1,74 m</strong>, mediante una unión telescópica en el caño vertical, lo que le permite adaptarse a la postura del profesional y a la altura de la camilla.</p>
+  - q: "¿Tiene intensidad regulable?"
+    a: |
+      <p>Sí. La intensidad de luz es <strong>regulable</strong>, lo que permite ajustar la iluminación según el procedimiento y las preferencias del profesional.</p>
+  - q: "¿Tiene garantía oficial?"
+    a: |
+      <p>Sí. Todos los productos LUMA incluyen <strong>[GARANTIA_MESES] meses de garantía oficial</strong>. Las condiciones completas están en la <a href="[GARANTIA_URL]">página de garantía</a>.</p>
 # ── REELS DE INSTAGRAM ────────────────────────────────────
 # URLs tomadas de docs/luma-luminaria-led-ficha-tecnica.md.
 # Formato aceptado: https://www.instagram.com/reel/CODIGO/ (o /p/CODIGO/).
@@ -221,43 +226,9 @@ instagram_reels:
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq-seccion bg-fondo">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre la Luminaria LED LUMA</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿Qué diferencia hay entre los tres colores de luz?</summary>
-        <div class="faq-respuesta">
-          <p>La <strong>luz fría</strong> es la más usada en procedimientos médicos y estéticos: brinda alta fidelidad cromática y visibilidad de detalle. La <strong>luz media</strong> es un punto intermedio, cómodo para trabajar jornadas largas sin fatiga visual. La <strong>luz cálida</strong> es ideal para espacios de bienestar y consultas donde el confort visual del paciente es prioritario. La luminaria LUMA te permite elegir entre los tres según tu práctica.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Viene en distintos tamaños?</summary>
-        <div class="faq-respuesta">
-          <p>No, la Luminaria LED LUMA tiene <strong>un tamaño único</strong>. Lo que sí es regulable es su <strong>altura, de 1,28 m a 1,74 m</strong>, mediante una unión telescópica en el caño vertical, lo que le permite adaptarse a la postura del profesional y a la altura de la camilla.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene intensidad regulable?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. La intensidad de luz es <strong>regulable</strong>, lo que permite ajustar la iluminación según el procedimiento y las preferencias del profesional.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene garantía oficial?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. Todos los productos LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>
+<!-- FAQ — una sola fuente: `faqs` del front matter (acordeón + schema FAQPage). -->
+{% set faqTitulo = "Preguntas frecuentes sobre la Luminaria LED LUMA" %}
+{% include "components/faq.njk" %}
 
 <!-- REELS DE INSTAGRAM -->
 {% set reelsTitulo = "La Luminaria LED en acción" %}

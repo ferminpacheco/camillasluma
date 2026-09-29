@@ -69,6 +69,36 @@ module.exports = function (eleventyConfig) {
   // (publicar, placeholders, modelo, width/height). Ver _lib/galeria.js.
   eleventyConfig.addFilter("galeriaFiltrar", galeriaFiltrar);
 
+  /* ── FAQ: una sola fuente para el acordeón y el schema ────────────
+     Cada página declara `faqs:` en el front matter (q + a en HTML). El
+     componente components/faq.njk dibuja el acordeón y product.njk /
+     hub.njk arman el FAQPage con ESTA MISMA lista: lo que Google lee es
+     exactamente lo que ve el visitante (antes eran dos textos distintos).
+
+     Campos opcionales de cada pregunta:
+       si: "mostrar_podologia"   → solo sale si site.json tiene ese flag en true
+       confirmar: "..."          → nota para el cliente; sale como comentario HTML
+
+     Tokens que se completan con _data/site.json (el front matter no pasa
+     por Nunjucks): [GARANTIA_MESES] y [GARANTIA_URL]. */
+  const site = require("./_data/site.json");
+  eleventyConfig.addFilter("faqsVisibles", (faqs) =>
+    (Array.isArray(faqs) ? faqs : [])
+      .filter((f) => !f.si || site[f.si] === true)
+      .map((f) => ({
+        ...f,
+        a: String(f.a || "")
+          .replaceAll("[GARANTIA_MESES]", site.garantia_meses)
+          .replaceAll("[GARANTIA_URL]", site.garantia_url)
+          .trim(),
+      }))
+  );
+
+  // Texto plano para el schema: sin etiquetas y con espacios normalizados.
+  eleventyConfig.addFilter("textoPlano", (html) =>
+    String(html || "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim()
+  );
+
   /* ── Íconos SVG inline ───────────────────────────────────────────
      Reemplazan a Font Awesome por CDN (84 KB de CSS + 225 KB de fuentes,
      bloqueantes, para usar 46 íconos). Cada ícono es un SVG de

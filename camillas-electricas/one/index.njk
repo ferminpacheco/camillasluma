@@ -12,18 +12,24 @@ schemaProduct:
   description: "Camilla eléctrica de 3 motores con control remoto manual y botonera de pie, carga máxima 200 kg y ángulos de reclinación de 0° a 90° en respaldo y apoyapiernas. Opción accesible de la línea LUMA."
   image: "/images/luma-one/luma-one-1.webp"
   outOfStock: false
-schemaFaqs:
-  - q: "¿Cuántos motores tiene la Camilla One?"
-    a: "Cuenta con 3 motores independientes que regulan la altura general, el respaldo y el apoyapiernas, con control remoto manual y botonera de pie."
-  - q: "¿Cuál es la carga máxima soportada?"
-    a: "La carga máxima es de 200 kg, correspondiente a la sección central de la camilla."
+# Preguntas frecuentes: acordeón visible Y schema FAQPage salen de acá
+# (components/faq.njk). "a" es HTML. Ver .eleventy.js → faqsVisibles.
+faqs:
+  - q: "¿En qué se diferencia la LUMA One de la Premium?"
+    a: |
+      <p>La <strong>LUMA One</strong> es la opción de entrada a la línea: comparte los 3 motores y el doble control —remoto manual y botonera de pie—, con un precio más accesible. <a href="/camillas-electricas/premium/">Ver LUMA Premium →</a></p>
+  - q: "¿Cuántos motores tiene y cómo se controla?"
+    a: |
+      <p>Tiene <strong>3 motores independientes</strong> — altura general, respaldo y apoyapiernas — con <strong>control remoto manual y botonera de pie</strong>.</p>
+  - q: "¿Cuál es la carga máxima y los ángulos de regulación?"
+    a: |
+      <p>Soporta hasta <strong>200 kg</strong> en la sección central. El respaldo y el apoyapiernas se reclinan de <strong>0° a 90°</strong> cada uno, de forma independiente.</p>
   - q: "¿Qué alimentación eléctrica necesita?"
-    a: "Funciona con AC 100–130 V o 220–240 V, con una potencia máxima de 300 W."
-  - q: "¿La Camilla One tiene garantía?"
-    a: "Sí, incluye garantía oficial LUMA. Consultá los términos en nuestra página de nosotros."
-  - q: "¿Hacen envíos a todo el país?"
-    a: "Sí, LUMA realiza envíos a todo el país. Consultá disponibilidad y costos."
-
+    a: |
+      <p>Funciona con <strong>AC 100–130 V o 220–240 V</strong>, con una potencia máxima de <strong>300 W</strong>.</p>
+  - q: "¿Tiene garantía oficial?"
+    a: |
+      <p>Sí. Todos los productos LUMA incluyen <strong>[GARANTIA_MESES] meses de garantía oficial</strong>. Las condiciones completas están en la <a href="[GARANTIA_URL]">página de garantía</a>.</p>
 # ── REELS DE INSTAGRAM ────────────────────────────────────
 # URLs tomadas de docs/luma-one-ficha-tecnica.md.
 # Formato aceptado: https://www.instagram.com/reel/CODIGO/ (o /p/CODIGO/).
@@ -358,50 +364,9 @@ instagram_reels:
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq-seccion bg-fondo">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre la LUMA One</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿En qué se diferencia la LUMA One de la Premium?</summary>
-        <div class="faq-respuesta">
-          <p>La <strong>LUMA One</strong> es la opción de entrada a la línea: comparte los 3 motores y el doble control —remoto manual y botonera de pie—, con un precio más accesible. <a href="/camillas-electricas/premium/">Ver LUMA Premium →</a></p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Cuántos motores tiene y cómo se controla?</summary>
-        <div class="faq-respuesta">
-          <p>Tiene <strong>3 motores independientes</strong> — altura general, respaldo y apoyapiernas — con <strong>control remoto manual y botonera de pie</strong>.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Cuál es la carga máxima y los ángulos de regulación?</summary>
-        <div class="faq-respuesta">
-          <p>Soporta hasta <strong>200 kg</strong> en la sección central. El respaldo y el apoyapiernas se reclinan de <strong>0° a 90°</strong> cada uno, de forma independiente.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Qué alimentación eléctrica necesita?</summary>
-        <div class="faq-respuesta">
-          <p>Funciona con <strong>AC 100–130 V o 220–240 V</strong>, con una potencia máxima de <strong>300 W</strong>.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene garantía oficial?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. Todos los productos LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>
+<!-- FAQ — una sola fuente: `faqs` del front matter (acordeón + schema FAQPage). -->
+{% set faqTitulo = "Preguntas frecuentes sobre la LUMA One" %}
+{% include "components/faq.njk" %}
 
 <!-- REELS DE INSTAGRAM -->
 {% set reelsTitulo = "La LUMA One en acción" %}
