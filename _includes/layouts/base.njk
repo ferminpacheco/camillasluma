@@ -93,10 +93,11 @@
   <link rel="icon" type="image/png" href="/images/logo_luma_favicon.png">
   <link rel="apple-touch-icon" href="/images/logo_luma_favicon.png">
 
-  <!-- Google Fonts: Poppins -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  {# Poppins autoalojada (ver @font-face en tokens.css). Se precargan los
+     dos pesos de la primera pantalla: el navegador los pide en paralelo
+     con el CSS en vez de descubrirlos después de leerlo. #}
+  <link rel="preload" href="/assets/fonts/poppins-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/poppins-600-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   {# El filtro `asset` le agrega ?v=<hash-del-contenido> a la URL (ver
      .eleventy.js). Es lo que habilita la caché de un año e `immutable`
