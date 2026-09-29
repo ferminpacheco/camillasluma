@@ -225,6 +225,27 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => b.date - a.date);
   });
 
+  /* ── CSS minificado en el build ────────────────────────────────
+     main.css tiene muchos comentarios de documentación (y así tiene que
+     seguir, es la única doc del sitio); al navegador le llegan 109 KB.
+     Después de cada build se minifica la copia de _site/ con lightningcss:
+     el archivo fuente no se toca. El hash de cache busting (`asset`) sale
+     del fuente, así que un cambio en el CSS sigue cambiando la URL. */
+  eleventyConfig.on("eleventy.after", ({ dir }) => {
+    const { transform } = require("lightningcss");
+    const carpeta = path.join(dir.output, "assets", "css");
+    if (!fs.existsSync(carpeta)) return;
+    for (const nombre of fs.readdirSync(carpeta).filter((f) => f.endsWith(".css"))) {
+      const archivo = path.join(carpeta, nombre);
+      const { code } = transform({
+        filename: nombre,
+        code: fs.readFileSync(archivo),
+        minify: true,
+      });
+      fs.writeFileSync(archivo, code);
+    }
+  });
+
   return {
     dir: {
       input: ".",
