@@ -2288,8 +2288,9 @@ body > section:first-of-type {
   max-width: 800px;
 }
 
-/* Cuatro tarjetas: en 3 columnas la cuarta quedaba sola en una fila.
-   Cuatro en desktop, dos en tablet; en celular manda la regla de 1fr. */
+/* Cuatro tarjetas (ej. "Para qué tratamientos sirve" de la Premium): en
+   3 columnas la cuarta quedaría sola en una fila. Cuatro en desktop, dos
+   en tablet; en celular manda la regla de 1fr. */
 .cuidado-grid--4 {
   grid-template-columns: repeat(4, 1fr);
 }
