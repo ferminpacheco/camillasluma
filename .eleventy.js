@@ -225,6 +225,22 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => b.date - a.date);
   });
 
+  /* ── Preload de la imagen del hero ───────────────────────────────
+     La foto que es el LCP de cada ficha lleva fetchpriority="high" en el
+     HTML. Esta transformación busca esa <img> y agrega en el <head> su
+     <link rel="preload"> con el mismo srcset/sizes, así el navegador la
+     pide en paralelo con el CSS. Una sola fuente de verdad: el <img>. */
+  eleventyConfig.addTransform("preload-hero", function (html) {
+    if (!(this.page.outputPath || "").endsWith(".html")) return html;
+    const img = html.match(/<img\b[^>]*fetchpriority="high"[^>]*>/);
+    if (!img || html.includes('rel="preload" as="image"')) return html;
+    const attr = (n) => (img[0].match(new RegExp(`\\s${n}="([^"]*)"`)) || [])[1];
+    const partes = ['<link rel="preload" as="image"', `href="${attr("src")}"`];
+    if (attr("srcset")) partes.push(`imagesrcset="${attr("srcset")}"`, `imagesizes="${attr("sizes")}"`);
+    partes.push('fetchpriority="high">');
+    return html.replace("</head>", `  ${partes.join(" ")}\n</head>`);
+  });
+
   /* ── CSS minificado en el build ────────────────────────────────
      main.css tiene muchos comentarios de documentación (y así tiene que
      seguir, es la única doc del sitio); al navegador le llegan 109 KB.

@@ -2019,6 +2019,24 @@ body > section:first-of-type {
   background-repeat: no-repeat;
 }
 
+/* En celular el banner de 2400 px es desperdicio: va la versión de 800 px
+   (npm run responsive). base.njk la precarga con `preloadFondo`. */
+@media (max-width: 800px) {
+  .hub-hero--camillas {
+    background-image:
+      linear-gradient(rgba(10, 41, 86, 0.75), rgba(10, 41, 86, 0.75)),
+      url('/images/banner-camillas-electricas-800.webp');
+  }
+
+  .hub-hero--imagen {
+    background-image:
+      linear-gradient(135deg,
+        rgba(10, 41, 86, var(--hero-overlay-op, 0.65)),
+        rgba(10, 41, 86, calc(var(--hero-overlay-op, 0.65) - 0.15))),
+      var(--hero-bg-imagen-mobile, var(--hero-bg-imagen));
+  }
+}
+
 /* Variante genérica: la imagen y la opacidad del overlay se pasan por
    custom properties desde el template (mismo criterio que .cta-producto-cierre--imagen). */
 .hub-hero--imagen {

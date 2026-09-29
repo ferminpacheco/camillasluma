@@ -9,7 +9,8 @@
     "build": "eleventy",
     "serve": "eleventy --serve --port=8080",
     "og": "node _lib/og-cards.js",
-    "galeria": "node _lib/galeria-optimizar.js"
+    "galeria": "node _lib/galeria-optimizar.js",
+    "responsive": "node _lib/imagenes-responsive.js"
   },
   "keywords": [],
   "author": "",

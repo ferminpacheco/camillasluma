@@ -98,6 +98,12 @@
      con el CSS en vez de descubrirlos después de leerlo. #}
   <link rel="preload" href="/assets/fonts/poppins-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/poppins-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+  {# Fondo del hero de los hubs (es una imagen de CSS, el navegador la
+     descubre tarde). `preloadFondo` en el front matter: { mobile, desktop }. #}
+  {% if preloadFondo %}
+  <link rel="preload" as="image" href="{{ preloadFondo.mobile }}" media="(max-width: 800px)" fetchpriority="high">
+  <link rel="preload" as="image" href="{{ preloadFondo.desktop }}" media="(min-width: 801px)" fetchpriority="high">
+  {% endif %}
 
   {# El filtro `asset` le agrega ?v=<hash-del-contenido> a la URL (ver
      .eleventy.js). Es lo que habilita la caché de un año e `immutable`
