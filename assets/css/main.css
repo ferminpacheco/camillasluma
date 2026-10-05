@@ -977,11 +977,15 @@ body > section:first-of-type {
   line-height: 1.6;
 }
 
-/* `auto-fit` + ancho mínimo: con un solo post la card ocupa hasta 720px
-   (ancho de lectura) en vez de dejar dos huecos; con 2 o 3 se reparten. */
+/* `auto-fit` con máximo `1fr`: las columnas se reparten el ancho disponible.
+   Ojo con poner un máximo fijo acá (era `minmax(300px, 720px)`): cuando el
+   máximo es definido, el navegador calcula la cantidad de columnas con ESE
+   valor, así que 1200px / 720px daba UNA sola columna y con 3 posts el
+   listado quedaba apilado y pegado a la izquierda. El ancho de lectura de
+   la card con un post único lo resuelve el `max-width` de `.blog-card`. */
 .blog-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 720px));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: var(--space-md);
   margin-top: var(--space-md);
 }
@@ -989,6 +993,11 @@ body > section:first-of-type {
 .blog-card {
   display: flex;
   flex-direction: column;
+  /* Con un solo post la columna ocupa todo el ancho del hub: la card se
+     acota al ancho de lectura y se centra en vez de estirarse a 1200px. */
+  max-width: 720px;
+  width: 100%;
+  margin-inline: auto;
   background: var(--color-blanco);
   border-radius: 10px;
   overflow: hidden;
