@@ -1,0 +1,35 @@
+{#
+  PREGUNTAS FRECUENTES — componente compartido.
+
+  Uso:
+
+    {% set faqTitulo = "Preguntas frecuentes sobre la LUMA One" %}
+    {% set faqFondo = true %}          (opcional: fondo claro, default true)
+    {% include "components/faq.njk" %}
+
+  Las preguntas salen de `faqs:` del front matter de la página. El schema
+  FAQPage (product.njk / hub.njk) usa la misma lista con el mismo filtro
+  `faqsVisibles`, así acordeón y schema nunca se separan. Para sumar o
+  editar una pregunta se toca SOLO el front matter.
+#}
+{% set faqItems = faqs | faqsVisibles %}
+{% if faqItems.length %}
+<section class="faq-seccion{% if faqFondo !== false %} bg-fondo{% endif %}">
+  <div class="faq-inner">
+    <h2>{{ faqTitulo }}</h2>
+    <div class="faq-lista">
+      {% for faq in faqItems %}
+      {% if faq.confirmar %}<!-- CONFIRMAR CON CLIENTE: {{ faq.confirmar }} -->{% endif %}
+      <details class="faq-item">
+        <summary>{{ faq.q }}</summary>
+        <div class="faq-respuesta">
+          {{ faq.a | safe }}
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+{% set faqTitulo = undefined %}
+{% set faqFondo = undefined %}

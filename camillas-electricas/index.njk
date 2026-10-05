@@ -17,24 +17,35 @@ schemaHub:
       url: "/camillas-electricas/one/"
     - name: "Camilla Ginecológica Eléctrica LUMA"
       url: "/camillas-electricas/ginecologica/"
-schemaFaqs:
-  - q: "¿Qué tipos de camillas eléctricas vende LUMA?"
-    a: "LUMA ofrece cuatro modelos: la Camilla Premium (3 motores, control remoto manual y botonera de pie), la LUMA Gold (la línea dorada, con silla dorada y LUMA Cart Gold incluidos), la Camilla One (opción más accesible, 3 motores) y la Camilla Ginecológica (3 motores, pierneras ajustables y removibles)."
-  - q: "¿Qué es la línea LUMA Gold?"
-    a: "La LUMA Gold es la línea dorada de LUMA: un set que incluye la camilla eléctrica de 3 motores en acabado dorado, la silla profesional dorada y el carrito auxiliar LUMA Cart Gold. Comparte la ficha técnica de la Camilla Premium."
+# Preguntas frecuentes: acordeón visible Y schema FAQPage salen de acá
+# (components/faq.njk). "a" es HTML. Ver .eleventy.js → faqsVisibles.
+faqs:
+  - q: "¿Qué camilla eléctrica LUMA es mejor para medicina estética?"
+    a: |
+      <p>Depende del perfil del consultorio. La <strong>LUMA Premium</strong> es la opción más completa para clínicas de alta gama: 3 motores, control remoto manual y botonera de pie, y variedad de colores (blanco, beige y negro). La <strong><a href="/camillas-electricas/luma-gold/">LUMA Gold</a></strong> es la misma camilla resuelta como set dorado completo: suma la silla profesional dorada y el LUMA Cart Gold. La <strong>LUMA One</strong> es ideal para profesionales en crecimiento que buscan tecnología de nivel con una inversión más accesible. Para consultorios que también realizan procedimientos ginecológicos o de estética íntima, la <strong>LUMA Ginecológica</strong> ofrece doble funcionalidad en un solo equipo.</p>
   - q: "¿Cuántos motores tienen las camillas LUMA?"
-    a: "Todos los modelos LUMA tienen 3 motores independientes: controlan altura, respaldo y apoyapiernas."
-  - q: "¿Hacen envíos a todo el país?"
-    a: "Sí, LUMA realiza envíos a todo el país."
-  - q: "¿Tienen showroom para ver las camillas antes de comprar?"
-    a: "Sí, LUMA tiene dos showrooms en CABA (Palermo y Belgrano) donde podés visitar con turno previo."
+    a: |
+      <p>Todos los modelos de la línea LUMA tienen <strong>3 motores independientes</strong>: uno para la altura, uno para el respaldo y uno para el apoya-piernas. Esto permite ajustar cada segmento por separado sin interrumpir el procedimiento.</p>
+  - q: "¿En qué se diferencia una camilla LUMA de las importadas italianas?"
+    a: |
+      <p>Las camillas italianas de alta gama tienen un diseño premium reconocido, pero con precios muy elevados y tiempos de importación largos. Las <strong>camillas LUMA</strong> ofrecen el mismo nivel de diseño minimalista y tecnología de 3 motores, con la ventaja de precio local y stock en Argentina.</p>
+  - q: "¿Las camillas LUMA tienen garantía oficial?"
+    a: |
+      <p>Sí. Todos los modelos LUMA incluyen <strong>[GARANTIA_MESES] meses de garantía oficial</strong>. Las condiciones completas están en la <a href="[GARANTIA_URL]">página de garantía</a>.</p>
+  - q: "¿Puedo ver y probar la camilla antes de comprarla?"
+    a: |
+      <p>Sí. LUMA tiene dos showrooms en CABA —en Palermo y Belgrano— donde podés probar los modelos con turno previo. Es la forma que recomendamos para decidir: verla en persona hace toda la diferencia. <a href="/nosotros/#showrooms">Agendá tu visita →</a></p>
+# Fondo del hero (imagen de CSS): se precarga desde base.njk.
+preloadFondo:
+  mobile: "/images/banner-camillas-electricas-800.webp"
+  desktop: "/images/banner-camillas-electricas.webp"
 ---
 
 <!-- HERO DE CATEGORÍA -->
 <section class="hub-hero hub-hero--camillas">
   <div class="hub-hero-inner">
     <h1>Camillas eléctricas premium para estética y consultorios</h1>
-    <p class="hub-bajada">Cuatro modelos diseñados para profesionales de la dermatología, cirugía plástica, ginecología y medicina estética. 3 motores independientes, diseño minimalista y garantía oficial.</p>
+    <p class="hub-bajada">Camillas eléctricas de 3 motores para consultorios médicos y centros de estética de toda Argentina. Cuatro modelos para dermatología, cirugía plástica, ginecología y medicina estética, con diseño minimalista y garantía oficial.</p>
     <div class="cta-doble">
       <a href="{{ whatsappLink }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
       <a href="/nosotros/#showrooms" class="cta-button-light">Ver en showroom</a>
@@ -168,16 +179,16 @@ schemaFaqs:
           </tr>
           <tr>
             <td>Control remoto manual</td>
-            <td><i class="fas fa-check" aria-label="Sí"></i></td>
-            <td><i class="fas fa-check" aria-label="Sí"></i></td>
-            <td><i class="fas fa-check" aria-label="Sí"></i></td>
-            <td><i class="fas fa-check" aria-label="Sí"></i></td>
+            <td>{% icono "check", "", "Sí" %}</td>
+            <td>{% icono "check", "", "Sí" %}</td>
+            <td>{% icono "check", "", "Sí" %}</td>
+            <td>{% icono "check", "", "Sí" %}</td>
           </tr>
           <tr>
             <td>Botonera de pie</td>
-            <td><i class="fas fa-check" aria-label="Sí"></i></td>
-            <td><i class="fas fa-check" aria-label="Sí"></i></td>
-            <td><i class="fas fa-check" aria-label="Sí"></i></td>
+            <td>{% icono "check", "", "Sí" %}</td>
+            <td>{% icono "check", "", "Sí" %}</td>
+            <td>{% icono "check", "", "Sí" %}</td>
             <td>—</td>
           </tr>
           <tr>
@@ -196,10 +207,10 @@ schemaFaqs:
           </tr>
           <tr>
             <td>LED en base</td>
-            <td><i class="fas fa-check" aria-label="Sí"></i></td>
-            <td><i class="fas fa-check" aria-label="Sí"></i></td>
-            <td><i class="fas fa-check" aria-label="Sí"></i></td>
-            <td><i class="fas fa-check" aria-label="Sí"></i></td>
+            <td>{% icono "check", "", "Sí" %}</td>
+            <td>{% icono "check", "", "Sí" %}</td>
+            <td>{% icono "check", "", "Sí" %}</td>
+            <td>{% icono "check", "", "Sí" %}</td>
           </tr>
           <tr>
             {# La Premium salió de esta fila el 24-08-2026: no hay stock de
@@ -231,6 +242,43 @@ schemaFaqs:
 </section>
 
 <!-- CTA CIERRE -->
+<!-- QUÉ MIRAR ANTES DE ELEGIR — sin competidores, sin carga ni certificaciones.
+     Servicio técnico: solo lo que ya está publicado en /garantia/ (el cliente
+     pidió no comunicar detalles del postventa, ver garantia/index.njk). -->
+<section class="hub-seccion bg-fondo">
+  <div class="hub-seccion-inner">
+    <h2>¿Estás comparando camillas? Qué mirar antes de elegir</h2>
+    <p>Una camilla eléctrica es una inversión para muchos años de consultorio. Antes de decidir, revisá estos cinco puntos en cualquier opción que estés evaluando.</p>
+    <div class="cuidado-grid cuidado-grid--auto">
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "sliders" %}</div>
+        <h3>Cantidad de motores</h3>
+        <p>Cada motor mueve una parte de la camilla. Con 3 motores independientes regulás altura, respaldo y apoyapiernas por separado: así están hechos todos los modelos LUMA.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "shield-alt" %}</div>
+        <h3>Garantía</h3>
+        <p>Fijate cuánto dura y qué cubre. Las camillas LUMA tienen {{ site.garantia_meses }} meses de garantía oficial, que en los modelos eléctricos incluye motores, comandos y sistema eléctrico. <a href="{{ site.garantia_url }}">Ver condiciones</a>.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "screwdriver-wrench" %}</div>
+        <h3>Servicio técnico</h3>
+        <p>Preguntá quién repara la camilla si falla y si la reparación tiene costo. En LUMA, durante la garantía la reparación no tiene costo de service ni de mano de obra.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "box-open" %}</div>
+        <h3>Qué trae incluido</h3>
+        <p>Compará el equipo completo, no solo la camilla. La LUMA Premium incluye control remoto manual, botonera de pie y cobertor de cristal; la LUMA Gold suma la silla profesional y el LUMA Cart Gold.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "map-marker-alt" %}</div>
+        <h3>Probala antes de comprar</h3>
+        <p>Nada reemplaza sentarte y moverla. Podés probar las camillas LUMA en nuestros <a href="/nosotros/#showrooms">showrooms de Palermo y Belgrano, en CABA</a>, con turno previo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="cta-producto-cierre cta-producto-cierre--imagen" style="--cta-bg-imagen: url('/images/banner-camillas-electricas.webp'); --cta-overlay-op: 0.62;">
   <div class="cta-producto-cierre-inner">
     <h2>¿Cuál es la camilla ideal para tu consultorio?</h2>
@@ -245,54 +293,15 @@ schemaFaqs:
     <h2>Garantía · Envíos</h2>
     {% include "components/bloque-garantia.njk" %}
     <ul class="features-list" style="margin-top: 1.5rem; max-width: 600px;">
-      <li><i class="fas fa-check-circle" aria-hidden="true"></i> Envíos a todo el país</li>
-      <li><i class="fas fa-check-circle" aria-hidden="true"></i> Silla profesional incluida en la <a href="/camillas-electricas/luma-gold/">línea LUMA Gold</a></li>
-      <li><i class="fas fa-check-circle" aria-hidden="true"></i> Showrooms en CABA para probar antes de comprar</li>
+      <li>{% icono "check-circle" %} Envíos a todo el país</li>
+      <li>{% icono "check-circle" %} <span>Silla profesional incluida en la <a href="/camillas-electricas/luma-gold/">línea LUMA Gold</a></span></li>
+      <li>{% icono "check-circle" %} Showrooms en CABA para probar antes de comprar</li>
     </ul>
   </div>
 </section>
 
 <!-- FAQ HUB -->
-<section class="faq-seccion">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre camillas eléctricas</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿Qué camilla eléctrica LUMA es mejor para medicina estética?</summary>
-        <div class="faq-respuesta">
-          <p>Depende del perfil del consultorio. La <strong>LUMA Premium</strong> es la opción más completa para clínicas de alta gama: 3 motores, control remoto manual y botonera de pie, y variedad de colores (blanco, beige y negro). La <strong><a href="/camillas-electricas/luma-gold/">LUMA Gold</a></strong> es la misma camilla resuelta como set dorado completo: suma la silla profesional dorada y el LUMA Cart Gold. La <strong>LUMA One</strong> es ideal para profesionales en crecimiento que buscan tecnología de nivel con una inversión más accesible. Para consultorios que también realizan procedimientos ginecológicos o de estética íntima, la <strong>LUMA Ginecológica</strong> ofrece doble funcionalidad en un solo equipo.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Cuántos motores tienen las camillas LUMA?</summary>
-        <div class="faq-respuesta">
-          <p>Todos los modelos de la línea LUMA tienen <strong>3 motores independientes</strong>: uno para la altura, uno para el respaldo y uno para el apoya-piernas. Esto permite ajustar cada segmento por separado sin interrumpir el procedimiento.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿En qué se diferencia una camilla LUMA de las importadas italianas?</summary>
-        <div class="faq-respuesta">
-          <p>Las camillas italianas de alta gama tienen un diseño premium reconocido, pero con precios muy elevados y tiempos de importación largos. Las <strong>camillas LUMA</strong> ofrecen el mismo nivel de diseño minimalista y tecnología de 3 motores, con la ventaja de precio local y stock en Argentina.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Las camillas LUMA tienen garantía oficial?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. Todos los modelos incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones completas →</a></p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Puedo ver y probar la camilla antes de comprarla?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. LUMA tiene dos showrooms en CABA —en Palermo y Belgrano— donde podés probar los modelos con turno previo. Es la forma que recomendamos para decidir: verla en persona hace toda la diferencia. <a href="/nosotros/#showrooms">Agendá tu visita →</a></p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>
+<!-- FAQ — una sola fuente: `faqs` del front matter (acordeón + schema FAQPage). -->
+{% set faqTitulo = "Preguntas frecuentes sobre camillas eléctricas" %}
+{% set faqFondo = false %}
+{% include "components/faq.njk" %}

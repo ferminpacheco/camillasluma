@@ -1,7 +1,7 @@
 ---
 layout: product.njk
 title: "Camilla Eléctrica LUMA Premium: 3 motores y botonera de pie"
-description: "Camilla eléctrica de 3 motores certificados CE, 200 kg de carga y botonera de pie. Garantía de 12 meses y envío gratis a CABA y GBA. Pedí tu cotización."
+description: "Camilla eléctrica de 3 motores para centros de estética y cosmetología: botonera de pie, 200 kg de carga y 12 meses de garantía. Pedí tu cotización."
 canonical: "https://camillasluma.com/camillas-electricas/premium/"
 ogImage: "/images/og/premium.jpg"
 ogImageAlt: "Camilla eléctrica LUMA Premium de 3 motores, blanca, en un consultorio."
@@ -12,20 +12,38 @@ schemaProduct:
   description: "Camilla eléctrica premium de 3 motores con control remoto manual y botonera de pie, y cobertor de cristal. Diseño minimalista para clínicas y centros estéticos."
   image: "/images/camilla-electrica-luma-premium.webp"
   outOfStock: false
-schemaFaqs:
-  - q: "¿Cuántos motores tiene la Camilla Premium LUMA?"
-    a: "La Camilla Premium LUMA cuenta con 3 motores independientes que controlan la altura, el respaldo y el apoyapiernas."
-  - q: "¿Qué incluye la Camilla Premium LUMA?"
-    a: "Incluye la camilla eléctrica de 3 motores con control remoto manual y botonera de pie, y cobertor de cristal. Si buscás el equipo con silla profesional, la línea que la incluye es la LUMA Gold."
-  - q: "¿En qué colores está disponible la Camilla Premium?"
-    a: "Está disponible en blanco, beige y negro. La versión dorada es una línea propia, la LUMA Gold, que además incluye la silla dorada y el carrito LUMA Cart Gold."
-  - q: "¿La Camilla Premium tiene garantía?"
-    a: "Sí, cuenta con garantía oficial LUMA. Consultá los términos completos en nuestra página de nosotros."
-  - q: "¿Hacen envíos a todo el país?"
-    a: "Sí, LUMA realiza envíos a todo el país. Consultá disponibilidad y costos de logística."
+# Preguntas frecuentes: acordeón visible Y schema FAQPage salen de acá
+# (components/faq.njk). "a" es HTML. Ver .eleventy.js → faqsVisibles.
+faqs:
+  - q: "¿Cuántos motores tiene la Camilla LUMA Premium?"
+    a: |
+      <p>La LUMA Premium tiene <strong>3 motores independientes</strong>: uno controla la altura de la camilla, otro el respaldo y otro el apoya-piernas. Esto permite ajustar cada segmento de forma autónoma, sin mover al paciente ni interrumpir el procedimiento.</p>
+  - q: "¿Qué incluye la LUMA Premium?"
+    a: |
+      <p>Incluye la <strong>camilla eléctrica de 3 motores</strong> con control remoto manual y botonera de pie, y el <strong>cobertor de cristal</strong>. Si buscás el equipo con <strong>silla profesional</strong>, la línea que la incluye es la <a href="/camillas-electricas/luma-gold/">LUMA Gold</a>, que además suma el carrito LUMA Cart Gold.</p>
+  - q: "¿En qué colores está disponible?"
+    a: |
+      <p>La LUMA Premium está disponible en <strong>blanco, beige y negro</strong>. La versión dorada dejó de ser un color de este modelo: hoy es una línea propia, la <a href="/camillas-electricas/luma-gold/">LUMA Gold</a>, que suma la silla dorada y el LUMA Cart Gold. Consultá disponibilidad de colores al momento de tu cotización.</p>
+  - q: "¿Sirve para cosmetología y cosmiatría?"
+    a: |
+      <p>Sí. Es la camilla que recomendamos para cabinas de <strong>cosmetología y cosmiatría</strong>: con 3 motores pasás de posición sillón a camilla plana sin que la paciente se levante, y el colchón de 15 cm con espuma 4D la mantiene cómoda en tratamientos largos.</p>
+  - q: "¿Sirve para depilación?"
+    a: |
+      <p>Sí. La altura eléctrica y el respaldo y apoyapiernas reclinables de <strong>0° a 90°</strong> te dejan acceder a cada zona, facial o corporal, sin mover a la paciente. El tapizado de cuero PVC se limpia rápido entre sesiones.</p>
+  - q: "¿Sirve para podología?"
+    si: "mostrar_podologia"
+    confirmar: "FAQ de podología para la LUMA Premium."
+    a: |
+      <p>Sí. El <strong>apoyapiernas motorizado</strong> se regula de 0° a 90° y lleva los pies a la altura de trabajo, y la altura general de la camilla se ajusta a la postura del profesional.</p>
+  - q: "¿Tiene garantía oficial?"
+    a: |
+      <p>Sí. Todos los productos LUMA incluyen <strong>[GARANTIA_MESES] meses de garantía oficial</strong>. Las condiciones completas están en la <a href="[GARANTIA_URL]">página de garantía</a>.</p>
+  - q: "¿Puedo verla antes de comprarla?"
+    a: |
+      <p>Sí. LUMA tiene dos showrooms en CABA — en Palermo y Belgrano — donde podés probar la camilla con turno previo. Es la forma que recomendamos para tomar la decisión: verla, tocarla y experimentarla en persona. <a href="/nosotros/#showrooms">Ver cómo agendarla →</a></p>
   - q: "¿Qué modos de uso tiene la LUMA Premium?"
-    a: "Tiene 3 modos de uso: sillón, semirreclinado y camilla plana. Los motores están certificados CE, con 6000 N de empuje."
-
+    a: |
+      <p>Tiene <strong>3 modos de uso</strong>: sillón (respaldo elevado, apoyapiernas bajo), semirreclinado (posición intermedia) y camilla plana (superficie totalmente horizontal). Los motores están <strong>certificados CE</strong>, con 6000 N de empuje.</p>
 # ── REELS DE INSTAGRAM ──────────────────────────────────────────
 # Pegá acá las URLs de los reels que muestran la Camilla LUMA Premium.
 # Formato aceptado: https://www.instagram.com/reel/CODIGO/
@@ -52,7 +70,10 @@ instagram_reels:
         <div class="carousel-track">
           <img
             src="/images/luma-premium/portada-luma-premium-blanca.webp"
-            alt="Camilla eléctrica LUMA Premium — color blanco"
+            srcset="/images/luma-premium/portada-luma-premium-blanca-480.webp 480w, /images/luma-premium/portada-luma-premium-blanca-640.webp 640w, /images/luma-premium/portada-luma-premium-blanca.webp 1024w"
+            sizes="(max-width: 768px) 90vw, (max-width: 1440px) 47vw, 680px"
+            fetchpriority="high"
+            alt="Camilla para cosmetología y estética LUMA Premium, eléctrica, color blanco"
             class="carousel-slide is-active"
             width="1024"
             height="1024"
@@ -60,6 +81,8 @@ instagram_reels:
           >
           <img
             src="/images/luma-premium/portada-luma-premium-beige.webp"
+            srcset="/images/luma-premium/portada-luma-premium-beige-480.webp 480w, /images/luma-premium/portada-luma-premium-beige-640.webp 640w, /images/luma-premium/portada-luma-premium-beige.webp 1024w"
+            sizes="(max-width: 768px) 90vw, (max-width: 1440px) 47vw, 680px"
             alt="Camilla eléctrica LUMA Premium — color beige"
             class="carousel-slide"
             width="1024"
@@ -68,6 +91,8 @@ instagram_reels:
           >
           <img
             src="/images/luma-premium/portada-luma-premium-black.webp"
+            srcset="/images/luma-premium/portada-luma-premium-black-480.webp 480w, /images/luma-premium/portada-luma-premium-black-640.webp 640w, /images/luma-premium/portada-luma-premium-black.webp 1024w"
+            sizes="(max-width: 768px) 90vw, (max-width: 1440px) 47vw, 680px"
             alt="Camilla eléctrica LUMA Premium — color negro"
             class="carousel-slide"
             width="1024"
@@ -79,10 +104,10 @@ instagram_reels:
              la silla dorada y el LUMA Cart Gold. No reponerlo como color. #}
         </div>
         <button type="button" class="carousel-arrow carousel-prev" data-carousel-prev aria-label="Imagen anterior">
-          <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          {% icono "chevron-left" %}
         </button>
         <button type="button" class="carousel-arrow carousel-next" data-carousel-next aria-label="Imagen siguiente">
-          <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          {% icono "chevron-right" %}
         </button>
         <div class="carousel-dots" data-carousel-dots>
           <button type="button" class="carousel-dot is-active" data-carousel-goto="0" aria-label="Ver color blanco"></button>
@@ -96,7 +121,7 @@ instagram_reels:
          línea que la incluye es la LUMA Gold. No reponer acá. #}
       <p class="modelo-tipo">Control Remoto y Botonera de Pie · 3 Motores</p>
       <h1>LUMA Premium <span class="h1-categoria">Camilla eléctrica de 3 motores para estética</span></h1>
-      <p class="producto-bajada">Diseñada para clínicas estéticas y consultorios que buscan combinar tecnología funcional con una experiencia superior para el profesional y el paciente.</p>
+      <p class="producto-bajada">La camilla eléctrica para tu centro de estética y tu cabina de cosmetología: tecnología funcional y una experiencia superior para el profesional y el paciente.</p>
       <div class="color-picker" data-color-picker aria-label="Elegí el color de la LUMA Premium">
         <button type="button" class="color-swatch is-active" data-color-goto="0" style="--swatch-color:#FFFFFF;" aria-label="Color blanco"></button>
         <button type="button" class="color-swatch" data-color-goto="1" style="--swatch-color:#D8C7AE;" aria-label="Color beige"></button>
@@ -104,9 +129,9 @@ instagram_reels:
       </div>
       <p class="producto-nota-color">¿Buscás la versión dorada? Ahora es una línea propia: <a href="/camillas-electricas/luma-gold/">conocé la LUMA Gold</a>, con silla dorada y LUMA Cart Gold incluidos.</p>
       <div class="producto-badges">
-        <span class="badge"><i class="fas fa-shield-alt" aria-hidden="true"></i> Garantía oficial</span>
-        <span class="badge"><i class="fas fa-truck" aria-hidden="true"></i> Envíos a todo el país</span>
-        <span class="badge"><i class="fas fa-lightbulb" aria-hidden="true"></i> Iluminación LED en la base</span>
+        <span class="badge">{% icono "shield-alt" %} Garantía oficial</span>
+        <span class="badge">{% icono "truck" %} Envíos a todo el país</span>
+        <span class="badge">{% icono "lightbulb" %} Iluminación LED en la base</span>
       </div>
       <div class="cta-doble">
         <a href="{{ whatsappLink }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
@@ -125,7 +150,48 @@ instagram_reels:
 <section class="producto-seccion">
   <div class="producto-seccion-inner">
     <h2>¿Para quién es la LUMA Premium?</h2>
-    <p>La LUMA Premium es la elección de profesionales de la dermatología, cirugía plástica, medicina estética y estética avanzada que exigen el máximo en diseño y funcionalidad. Su estructura elegante en blanco y su sistema de 3 motores independientes la convierten en el equipamiento central de cualquier consultorio de alta gama.</p>
+    <p>La LUMA Premium es la camilla eléctrica pensada para <strong>centros de estética, cosmetólogas y cosmiatras</strong>, y para profesionales de la dermatología, la cirugía plástica y la medicina estética que exigen el máximo en diseño y funcionalidad. Su estructura elegante y su sistema de 3 motores independientes la convierten en el equipamiento central de cualquier cabina o consultorio de alta gama.</p>
+    {% if site.mostrar_podologia %}
+    <!-- CONFIRMAR CON CLIENTE: sumar podólogas como público de la LUMA Premium. -->
+    <p>También la eligen <strong>podólogas</strong>: el apoyapiernas motorizado lleva los pies a la altura de trabajo sin que la paciente tenga que moverse.</p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- PARA QUÉ TRATAMIENTOS SIRVE -->
+<section class="producto-seccion bg-fondo">
+  <div class="producto-seccion-inner">
+    <h2>Para qué tratamientos sirve</h2>
+    <div class="cuidado-grid cuidado-grid--4">
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "spa" %}</div>
+        <h3>Estética facial</h3>
+        <p>Posición sillón o semirreclinada y altura eléctrica para trabajar el rostro con la espalda recta: limpiezas faciales, peelings y aparatología facial.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "person" %}</div>
+        <h3>Estética corporal</h3>
+        <p>Camilla plana de 190 cm para masajes, drenaje linfático y aparatología corporal. Los 3 motores ajustan la altura a cada tratamiento.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "wand-magic-sparkles" %}</div>
+        <h3>Depilación</h3>
+        <p>Respaldo y apoyapiernas reclinables de 0° a 90° para llegar a cada zona sin mover a la paciente, con un tapizado que se limpia rápido entre sesiones.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "flask" %}</div>
+        <h3>Cosmiatría</h3>
+        <p>Tratamientos de piel largos con la paciente cómoda: colchón de 15 cm con espuma 4D y posición semirreclinada para cada etapa.</p>
+      </div>
+      {% if site.mostrar_podologia %}
+      <!-- CONFIRMAR CON CLIENTE: sumar podología como tratamiento de la LUMA Premium. -->
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "shoe-prints" %}</div>
+        <h3>Podología</h3>
+        <p>El apoyapiernas motorizado lleva los pies a la altura de trabajo sin esfuerzo, y la altura general se ajusta a la postura del profesional.</p>
+      </div>
+      {% endif %}
+    </div>
   </div>
 </section>
 
@@ -172,15 +238,15 @@ instagram_reels:
       <div class="ficha-info">
         <h2>Características principales</h2>
         <ul class="features-list">
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> 3 motores independientes: altura general, respaldo y apoyapiernas</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Motores certificados CE, con 6000 N de empuje</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Control remoto manual y botonera de pie</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Respaldo y apoyapiernas reclinables de 0° a 90°</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Carga máxima de 200 kg (sección central)</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> 3 modos de uso: sillón, semirreclinado y camilla plana</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Tapizado en cuero PVC resistente, relleno de espuma 4D (colchón de 15 cm)</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Iluminación LED ambiental en la base</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Cobertor de cristal incluido</li>
+          <li>{% icono "check-circle" %} 3 motores independientes: altura general, respaldo y apoyapiernas</li>
+          <li>{% icono "check-circle" %} Motores certificados CE, con 6000 N de empuje</li>
+          <li>{% icono "check-circle" %} Control remoto manual y botonera de pie</li>
+          <li>{% icono "check-circle" %} Respaldo y apoyapiernas reclinables de 0° a 90°</li>
+          <li>{% icono "check-circle" %} Carga máxima de 200 kg (sección central)</li>
+          <li>{% icono "check-circle" %} 3 modos de uso: sillón, semirreclinado y camilla plana</li>
+          <li>{% icono "check-circle" %} Tapizado en cuero PVC resistente, relleno de espuma 4D (colchón de 15 cm)</li>
+          <li>{% icono "check-circle" %} Iluminación LED ambiental en la base</li>
+          <li>{% icono "check-circle" %} Cobertor de cristal incluido</li>
         </ul>
       </div>
     </div>
@@ -306,32 +372,32 @@ instagram_reels:
     <h2>Materiales y construcción</h2>
     <div class="material-cards-grid">
       <div class="material-card">
-        <div class="material-card-icono"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
+        <div class="material-card-icono">{% icono "layer-group" %}</div>
         <h3>Estructura interna</h3>
         <p>Placa multilaminada + espuma de alta densidad + herrajes metálicos</p>
       </div>
       <div class="material-card">
-        <div class="material-card-icono"><i class="fas fa-up-down" aria-hidden="true"></i></div>
+        <div class="material-card-icono">{% icono "up-down" %}</div>
         <h3>Estructura de elevación</h3>
         <p>Marco metálico</p>
       </div>
       <div class="material-card">
-        <div class="material-card-icono"><i class="fas fa-couch" aria-hidden="true"></i></div>
+        <div class="material-card-icono">{% icono "couch" %}</div>
         <h3>Tapizado</h3>
         <p>Cuero PVC, resistente a la abrasión y a las manchas</p>
       </div>
       <div class="material-card">
-        <div class="material-card-icono"><i class="fas fa-cloud" aria-hidden="true"></i></div>
+        <div class="material-card-icono">{% icono "cloud" %}</div>
         <h3>Relleno</h3>
         <p>Espuma de alta densidad "4D" de alta resiliencia</p>
       </div>
       <div class="material-card">
-        <div class="material-card-icono"><i class="fas fa-ruler-vertical" aria-hidden="true"></i></div>
+        <div class="material-card-icono">{% icono "ruler-vertical" %}</div>
         <h3>Espesor del colchón</h3>
         <p>15 cm</p>
       </div>
       <div class="material-card">
-        <div class="material-card-icono"><i class="fas fa-lightbulb" aria-hidden="true"></i></div>
+        <div class="material-card-icono">{% icono "lightbulb" %}</div>
         <h3>Iluminación</h3>
         <p>Luz LED ambiental en la base</p>
       </div>
@@ -347,9 +413,9 @@ instagram_reels:
     <h2>¿Por qué LUMA Premium?</h2>
     <p>En el mercado argentino conviven dos extremos: las camillas italianas importadas (precio muy alto, tiempos de entrega largos) y las fábricas nacionales masivas (precio bajo, calidad y diseño que no acompañan la imagen de un consultorio premium). LUMA ocupa el lugar del medio con intención: diseño minimalista y acabados premium de nivel importado, con precio local, stock en Argentina y respaldo directo.</p>
     <ul class="features-list" style="margin-top: 1.5rem;">
-      <li><i class="fas fa-check-circle" aria-hidden="true"></i> Diseño minimalista y elegante que eleva la imagen de tu espacio</li>
-      <li><i class="fas fa-check-circle" aria-hidden="true"></i> Acabados premium: tapizado de alta densidad, estructura robusta</li>
-      <li><i class="fas fa-check-circle" aria-hidden="true"></i> Stock en Argentina, entrega sin demoras de importación</li>
+      <li>{% icono "check-circle" %} Diseño minimalista y elegante que eleva la imagen de tu espacio</li>
+      <li>{% icono "check-circle" %} Acabados premium: tapizado de alta densidad, estructura robusta</li>
+      <li>{% icono "check-circle" %} Stock en Argentina, entrega sin demoras de importación</li>
     </ul>
   </div>
 </section>
@@ -375,57 +441,9 @@ instagram_reels:
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq-seccion bg-fondo">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre la LUMA Premium</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿Cuántos motores tiene la Camilla LUMA Premium?</summary>
-        <div class="faq-respuesta">
-          <p>La LUMA Premium tiene <strong>3 motores independientes</strong>: uno controla la altura de la camilla, otro el respaldo y otro el apoya-piernas. Esto permite ajustar cada segmento de forma autónoma, sin mover al paciente ni interrumpir el procedimiento.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Qué incluye la LUMA Premium?</summary>
-        <div class="faq-respuesta">
-          <p>Incluye la <strong>camilla eléctrica de 3 motores</strong> con control remoto manual y botonera de pie, y el <strong>cobertor de cristal</strong>. Si buscás el equipo con <strong>silla profesional</strong>, la línea que la incluye es la <a href="/camillas-electricas/luma-gold/">LUMA Gold</a>, que además suma el carrito LUMA Cart Gold.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿En qué colores está disponible?</summary>
-        <div class="faq-respuesta">
-          <p>La LUMA Premium está disponible en <strong>blanco, beige y negro</strong>. La versión dorada dejó de ser un color de este modelo: hoy es una línea propia, la <a href="/camillas-electricas/luma-gold/">LUMA Gold</a>, que suma la silla dorada y el LUMA Cart Gold. Consultá disponibilidad de colores al momento de tu cotización.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene garantía oficial?</summary>
-        <div class="faq-respuesta">
-          <p>Sí, todos los productos LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones completas →</a></p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Puedo verla antes de comprarla?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. LUMA tiene dos showrooms en CABA — en Palermo y Belgrano — donde podés probar la camilla con turno previo. Es la forma que recomendamos para tomar la decisión: verla, tocarla y experimentarla en persona. <a href="/nosotros/#showrooms">Ver cómo agendarla →</a></p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Qué modos de uso tiene la LUMA Premium?</summary>
-        <div class="faq-respuesta">
-          <p>Tiene <strong>3 modos de uso</strong>: sillón (respaldo elevado, apoyapiernas bajo), semirreclinado (posición intermedia) y camilla plana (superficie totalmente horizontal). Los motores están <strong>certificados CE</strong>, con 6000 N de empuje.</p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>
+<!-- FAQ — una sola fuente: `faqs` del front matter (acordeón + schema FAQPage). -->
+{% set faqTitulo = "Preguntas frecuentes sobre la LUMA Premium" %}
+{% include "components/faq.njk" %}
 
 <!-- REELS DE INSTAGRAM -->
 {% set reelsFullBleed = true %}
@@ -445,7 +463,7 @@ instagram_reels:
     <h2>Lo que dicen los profesionales</h2>
     <div class="testimonio-carousel" data-testimonio-carousel>
       <button type="button" class="testimonio-carousel-nav testimonio-carousel-prev" data-testimonio-prev aria-label="Testimonio anterior">
-        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+        {% icono "chevron-left" %}
       </button>
 
       <div class="testimonio-carousel-viewport">
@@ -513,7 +531,7 @@ instagram_reels:
       </div>
 
       <button type="button" class="testimonio-carousel-nav testimonio-carousel-next" data-testimonio-next aria-label="Testimonio siguiente">
-        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        {% icono "chevron-right" %}
       </button>
     </div>
   </div>

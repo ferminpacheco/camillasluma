@@ -1,10 +1,10 @@
 ---
 layout: product.njk
 title: "Camilla Eléctrica One 3 Motores | LUMA"
-description: "Camilla eléctrica de 3 motores con remoto manual y botonera de pie, carga máxima 200 kg y reclinación 0°-90°. Opción accesible de la línea LUMA."
+description: "Camilla médica para consultorio: eléctrica de 3 motores con remoto manual y botonera de pie, 200 kg de carga y reclinación de 0° a 90°. Pedí tu cotización."
 canonical: "https://camillasluma.com/camillas-electricas/one/"
 ogImage: "/images/og/one.jpg"
-ogImageAlt: "Camilla eléctrica LUMA One de 3 motores en un consultorio de estética."
+ogImageAlt: "Camilla eléctrica LUMA One de 3 motores en un consultorio médico."
 # Mensaje precargado del link de WhatsApp en esta página (ver _data/eleventyComputed.js).
 waMensaje: "Hola! Quiero más información sobre la Camilla LUMA One."
 schemaProduct:
@@ -12,18 +12,36 @@ schemaProduct:
   description: "Camilla eléctrica de 3 motores con control remoto manual y botonera de pie, carga máxima 200 kg y ángulos de reclinación de 0° a 90° en respaldo y apoyapiernas. Opción accesible de la línea LUMA."
   image: "/images/luma-one/luma-one-1.webp"
   outOfStock: false
-schemaFaqs:
-  - q: "¿Cuántos motores tiene la Camilla One?"
-    a: "Cuenta con 3 motores independientes que regulan la altura general, el respaldo y el apoyapiernas, con control remoto manual y botonera de pie."
-  - q: "¿Cuál es la carga máxima soportada?"
-    a: "La carga máxima es de 200 kg, correspondiente a la sección central de la camilla."
+# Preguntas frecuentes: acordeón visible Y schema FAQPage salen de acá
+# (components/faq.njk). "a" es HTML. Ver .eleventy.js → faqsVisibles.
+faqs:
+  - q: "¿En qué se diferencia la LUMA One de la Premium?"
+    a: |
+      <p>La <strong>LUMA One</strong> es la opción de entrada a la línea: comparte los 3 motores y el doble control —remoto manual y botonera de pie—, con un precio más accesible. <a href="/camillas-electricas/premium/">Ver LUMA Premium →</a></p>
+  - q: "¿Cuántos motores tiene y cómo se controla?"
+    a: |
+      <p>Tiene <strong>3 motores independientes</strong> — altura general, respaldo y apoyapiernas — con <strong>control remoto manual y botonera de pie</strong>.</p>
+  - q: "¿Cuál es la carga máxima y los ángulos de regulación?"
+    a: |
+      <p>Soporta hasta <strong>200 kg</strong> en la sección central. El respaldo y el apoyapiernas se reclinan de <strong>0° a 90°</strong> cada uno, de forma independiente.</p>
   - q: "¿Qué alimentación eléctrica necesita?"
-    a: "Funciona con AC 100–130 V o 220–240 V, con una potencia máxima de 300 W."
-  - q: "¿La Camilla One tiene garantía?"
-    a: "Sí, incluye garantía oficial LUMA. Consultá los términos en nuestra página de nosotros."
-  - q: "¿Hacen envíos a todo el país?"
-    a: "Sí, LUMA realiza envíos a todo el país. Consultá disponibilidad y costos."
-
+    a: |
+      <p>Funciona con <strong>AC 100–130 V o 220–240 V</strong>, con una potencia máxima de <strong>300 W</strong>.</p>
+  - q: "¿Qué camilla médica conviene para un consultorio?"
+    a: |
+      <p>Para un consultorio con muchas consultas por día conviene una <strong>camilla eléctrica</strong>: regulás altura, respaldo y apoyapiernas sin esfuerzo y el paciente sube y baja con facilidad. La LUMA One tiene 3 motores, control remoto manual y botonera de pie, y soporta hasta 200 kg. Si tu consultorio es de estética, la indicada es la <a href="/camillas-electricas/premium/">LUMA Premium</a>.</p>
+  - q: "¿Cuánto mide y cuánto espacio necesita?"
+    a: |
+      <p>Extendida mide <strong>185 cm de largo</strong> (222 cm con cabezal y apoyapiernas) y <strong>79 cm de ancho</strong> (83 cm con reposabrazos). La altura de la base va de 60 a 80 cm. Además de esas medidas, dejá espacio libre alrededor para moverte y trabajar cómodo de los dos lados.</p>
+  - q: "¿Cuánto cuesta una camilla médica eléctrica?"
+    a: |
+      <p>El precio depende de la configuración y del equipamiento que elijas, por eso trabajamos con <strong>cotización personalizada</strong>. Escribinos por WhatsApp y te enviamos el valor actualizado, o vení a verla a nuestros <a href="/nosotros/#showrooms">showrooms en CABA</a>.</p>
+  - q: "¿En qué se diferencia de una camilla fija o hidráulica?"
+    a: |
+      <p>Una camilla fija no se regula, y una hidráulica se ajusta con un pedal de bombeo. La LUMA One mueve <strong>altura, respaldo y apoyapiernas con 3 motores eléctricos</strong>, desde el control remoto o la botonera de pie: cada ajuste es preciso, no requiere esfuerzo y te deja las manos libres.</p>
+  - q: "¿Tiene garantía oficial?"
+    a: |
+      <p>Sí. Todos los productos LUMA incluyen <strong>[GARANTIA_MESES] meses de garantía oficial</strong>. Las condiciones completas están en la <a href="[GARANTIA_URL]">página de garantía</a>.</p>
 # ── REELS DE INSTAGRAM ────────────────────────────────────
 # URLs tomadas de docs/luma-one-ficha-tecnica.md.
 # Formato aceptado: https://www.instagram.com/reel/CODIGO/ (o /p/CODIGO/).
@@ -46,7 +64,10 @@ instagram_reels:
         <div class="carousel-track">
           <img
             src="/images/luma-one/luma-one-3.webp"
-            alt="Camilla eléctrica LUMA One en consultorio estético — vista general"
+            srcset="/images/luma-one/luma-one-3-480.webp 480w, /images/luma-one/luma-one-3-640.webp 640w, /images/luma-one/luma-one-3.webp 1086w"
+            sizes="(max-width: 768px) 90vw, (max-width: 1440px) 47vw, 680px"
+            fetchpriority="high"
+            alt="Camilla eléctrica LUMA One en un consultorio médico — vista general"
             class="carousel-slide is-active"
             width="1086"
             height="1448"
@@ -54,6 +75,8 @@ instagram_reels:
           >
           <img
             src="/images/luma-one/luma-one-2.webp"
+            srcset="/images/luma-one/luma-one-2-480.webp 480w, /images/luma-one/luma-one-2-640.webp 640w, /images/luma-one/luma-one-2.webp 1024w"
+            sizes="(max-width: 768px) 90vw, (max-width: 1440px) 47vw, 680px"
             alt="Camilla eléctrica LUMA One — vista frontal de estudio"
             class="carousel-slide"
             width="1024"
@@ -62,7 +85,9 @@ instagram_reels:
           >
           <img
             src="/images/luma-one/luma-one-6.webp"
-            alt="Camilla eléctrica LUMA One en consultorio estético — vista lateral"
+            srcset="/images/luma-one/luma-one-6-480.webp 480w, /images/luma-one/luma-one-6-640.webp 640w, /images/luma-one/luma-one-6.webp 1024w"
+            sizes="(max-width: 768px) 90vw, (max-width: 1440px) 47vw, 680px"
+            alt="Camilla eléctrica LUMA One en un consultorio médico — vista lateral"
             class="carousel-slide"
             width="1024"
             height="1024"
@@ -70,6 +95,8 @@ instagram_reels:
           >
           <img
             src="/images/luma-one/luma-one-7.webp"
+            srcset="/images/luma-one/luma-one-7-480.webp 480w, /images/luma-one/luma-one-7-640.webp 640w, /images/luma-one/luma-one-7.webp 1024w"
+            sizes="(max-width: 768px) 90vw, (max-width: 1440px) 47vw, 680px"
             alt="Camilla eléctrica LUMA One — detalle de diseño"
             class="carousel-slide"
             width="1024"
@@ -78,6 +105,8 @@ instagram_reels:
           >
           <img
             src="/images/luma-one/luma-one-9.webp"
+            srcset="/images/luma-one/luma-one-9-480.webp 480w, /images/luma-one/luma-one-9-640.webp 640w, /images/luma-one/luma-one-9.webp 1024w"
+            sizes="(max-width: 768px) 90vw, (max-width: 1440px) 47vw, 680px"
             alt="Camilla eléctrica LUMA One — vista adicional"
             class="carousel-slide"
             width="1024"
@@ -86,10 +115,10 @@ instagram_reels:
           >
         </div>
         <button type="button" class="carousel-arrow carousel-prev" data-carousel-prev aria-label="Imagen anterior">
-          <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          {% icono "chevron-left" %}
         </button>
         <button type="button" class="carousel-arrow carousel-next" data-carousel-next aria-label="Imagen siguiente">
-          <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          {% icono "chevron-right" %}
         </button>
         <div class="carousel-dots" data-carousel-dots>
           <button type="button" class="carousel-dot is-active" data-carousel-goto="0" aria-label="Ver imagen 1"></button>
@@ -101,13 +130,13 @@ instagram_reels:
       </div>
     </div>
     <div class="producto-hero-info">
-      <p class="modelo-tipo">Línea Accesible · 200 kg de Carga</p>
+      <p class="modelo-tipo">Consultorio Médico · 200 kg de Carga</p>
       <h1>LUMA One <span class="h1-categoria">Camilla eléctrica de 3 motores con remoto manual y botonera de pie</span></h1>
       <p class="producto-bajada">Tres motores con control remoto manual y botonera de pie, carga máxima de 200 kg y diseño minimalista, para profesionales que buscan dar el salto a una camilla eléctrica de calidad.</p>
       <div class="producto-badges">
-        <span class="badge"><i class="fas fa-shield-alt" aria-hidden="true"></i> Garantía oficial</span>
-        <span class="badge"><i class="fas fa-truck" aria-hidden="true"></i> Envíos a todo el país</span>
-        <span class="badge"><i class="fas fa-weight-hanging" aria-hidden="true"></i> Carga máx. 200 kg</span>
+        <span class="badge">{% icono "shield-alt" %} Garantía oficial</span>
+        <span class="badge">{% icono "truck" %} Envíos a todo el país</span>
+        <span class="badge">{% icono "weight-hanging" %} Carga máx. 200 kg</span>
       </div>
       <div class="cta-doble">
         <a href="{{ whatsappLink }}" class="cta-button" target="_blank" rel="noopener">Pedí tu cotización</a>
@@ -128,7 +157,33 @@ instagram_reels:
 <section class="producto-seccion">
   <div class="producto-seccion-inner">
     <h2>¿Para quién es la LUMA One?</h2>
-    <p>Para quienes buscan disfrutar de toda la experiencia LUMA en una camilla eléctrica de 3 motores, sin resignar diseño, funcionalidad ni calidad. La LUMA One incorpora la misma tecnología de movimiento de la línea LUMA, con regulación eléctrica de altura, respaldo y piernas y doble control —remoto manual y botonera de pie—, en una propuesta más accesible.</p>
+    <p>La LUMA One es la camilla eléctrica pensada para el <strong>consultorio médico</strong>: el médico de clínica, el dermatólogo o el especialista que atiende muchas consultas por día y necesita posicionar al paciente rápido, sin esfuerzo y sin que tenga que moverse. Regula altura, respaldo y apoyapiernas con 3 motores y doble control —remoto manual y botonera de pie—, así tenés las manos libres para examinar.</p>
+    <p>Tiene la misma tecnología de movimiento y el mismo diseño de la línea LUMA, en una propuesta más accesible: es la forma de pasar de una camilla fija a una eléctrica sin resignar calidad.</p>
+  </div>
+</section>
+
+<!-- PARA QUÉ CONSULTORIOS SIRVE -->
+<section class="producto-seccion bg-fondo">
+  <div class="producto-seccion-inner">
+    <h2>Para qué consultorios sirve</h2>
+    <div class="cuidado-grid">
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "stethoscope" %}</div>
+        <h3>Clínica médica</h3>
+        <p>Exámenes físicos con el paciente acostado, sentado o semirreclinado. Pasás de una posición a otra con el control, sin que el paciente se levante.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "user-doctor" %}</div>
+        <h3>Dermatología</h3>
+        <p>Controles de piel y procedimientos de consultorio con la altura justa para trabajar con la espalda recta y buena visión de cada zona.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "clipboard-check" %}</div>
+        <h3>Consultas y controles</h3>
+        <p>Consultorios con muchos turnos por día: la altura eléctrica facilita que el paciente suba y baje, y el tapizado se limpia rápido entre consultas.</p>
+      </div>
+    </div>
+    <p style="margin-top: 1.5rem;">¿Tenés un centro de estética o una cabina de cosmetología? Para esos tratamientos te recomendamos la <a href="/camillas-electricas/premium/">LUMA Premium</a>, pensada para estética facial, corporal y depilación.</p>
   </div>
 </section>
 
@@ -175,15 +230,15 @@ instagram_reels:
       <div class="ficha-info">
         <h2>Características principales</h2>
         <ul class="features-list">
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> 3 motores: altura general, respaldo y apoyapiernas</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Control remoto manual y botonera de pie</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Respaldo y apoyapiernas reclinables de 0° a 90°</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Carga máxima de 200 kg</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Cabezal y reposabrazos removibles</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Apoyapiernas extensible</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Cobertor de cristal incluido</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Soporte de acero inoxidable, base de ABS</li>
-          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Diseño minimalista línea LUMA</li>
+          <li>{% icono "check-circle" %} 3 motores: altura general, respaldo y apoyapiernas</li>
+          <li>{% icono "check-circle" %} Control remoto manual y botonera de pie</li>
+          <li>{% icono "check-circle" %} Respaldo y apoyapiernas reclinables de 0° a 90°</li>
+          <li>{% icono "check-circle" %} Carga máxima de 200 kg</li>
+          <li>{% icono "check-circle" %} Cabezal y reposabrazos removibles</li>
+          <li>{% icono "check-circle" %} Apoyapiernas extensible</li>
+          <li>{% icono "check-circle" %} Cobertor de cristal incluido</li>
+          <li>{% icono "check-circle" %} Soporte de acero inoxidable, base de ABS</li>
+          <li>{% icono "check-circle" %} Diseño minimalista línea LUMA</li>
         </ul>
       </div>
     </div>
@@ -207,27 +262,51 @@ instagram_reels:
         >
       </div>
       <div class="ficha-info tabla-specs-grupo">
-        <h3>Sistema eléctrico y capacidad</h3>
+        <h3>Sistema eléctrico y regulación</h3>
         <table class="tabla-specs">
           <tbody>
             <tr><td>Cantidad de motores</td><td>3 (altura general, respaldo, apoyapiernas)</td></tr>
             <tr><td>Alimentación</td><td>AC 100–130 V / 220–240 V</td></tr>
             <tr><td>Potencia máxima</td><td>300 W</td></tr>
             <tr><td>Control</td><td>Control remoto manual y botonera de pie</td></tr>
-            <tr><td>Carga máxima</td><td>200 kg (sección central)</td></tr>
             <tr><td>Ángulo de reclinación del respaldo</td><td>0° a 90°</td></tr>
             <tr><td>Ángulo de regulación del apoyapiernas</td><td>0° a 90°</td></tr>
-            <tr><td>Rango de altura de la base</td><td>60 – 80 cm</td></tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <div class="producto-ficha reverse">
+
+    <h3>Materiales y construcción</h3>
+    <div class="material-cards-grid">
+      <div class="material-card">
+        <div class="material-card-icono">{% icono "layer-group" %}</div>
+        <h4>Estructura interna</h4>
+        <p>Placa multilaminada + espuma de alta densidad + herrajes metálicos</p>
+      </div>
+      <div class="material-card">
+        <div class="material-card-icono">{% icono "grip-lines" %}</div>
+        <h4>Soporte / brazo</h4>
+        <p>Acero inoxidable</p>
+      </div>
+      <div class="material-card">
+        <div class="material-card-icono">{% icono "cube" %}</div>
+        <h4>Base</h4>
+        <p>Carcasa de ABS</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIDAS Y CAPACIDAD (datos de la ficha técnica; la web es la fuente de verdad) -->
+<section class="producto-seccion bg-fondo">
+  <div class="producto-seccion-inner">
+    <h2>Medidas y capacidad</h2>
+    <div class="producto-ficha reverse" style="margin-bottom: 0;">
       <div class="ficha-imagen">
         <img
           src="/images/luma-one/luma-one-3.webp"
-          alt="Camilla eléctrica LUMA One en consultorio estético — vista lateral"
+          alt="Camilla eléctrica LUMA One en un consultorio médico — vista lateral"
           class="camilla-img"
           width="1024"
           height="1024"
@@ -235,9 +314,10 @@ instagram_reels:
         >
       </div>
       <div class="ficha-info tabla-specs-grupo">
-        <h3>Dimensiones</h3>
         <table class="tabla-specs">
           <tbody>
+            <tr><td>Carga máxima</td><td>200 kg (sección central)</td></tr>
+            <tr><td>Rango de altura de la base</td><td>60 – 80 cm</td></tr>
             <tr><td>Largo con la camilla extendida</td><td>185 cm</td></tr>
             <tr><td>Largo total (cabezal + apoyapiernas)</td><td>222 cm</td></tr>
             <tr><td>Ancho de la camilla</td><td>79 cm</td></tr>
@@ -249,25 +329,6 @@ instagram_reels:
           </tbody>
         </table>
         <p class="placeholder-note" style="margin-top: 0.75rem;">Puede haber una diferencia de 1 a 5 mm en las medidas de cada unidad terminada. Prevalece el producto real.</p>
-      </div>
-    </div>
-
-    <h3>Materiales y construcción</h3>
-    <div class="material-cards-grid">
-      <div class="material-card">
-        <div class="material-card-icono"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
-        <h4>Estructura interna</h4>
-        <p>Placa multilaminada + espuma de alta densidad + herrajes metálicos</p>
-      </div>
-      <div class="material-card">
-        <div class="material-card-icono"><i class="fas fa-grip-lines" aria-hidden="true"></i></div>
-        <h4>Soporte / brazo</h4>
-        <p>Acero inoxidable</p>
-      </div>
-      <div class="material-card">
-        <div class="material-card-icono"><i class="fas fa-cube" aria-hidden="true"></i></div>
-        <h4>Base</h4>
-        <p>Carcasa de ABS</p>
       </div>
     </div>
   </div>
@@ -299,27 +360,27 @@ instagram_reels:
     <h2>Cuidado y mantenimiento</h2>
     <div class="cuidado-grid">
       <div class="cuidado-card">
-        <div class="cuidado-icono"><i class="fas fa-sun" aria-hidden="true"></i></div>
+        <div class="cuidado-icono">{% icono "sun" %}</div>
         <h3>Lejos de la luz solar</h3>
         <p>No exponer a luz solar directa: la exposición prolongada puede oxidar y deteriorar el material.</p>
       </div>
       <div class="cuidado-card">
-        <div class="cuidado-icono"><i class="fas fa-droplet" aria-hidden="true"></i></div>
+        <div class="cuidado-icono">{% icono "droplet" %}</div>
         <h3>Ambiente seco</h3>
         <p>Mantener en ambiente seco, evitando humedad excesiva y limpiadores alcalinos.</p>
       </div>
       <div class="cuidado-card">
-        <div class="cuidado-icono"><i class="fas fa-spray-can-sparkles" aria-hidden="true"></i></div>
+        <div class="cuidado-icono">{% icono "spray-can-sparkles" %}</div>
         <h3>Limpieza habitual</h3>
         <p>Limpiar con un paño húmedo después de cada uso.</p>
       </div>
       <div class="cuidado-card">
-        <div class="cuidado-icono"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
+        <div class="cuidado-icono">{% icono "layer-group" %}</div>
         <h3>Superficie estable</h3>
         <p>Colocar sobre una superficie plana y estable.</p>
       </div>
       <div class="cuidado-card">
-        <div class="cuidado-icono"><i class="fas fa-hand-holding-droplet" aria-hidden="true"></i></div>
+        <div class="cuidado-icono">{% icono "hand-holding-droplet" %}</div>
         <h3>Ante derrames</h3>
         <p>Absorber el líquido de inmediato con papel.</p>
       </div>
@@ -348,50 +409,9 @@ instagram_reels:
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq-seccion bg-fondo">
-  <div class="faq-inner">
-    <h2>Preguntas frecuentes sobre la LUMA One</h2>
-    <div class="faq-lista">
-
-      <details class="faq-item">
-        <summary>¿En qué se diferencia la LUMA One de la Premium?</summary>
-        <div class="faq-respuesta">
-          <p>La <strong>LUMA One</strong> es la opción de entrada a la línea: comparte los 3 motores y el doble control —remoto manual y botonera de pie—, con un precio más accesible. <a href="/camillas-electricas/premium/">Ver LUMA Premium →</a></p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Cuántos motores tiene y cómo se controla?</summary>
-        <div class="faq-respuesta">
-          <p>Tiene <strong>3 motores independientes</strong> — altura general, respaldo y apoyapiernas — con <strong>control remoto manual y botonera de pie</strong>.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Cuál es la carga máxima y los ángulos de regulación?</summary>
-        <div class="faq-respuesta">
-          <p>Soporta hasta <strong>200 kg</strong> en la sección central. El respaldo y el apoyapiernas se reclinan de <strong>0° a 90°</strong> cada uno, de forma independiente.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Qué alimentación eléctrica necesita?</summary>
-        <div class="faq-respuesta">
-          <p>Funciona con <strong>AC 100–130 V o 220–240 V</strong>, con una potencia máxima de <strong>300 W</strong>.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>¿Tiene garantía oficial?</summary>
-        <div class="faq-respuesta">
-          <p>Sí. Todos los productos LUMA incluyen <strong>12 meses de garantía oficial</strong>. <a href="{{ site.garantia_url }}">Ver condiciones →</a></p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>
+<!-- FAQ — una sola fuente: `faqs` del front matter (acordeón + schema FAQPage). -->
+{% set faqTitulo = "Preguntas frecuentes sobre la LUMA One" %}
+{% include "components/faq.njk" %}
 
 <!-- REELS DE INSTAGRAM -->
 {% set reelsTitulo = "La LUMA One en acción" %}
@@ -410,7 +430,7 @@ instagram_reels:
     <h2>Lo que dicen los profesionales</h2>
     <div class="testimonio-carousel" data-testimonio-carousel>
       <button type="button" class="testimonio-carousel-nav testimonio-carousel-prev" data-testimonio-prev aria-label="Testimonio anterior">
-        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+        {% icono "chevron-left" %}
       </button>
 
       <div class="testimonio-carousel-viewport">
@@ -475,7 +495,7 @@ instagram_reels:
       </div>
 
       <button type="button" class="testimonio-carousel-nav testimonio-carousel-next" data-testimonio-next aria-label="Testimonio siguiente">
-        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        {% icono "chevron-right" %}
       </button>
     </div>
   </div>

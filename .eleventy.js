@@ -69,6 +69,80 @@ module.exports = function (eleventyConfig) {
   // (publicar, placeholders, modelo, width/height). Ver _lib/galeria.js.
   eleventyConfig.addFilter("galeriaFiltrar", galeriaFiltrar);
 
+  /* ── Código de página para WhatsApp ──────────────────────────────
+     Sale en <body data-wa-codigo="ONE"> y lo usa main.js para armar el
+     "Consulta #ONE-G4" del mensaje. Mapa en _data/codigosWa.json. */
+  const codigosWa = require("./_data/codigosWa.json");
+  eleventyConfig.addFilter("codigoWa", (url = "") => {
+    if (codigosWa[url]) return codigosWa[url];
+    if (url.startsWith("/blog/")) return "BLG";
+    return "WEB";
+  });
+
+  /* ── FAQ: una sola fuente para el acordeón y el schema ────────────
+     Cada página declara `faqs:` en el front matter (q + a en HTML). El
+     componente components/faq.njk dibuja el acordeón y product.njk /
+     hub.njk arman el FAQPage con ESTA MISMA lista: lo que Google lee es
+     exactamente lo que ve el visitante (antes eran dos textos distintos).
+
+     Campos opcionales de cada pregunta:
+       si: "mostrar_podologia"   → solo sale si site.json tiene ese flag en true
+       confirmar: "..."          → nota para el cliente; sale como comentario HTML
+
+     Tokens que se completan con _data/site.json (el front matter no pasa
+     por Nunjucks): [GARANTIA_MESES] y [GARANTIA_URL]. */
+  const site = require("./_data/site.json");
+  eleventyConfig.addFilter("faqsVisibles", (faqs) =>
+    (Array.isArray(faqs) ? faqs : [])
+      .filter((f) => !f.si || site[f.si] === true)
+      .map((f) => ({
+        ...f,
+        a: String(f.a || "")
+          .replaceAll("[GARANTIA_MESES]", site.garantia_meses)
+          .replaceAll("[GARANTIA_URL]", site.garantia_url)
+          .trim(),
+      }))
+  );
+
+  // Texto plano para el schema: sin etiquetas y con espacios normalizados.
+  eleventyConfig.addFilter("textoPlano", (html) =>
+    String(html || "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim()
+  );
+
+  /* ── Íconos SVG inline ───────────────────────────────────────────
+     Reemplazan a Font Awesome por CDN (84 KB de CSS + 225 KB de fuentes,
+     bloqueantes, para usar 46 íconos). Cada ícono es un SVG de
+     _lib/iconos/<nombre>.svg, copiado de Font Awesome Free 6.0.0-beta3
+     (íconos bajo licencia CC BY 4.0 — https://fontawesome.com/license/free).
+
+     Uso:  {% icono "check-circle" %}
+           {% icono "chevron-down", "arrow-down" %}     clase extra
+           {% icono "check", "", "Sí" %}                 con texto accesible
+
+     Sale un <i> (no un <svg> suelto) con la clase fa-<nombre> a propósito:
+     así siguen funcionando los selectores CSS que ya existían
+     (.features-list i, .comparador-tabla .fa-check, etc.). El tamaño lo
+     da el font-size del contexto, igual que con la fuente de íconos.
+
+     Un nombre que no existe corta el build: mejor eso que un hueco. */
+  const cacheIconos = new Map();
+  eleventyConfig.addShortcode("icono", (nombre, clase = "", etiqueta = "") => {
+    if (!cacheIconos.has(nombre)) {
+      const archivo = path.join(__dirname, "_lib", "iconos", `${nombre}.svg`);
+      if (!fs.existsSync(archivo)) {
+        throw new Error(`[icono] No existe _lib/iconos/${nombre}.svg`);
+      }
+      const svg = fs.readFileSync(archivo, "utf8").trim()
+        .replace("<svg ", '<svg focusable="false" ');
+      cacheIconos.set(nombre, svg);
+    }
+    const clases = ["icono", `fa-${nombre}`, clase].filter(Boolean).join(" ");
+    const a11y = etiqueta
+      ? `role="img" aria-label="${etiqueta}"`
+      : 'aria-hidden="true"';
+    return `<i class="${clases}" ${a11y}>${cacheIconos.get(nombre)}</i>`;
+  });
+
   /* ── Cache busting de assets ────────────────────────────────────────
      Uso:  <link rel="stylesheet" href="{{ '/assets/css/main.css' | asset }}">
      Sale: /assets/css/main.css?v=a3f9c1d2
@@ -189,6 +263,43 @@ module.exports = function (eleventyConfig) {
     return collectionApi
       .getFilteredByTag("post")
       .sort((a, b) => b.date - a.date);
+  });
+
+  /* ── Preload de la imagen del hero ───────────────────────────────
+     La foto que es el LCP de cada ficha lleva fetchpriority="high" en el
+     HTML. Esta transformación busca esa <img> y agrega en el <head> su
+     <link rel="preload"> con el mismo srcset/sizes, así el navegador la
+     pide en paralelo con el CSS. Una sola fuente de verdad: el <img>. */
+  eleventyConfig.addTransform("preload-hero", function (html) {
+    if (!(this.page.outputPath || "").endsWith(".html")) return html;
+    const img = html.match(/<img\b[^>]*fetchpriority="high"[^>]*>/);
+    if (!img || html.includes('rel="preload" as="image"')) return html;
+    const attr = (n) => (img[0].match(new RegExp(`\\s${n}="([^"]*)"`)) || [])[1];
+    const partes = ['<link rel="preload" as="image"', `href="${attr("src")}"`];
+    if (attr("srcset")) partes.push(`imagesrcset="${attr("srcset")}"`, `imagesizes="${attr("sizes")}"`);
+    partes.push('fetchpriority="high">');
+    return html.replace("</head>", `  ${partes.join(" ")}\n</head>`);
+  });
+
+  /* ── CSS minificado en el build ────────────────────────────────
+     main.css tiene muchos comentarios de documentación (y así tiene que
+     seguir, es la única doc del sitio); al navegador le llegan 109 KB.
+     Después de cada build se minifica la copia de _site/ con lightningcss:
+     el archivo fuente no se toca. El hash de cache busting (`asset`) sale
+     del fuente, así que un cambio en el CSS sigue cambiando la URL. */
+  eleventyConfig.on("eleventy.after", ({ dir }) => {
+    const { transform } = require("lightningcss");
+    const carpeta = path.join(dir.output, "assets", "css");
+    if (!fs.existsSync(carpeta)) return;
+    for (const nombre of fs.readdirSync(carpeta).filter((f) => f.endsWith(".css"))) {
+      const archivo = path.join(carpeta, nombre);
+      const { code } = transform({
+        filename: nombre,
+        code: fs.readFileSync(archivo),
+        minify: true,
+      });
+      fs.writeFileSync(archivo, code);
+    }
   });
 
   return {

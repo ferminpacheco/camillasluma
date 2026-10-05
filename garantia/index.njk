@@ -24,12 +24,12 @@ waMensaje: "Hola! Tengo una consulta sobre la garantía de mi equipo LUMA."
     <p>La garantía LUMA cubre <strong>12 meses desde la fecha de compra</strong>, sobre fallas de origen relacionadas con fabricación, materiales y ensamblado.</p>
     <div class="cuidado-grid cuidado-grid--2">
       <div class="cuidado-card">
-        <div class="cuidado-icono"><i class="fas fa-industry" aria-hidden="true"></i></div>
+        <div class="cuidado-icono">{% icono "industry" %}</div>
         <h3>Fabricación, materiales y ensamblado</h3>
         <p>Cubrimos cualquier falla de origen relacionada con cómo se fabricó tu equipo, con qué materiales y cómo se ensambló.</p>
       </div>
       <div class="cuidado-card">
-        <div class="cuidado-icono"><i class="fas fa-bolt" aria-hidden="true"></i></div>
+        <div class="cuidado-icono">{% icono "bolt" %}</div>
         <h3>Motores, comandos y sistema eléctrico</h3>
         <p>En los modelos eléctricos, la garantía cubre el correcto funcionamiento de motores, comandos y sistema eléctrico, siempre que el equipo se haya usado conforme a su uso previsto.</p>
       </div>
@@ -48,11 +48,11 @@ waMensaje: "Hola! Tengo una consulta sobre la garantía de mi equipo LUMA."
     <h2>¿Cuándo se pierde la garantía?</h2>
     <p>La garantía pierde validez ante:</p>
     <ul class="features-list" style="max-width: 700px;">
-      <li><i class="fas fa-ban" aria-hidden="true"></i> Uso indebido, negligente o distinto al recomendado.</li>
-      <li><i class="fas fa-ban" aria-hidden="true"></i> Incumplimiento de las pautas de uso, cuidado y mantenimiento indicadas por LUMA.</li>
-      <li><i class="fas fa-ban" aria-hidden="true"></i> Sobrecarga, golpes, caídas o exposición a humedad, líquidos, químicos o agentes corrosivos.</li>
-      <li><i class="fas fa-ban" aria-hidden="true"></i> Intervenciones, modificaciones o reparaciones realizadas por terceros no autorizados.</li>
-      <li><i class="fas fa-ban" aria-hidden="true"></i> Desgaste natural por uso normal.</li>
+      <li>{% icono "ban" %} Uso indebido, negligente o distinto al recomendado.</li>
+      <li>{% icono "ban" %} Incumplimiento de las pautas de uso, cuidado y mantenimiento indicadas por LUMA.</li>
+      <li>{% icono "ban" %} Sobrecarga, golpes, caídas o exposición a humedad, líquidos, químicos o agentes corrosivos.</li>
+      <li>{% icono "ban" %} Intervenciones, modificaciones o reparaciones realizadas por terceros no autorizados.</li>
+      <li>{% icono "ban" %} Desgaste natural por uso normal.</li>
     </ul>
   </div>
 </section>
@@ -111,7 +111,7 @@ waMensaje: "Hola! Tengo una consulta sobre la garantía de mi equipo LUMA."
 <section class="producto-seccion" style="padding-top: 0; padding-bottom: var(--space-lg); text-align: center;">
   <div class="producto-seccion-inner">
     <a href="{{ site.garantia_pdf }}" target="_blank" rel="noopener" class="pdf-descarga-link">
-      <i class="fas fa-file-pdf" aria-hidden="true"></i> Descargar garantía en PDF
+      {% icono "file-pdf" %} Descargar garantía en PDF
     </a>
   </div>
 </section>

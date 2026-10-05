@@ -93,13 +93,17 @@
   <link rel="icon" type="image/png" href="/images/logo_luma_favicon.png">
   <link rel="apple-touch-icon" href="/images/logo_luma_favicon.png">
 
-  <!-- Google Fonts: Poppins -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  {# Poppins autoalojada (ver @font-face en tokens.css). Se precargan los
+     dos pesos de la primera pantalla: el navegador los pide en paralelo
+     con el CSS en vez de descubrirlos después de leerlo. #}
+  <link rel="preload" href="/assets/fonts/poppins-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/poppins-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+  {# Fondo del hero de los hubs (es una imagen de CSS, el navegador la
+     descubre tarde). `preloadFondo` en el front matter: { mobile, desktop }. #}
+  {% if preloadFondo %}
+  <link rel="preload" as="image" href="{{ preloadFondo.mobile }}" media="(max-width: 800px)" fetchpriority="high">
+  <link rel="preload" as="image" href="{{ preloadFondo.desktop }}" media="(min-width: 801px)" fetchpriority="high">
+  {% endif %}
 
   {# El filtro `asset` le agrega ?v=<hash-del-contenido> a la URL (ver
      .eleventy.js). Es lo que habilita la caché de un año e `immutable`
@@ -149,7 +153,7 @@
   }
   </script>
 </head>
-<body>
+<body data-wa-codigo="{{ page.url | codigoWa }}">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PC8NP4ZV"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -169,7 +173,7 @@
   {% include "components/whatsapp-flotante.njk" %}
 
   <button onclick="scrollToTop()" id="backToTop" title="Volver arriba">
-    <i class="fas fa-arrow-up"></i>
+    {% icono "arrow-up" %}
   </button>
 
   <script src="{{ '/assets/js/main.js' | asset }}" defer></script>
