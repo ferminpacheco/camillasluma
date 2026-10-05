@@ -130,6 +130,25 @@ const PAGINAS = [
     alt: "Base de una camilla eléctrica LUMA con botonera de pie y control remoto en un consultorio.",
   },
   {
+    /* Post del blog "cómo elegir una camilla para medicina estética".
+       Camilla en posición semirreclinada: es la posición que el artículo
+       explica. Es 2.33, así que `cover` recorta ~18% a los costados.
+       No reutiliza la OG de ninguna ficha. */
+    salida: "camilla-medicina-estetica.jpg",
+    tratamiento: "foto",
+    src: "images/luma-one/luma-one-8.webp", // 2.33
+    alt: "Camilla eléctrica LUMA en posición semirreclinada en un centro de medicina estética.",
+  },
+  {
+    /* Post del blog "cómo elegir una camilla ginecológica". Pierneras
+       colocadas y LED en la base. La ficha Ginecológica usa la -11, así que
+       esta no se repite. 1.79: el recorte de `cover` es mínimo. */
+    salida: "como-elegir-camilla-ginecologica.jpg",
+    tratamiento: "foto",
+    src: "images/luma-ginecologica/luma-ginecologica-12.webp", // 1.79
+    alt: "Camilla ginecológica eléctrica LUMA con pierneras regulables e iluminación LED en la base.",
+  },
+  {
     /* Las fotos de stand son verticales (ar 0.55-0.75). Recortarlas se
        comería el 61% del alto, así que van en lienzo.
        La foto vive en /images/the-global-plastic-surgery/ desde el
