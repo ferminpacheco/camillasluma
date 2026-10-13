@@ -128,7 +128,7 @@ En # LUMA — Reestructuración Web (One Shot)
 
 **Header sticky:** logo LUMA (con la onda ~) · nav: Inicio · Camillas ▾ (Premium / One / Ginecológica) · Carritos ▾ (Cart / Tech / Cart Gold) · Luminarias · Nosotros · **CTA fijo "Pedí tu cotización"**.
 
-**WhatsApp flotante:** número `+54 9 11 3250-8970`, con **tracking de click** (evento de conversión).
+**WhatsApp flotante:** número `+54 9 11 6205-8859`, con **tracking de click** (evento de conversión).
 
 **Footer** (repetido): navegación completa · NAP consistente (mail de dominio `{{EMAIL_DOMINIO}}` · WhatsApp · las dos direcciones de showroom) · mini-bloque garantía → `/nosotros/#garantia` · Instagram `{{IG_HANDLE}}` · línea legal.
 
