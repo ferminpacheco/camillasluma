@@ -149,6 +149,16 @@ const PAGINAS = [
     alt: "Camilla ginecológica eléctrica LUMA con pierneras regulables e iluminación LED en la base.",
   },
   {
+    /* Post del blog "cómo elegir una camilla dermatológica". Premium blanca
+       en posición plana, la del examen de piel de cuerpo entero. Es
+       cuadrada (1.00): en "foto" el recorte se come la base y la botonera,
+       así que va en lienzo. No reutiliza la OG de ninguna ficha. */
+    salida: "como-elegir-camilla-dermatologica.jpg",
+    tratamiento: "lienzo",
+    src: "images/luma-premium/luma-premium-blanca-5.webp", // 1.00
+    alt: "Camilla eléctrica LUMA Premium blanca en posición plana en un consultorio.",
+  },
+  {
     /* Las fotos de stand son verticales (ar 0.55-0.75). Recortarlas se
        comería el 61% del alto, así que van en lienzo.
        La foto vive en /images/the-global-plastic-surgery/ desde el
