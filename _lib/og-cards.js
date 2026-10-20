@@ -159,6 +159,17 @@ const PAGINAS = [
     alt: "Camilla eléctrica LUMA Premium blanca en posición plana en un consultorio.",
   },
   {
+    /* Post del blog "cómo elegir una camilla para consultorio médico".
+       La One dentro de un consultorio. Cuadrada (1.00) como la de la
+       dermatológica, así que va en lienzo por el mismo motivo: en "foto"
+       el recorte se come la base. La ficha One usa la -9, el post de
+       estética la -8 y el de precio la -10, así que no se repite ninguna. */
+    salida: "como-elegir-camilla-consultorio-medico.jpg",
+    tratamiento: "lienzo",
+    src: "images/luma-one/luma-one-5.webp", // 1.00
+    alt: "Camilla eléctrica LUMA One en un consultorio médico.",
+  },
+  {
     /* Las fotos de stand son verticales (ar 0.55-0.75). Recortarlas se
        comería el 61% del alto, así que van en lienzo.
        La foto vive en /images/the-global-plastic-surgery/ desde el
