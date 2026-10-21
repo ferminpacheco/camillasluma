@@ -26,8 +26,15 @@
   <link rel="canonical" href="{{ canonical }}">
   {% endif %}
 
+  {# `max-image-preview:large` en todo el sitio: autoriza a Google a mostrar
+     la imagen grande de la página en los resultados (Discover, imágenes y
+     la miniatura del resultado). Si una página es noindex, va en la misma
+     etiqueta: dos <meta name="robots"> se combinan, pero una sola es más
+     clara. NUNCA sumar noindex acá: se controla por página. #}
   {% if noindex %}
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="noindex, nofollow, max-image-preview:large">
+  {% else %}
+  <meta name="robots" content="max-image-preview:large">
   {% endif %}
 
   {# IMAGEN DE COMPARTIR — la que se ve al pasar un link por WhatsApp.
@@ -68,30 +75,28 @@
 
   {# FAVICON — es el icono que Google muestra en los resultados de busqueda.
 
-     ⚠️ EXCEPCION DELIBERADA a la convencion de "todo WebP" del proyecto:
-     este archivo se queda en PNG a proposito. Google documenta que acepta
-     "cualquier formato de favicon valido" (ICO, PNG, GIF, JPEG, SVG, APNG);
-     WebP NO es uno de ellos. Antes esto apuntaba a favicon.webp declarado
-     como type="image/png" — el MIME no coincidia con el archivo y el sitio
-     salia sin icono en las SERP. NO convertir este PNG a WebP.
+     Version provisoria (oct-2026): la palabra "LUMA" del logo, en blanco
+     sobre navy #0A2956 solido, centrada y ocupando como maximo el 70% del
+     ancho (Google lo recorta en circulo). Se reemplaza por el isotipo de la
+     onda cuando llegue el vectorial del cliente (pendiente en
+     docs/luma-guia-de-marca.md). Los archivos se generan con
+     `npm run favicons` (_lib/favicons.js).
 
-     Requisitos de Google que cumple: cuadrado 1:1 y multiplo de 48px
-     (es 96x96 — Google pide 48/96/144, antes era 100x100 y quedaba fuera
-     de spec), rel="icon" en el <head>, y rastreable (robots.txt permite todo).
-
-     Va SIN transparencia, con fondo blanco opaco a proposito: el logo es
-     navy y sobre alfa transparente desaparecia en las SERP en modo oscuro,
-     en la barra de pestanas oscura de Chrome y en el apple-touch-icon (iOS
-     compone negro detras del alfa). No re-exportar con fondo transparente.
-
-     La URL tiene que mantenerse ESTABLE: Google la cachea, cambiarla reinicia
-     el proceso de deteccion. No renombrar este archivo.
-
-     El master 100x100 original (con alfa) queda en
-     _originales/pre-webp/logo_luma_favicon.png. #}
+     Reglas que no se negocian:
+     - Fondo navy OPACO, nunca transparente ni rosa: sobre alfa el icono
+       desaparece en modo oscuro y iOS compone negro detras.
+     - PNG/ICO, no WebP: Google no acepta WebP como favicon.
+     - URLs ESTABLES en la raiz: Google las cachea, cambiarlas reinicia el
+       proceso de deteccion. Al cambiar el diseno se pisan los archivos con
+       el mismo nombre.
+     - Multiplos de 48px para Google (48/96/192). #}
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/images/logo_luma_favicon.png">
-  <link rel="apple-touch-icon" href="/images/logo_luma_favicon.png">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   {# Poppins autoalojada (ver @font-face en tokens.css). Se precargan los
      dos pesos de la primera pantalla: el navegador los pide en paralelo
@@ -114,7 +119,7 @@
   <link rel="stylesheet" href="{{ '/assets/css/tokens.css' | asset }}">
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | asset }}">
 
-  <!-- Schema global: Organization + WebSite -->
+  <!-- Schema global: Organization + WebSite (+ WebPage si la página lo pide) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -123,10 +128,13 @@
         "@type": "Organization",
         "@id": "{{ site.url }}/#organization",
         "name": "{{ site.nombre }}",
-        "url": "{{ site.url }}",
+        "url": "{{ site.url }}/",
+        {# Provisorio hasta tener el isotipo cuadrado de la onda. #}
         "logo": {
           "@type": "ImageObject",
-          "url": "{{ site.url }}/images/logo_luma_2.webp"
+          "url": "{{ site.url }}/images/logo_luma_2.webp",
+          "width": 1024,
+          "height": 1024
         },
         "contactPoint": {
           "@type": "ContactPoint",
@@ -137,18 +145,49 @@
         },
         "email": "{{ site.email }}",
         "sameAs": [
-          "https://www.instagram.com/{{ site.instagram }}"
+          "https://www.instagram.com/{{ site.instagram }}/"
         ]
       },
       {
         "@type": "WebSite",
         "@id": "{{ site.url }}/#website",
-        "url": "{{ site.url }}",
+        "url": "{{ site.url }}/",
         "name": "{{ site.nombre }}",
+        "alternateName": "Camillas {{ site.nombre }}",
+        "inLanguage": "es-AR",
         "publisher": {
           "@id": "{{ site.url }}/#organization"
         }
-      }
+      }{% if schemaWebPage %},
+      {# Solo en las páginas que declaran `schemaWebPage: true` (hoy, la
+         home). `primaryImageOfPage` le indica a Google qué imagen usar para
+         el resultado: la misma de og:image. #}
+      {
+        "@type": "WebPage",
+        "@id": "{{ canonical }}#webpage",
+        "url": "{{ canonical }}",
+        "name": "{{ tituloFinal }}",
+        "description": "{{ description }}",
+        "inLanguage": "es-AR",
+        "isPartOf": {
+          "@id": "{{ site.url }}/#website"
+        },
+        "about": {
+          "@id": "{{ site.url }}/#organization"
+        },
+        "primaryImageOfPage": {
+          "@id": "{{ site.url }}{{ ogImagenFinal }}#imagen"
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "{{ site.url }}{{ ogImagenFinal }}#imagen",
+          "url": "{{ site.url }}{{ ogImagenFinal }}",
+          "contentUrl": "{{ site.url }}{{ ogImagenFinal }}",
+          "width": 1200,
+          "height": 630,
+          "caption": "{{ ogAltFinal }}"
+        }
+      }{% endif %}
     ]
   }
   </script>
