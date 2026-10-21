@@ -47,11 +47,14 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("66680b841a2b4510b405236b73559125.txt");
   eleventyConfig.addPassthroughCopy({ "Garantia.pdf": "assets/pdf/garantia-luma.pdf" });
 
-  /* Fallback de favicon en la raíz. El favicon que declara el <head> sigue
-     siendo el PNG (ver la nota en base.njk); este .ico existe porque
-     Googlebot y varios clientes piden /favicon.ico directo a la raíz, y
-     hasta ahora eso devolvía la página 404 de 11 KB. */
+  /* Favicon en la raíz (ver la nota en base.njk). Va ahí y no en /images/
+     porque Googlebot y varios clientes piden /favicon.ico y
+     /apple-touch-icon.png directo a la raíz, aunque el <head> no los
+     declare; antes eso devolvía la página 404 de 11 KB. */
   eleventyConfig.addPassthroughCopy("favicon.ico");
+  eleventyConfig.addPassthroughCopy("favicon-*.png");
+  eleventyConfig.addPassthroughCopy("apple-touch-icon.png");
+  eleventyConfig.addPassthroughCopy("site.webmanifest");
 
   /* Configuración del servidor (Hostinger): caché, redirects, 404 y https.
      Tiene que quedar en la raíz de la carpeta publicada (_site/.htaccess)
