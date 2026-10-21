@@ -14,8 +14,8 @@
    cambia el diseño, y commiteá el resultado.
 
    ── DISEÑO (provisorio, oct-2026) ───────────────────────────────────
-   Solo la palabra "LUMA" del logo (sin la onda ni "PREMIUM"), recortada
-   al ras, en blanco sobre navy sólido. Se reemplaza por el isotipo de la
+   El logo con la onda y la palabra "LUMA" (sin "PREMIUM"), recortado al
+   ras, en blanco sobre navy sólido. Se reemplaza por el isotipo de la
    onda cuando llegue el vectorial del cliente: cambiar FUENTE / RECORTE
    y volver a correr. Mantener los nombres de archivo: Google cachea las
    URLs y cambiarlas reinicia la detección del favicon.
@@ -23,7 +23,7 @@
    - Fondo OPACO siempre. Nunca transparente, nunca rosa ni sus variantes
      (regla del cliente). El script verifica cada archivo al final y
      corta con error si encuentra un pixel rosado o transparente.
-   - "LUMA" ocupa el 70% del ancho y va centrado: Google muestra el
+   - El logo ocupa el 70% del ancho y va centrado: Google muestra el
      favicon recortado en círculo y así no se cortan la L ni la A.
    ============================================= */
 
@@ -39,11 +39,10 @@ const RAIZ = path.join(__dirname, "..");
 const NAVY_HEX = "#0A2956";
 const NAVY = { r: 10, g: 41, b: 86 };
 
-/* Logo master con alfa. En este archivo la onda ocupa las filas 366–465 y
-   "LUMA" las 518–657; el recorte deja solo la palabra (sharp.trim() la
-   ajusta al ras). */
+/* Logo master con alfa: onda (filas 366–465) + "LUMA" (518–657), sin
+   "PREMIUM". sharp.trim() lo ajusta al ras. */
 const FUENTE = path.join(RAIZ, "_originales", "pre-webp", "logo_luma_2.png");
-const RECORTE = { left: 190, top: 500, width: 644, height: 170 };
+const RECORTE = { left: 190, top: 350, width: 644, height: 320 };
 
 const ANCHO_TEXTO = 0.7;
 
@@ -57,8 +56,8 @@ const PNGS = [
 ];
 const ICO_LADOS = [16, 32, 48];
 
-/* Máscara de "LUMA": el canal alfa del logo, al ras. Las letras salen en
-   blanco usando esa máscara, así se conserva el antialias del original. */
+/* Máscara del logo: el canal alfa, al ras. El logo sale en blanco usando
+   esa máscara, así se conserva el antialias del original. */
 async function mascaraPalabra() {
   const { data, info } = await sharp(FUENTE)
     .extract(RECORTE)
