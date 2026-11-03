@@ -185,19 +185,39 @@ body > section:first-of-type {
   max-width: none;
   margin: 0;
   padding-top: 50px;
-  /* ⚠️ Imagen de fondo placeholder — reemplazar por la definitiva del cliente */
-  background-image:
-    linear-gradient(
-      to right,
-      rgba(10, 41, 86, 0.92) 0%,
-      rgba(10, 41, 86, 0.75) 40%,
-      rgba(10, 41, 86, 0.35) 70%,
-      rgba(10, 41, 86, 0.05) 100%
-    ),
-    url('/images/luma-premium/portada-luma-premium-black.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  /* La foto es un <img class="hero-fondo"> en index.njk (Google no indexa
+     fondos de CSS). `isolation` arma un contexto propio para que la foto y
+     el degradado queden detrás del texto sin pisar al header. */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-fondo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -2;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* Más cargado que con la foto anterior (negra): esta es blanca y el
+     final del subtítulo quedaba en ~3:1 de contraste. Así no baja de 4.5:1. */
+  background: linear-gradient(
+    to right,
+    rgba(10, 41, 86, 0.94) 0%,
+    rgba(10, 41, 86, 0.86) 45%,
+    rgba(10, 41, 86, 0.72) 65%,
+    rgba(10, 41, 86, 0.3) 85%,
+    rgba(10, 41, 86, 0.1) 100%
+  );
 }
 
 .hero-content {
@@ -3111,13 +3131,13 @@ body > section:first-of-type {
   .hero {
     padding-top: 70px !important;
     min-height: 70vh !important;
-    background-image:
-      linear-gradient(
-        to bottom,
-        rgba(10, 41, 86, 0.85) 0%,
-        rgba(10, 41, 86, 0.75) 100%
-      ),
-      url('/images/luma-premium/portada-luma-premium-black.webp') !important;
+  }
+  .hero::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 41, 86, 0.85) 0%,
+      rgba(10, 41, 86, 0.75) 100%
+    );
   }
   .hero-content {
     flex: 1 1 100% !important;

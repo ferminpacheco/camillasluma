@@ -1,14 +1,31 @@
 ---
 layout: base.njk
-title: "LUMA | Camillas Eléctricas Premium para Clínicas y Centros Estéticos"
+title: "Camillas Eléctricas Premium para Clínicas y Estética | LUMA"
 description: "Camillas eléctricas de diseño premium para consultorios y centros de estética en Argentina. Precisión tecnológica, garantía oficial y showrooms en CABA."
 canonical: "https://camillasluma.com/"
 ogImage: "/images/og/home.jpg"
 ogImageAlt: "Línea de camillas eléctricas LUMA en un consultorio de estética."
+# Suma la entidad WebPage de la home al @graph global de base.njk.
+schemaWebPage: true
 ---
 
 <!-- HERO -->
 <section class="hero">
+  {# Foto del hero como <img> real y no como fondo de CSS: Google solo toma
+     como imagen de la página las que están en el HTML. Es la misma foto de
+     la que sale /images/og/home.jpg (ver _lib/og-cards.js), así el
+     resultado de búsqueda muestra las camillas y no una foto de la galería
+     de clientes. El degradado navy va encima con .hero::before. #}
+  <img
+    src="/images/banner-camillas-electricas.webp"
+    srcset="/images/banner-camillas-electricas-800.webp 800w, /images/banner-camillas-electricas.webp 2400w"
+    sizes="100vw"
+    alt="Camillas eléctricas LUMA en un consultorio de estética"
+    class="hero-fondo"
+    width="2400"
+    height="1018"
+    fetchpriority="high"
+  >
   <div class="hero-content">
     <h1>Camillas eléctricas premium<br>para clínicas y centros estéticos</h1>
     <p>Diseño y tecnología para tu espacio: precisión, confort y estilo para clínicas y centros estéticos.</p>
