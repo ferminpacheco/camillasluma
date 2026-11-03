@@ -170,6 +170,16 @@ const PAGINAS = [
     alt: "Camilla eléctrica LUMA One en un consultorio médico.",
   },
   {
+    /* Post del blog "cómo elegir un carrito auxiliar para estética". El
+       LUMA Tech en un consultorio con aparatología. Es apaisada (1.79), así
+       que va en "foto": el recorte a 1200x630 cuesta ~6% del alto. La OG
+       de la ficha Tech usa la -8, así que no se repite. */
+    salida: "como-elegir-carrito-auxiliar-estetica.jpg",
+    tratamiento: "foto",
+    src: "images/luma-tech/luma-tech-10.webp", // 1.79
+    alt: "Carrito auxiliar LUMA Tech junto a equipos de aparatología en un consultorio de estética.",
+  },
+  {
     /* Las fotos de stand son verticales (ar 0.55-0.75). Recortarlas se
        comería el 61% del alto, así que van en lienzo.
        La foto vive en /images/the-global-plastic-surgery/ desde el
