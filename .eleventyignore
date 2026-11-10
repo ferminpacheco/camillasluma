@@ -12,7 +12,3 @@ gracias.html
 # Nunjucks y el build falla con "expected variable end" en los bloques
 # de codigo de ejemplo.
 .claude
-
-# Planes de trabajo internos: documentacion del equipo, no paginas publicas.
-# Sin esta linea Eleventy los publica en /plans/.
-plans
