@@ -1,7 +1,8 @@
 # Diagnóstico temporal: lista la raíz del FTP para ubicar public_html. Solo lectura. Borrar después.
 name: FTP ls (diagnóstico)
 on:
-  workflow_dispatch:
+  push:
+    branches: [diag/ftp-ls]
 jobs:
   ls:
     runs-on: ubuntu-latest
