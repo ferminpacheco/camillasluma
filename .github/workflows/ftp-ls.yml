@@ -6,9 +6,11 @@ jobs:
   ls:
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt-get install -y lftp >/dev/null
       - run: |
-          lftp -u "$U","$P" "$S" -e "set ssl:verify-certificate no; pwd; cls -la; echo ---public_html; cls -la public_html | head -40; echo ---blog; cls blog | head; cls public_html/blog | head; bye"
+          echo "--- raíz"; curl -s --user "$U:$P" "ftp://$S/" -l || true
+          echo "--- public_html"; curl -s --user "$U:$P" "ftp://$S/public_html/" -l | head -40 || true
+          echo "--- blog"; curl -s --user "$U:$P" "ftp://$S/blog/" -l || true
+          echo "--- public_html/blog"; curl -s --user "$U:$P" "ftp://$S/public_html/blog/" -l || true
         env:
           U: ${{ secrets.FTP_USERNAME }}
           P: ${{ secrets.FTP_PASSWORD }}
