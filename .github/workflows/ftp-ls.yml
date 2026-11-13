@@ -1,0 +1,15 @@
+# Diagnóstico temporal: lista la raíz del FTP para ubicar public_html. Solo lectura. Borrar después.
+name: FTP ls (diagnóstico)
+on:
+  workflow_dispatch:
+jobs:
+  ls:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt-get install -y lftp >/dev/null
+      - run: |
+          lftp -u "$U","$P" "$S" -e "set ssl:verify-certificate no; pwd; cls -la; echo ---public_html; cls -la public_html | head -40; echo ---blog; cls blog | head; cls public_html/blog | head; bye"
+        env:
+          U: ${{ secrets.FTP_USERNAME }}
+          P: ${{ secrets.FTP_PASSWORD }}
+          S: ${{ secrets.FTP_SERVER }}
