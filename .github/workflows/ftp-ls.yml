@@ -8,10 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "--- raíz"; curl -s --user "$U:$P" "ftp://$S/" -l || true
-          echo "--- public_html"; curl -s --user "$U:$P" "ftp://$S/public_html/" -l | head -40 || true
-          echo "--- blog"; curl -s --user "$U:$P" "ftp://$S/blog/" -l || true
-          echo "--- public_html/blog"; curl -s --user "$U:$P" "ftp://$S/public_html/blog/" -l || true
+          echo "--- domains"; curl -s --user "$U:$P" "ftp://$S/domains/" -l || true
+          for d in $(curl -s --user "$U:$P" "ftp://$S/domains/" -l | grep -v '^\.'); do echo "--- domains/$d"; curl -s --user "$U:$P" "ftp://$S/domains/$d/" -l; echo "--- domains/$d/public_html/blog"; curl -s --user "$U:$P" "ftp://$S/domains/$d/public_html/blog/" -l; done
         env:
           U: ${{ secrets.FTP_USERNAME }}
           P: ${{ secrets.FTP_PASSWORD }}
