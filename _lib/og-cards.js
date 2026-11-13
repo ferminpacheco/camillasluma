@@ -180,6 +180,16 @@ const PAGINAS = [
     alt: "Carrito auxiliar LUMA Tech junto a equipos de aparatología en un consultorio de estética.",
   },
   {
+    /* Post del blog "camilla fija, hidráulica o eléctrica". La Premium
+       blanca semirreclinada, con la luz LED de la base encendida: el post
+       habla también de diseño e iluminación. Cuadrada (1.00), va en lienzo.
+       En la ficha Premium es foto de contenido, no OG (la OG es la -7). */
+    salida: "camilla-fija-hidraulica-o-electrica.jpg",
+    tratamiento: "lienzo",
+    src: "images/luma-premium/luma-premium-blanca-1.webp", // 1.00
+    alt: "Camilla eléctrica LUMA Premium blanca con iluminación LED en la base, en un gabinete de estética.",
+  },
+  {
     /* Las fotos de stand son verticales (ar 0.55-0.75). Recortarlas se
        comería el 61% del alto, así que van en lienzo.
        La foto vive en /images/the-global-plastic-surgery/ desde el
