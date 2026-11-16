@@ -190,6 +190,16 @@ const PAGINAS = [
     alt: "Camilla eléctrica LUMA Premium blanca con iluminación LED en la base, en un gabinete de estética.",
   },
   {
+    /* Post del blog "cómo elegir una lámpara para consultorio estético".
+       La Luminaria LED LUMA blanca junto a una camilla en un gabinete de
+       estética. Cuadrada (1.00), va en lienzo. En la ficha de luminarias
+       es el fondo del CTA de cierre, no la OG (la OG es la del arco LED). */
+    salida: "como-elegir-lampara-consultorio-estetico.jpg",
+    tratamiento: "lienzo",
+    src: "images/luma-luminarias/hf_20260814_234841_f9447d71-9773-424a-87bc-beea4a9f98d3.webp", // 1.00
+    alt: "Lámpara para consultorio estético junto a una camilla eléctrica LUMA.",
+  },
+  {
     /* Las fotos de stand son verticales (ar 0.55-0.75). Recortarlas se
        comería el 61% del alto, así que van en lienzo.
        La foto vive en /images/the-global-plastic-surgery/ desde el
