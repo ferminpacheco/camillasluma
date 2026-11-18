@@ -50,6 +50,8 @@ LEÉLO antes de ejecutar cualquier fase. Seguí el orden de la sección 12
 - Caché, redirects 301, página 404, https y www→sin www viven en `.htaccess`
   (raíz del repo, Eleventy lo copia a `_site/`). Un redirect nuevo va ahí.
 - LiteSpeed ignora `<If>` y `expr=` en `.htaccess`: usar `<FilesMatch>`/`RewriteRule`.
-- Publicar: `npm run build`, comprimir el CONTENIDO de `_site/` (incluido
-  `.htaccess`) en un zip y subirlo a `public_html` desde el administrador de
-  archivos de Hostinger. Hostinger no corre el build.
+- Publicar: push a `main`. GitHub Actions (`.github/workflows/deploy.yml`)
+  compila y sube `_site/` por FTP a `domains/camillasluma.com/public_html`
+  (credenciales en los secrets del repo: FTP_SERVER, FTP_USERNAME,
+  FTP_PASSWORD). El zip manual por el administrador de archivos queda solo
+  como respaldo si el deploy falla.
