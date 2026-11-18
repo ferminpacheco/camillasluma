@@ -91,8 +91,10 @@ const PAGINAS = [
   },
   {
     salida: "ginecologica.jpg",
-    tratamiento: "foto",
-    src: "images/luma-ginecologica/luma-ginecologica-11.webp", // 1.79
+    /* Modelo nuevo con botonera de pie (nov-2026): el proveedor solo
+       mandó fotos cuadradas, así que va en lienzo, no en foto. */
+    tratamiento: "lienzo",
+    src: "images/luma-ginecologica/luma-ginecologica-pie-01.webp", // 1.00
     alt: "Camilla ginecológica eléctrica LUMA con pierneras ajustables.",
   },
   {
@@ -140,12 +142,12 @@ const PAGINAS = [
     alt: "Camilla eléctrica LUMA en posición semirreclinada en un centro de medicina estética.",
   },
   {
-    /* Post del blog "cómo elegir una camilla ginecológica". Pierneras
-       colocadas y LED en la base. La ficha Ginecológica usa la -11, así que
-       esta no se repite. 1.79: el recorte de `cover` es mínimo. */
+    /* Post del blog "cómo elegir una camilla ginecológica". Foto en
+       consultorio del modelo con botonera de pie (cuadrada → lienzo). La
+       ficha usa la -pie-01, así que esta no se repite. */
     salida: "como-elegir-camilla-ginecologica.jpg",
-    tratamiento: "foto",
-    src: "images/luma-ginecologica/luma-ginecologica-12.webp", // 1.79
+    tratamiento: "lienzo",
+    src: "images/luma-ginecologica/luma-ginecologica-pie-15.webp", // 1.00
     alt: "Camilla ginecológica eléctrica LUMA con pierneras regulables e iluminación LED en la base.",
   },
   {
