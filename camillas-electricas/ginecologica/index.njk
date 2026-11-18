@@ -9,12 +9,15 @@ ogImageAlt: "Camilla ginecológica eléctrica LUMA con pierneras ajustables."
 waMensaje: "Hola! Quiero más información sobre la Camilla Ginecológica LUMA."
 schemaProduct:
   name: "Camilla Ginecológica Eléctrica LUMA"
-  description: "Camilla ginecológica eléctrica de 3 motores con pierneras ajustables y removibles, bandeja extraíble, iluminación LED en base, botonera de pie y control de mano."
+  description: "Camilla ginecológica eléctrica de 3 motores con pierneras ajustables y removibles, botonera de pie, control de mano, bandeja extraíble e iluminación LED en base. Soporta hasta 200 kg."
   image: "/images/luma-ginecologica/luma-ginecologica-pie-01.webp"
   outOfStock: false
 # Preguntas frecuentes: acordeón visible Y schema FAQPage salen de acá
 # (components/faq.njk). "a" es HTML. Ver .eleventy.js → faqsVisibles.
 faqs:
+  - q: "¿Qué es la botonera de pie y para qué sirve?"
+    a: |
+      <p>Es un comando integrado en la base que se acciona con el pie. Te permite cambiar la altura o la posición de la paciente <strong>durante el examen, sin soltar el instrumental ni tocar el control con los guantes puestos</strong>. Es la gran diferencia de la LUMA Ginecológica: menos interrupciones y más higiene en cada procedimiento.</p>
   - q: "¿Se puede usar como camilla estándar además de ginecológica?"
     a: |
       <p>Sí, ese es uno de sus mayores diferenciales. Las pierneras son <strong>ajustables y removibles</strong>: al sacarlas, la camilla funciona exactamente como una camilla estándar de 3 motores. Un solo equipo para consultas de rutina y procedimientos especializados.</p>
@@ -24,9 +27,12 @@ faqs:
   - q: "¿Tiene iluminación LED integrada?"
     a: |
       <p>Sí, la LUMA Ginecológica incluye <strong>iluminación LED integrada en la base</strong>. Esto permite trabajar con mayor visibilidad sin necesidad de una lámpara de consultorio adicional para procedimientos de la zona.</p>
-  - q: "¿Cuántos motores tiene?"
+  - q: "¿Cuántos motores tiene y cómo se controla?"
     a: |
-      <p>Tiene <strong>3 motores independientes</strong>: altura, respaldo y apoya-piernas. Se regulan de dos formas: con la <strong>botonera de pie</strong> integrada en la base, para mover la camilla sin usar las manos y sin interrumpir el procedimiento, o con el <strong>control de mano</strong>, cómodo para posicionar a la paciente antes de empezar.</p>
+      <p>Tiene <strong>3 motores independientes</strong>: altura, respaldo y apoyapiernas. Se regulan de dos formas: con la <strong>botonera de pie</strong> integrada en la base, para mover la camilla sin usar las manos, o con el <strong>control de mano</strong>, cómodo para posicionar a la paciente antes de empezar.</p>
+  - q: "¿Cuánto mide y cuánto peso soporta?"
+    a: |
+      <p>Mide <strong>189 cm de largo y 60 cm de ancho</strong>, regula su altura entre <strong>60 y 83 cm</strong> y soporta hasta <strong>200 kg</strong>. La base ocupa 97 × 53 cm. Tenés todas las medidas en la <a href="#ficha-tecnica">ficha técnica</a>.</p>
   - q: "¿Cuánto cuesta la camilla ginecológica eléctrica?"
     a: |
       <p>El precio depende de la configuración y del equipamiento que elijas para tu consultorio, por eso trabajamos con <strong>cotización personalizada</strong>. Escribinos por WhatsApp y te enviamos el valor actualizado, o vení a verla a nuestros <a href="/nosotros/#showrooms">showrooms en CABA</a>.</p>
@@ -179,6 +185,37 @@ instagram_reels:
   </div>
 </section>
 
+<!-- PARA QUÉ CONSULTAS SIRVE -->
+<section class="producto-seccion bg-fondo">
+  <div class="producto-seccion-inner">
+    <h2>Para qué consultas sirve</h2>
+    <div class="cuidado-grid cuidado-grid--4">
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "stethoscope" %}</div>
+        <h3>Controles ginecológicos</h3>
+        <p>Examen ginecológico, toma de PAP y controles de rutina con las pierneras colocadas y la paciente bien posicionada.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "user-doctor" %}</div>
+        <h3>Colposcopía y procedimientos</h3>
+        <p>Con la botonera de pie ajustás la altura sin soltar el instrumental. Para la zona de trabajo, se complementa con una <a href="/luminarias/">luminaria LED</a>.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "spa" %}</div>
+        <h3>Estética íntima</h3>
+        <p>Tratamientos de medicina estética íntima con la paciente cómoda y la altura justa para trabajar con la espalda recta.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "bed" %}</div>
+        <h3>Consultas generales</h3>
+        <p>Sin las pierneras funciona como camilla de consultorio de 3 motores: un solo equipo para todo tipo de consulta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "components/separador.njk" %}
+
 <!-- BANNER -->
 <section class="producto-seccion" style="padding-top: 0;">
   <div class="producto-seccion-inner">
@@ -203,11 +240,38 @@ instagram_reels:
   </div>
 </section>
 
-<!-- CARACTERÍSTICAS Y SPECS -->
+<!-- BOTONERA DE PIE — el diferencial del modelo -->
+<section class="producto-seccion">
+  <div class="producto-seccion-inner">
+    <div class="producto-ficha" style="margin-bottom: 0;">
+      <div class="ficha-imagen">
+        <img
+          src="/images/luma-ginecologica/luma-ginecologica-pie-08.webp"
+          alt="Botonera de pie integrada en la base de la camilla ginecológica eléctrica LUMA, con iluminación LED"
+          class="camilla-img"
+          width="800"
+          height="800"
+          loading="lazy"
+        >
+      </div>
+      <div class="ficha-info">
+        <h2>Botonera de pie: regulás la camilla sin usar las manos</h2>
+        <p>Es la gran diferencia de la LUMA Ginecológica. La botonera está integrada en la base y se acciona con el pie: cambiás la altura o la posición de la paciente en pleno examen, con los guantes puestos y el instrumental en la mano. No tenés que soltar nada ni tocar el control, así cuidás la higiene del procedimiento y no cortás la consulta.</p>
+        <ul class="features-list" style="margin-top: 1.5rem;">
+          <li>{% icono "check-circle" %} Manos libres: ajustás la camilla sin soltar el instrumental</li>
+          <li>{% icono "check-circle" %} Guantes limpios: no tocás el control durante el procedimiento</li>
+          <li>{% icono "check-circle" %} Sin cortes: reposicionás a la paciente sin moverte de tu lugar</li>
+          <li>{% icono "check-circle" %} Control de mano incluido, para acomodar a la paciente antes de empezar</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARACTERÍSTICAS PRINCIPALES -->
 <section class="producto-seccion bg-fondo">
   <div class="producto-seccion-inner">
-    <h2>Características y especificaciones</h2>
-    <div class="producto-ficha" style="margin-bottom: 0;">
+    <div class="producto-ficha reverse">
       <div class="ficha-imagen">
         <img
           src="/images/luma-ginecologica/luma-ginecologica-pie-19.webp"
@@ -219,24 +283,58 @@ instagram_reels:
         >
       </div>
       <div class="ficha-info">
+        <h2>Características principales</h2>
         <ul class="features-list">
-          <li>{% icono "check-circle" %} 3 motores: altura, respaldo y apoya-piernas</li>
-          <li>{% icono "check-circle" %} Pierneras (también llamadas estribos) ergonómicas, ajustables y removibles: doble uso</li>
-          <li>{% icono "check-circle" %} Iluminación LED integrada en la base</li>
+          <li>{% icono "check-circle" %} 3 motores independientes: altura, respaldo y apoyapiernas</li>
+          <li>{% icono "check-circle" %} Botonera de pie integrada en la base y control de mano</li>
+          <li>{% icono "check-circle" %} Pierneras (también llamadas estribos) ajustables en ángulo y altura, y removibles: doble uso</li>
+          <li>{% icono "check-circle" %} Altura regulable de 60 a 83 cm</li>
+          <li>{% icono "check-circle" %} Carga máxima de 200 kg</li>
           <li>{% icono "check-circle" %} Bandeja extraíble incorporada</li>
-          <li>{% icono "check-circle" %} Botonera de pie integrada en la base: regulás la camilla sin soltar el instrumental</li>
-          <li>{% icono "check-circle" %} Control de mano para posicionar a la paciente antes de empezar</li>
-          <li>{% icono "check-circle" %} Tapizado resistente de grado médico, fácil de higienizar</li>
+          <li>{% icono "check-circle" %} Reposabrazos removibles</li>
+          <li>{% icono "check-circle" %} Iluminación LED integrada en la base</li>
+          <li>{% icono "check-circle" %} Tapizado de grado médico, fácil de higienizar, con colchón de 11 cm</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MEDIDAS (datos de la ficha; la web es la fuente de verdad) -->
-<section class="producto-seccion bg-fondo">
+<!-- FICHA TÉCNICA (datos de LUMA y del plano del proveedor; la web es la fuente de verdad) -->
+<section class="producto-seccion">
   <div class="producto-seccion-inner">
-    <h2>Medidas de la camilla ginecológica</h2>
+    <h2 id="ficha-tecnica">Ficha técnica</h2>
+
+    <div class="producto-ficha">
+      <div class="ficha-imagen">
+        <img
+          src="/images/luma-ginecologica/luma-ginecologica-pie-13.webp"
+          alt="Control de mano de la camilla ginecológica eléctrica LUMA"
+          class="camilla-img"
+          width="800"
+          height="800"
+          loading="lazy"
+        >
+      </div>
+      <div class="ficha-info tabla-specs-grupo">
+        <h3>Sistema eléctrico y capacidad</h3>
+        <table class="tabla-specs">
+          <tbody>
+            <tr><td>Cantidad de motores</td><td>3 (altura, respaldo, apoyapiernas)</td></tr>
+            <tr><td>Control</td><td>Botonera de pie y control de mano</td></tr>
+            <tr><td>Carga máxima</td><td>200 kg</td></tr>
+            <tr><td>Altura regulable</td><td>60 – 83 cm</td></tr>
+            <tr><td>Pierneras</td><td>Ajustables en ángulo y altura, removibles</td></tr>
+            <tr><td>Bandeja</td><td>Extraíble</td></tr>
+            <tr><td>Reposabrazos</td><td>Removibles</td></tr>
+            <tr><td>Iluminación</td><td>LED integrada en la base</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3>Dimensiones</h3>
+
     <div class="producto-ficha reverse" style="margin-bottom: 0;">
       <div class="ficha-imagen">
         <img
@@ -286,7 +384,48 @@ instagram_reels:
   </div>
 </section>
 
-<!-- DIFERENCIALES -->
+<!-- CUIDADO Y MANTENIMIENTO (indicaciones del manual del proveedor) -->
+<section class="producto-seccion bg-fondo">
+  <div class="producto-seccion-inner">
+    <h2>Cuidado y mantenimiento</h2>
+    <div class="cuidado-grid">
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "sun" %}</div>
+        <h3>Lejos de la luz solar</h3>
+        <p>No la expongas a luz solar directa: con el tiempo oxida y deteriora el material. Si está cerca de una ventana, usá cortinas.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "droplet" %}</div>
+        <h3>Ambiente seco</h3>
+        <p>Evitá la humedad excesiva y las temperaturas muy altas, que corroen las partes metálicas.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "spray-can-sparkles" %}</div>
+        <h3>Limpieza habitual</h3>
+        <p>Pasale un paño apenas humedecido en agua limpia y secala con un paño seco. Sin productos alcalinos ni corrosivos.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "ban" %}</div>
+        <h3>Nunca con agua directa</h3>
+        <p>No la enjuagues con agua. Mientras esté enchufada, mantenela seca.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "hand-holding-droplet" %}</div>
+        <h3>Ante derrames</h3>
+        <p>Absorbé el líquido de inmediato con papel y secá con un paño suave.</p>
+      </div>
+      <div class="cuidado-card">
+        <div class="cuidado-icono">{% icono "layer-group" %}</div>
+        <h3>Superficie estable</h3>
+        <p>Apoyala sobre un piso plano y nivelado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "components/separador.njk" %}
+
+<!-- DIFERENCIALES / POSICIONAMIENTO -->
 <section class="producto-seccion">
   <div class="producto-seccion-inner">
     <div class="producto-ficha reverse" style="margin-bottom: 0;">
@@ -301,9 +440,10 @@ instagram_reels:
         >
       </div>
       <div class="ficha-info">
-        <h2>Diseño de doble uso para el consultorio moderno</h2>
-        <p>A diferencia de las camillas y sillas ginecológicas tradicionales, fijas en una sola función, la LUMA Ginecológica se convierte en camilla estándar en segundos al remover las pierneras. Con los estribos puestos trabaja como silla ginecológica; sin ellos, como camilla de consultorio. Un solo equipo para consultas de rutina y procedimientos especializados.</p>
+        <h2>¿Por qué LUMA Ginecológica?</h2>
+        <p>Las camillas y sillas ginecológicas tradicionales cumplen una sola función y se regulan a mano o con un control que obliga a soltar lo que tenés en la mano. La LUMA Ginecológica resuelve las dos cosas: se maneja con el pie durante el examen y, al remover las pierneras, se convierte en camilla estándar en segundos. Con los estribos puestos trabaja como silla ginecológica; sin ellos, como camilla de consultorio.</p>
         <ul class="features-list" style="margin-top: 1.5rem;">
+          <li>{% icono "check-circle" %} Botonera de pie: manos libres durante todo el examen</li>
           <li>{% icono "check-circle" %} Doble función: silla ginecológica y camilla estándar</li>
           <li>{% icono "check-circle" %} LED en base: visibilidad sin iluminación externa adicional</li>
           <li>{% icono "check-circle" %} Tapizado de grado médico: higienización rápida entre pacientes</li>
