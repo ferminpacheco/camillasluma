@@ -1024,9 +1024,12 @@ body > section:first-of-type {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
+/* 4:3 (antes 21:9, que cortaba las camillas y la luminaria por arriba y por
+   abajo). Las portadas son cuadradas o apaisadas: en 4:3 el producto entra
+   entero. Si una no entra, el post define imagenCard o imagenCardPosicion. */
 .blog-card-media {
   display: block;
-  aspect-ratio: 21 / 9;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
 }
 
@@ -1039,22 +1042,30 @@ body > section:first-of-type {
 
 .blog-card-body {
   padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
+/* Título: máximo 3 renglones (después, puntos suspensivos) y siempre el
+   alto de 3 renglones, así el botón queda a la misma altura en todas. */
 .blog-card h2 {
   font-size: 1.2em;
   margin: 0.5rem 0;
   line-height: 1.35;
-}
-
-.blog-card p {
-  opacity: 0.8;
-  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  min-height: calc(1.35em * 3);
 }
 
 .blog-card-link {
   display: inline-block;
-  margin-top: 1rem;
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 1rem;
   font-weight: 600;
   color: var(--color-principal);
   text-decoration: none;
